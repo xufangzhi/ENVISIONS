@@ -1,7 +1,7 @@
 <h1 align="center">
 <!-- <img src="./logo.png" width="100" alt="Symbol-LLM" /> -->
 <br>
-From Weak to Strong: An Efficient Neural-Symbolic Self-Training Framework
+Interactive Evolution: An Efficient Neural-Symbolic Self-Training Framework for Large Language Models
 </h1>
 
 
@@ -17,13 +17,13 @@ From Weak to Strong: An Efficient Neural-Symbolic Self-Training Framework
 
 
 <p align="center">
-Repo for "<a href="https://arxiv.org/abs/2311.09278" target="_blank">From Weak to Strong: An Efficient Neural-Symbolic Self-Training Framework</a>"
+Repo for "<a href="https://arxiv.org/abs/2311.09278" target="_blank">Interactive Evolution: An Efficient Neural-Symbolic Self-Training Framework for Large Language Models</a>"
 </p>
 
 
 ## 🔥 News
 
-- [2023/12/28] 🔥🔥🔥 We create a new repo for the code of Symbol-LLMv2!
+- [2023/12/28] 🔥🔥🔥 We create a new repo for the code of ENVISIONS!
 
 
 ## 📒 Note
