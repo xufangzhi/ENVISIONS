@@ -110,17 +110,7 @@ def main():
         # call the training scripts
         subprocess.call(["bash", training_bash_script, args.task_prefix, str(cur_iter), base_model, args.model_size])
 
-        #####
-        for _ in range(10):
-            if not os.path.exists(f"symbol-llm-v2/open-instruct/output/{args.task_prefix}_sft_iter{cur_iter}_sft_tune_{base_model}_{args.model_size}") or \
-              len(os.listdir((f"symbol-llm-v2/open-instruct/output/{args.task_prefix}_sft_iter{cur_iter}_sft_tune_{base_model}_{args.model_size}"))) == 0:
-                import time
-                time.sleep(30)
-                subprocess.call(["bash", training_bash_script, args.task_prefix, str(cur_iter), base_model, args.model_size])
-
         assert len(os.listdir((f"symbol-llm-v2/open-instruct/output/{args.task_prefix}_sft_iter{cur_iter}_sft_tune_{base_model}_{args.model_size}"))) != 0, "The checkpoint does not exist"
-
-
 
         # ======================================================================== #
         #                     Step 3: Generate Candidates with vLLM
