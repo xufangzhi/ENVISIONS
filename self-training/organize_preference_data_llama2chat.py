@@ -23,36 +23,6 @@ logger = logging.getLogger('self_training_logger')
 logger.setLevel(logging.DEBUG)
 
 
-def calculate_code_bleu(reference, candidate):
-    """
-    :param reference:
-    :param candidate:
-    :return: calculated metric
-    """
-    # 清理代码中的空格和换行符
-    reference = re.sub(r'\s', '', reference)
-    candidate = re.sub(r'\s', '', candidate)
-    # 创建n-gram字典
-    reference_ngrams = create_ngram_dict(reference, 4)
-    candidate_ngrams = create_ngram_dict(candidate, 4)
-    # 计算n-gram匹配数
-    matching_ngrams = 0
-    for ngram in candidate_ngrams:
-        if ngram in reference_ngrams:
-            matching_ngrams += min(candidate_ngrams[ngram], reference_ngrams[ngram])
-    # 计算候选翻译的长度
-    candidate_length = len(candidate)
-    # 计算参考翻译的长度
-    reference_length = len(reference)
-    # 计算精确度
-    precision = matching_ngrams / candidate_length
-    # 计算召回率
-    recall = matching_ngrams / reference_length
-    # 计算CodeBLEU
-    code_bleu = math.exp(0.5 * math.log(precision * recall))
-    return code_bleu
-
-
 def create_ngram_dict(code, n):
     ngrams = {}
     for i in range(len(code) - n + 1):
@@ -109,7 +79,7 @@ def parse_args():
     parser.add_argument(
         "--task_prefix",
         type=str,
-        default="gsm_math_full_v17",
+        default="gsm_math_full_llama2chat",
         help="The prefix for the dataset name, directory name and save path",
     )
     parser.add_argument(
@@ -263,28 +233,6 @@ def main():
         print(f"The number of used samples: {len(include_id)}")
         #     print(f"Current iteration contains: {len(include_id_gsm)} gsm samples, and {len(include_id_math)} math samples, {len(include_id_gsm)/len(include_id_math)}")
         print("-" * 30)
-        #     with open(f"../SymbolLLMv2/open-instruct/data/preference_dpo_iter{iter_idx}.json",'w') as file:
-        #         json.dump(preference_data_filtered,file,indent=4)
-        # with open(f"symbol-llm-v2/open-instruct/data/preference_sft_iter{iter_idx}.json", 'w') as file:
-        #     json.dump(preference_data_sft, file, indent=4)
-
-    # train_data = []
-    # for i in range(len(chosen_pool)):
-    #     # for m in range(len(chosen_pool[str(i)])):  # choose all
-    #     for m in range(min(10, len(chosen_pool[str(i)]))):
-    #         data_dict = {}
-    #         data_dict['origin_id'] = str(i)
-    #         data_dict['source'] = ground_truth[i]['source']
-    #         data_dict['type'] = "self-explore"
-    #         data_dict['prompt'] = "Write a Python code to solve the problem.\n" + "\nThe question is:" + \
-    #                               ground_truth[i]['input'] + "\nThe solution code is:\n"
-    #         data_dict['completion'] = extract_code_blocks(chosen_pool[str(i)][m]['response'])
-    #         train_data.append(data_dict)
-    # print(len(train_data))
-    # with jsonlines.open(f"symbol-llm-v2/open-instruct/data/{args.task_prefix}_sft_iter{args.cur_iter}_final_part.jsonl",'w') as file:
-    #     random.shuffle(train_data)
-    #     for i in range(len(train_data)):
-    #         file.write(train_data[i])
 
     with open(f"symbol-llm-v2/logs/{args.task_prefix}_log.txt","a") as file:
         file.write(f"orginal effective samples before self-repair: {effective_samples}\n")
@@ -300,12 +248,6 @@ def main():
         random.shuffle(preference_data_sft)
         for i in range(len(preference_data_sft)):
             file.write(preference_data_sft[i])
-
-    # with jsonlines.open(f"symbol-llm-v2/open-instruct/data/{args.task_prefix}_sft_iter{args.cur_iter}_best.jsonl",'w') as file:
-    #     random.shuffle(preference_data_best)
-    #     print(len(preference_data_best))
-    #     for i in range(len(preference_data_best)):
-    #         file.write(preference_data_best[i])
 
 if __name__ == "__main__":
     main()
