@@ -50,7 +50,7 @@ def parse_args():
         "--base_model",
         type=str,
         default="llemma",
-        help="if continual train",
+        help="base model",
     )
     args = parser.parse_args()
     return args
@@ -63,35 +63,35 @@ def main():
     # ======================================================================== #
     #                     Generate the initial steps
     # ======================================================================== #
-    # processes = []
-    # for part_id in range(1,9):
-    #     env = os.environ.copy()
-    #     env['CUDA_VISIBLE_DEVICES'] = str(part_id - 1)
-    #     process = subprocess.Popen(
-    #         ['python', 'symbol-llm-v2/generate_symbol_output/generate_candidates_vLLM_self_training.py', \
-    #          "--cur_iter", "0", "--few_shot", "--part_id", str(part_id), "--task_prefix", args.task_prefix, "--base_model",
-    #          base_model, "--model_size", args.model_size], env=env)
-    #     processes.append(process)
-    # # wait for all the process to be completed
-    # for process in processes:
-    #     process.wait()
-    # # ensure candidates are generated successfully
-    # for i in range(8):
-    #     assert os.path.exists(
-    #         f"symbol-llm-v2/score_memory/{args.task_prefix}/{args.task_prefix}_part{i + 1}_iter0.json") == True, "generated candidates file does not exist..."
-    #
-    # # label preferences for the data before
-    # subprocess.call(["python", "/cpfs01/user/xufangzhi/symbol-llm-v2/pal/scripts/label_preference.py", \
-    #                  "--task_prefix", args.task_prefix, "--cur_iter", "0", "--few_shot"])
-    # for i in range(8):
-    #     assert os.path.exists(f"symbol-llm-v2/score_memory/{args.task_prefix}/scores_{args.task_prefix}_part{i+1}_iter0.npy") == True
+    processes = []
+    for part_id in range(1,9):
+        env = os.environ.copy()
+        env['CUDA_VISIBLE_DEVICES'] = str(part_id - 1)
+        process = subprocess.Popen(
+            ['python', 'symbol-llm-v2/generate_symbol_output/generate_candidates_vLLM_self_training.py', \
+             "--cur_iter", "0", "--few_shot", "--part_id", str(part_id), "--task_prefix", args.task_prefix, "--base_model",
+             base_model, "--model_size", args.model_size], env=env)
+        processes.append(process)
+    # wait for all the process to be completed
+    for process in processes:
+        process.wait()
+    # ensure candidates are generated successfully
+    for i in range(8):
+        assert os.path.exists(
+            f"symbol-llm-v2/score_memory/{args.task_prefix}/{args.task_prefix}_part{i + 1}_iter0.json") == True, "generated candidates file does not exist..."
+    
+    # label preferences for the data before
+    subprocess.call(["python", "/cpfs01/user/xufangzhi/symbol-llm-v2/pal/scripts/label_preference.py", \
+                     "--task_prefix", args.task_prefix, "--cur_iter", "0", "--few_shot"])
+    for i in range(8):
+        assert os.path.exists(f"symbol-llm-v2/score_memory/{args.task_prefix}/scores_{args.task_prefix}_part{i+1}_iter0.npy") == True
 
 
     # ======================================================================== #
     #                     Start the self-training loops
     # ======================================================================== #
 
-    for cur_iter in range(5,args.iter_num):
+    for cur_iter in range(0,args.iter_num):
         logger.info(f"Current iteration: {cur_iter}")
         # ======================================================================== #
         #                     Step 1: Generate Samples
