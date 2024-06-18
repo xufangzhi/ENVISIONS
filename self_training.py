@@ -37,7 +37,7 @@ def parse_args():
     parser.add_argument(
         "--task_prefix",
         type=str,
-        default="gsm_math_full_v17_llemma",
+        default="gsm_math_full_llama2chat",
         help="The prefix for the dataset name, directory name and save path",
     )
     parser.add_argument(
@@ -97,7 +97,7 @@ def main():
         #                     Step 1: Generate Samples
         # ======================================================================== #
         logger.info(f"Start to generate samples for iteration-{cur_iter}")
-        subprocess.call(["python", f"/cpfs01/user/xufangzhi/symbol-llm-v2/self-training/organize_preference_data_v17_{base_model}.py", \
+        subprocess.call(["python", f"/cpfs01/user/xufangzhi/symbol-llm-v2/self-training/organize_preference_data_{base_model}.py", \
                          "--task_prefix", args.task_prefix, "--cur_iter", str(cur_iter), \
                          "--model_size", args.model_size])
 
