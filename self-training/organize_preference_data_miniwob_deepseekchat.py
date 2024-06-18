@@ -1,8 +1,3 @@
-"""
-input: generated predictions, ground-truth label, executed results via symbolic solver
-output: organized training data, including dpo samples and sft samples
-[current version] add organized self-repair data, only SFT
-"""
 import collections
 import json
 import numpy as np
@@ -21,36 +16,6 @@ import subprocess
 
 logger = logging.getLogger('self_training_logger')
 logger.setLevel(logging.DEBUG)
-
-
-def calculate_code_bleu(reference, candidate):
-    """
-    :param reference:
-    :param candidate:
-    :return: calculated metric
-    """
-    # 清理代码中的空格和换行符
-    reference = re.sub(r'\s', '', reference)
-    candidate = re.sub(r'\s', '', candidate)
-    # 创建n-gram字典
-    reference_ngrams = create_ngram_dict(reference, 4)
-    candidate_ngrams = create_ngram_dict(candidate, 4)
-    # 计算n-gram匹配数
-    matching_ngrams = 0
-    for ngram in candidate_ngrams:
-        if ngram in reference_ngrams:
-            matching_ngrams += min(candidate_ngrams[ngram], reference_ngrams[ngram])
-    # 计算候选翻译的长度
-    candidate_length = len(candidate)
-    # 计算参考翻译的长度
-    reference_length = len(reference)
-    # 计算精确度
-    precision = matching_ngrams / candidate_length
-    # 计算召回率
-    recall = matching_ngrams / reference_length
-    # 计算CodeBLEU
-    code_bleu = math.exp(0.5 * math.log(precision * recall))
-    return code_bleu
 
 
 def create_ngram_dict(code, n):

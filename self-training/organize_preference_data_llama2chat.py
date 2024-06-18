@@ -1,8 +1,3 @@
-"""
-input: generated predictions, ground-truth label, executed results via symbolic solver
-output: organized training data, including dpo samples and sft samples
-[current version] add organized self-repair data, only SFT
-"""
 import collections
 import json
 import numpy as np
