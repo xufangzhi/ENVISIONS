@@ -8,16 +8,14 @@ Interactive Evolution: An Efficient Neural-Symbolic Self-Training Framework for 
 
 <p align="center">
   <a href="https://xufangzhi.github.io/symbol-llm-page/"><b>[🌐 Website]</b></a> •
-  <a href="https://arxiv.org/abs/2311.09278"><b>[📜 Paper]</b></a> •
-  <a href="https://huggingface.co/Symbol-LLM/Symbol-LLM-7B-Instruct"><b>[🤗 HF Models]</b></a> •
-  <a href="https://huggingface.co/datasets/Symbol-LLM/Symbolic_Collection"><b>[🤗 HF Dataset]</b></a> •
-  <a href="https://github.com/xufangzhi/Self-Training"><b>[🐱 GitHub]</b></a>
+  <a href="http://arxiv.org/abs/2406.11736"><b>[📜 Paper]</b></a> •
+  <a href="https://github.com/xufangzhi/ENVISIONS"><b>[🐱 GitHub]</b></a>
   
 </p>
 
 
 <p align="center">
-Repo for "<a href="https://arxiv.org/abs/2311.09278" target="_blank">Interactive Evolution: An Efficient Neural-Symbolic Self-Training Framework for Large Language Models</a>"
+Repo for "<a href="http://arxiv.org/abs/2406.11736" target="_blank">Interactive Evolution: An Efficient Neural-Symbolic Self-Training Framework for Large Language Models</a>"
 </p>
 
 
@@ -52,10 +50,11 @@ python symbol-llm-v2/self_training_logic.py --base_model "llama2chat" --model_si
 ## Citation
 If you find it helpful, please kindly cite our paper.
 ```
-@article{xu2023symbol,
-  title={Symbol-LLM: Towards Foundational Symbol-centric Interface For Large Language Models},
-  author={Xu, Fangzhi and Wu, Zhiyong and Sun, Qiushi and Ren, Siyu and Yuan, Fei and Yuan, Shuai and Lin, Qika and Qiao, Yu and Liu, Jun},
-  journal={arXiv preprint arXiv:2311.09278},
-  year={2023}
+@misc{xu2024interactive,
+      title={Interactive Evolution: A Neural-Symbolic Self-Training Framework For Large Language Models}, 
+      author={Fangzhi Xu and Qiushi Sun and Kanzhi Cheng and Jun Liu and Yu Qiao and Zhiyong Wu},
+      year={2024},
+      eprint={2406.11736},
+      archivePrefix={arXiv},
 }
 ```
