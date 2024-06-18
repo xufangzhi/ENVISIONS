@@ -49,7 +49,9 @@ python symbol-llm-v2/self_training_logic.py --base_model "llama2chat" --model_si
 ```
 
 ## 🌐 Acknowledgements
-+ The LLM training is based on [open-instruct](https://github.com/allenai/open-instruct), and the generation steps are accelerated by [vLLM](https://github.com/vllm-project/vllm).
++ The LLM training is based on [open-instruct](https://github.com/allenai/open-instruct) and the generation steps are accelerated by [vLLM](https://github.com/vllm-project/vllm).
++ The environments are modified from [Synapse](https://github.com/ltzheng/Synapse) and [SeeClick](https://github.com/njucckevin/SeeClick) for agentic tasks, [PAL](https://github.com/reasoning-machines/pal) for mathemetical tasks, and [Logic-LM](https://github.com/teacherpeterpan/Logic-LLM) for logical reasoning tasks.
+
 
 ## Citation
 If you find it helpful, please kindly cite our paper.
