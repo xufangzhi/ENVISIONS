@@ -48,6 +48,9 @@ For **logical reasoning** tasks, please use:
 python symbol-llm-v2/self_training_logic.py --base_model "llama2chat" --model_size "7B" --task_prefix "logic_llama2chat" --vllm_batchsize 1
 ```
 
+## 🌐 Acknowledgements
++ The LLM training is based on [open-instruct](https://github.com/allenai/open-instruct), and the generation steps are accelerated by [vLLM](https://github.com/vllm-project/vllm).
+
 ## Citation
 If you find it helpful, please kindly cite our paper.
 ```
