@@ -21,7 +21,8 @@ Repo for "<a href="http://arxiv.org/abs/2406.11736" target="_blank">Interactive 
 
 ## 🔥 News
 
-- [2023/12/28] 🔥🔥🔥 We create a new repo for the code of ENVISIONS!
+- [2024/05/20] 🚀🚀🚀 ENVISIONS is submitted to NIPS 2024!
+- [2024/05/01] 🔥🔥🔥 We create a new repo for the code of ENVISIONS!
 
 
 ## 📒 Note
