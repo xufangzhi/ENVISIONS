@@ -30,8 +30,27 @@ Repo for "<a href="https://arxiv.org/abs/2311.09278" target="_blank">Interactive
 This work is still in progress.
 
 
+## 🚀 How to Start Training
+
+To try on ENVISIONS, please use the bash script `run_self_training.sh` or directly use the following command:
+
+For **agentic** task MiniWob, please use:
+```bash
+python symbol-llm-v2/self_training_miniwob.py --base_model "llama2chat" --model_size "7B" --task_prefix "miniwob_v17_llama2chat" --vllm_batchsize 1
+```
+
+For **mathematical** tasks, please use:
+```bash
+python symbol-llm-v2/self_training.py --base_model "llama2chat" --model_size "7B" --task_prefix "gsm_math_full_v17_llama2chat" --vllm_batchsize 1
+```
+
+For **logical reasoning** tasks, please use:
+```bash
+python symbol-llm-v2/self_training_logic.py --base_model "llama2chat" --model_size "7B" --task_prefix "logic_v17_llama2chat" --vllm_batchsize 1
+```
+
 ## Citation
-If you find it helpful, please kindly cite our previous paper.
+If you find it helpful, please kindly cite our paper.
 ```
 @article{xu2023symbol,
   title={Symbol-LLM: Towards Foundational Symbol-centric Interface For Large Language Models},
