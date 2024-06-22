@@ -15,7 +15,7 @@ Interactive Evolution: A Neural-Symbolic Self-Training Framework for Large Langu
 
 
 <p align="center">
-Repo for "<a href="http://arxiv.org/abs/2406.11736" target="_blank">Interactive Evolution: An Efficient Neural-Symbolic Self-Training Framework for Large Language Models</a>"
+Repo for "<a href="http://arxiv.org/abs/2406.11736" target="_blank">Interactive Evolution: A Neural-Symbolic Self-Training Framework for Large Language Models</a>"
 </p>
 
 
