@@ -1,7 +1,7 @@
 <h1 align="center">
 <!-- <img src="./logo.png" width="100" alt="Symbol-LLM" /> -->
 <br>
-Interactive Evolution: An Efficient Neural-Symbolic Self-Training Framework for Large Language Models
+Interactive Evolution: A Neural-Symbolic Self-Training Framework for Large Language Models
 </h1>
 
 
