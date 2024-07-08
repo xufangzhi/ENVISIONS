@@ -21,6 +21,7 @@ Repo for "<a href="http://arxiv.org/abs/2406.11736" target="_blank">Interactive 
 
 ## 🔥 News
 
+- [2024/07/07] The codebase will be completed within 1-2 weeks ! Stay tuned !
 - [2024/05/20] 🚀🚀🚀 ENVISIONS is under review!
 - [2024/05/01] 🔥🔥🔥 We create a new repo for the code of ENVISIONS!
 
