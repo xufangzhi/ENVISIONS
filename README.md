@@ -9,6 +9,7 @@ Interactive Evolution: A Neural-Symbolic Self-Training Framework for Large Langu
 <p align="center">
   <a href="https://xufangzhi.github.io/symbol-llm-page/"><b>[🌐 Website]</b></a> •
   <a href="http://arxiv.org/abs/2406.11736"><b>[📜 Paper]</b></a> •
+  <a href="https://huggingface.co/Symbol-LLM/ENVISIONS_7B_math_iter10"><b>[🤗 HF Models]</b></a> •
   <a href="https://github.com/xufangzhi/ENVISIONS"><b>[🐱 GitHub]</b></a>
   
 </p>
@@ -20,8 +21,8 @@ Repo for "<a href="http://arxiv.org/abs/2406.11736" target="_blank">Interactive 
 
 
 ## 🔥 News
-
-- [2024/07/07] The codebase will be completed within **1-2 weeks** ! At the same time, checkpoints after self-training will be released at hf ! Stay tuned !
+- [2024/07/09] A series of checkpoints after self-training with ENVISIONS are released at huggingface ! Cover agent, math and logic domains ! Include 7B and 13B versions ! Check it out !
+- [2024/07/07] The codebase will be completed within **1-2 weeks** ! Stay tuned !
 - [2024/05/20] 🚀🚀🚀 ENVISIONS is under review!
 - [2024/05/01] 🔥🔥🔥 We create a new repo for the code of ENVISIONS!
 
