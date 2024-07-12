@@ -73,13 +73,13 @@ def extract_ans(text):
 def main():
     args = parse_args()
 
-    PATH_TO_CONVERTED_WEIGHTS = f"/cpfs01/user/xufangzhi/symbol-llm-v2/open-instruct/output/{args.task_prefix}_sft_iter{args.cur_iter}_sft_tune_{args.base_model}_{args.model_size}/"
+    PATH_TO_CONVERTED_WEIGHTS = f"ENVISIONS/open-instruct/output/{args.task_prefix}_sft_iter{args.cur_iter}_sft_tune_{args.base_model}_{args.model_size}/"
 
     llm = LLM(model=PATH_TO_CONVERTED_WEIGHTS, tensor_parallel_size=1)
 
 
     for part in [f"part{args.part_id}"]:
-        test_path = f"symbol-llm-v2/open-instruct/data/proofwriter_{part}.json"
+        test_path = f"ENVISIONS/open-instruct/data/proofwriter_{part}.json"
 
         with open(test_path) as file:
             data_test = json.load(file)
@@ -107,12 +107,10 @@ def main():
             if outputs:
                 outputs = outputs[:5]  # trunct to 5
                 for j, output in enumerate(outputs):
-                    # print(output)
                     response_list = output.outputs
                     for response in response_list:
                         response_text = response.text
                         result_dict = {}
-                        # response = response.split(prompt)[1].strip()
                         response_text = response_text.strip()
                         result_dict['id'] = i
                         result_dict['question'] = data_test[i]['question']
@@ -123,7 +121,6 @@ def main():
                         # print(response)
             else:
                 result_dict = {}
-                # response = response.split(prompt)[1].strip()
                 result_dict['id'] = i
                 result_dict['question'] = data_test[i]['question']
                 result_dict['response'] = ""

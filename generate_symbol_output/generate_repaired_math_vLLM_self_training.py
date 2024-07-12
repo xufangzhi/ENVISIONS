@@ -82,12 +82,12 @@ def extract_code_blocks(text):
 def main():
     args = parse_args()
 
-    PATH_TO_CONVERTED_WEIGHTS = f"/cpfs01/user/xufangzhi/symbol-llm-v2/open-instruct/output/{args.task_prefix}_sft_iter{args.cur_iter}_sft_tune_{args.base_model}_{args.model_size}/"
+    PATH_TO_CONVERTED_WEIGHTS = f"ENVISIONS/open-instruct/output/{args.task_prefix}_sft_iter{args.cur_iter}_sft_tune_{args.base_model}_{args.model_size}/"
     llm = LLM(model=PATH_TO_CONVERTED_WEIGHTS, tensor_parallel_size=1)
 
     for part in [f"part{args.part_id}"]:
 
-        test_path = f"symbol-llm-v2/open-instruct/data/gsm_math_full_{part}.json"
+        test_path = f"ENVISIONS/open-instruct/data/gsm_math_full_{part}.json"
         with open(test_path) as file:
             data_test = json.load(file)
         print(test_path)
@@ -101,8 +101,7 @@ def main():
             result_dict = {}
             prompt = data_test[i]['input']
             sampling_params = SamplingParams(max_tokens=4096,n=1)
-            # prompts = [prompt]
-            # instruction = "Repair the provided Python code to solve the given problem."
+
             instruction = "You are provided with a Python code to solve the given problem. You can either repair and refine it, or simply return the original solution.\n"
             prompts = [instruction + "\nThe question is:\n" + data_test[i]['input'] \
                         + "\nThe current Python code is:\n" + extract_code_blocks(data_before[i*5+j]['response']) \
@@ -112,7 +111,7 @@ def main():
                 outputs = llm.generate(prompts, sampling_params)
             except:
                 outputs = []
-            # for _ in range(5):
+
             if outputs:
                 outputs = outputs[:5]  # trunct to 5
                 for j, output in enumerate(outputs):
@@ -121,7 +120,6 @@ def main():
                     for response in response_list:
                         response_text = response.text
                         result_dict = {}
-                        # response = response.split(prompt)[1].strip()
                         response_text = response_text.strip()
                         result_dict['id'] = i
                         result_dict['question'] = data_test[i]['input']
@@ -141,8 +139,6 @@ def main():
                 result.append(result_dict)
                 print("The response is empty")
 
-                    # print("-----")
-                    # print(data_test[i]['output'])
 
             # solve the mistakes
             if len(result) % 5 != 0:

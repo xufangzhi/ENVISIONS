@@ -78,21 +78,18 @@ def extract_action_blocks(text):
 def main():
     args = parse_args()
 
-    PATH_TO_CONVERTED_WEIGHTS = f"/cpfs01/user/xufangzhi/symbol-llm-v2/open-instruct/output/{args.task_prefix}_sft_iter{args.cur_iter}_sft_tune_{args.base_model}_{args.model_size}/"
+    PATH_TO_CONVERTED_WEIGHTS = f"ENVISIONS/open-instruct/output/{args.task_prefix}_sft_iter{args.cur_iter}_sft_tune_{args.base_model}_{args.model_size}/"
 
     llm = LLM(model=PATH_TO_CONVERTED_WEIGHTS, tensor_parallel_size=1)
 
     for part in [f"part{args.part_id}"]:
 
-        test_path = f"symbol-llm-v2/open-instruct/data/miniwob_{part}.json"
-        # test_path = f"symbol-llm-v2/open-instruct/data/theoremqa_train.json"
+        test_path = f"ENVISIONS/open-instruct/data/miniwob_{part}.json"
         with open(test_path) as file:
             data_test = json.load(file)
         print(test_path)
 
-        # with open(f"new_generated_data/theoremqa_v2_iter2.json") as file:
         with open(f"new_generated_data/{args.task_prefix}_{part}_iter{args.cur_iter+1}.json") as file:
-        # with open(f"new_generated_data/gsm_math_full_v14_{part}_iter{args.cur_iter + 1}.json") as file:
             data_before = json.load(file)
 
         assert len(data_test)==len(data_before)//5
@@ -101,8 +98,7 @@ def main():
             result_dict = {}
 
             sampling_params = SamplingParams(max_tokens=4000,n=1)
-            # prompts = [prompt]
-            # instruction = "Repair the provided Python code to solve the given problem."
+
             instruction = "You are required to navigate the web. To accomplish the task, use methods in Agent class to generate actions, with the following functions. type(characters: str): Type a string via the keyboard. click_xpath(xpath: str): Click an HTML element with a valid XPath. press(key_type: str): Press a key on the keyboard (enter, space, arrowleft, arrowright, backspace, arrowup, arrowdown, command+a, command+c, command+v). click_option(xpath: str): Click an option HTML element in a list with a valid XPath. movemouse(xpath: str): Move the mouse cursor on an HTML element with a valid XPath.\n"
             instruction += "You should repair the current action to finish the task."
             prompts = [instruction + "\nThe observation is:\n" + data_before[i*5+j]['question'] \
@@ -111,11 +107,9 @@ def main():
                         for j in range(5)]
 
             outputs = llm.generate(prompts, sampling_params)
-            # for _ in range(5):
             if outputs:
-                print(len(outputs))
+                # print(len(outputs))
                 outputs = outputs[:5]   # trunct to 5
-                # assert len(outputs)==1, "2222"
                 for j, output in enumerate(outputs):
                     # print(output)
                     response_list = output.outputs
@@ -125,7 +119,6 @@ def main():
                         response_text = response.text
 
                         result_dict = {}
-                        # response = response.split(prompt)[1].strip()
                         response_text = response_text.strip()
                         result_dict['id'] = i
                         result_dict['question'] = data_before[i*5+j]['question']
@@ -136,7 +129,6 @@ def main():
                         # print(response)
             else:
                 result_dict = {}
-                # response = response.split(prompt)[1].strip()
                 result_dict['id'] = i
                 result_dict['question'] = data_before[i*5+j]['question']
                 result_dict['response'] = ""

@@ -72,22 +72,17 @@ def parse_args():
 def main():
     args = parse_args()
 
-    # print(args.few_shot, args.base_model)
-    if args.few_shot and args.base_model=="llemma":
-        PATH_TO_CONVERTED_WEIGHTS = f"/cpfs01/shared/public/public_hdd/llmeval/model_weights/hf_hub/models--EleutherAI--llemma_7b/snapshots/e223eee41c53449e6ea6548c9b71c50865e4a85c"
-    elif args.few_shot and args.base_model == f"llama2chat" and args.model_size=="7B":
-        PATH_TO_CONVERTED_WEIGHTS = f"/cpfs01/shared/public/public_hdd/llmeval/model_weights/llama2/model_weights_hf/llama-2-7b-chat-hf"
+    if args.few_shot and args.base_model == f"llama2chat" and args.model_size=="7B":
+        PATH_TO_CONVERTED_WEIGHTS = f"/cpfs01/shared/public/public_hdd/llmeval/model_weights/llama2/model_weights_hf/llama-2-7b-chat-hf"  # path to the base LLM
     elif args.few_shot and args.base_model == f"llama2chat" and args.model_size=="13B":
-        PATH_TO_CONVERTED_WEIGHTS = f"/cpfs01/shared/public/public_hdd/llmeval/model_weights/llama2/model_weights_hf/llama-2-13b-chat-hf"
-    elif args.few_shot and args.base_model == f"deepseekchat" and args.model_size=="7B":
-        PATH_TO_CONVERTED_WEIGHTS = f"/cpfs01/shared/public/public_hdd/llmeval/model_weights/hf_hub/models--deepseek-ai--deepseek-llm-7b-chat/snapshots/afbda8b347ec881666061fa67447046fc5164ec8"
+        PATH_TO_CONVERTED_WEIGHTS = f"/cpfs01/shared/public/public_hdd/llmeval/model_weights/llama2/model_weights_hf/llama-2-13b-chat-hf"  # path to the base LLM
     else:
-        PATH_TO_CONVERTED_WEIGHTS=f"/cpfs01/user/xufangzhi/symbol-llm-v2/open-instruct/output/{args.task_prefix}_sft_iter{args.cur_iter}_sft_tune_{args.base_model}_{args.model_size}/"
+        PATH_TO_CONVERTED_WEIGHTS=f"ENVISIONS/open-instruct/output/{args.task_prefix}_sft_iter{args.cur_iter}_sft_tune_{args.base_model}_{args.model_size}/"
 
     llm = LLM(model=PATH_TO_CONVERTED_WEIGHTS, tensor_parallel_size=1, trust_remote_code=True)
 
     for part in [f"part{args.part_id}"]:
-        test_path = f"symbol-llm-v2/open-instruct/data/proofwriter_{part}.json"
+        test_path = f"ENVISIONS/open-instruct/data/proofwriter_{part}.json"
         with open(test_path) as file:
             data_test = json.load(file)
         print(test_path)
@@ -96,9 +91,7 @@ def main():
             result_dict = {}
 
             sampling_params = SamplingParams(max_tokens=3500,n=5)
-            # prompts = [prompt]
             instruction = "Generate the logical representation for the given context and question. "
-            # instruction = "Write Python code to solve the question.\nThe returned value of the program is supposed to be the answer. It should be integer or float or list of integer/float.\n"
 
             if args.few_shot:
                 prompts = [instruction + "\n" + proofwriter_prompt.PROOFWRITER_PROMPT + "\nThe context is:\n" + data_test[j]['context']
@@ -155,7 +148,7 @@ def main():
 
 
         if args.few_shot:
-            test_result_folder = f"symbol-llm-v2/score_memory/{args.task_prefix}"
+            test_result_folder = f"ENVISIONS/score_memory/{args.task_prefix}"
             if not os.path.exists(test_result_folder):
                 os.system(f"mkdir -p {test_result_folder}")
             with open(f"{test_result_folder}/{args.task_prefix}_{part}_iter0.json", 'w') as file:
