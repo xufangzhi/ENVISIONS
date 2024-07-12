@@ -30,7 +30,7 @@ Repo for "<a href="http://arxiv.org/abs/2406.11736" target="_blank">Interactive 
 ## 📒 Note
 This work is still in progress. You can also check our previous work [Symbol-LLM](https://arxiv.org/abs/2311.09278) on neural-symbolism. It will appear at ACL 2024 main conference.
 
-## 🌍 ENVISIONS: **ENV**-gu**I**ded **S**elf-tra**I**ning framework f**O**r **N**eural **S**ymbolic scenarios
+## 🌍 ENVISIONS: Env-guided Self-training Framework for Neural Symbolic scenarios
 
 ![model](assets/Model.png)
 
