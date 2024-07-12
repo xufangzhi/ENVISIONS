@@ -1,0 +1,202 @@
+[
+  {
+    "input": [
+      {
+        "role": "user",
+        "content": "State:\n<div id=\"wrap\" data-wob_ref=\"2\" data-wob_eps=\"e0\">\n  <div id=\"query\">Use the terminal below to delete a file ending with the extension <span class=\"bold\">.png</span></div>\n  <div id=\"area\" data-wob_ref=\"3\" data-wob_eps=\"e0\"><div data-wob_ref=\"4\" data-wob_eps=\"e0\">\n<div id=\"terminal\" data-wob_ref=\"5\" data-wob_eps=\"e0\">\n  <div id=\"terminal-header\" data-wob_ref=\"6\" data-wob_eps=\"e0\">terminal</div>\n  <div id=\"terminal-contents\" data-wob_ref=\"7\" data-wob_eps=\"e0\">\n    <div class=\"terminal-output\" data-wob_ref=\"8\" data-wob_eps=\"e0\">\n  <span class=\"output\" data-wob_ref=\"9\" data-wob_eps=\"e0\">Welcome! Type help for a list of available commands.</span>\n</div><div class=\"terminal-output\" data-wob_ref=\"10\" data-wob_eps=\"e0\">\n  <span class=\"output\" data-wob_ref=\"11\" data-wob_eps=\"e0\">Last login: Tue May 02 2023</span>\n</div><div class=\"terminal-line\" data-wob_ref=\"12\" data-wob_eps=\"e0\">\n      <span class=\"user\" data-wob_ref=\"13\" data-wob_eps=\"e0\">user$</span>\n      <span id=\"active-input\" class=\"command\"></span>\n      <span id=\"input-flicker\" data-wob_ref=\"14\" data-wob_eps=\"e0\">\u2588</span>\n    </div>\n  </div>\n</div>\n<input type=\"text\" id=\"terminal-target\" data-wob_ref=\"15\" data-wob_eps=\"e0\">\n</div></div>\n</div>\nObservation:\nUse the terminal below to delete a file ending with the extension .png\n\nState:\n<div id=\"wrap\" data-wob_ref=\"2\" data-wob_eps=\"e0\">\n  <div id=\"query\">Use the terminal below to delete a file ending with the extension <span class=\"bold\">.py</span></div>\n  <div id=\"area\" data-wob_ref=\"3\" data-wob_eps=\"e0\"><div data-wob_ref=\"4\" data-wob_eps=\"e0\">\n<div id=\"terminal\" data-wob_ref=\"5\" data-wob_eps=\"e0\">\n  <div id=\"terminal-header\" data-wob_ref=\"6\" data-wob_eps=\"e0\">terminal</div>\n  <div id=\"terminal-contents\" data-wob_ref=\"7\" data-wob_eps=\"e0\">\n    <div class=\"terminal-output\" data-wob_ref=\"8\" data-wob_eps=\"e0\">\n  <span class=\"output\" data-wob_ref=\"9\" data-wob_eps=\"e0\">Welcome! Type help for a list of available commands.</span>\n</div><div class=\"terminal-output\" data-wob_ref=\"10\" data-wob_eps=\"e0\">\n  <span class=\"output\" data-wob_ref=\"11\" data-wob_eps=\"e0\">Last login: Tue May 02 2023</span>\n</div><div class=\"terminal-line\" data-wob_ref=\"12\" data-wob_eps=\"e0\">\n      <span class=\"user\" data-wob_ref=\"13\" data-wob_eps=\"e0\">user$</span>\n      <span id=\"active-input\" class=\"command\"></span>\n      <span id=\"input-flicker\" data-wob_ref=\"14\" data-wob_eps=\"e0\">\u2588</span>\n    </div>\n  </div>\n</div>\n<input type=\"text\" id=\"terminal-target\" data-wob_ref=\"15\" data-wob_eps=\"e0\">\n</div></div>\n</div>\nObservation:\nUse the terminal below to delete a file ending with the extension .py\n\nState:\n<div id=\"wrap\" data-wob_ref=\"2\" data-wob_eps=\"e0\">\n  <div id=\"query\">Use the terminal below to delete a file that has <span class=\"bold\">no file extension</span>.</div>\n  <div id=\"area\" data-wob_ref=\"3\" data-wob_eps=\"e0\"><div data-wob_ref=\"4\" data-wob_eps=\"e0\">\n<div id=\"terminal\" data-wob_ref=\"5\" data-wob_eps=\"e0\">\n  <div id=\"terminal-header\" data-wob_ref=\"6\" data-wob_eps=\"e0\">terminal</div>\n  <div id=\"terminal-contents\" data-wob_ref=\"7\" data-wob_eps=\"e0\">\n    <div class=\"terminal-output\" data-wob_ref=\"8\" data-wob_eps=\"e0\">\n  <span class=\"output\" data-wob_ref=\"9\" data-wob_eps=\"e0\">Welcome! Type help for a list of available commands.</span>\n</div><div class=\"terminal-output\" data-wob_ref=\"10\" data-wob_eps=\"e0\">\n  <span class=\"output\" data-wob_ref=\"11\" data-wob_eps=\"e0\">Last login: Tue May 02 2023</span>\n</div><div class=\"terminal-line\" data-wob_ref=\"12\" data-wob_eps=\"e0\">\n      <span class=\"user\" data-wob_ref=\"13\" data-wob_eps=\"e0\">user$</span>\n      <span id=\"active-input\" class=\"command\"></span>\n      <span id=\"input-flicker\" data-wob_ref=\"14\" data-wob_eps=\"e0\">\u2588</span>\n    </div>\n  </div>\n</div>\n<input type=\"text\" id=\"terminal-target\" data-wob_ref=\"15\" data-wob_eps=\"e0\">\n</div></div>\n</div>\nObservation:\nUse the terminal below to delete a file that has no file extension.\n\nState:\n<div id=\"wrap\" data-wob_ref=\"2\" data-wob_eps=\"e0\">\n  <div id=\"query\">Use the terminal below to delete a file ending with the extension <span class=\"bold\">.gpg</span></div>\n  <div id=\"area\" data-wob_ref=\"3\" data-wob_eps=\"e0\"><div data-wob_ref=\"4\" data-wob_eps=\"e0\">\n<div id=\"terminal\" data-wob_ref=\"5\" data-wob_eps=\"e0\">\n  <div id=\"terminal-header\" data-wob_ref=\"6\" data-wob_eps=\"e0\">terminal</div>\n  <div id=\"terminal-contents\" data-wob_ref=\"7\" data-wob_eps=\"e0\">\n    <div class=\"terminal-output\" data-wob_ref=\"8\" data-wob_eps=\"e0\">\n  <span class=\"output\" data-wob_ref=\"9\" data-wob_eps=\"e0\">Welcome! Type help for a list of available commands.</span>\n</div><div class=\"terminal-output\" data-wob_ref=\"10\" data-wob_eps=\"e0\">\n  <span class=\"output\" data-wob_ref=\"11\" data-wob_eps=\"e0\">Last login: Sun Sep 24 2023</span>\n</div><div class=\"terminal-line\" data-wob_ref=\"12\" data-wob_eps=\"e0\">\n      <span class=\"user\" data-wob_ref=\"13\" data-wob_eps=\"e0\">user$</span>\n      <span id=\"active-input\" class=\"command\"></span>\n      <span id=\"input-flicker\" data-wob_ref=\"14\" data-wob_eps=\"e0\">\u2588</span>\n    </div>\n  </div>\n</div>\n<input type=\"text\" id=\"terminal-target\" data-wob_ref=\"15\" data-wob_eps=\"e0\">\n</div></div>\n</div>\nObservation:"
+      }
+    ],
+    "output": "Use the terminal below to delete a file ending with the extension .gpg.",
+    "token_stats": {
+      "prompt_tokens": 1736,
+      "completion_tokens": 16,
+      "total_tokens": 1752
+    }
+  },
+  {
+    "input": [
+      {
+        "role": "system",
+        "content": "You are a large language model trained to navigate the web. To accomplish the task, use methods in the following Agent class to generate actions until you need the new state to proceed.\n```\nclass Agent:\n    def __init__(self, args):\n        ...\n\n    # Action: type a string via the keyboard\n    def type(self, characters: str) -> None:\n        ...\n\n    # Action: click an HTML element with a valid xpath\n    def click_xpath(self, xpath: str):\n        ...\n\n    # Actions: press a key on the keyboard, including:\n    # enter, space, arrowleft, arrowright, backspace, arrowup, arrowdown, command+a, command+c, command+v\n    def press(self, key_type: str) -> None:\n        ...\n\n    # Action: click an option HTML element in a list with a valid xpath\n    def click_option(self, xpath: str):\n        ...\n\n    # Action: move mouse cursor on an HTML element with a valid xpath\n    def movemouse(self, xpath: str):\n        ...\n```"
+      },
+      {
+        "role": "user",
+        "content": "Task: Use the terminal below to delete a file ending with the extension .png\nTrajectory:"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nUse the terminal below to delete a file ending with the extension .png\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nagent.type('ls')\nagent.press('enter')\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nUse the terminal below to delete a file ending with the extension .png\nuser$ ls\nalloy.png script.zip shark.html sudo.gpg\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\n# Note that it is not allowed to use *.xxx here. alloy.png is the file ending with the extension .png. Type the complete filename.\nagent.type('rm alloy.png')\nagent.press('enter')\n```"
+      },
+      {
+        "role": "user",
+        "content": "Task: Use the terminal below to delete a file ending with the extension .py\nTrajectory:"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nUse the terminal below to delete a file ending with the extension .py\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nagent.type('ls')\nagent.press('enter')\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nUse the terminal below to delete a file ending with the extension .py\nuser$ ls\nbash.gpg image.gif nintendo.py\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\n# Note that it is not allowed to use *.xxx here.\n# nintendo.py is the file ending with the extension .py. Type the complete filename.\nagent.type('rm nintendo.py')\nagent.press('enter')\n```"
+      },
+      {
+        "role": "user",
+        "content": "Task: Use the terminal below to delete a file that has no file extension.\nTrajectory:"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nUse the terminal below to delete a file that has no file extension.\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nagent.type('ls')\nagent.press('enter')\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nUse the terminal below to delete a file that has no file extension.\nuser$ ls\nencrypted.sh chrome.txt search\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\n# Note that it is not allowed to use *.xxx here.\n# search is the file that has no file extension while encrypted.sh and chrome.txt are not. Type the complete filename.\nagent.type('rm search')\nagent.press(\"enter\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Task: Use the terminal below to delete a file ending with the extension .gpg\nTrajectory:"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nUse the terminal below to delete a file ending with the extension .gpg.\nAction:"
+      }
+    ],
+    "output": "```\nagent.type('ls')\nagent.press('enter')\n```",
+    "token_stats": {
+      "prompt_tokens": 752,
+      "completion_tokens": 13,
+      "total_tokens": 765
+    }
+  },
+  {
+    "input": [
+      {
+        "role": "user",
+        "content": "State:\n<div id=\"wrap\" data-wob_ref=\"2\" data-wob_eps=\"e0\">\n  <div id=\"query\">Use the terminal below to delete a file ending with the extension <span class=\"bold\">.png</span></div>\n  <div id=\"area\" data-wob_ref=\"3\" data-wob_eps=\"e0\"><div data-wob_ref=\"4\" data-wob_eps=\"e0\">\n<div id=\"terminal\" data-wob_ref=\"5\" data-wob_eps=\"e0\">\n  <div id=\"terminal-header\" data-wob_ref=\"6\" data-wob_eps=\"e0\">terminal</div>\n  <div id=\"terminal-contents\" data-wob_ref=\"7\" data-wob_eps=\"e0\">\n    <div class=\"terminal-output\" data-wob_ref=\"8\" data-wob_eps=\"e0\">\n  <span class=\"output\" data-wob_ref=\"9\" data-wob_eps=\"e0\">Welcome! Type help for a list of available commands.</span>\n</div><div class=\"terminal-output\" data-wob_ref=\"10\" data-wob_eps=\"e0\">\n  <span class=\"output\" data-wob_ref=\"11\" data-wob_eps=\"e0\">Last login: Tue May 02 2023</span>\n</div><div class=\"terminal-line\" data-wob_ref=\"17\" data-wob_eps=\"e0\">\n  <span class=\"user\" data-wob_ref=\"18\" data-wob_eps=\"e0\">user$</span>\n  <span class=\"command\" data-wob_ref=\"19\" data-wob_eps=\"e0\">ls</span>\n</div><div class=\"terminal-output\" data-wob_ref=\"20\" data-wob_eps=\"e0\">\n  <span class=\"output\" data-wob_ref=\"21\" data-wob_eps=\"e0\">alloy.png script.zip shark.html sudo.gpg</span>\n</div><div class=\"terminal-line\" data-wob_ref=\"12\" data-wob_eps=\"e0\">\n      <span class=\"user\" data-wob_ref=\"13\" data-wob_eps=\"e0\">user$</span>\n      <span id=\"active-input\" class=\"command\" data-wob_ref=\"16\" data-wob_eps=\"e0\"></span>\n      <span id=\"input-flicker\" data-wob_ref=\"14\" data-wob_eps=\"e0\" class=\"hide\">\u2588</span>\n    </div>\n  </div>\n</div>\n<input type=\"text\" id=\"terminal-target\" data-wob_ref=\"15\" data-wob_eps=\"e0\">\n</div></div>\n</div>\nObservation:\nUse the terminal below to delete a file ending with the extension .png\nuser$ ls\nalloy.png script.zip shark.html sudo.gpg\n\nState:\n<div id=\"wrap\" data-wob_ref=\"2\" data-wob_eps=\"e0\">\n  <div id=\"query\">Use the terminal below to delete a file ending with the extension <span class=\"bold\">.py</span></div>\n  <div id=\"area\" data-wob_ref=\"3\" data-wob_eps=\"e0\"><div data-wob_ref=\"4\" data-wob_eps=\"e0\">\n<div id=\"terminal\" data-wob_ref=\"5\" data-wob_eps=\"e0\">\n  <div id=\"terminal-header\" data-wob_ref=\"6\" data-wob_eps=\"e0\">terminal</div>\n  <div id=\"terminal-contents\" data-wob_ref=\"7\" data-wob_eps=\"e0\">\n    <div class=\"terminal-output\" data-wob_ref=\"8\" data-wob_eps=\"e0\">\n  <span class=\"output\" data-wob_ref=\"9\" data-wob_eps=\"e0\">Welcome! Type help for a list of available commands.</span>\n</div><div class=\"terminal-output\" data-wob_ref=\"10\" data-wob_eps=\"e0\">\n  <span class=\"output\" data-wob_ref=\"11\" data-wob_eps=\"e0\">Last login: Tue May 02 2023</span>\n</div><div class=\"terminal-line\" data-wob_ref=\"17\" data-wob_eps=\"e0\">\n  <span class=\"user\" data-wob_ref=\"18\" data-wob_eps=\"e0\">user$</span>\n  <span class=\"command\" data-wob_ref=\"19\" data-wob_eps=\"e0\">ls</span>\n</div><div class=\"terminal-output\" data-wob_ref=\"20\" data-wob_eps=\"e0\">\n  <span class=\"output\" data-wob_ref=\"21\" data-wob_eps=\"e0\">bash.gpg image.gif nintendo.py</span>\n</div><div class=\"terminal-line\" data-wob_ref=\"12\" data-wob_eps=\"e0\">\n      <span class=\"user\" data-wob_ref=\"13\" data-wob_eps=\"e0\">user$</span>\n      <span id=\"active-input\" class=\"command\" data-wob_ref=\"16\" data-wob_eps=\"e0\"></span>\n      <span id=\"input-flicker\" data-wob_ref=\"14\" data-wob_eps=\"e0\" class=\"\">\u2588</span>\n    </div>\n  </div>\n</div>\n<input type=\"text\" id=\"terminal-target\" data-wob_ref=\"15\" data-wob_eps=\"e0\">\n</div></div>\n</div>\nObservation:\nUse the terminal below to delete a file ending with the extension .py\nuser$ ls\nbash.gpg image.gif nintendo.py\n\nState:\n<div id=\"wrap\" data-wob_ref=\"2\" data-wob_eps=\"e0\">\n  <div id=\"query\">Use the terminal below to delete a file that has <span class=\"bold\">no file extension</span>.</div>\n  <div id=\"area\" data-wob_ref=\"3\" data-wob_eps=\"e0\"><div data-wob_ref=\"4\" data-wob_eps=\"e0\">\n<div id=\"terminal\" data-wob_ref=\"5\" data-wob_eps=\"e0\">\n  <div id=\"terminal-header\" data-wob_ref=\"6\" data-wob_eps=\"e0\">terminal</div>\n  <div id=\"terminal-contents\" data-wob_ref=\"7\" data-wob_eps=\"e0\">\n    <div class=\"terminal-output\" data-wob_ref=\"8\" data-wob_eps=\"e0\">\n  <span class=\"output\" data-wob_ref=\"9\" data-wob_eps=\"e0\">Welcome! Type help for a list of available commands.</span>\n</div><div class=\"terminal-output\" data-wob_ref=\"10\" data-wob_eps=\"e0\">\n  <span class=\"output\" data-wob_ref=\"11\" data-wob_eps=\"e0\">Last login: Tue May 02 2023</span>\n</div><div class=\"terminal-line\" data-wob_ref=\"17\" data-wob_eps=\"e0\">\n  <span class=\"user\" data-wob_ref=\"18\" data-wob_eps=\"e0\">user$</span>\n  <span class=\"command\" data-wob_ref=\"19\" data-wob_eps=\"e0\">ls</span>\n</div><div class=\"terminal-output\" data-wob_ref=\"20\" data-wob_eps=\"e0\">\n  <span class=\"output\" data-wob_ref=\"21\" data-wob_eps=\"e0\">encrypted.sh chrome.txt search</span>\n</div><div class=\"terminal-line\" data-wob_ref=\"12\" data-wob_eps=\"e0\">\n      <span class=\"user\" data-wob_ref=\"13\" data-wob_eps=\"e0\">user$</span>\n      <span id=\"active-input\" class=\"command\" data-wob_ref=\"16\" data-wob_eps=\"e0\"></span>\n      <span id=\"input-flicker\" data-wob_ref=\"14\" data-wob_eps=\"e0\" class=\"\">\u2588</span>\n    </div>\n  </div>\n</div>\n<input type=\"text\" id=\"terminal-target\" data-wob_ref=\"15\" data-wob_eps=\"e0\">\n</div></div>\n</div>\nObservation:\nUse the terminal below to delete a file that has no file extension.\nuser$ ls\nencrypted.sh chrome.txt search\n\nState:\n<div id=\"wrap\" data-wob_ref=\"2\" data-wob_eps=\"e0\">\n  <div id=\"query\">Use the terminal below to delete a file ending with the extension <span class=\"bold\">.gpg</span></div>\n  <div id=\"area\" data-wob_ref=\"3\" data-wob_eps=\"e0\"><div data-wob_ref=\"4\" data-wob_eps=\"e0\">\n<div id=\"terminal\" data-wob_ref=\"5\" data-wob_eps=\"e0\">\n  <div id=\"terminal-header\" data-wob_ref=\"6\" data-wob_eps=\"e0\">terminal</div>\n  <div id=\"terminal-contents\" data-wob_ref=\"7\" data-wob_eps=\"e0\">\n    <div class=\"terminal-output\" data-wob_ref=\"8\" data-wob_eps=\"e0\">\n  <span class=\"output\" data-wob_ref=\"9\" data-wob_eps=\"e0\">Welcome! Type help for a list of available commands.</span>\n</div><div class=\"terminal-output\" data-wob_ref=\"10\" data-wob_eps=\"e0\">\n  <span class=\"output\" data-wob_ref=\"11\" data-wob_eps=\"e0\">Last login: Sun Sep 24 2023</span>\n</div><div class=\"terminal-line\" data-wob_ref=\"17\" data-wob_eps=\"e0\">\n  <span class=\"user\" data-wob_ref=\"18\" data-wob_eps=\"e0\">user$</span>\n  <span class=\"command\" data-wob_ref=\"19\" data-wob_eps=\"e0\">ls</span>\n</div><div class=\"terminal-output\" data-wob_ref=\"20\" data-wob_eps=\"e0\">\n  <span class=\"output\" data-wob_ref=\"21\" data-wob_eps=\"e0\">index.rb media.html window.gpg</span>\n</div><div class=\"terminal-line\" data-wob_ref=\"12\" data-wob_eps=\"e0\">\n      <span class=\"user\" data-wob_ref=\"13\" data-wob_eps=\"e0\">user$</span>\n      <span id=\"active-input\" class=\"command\" data-wob_ref=\"16\" data-wob_eps=\"e0\"></span>\n      <span id=\"input-flicker\" data-wob_ref=\"14\" data-wob_eps=\"e0\" class=\"\">\u2588</span>\n    </div>\n  </div>\n</div>\n<input type=\"text\" id=\"terminal-target\" data-wob_ref=\"15\" data-wob_eps=\"e0\">\n</div></div>\n</div>\nObservation:"
+      }
+    ],
+    "output": "Use the terminal below to delete a file ending with the extension .gpg\nuser$ ls\nindex.rb media.html window.gpg",
+    "token_stats": {
+      "prompt_tokens": 2378,
+      "completion_tokens": 27,
+      "total_tokens": 2405
+    }
+  },
+  {
+    "input": [
+      {
+        "role": "system",
+        "content": "You are a large language model trained to navigate the web. To accomplish the task, use methods in the following Agent class to generate actions until you need the new state to proceed.\n```\nclass Agent:\n    def __init__(self, args):\n        ...\n\n    # Action: type a string via the keyboard\n    def type(self, characters: str) -> None:\n        ...\n\n    # Action: click an HTML element with a valid xpath\n    def click_xpath(self, xpath: str):\n        ...\n\n    # Actions: press a key on the keyboard, including:\n    # enter, space, arrowleft, arrowright, backspace, arrowup, arrowdown, command+a, command+c, command+v\n    def press(self, key_type: str) -> None:\n        ...\n\n    # Action: click an option HTML element in a list with a valid xpath\n    def click_option(self, xpath: str):\n        ...\n\n    # Action: move mouse cursor on an HTML element with a valid xpath\n    def movemouse(self, xpath: str):\n        ...\n```"
+      },
+      {
+        "role": "user",
+        "content": "Task: Use the terminal below to delete a file ending with the extension .png\nTrajectory:"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nUse the terminal below to delete a file ending with the extension .png\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nagent.type('ls')\nagent.press('enter')\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nUse the terminal below to delete a file ending with the extension .png\nuser$ ls\nalloy.png script.zip shark.html sudo.gpg\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\n# Note that it is not allowed to use *.xxx here. alloy.png is the file ending with the extension .png. Type the complete filename.\nagent.type('rm alloy.png')\nagent.press('enter')\n```"
+      },
+      {
+        "role": "user",
+        "content": "Task: Use the terminal below to delete a file ending with the extension .py\nTrajectory:"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nUse the terminal below to delete a file ending with the extension .py\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nagent.type('ls')\nagent.press('enter')\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nUse the terminal below to delete a file ending with the extension .py\nuser$ ls\nbash.gpg image.gif nintendo.py\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\n# Note that it is not allowed to use *.xxx here.\n# nintendo.py is the file ending with the extension .py. Type the complete filename.\nagent.type('rm nintendo.py')\nagent.press('enter')\n```"
+      },
+      {
+        "role": "user",
+        "content": "Task: Use the terminal below to delete a file that has no file extension.\nTrajectory:"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nUse the terminal below to delete a file that has no file extension.\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nagent.type('ls')\nagent.press('enter')\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nUse the terminal below to delete a file that has no file extension.\nuser$ ls\nencrypted.sh chrome.txt search\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\n# Note that it is not allowed to use *.xxx here.\n# search is the file that has no file extension while encrypted.sh and chrome.txt are not. Type the complete filename.\nagent.type('rm search')\nagent.press(\"enter\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Task: Use the terminal below to delete a file ending with the extension .gpg\nTrajectory:"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nUse the terminal below to delete a file ending with the extension .gpg.\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nagent.type('ls')\nagent.press('enter')\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nUse the terminal below to delete a file ending with the extension .gpg\nuser$ ls\nindex.rb media.html window.gpg\nAction:"
+      }
+    ],
+    "output": "```\n# Note that it is not allowed to use *.xxx here.\n# window.gpg is the file ending with the extension .gpg. Type the complete filename.\nagent.type('rm window.gpg')\nagent.press('enter')\n```",
+    "token_stats": {
+      "prompt_tokens": 808,
+      "completion_tokens": 49,
+      "total_tokens": 857
+    }
+  }
+]

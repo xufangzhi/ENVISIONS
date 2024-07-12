@@ -1,0 +1,202 @@
+[
+  {
+    "input": [
+      {
+        "role": "user",
+        "content": "State:\n<div id=\"wrap\" data-wob_ref=\"2\" data-wob_eps=\"e0\">\n  <div id=\"query\">Enter an item that starts with \"<span class=\"bold\">Gua</span>\".</div>\n  <div id=\"area\" data-wob_ref=\"3\" data-wob_eps=\"e0\">\n    <label for=\"tags\" data-wob_ref=\"4\" data-wob_eps=\"e0\">Tags: </label>\n    <input id=\"tags\" class=\"ui-autocomplete-input\" autocomplete=\"off\" data-wob_ref=\"5\" data-wob_eps=\"e0\">\n    <button id=\"subbtn\" class=\"secondary-action\" data-wob_ref=\"6\" data-wob_eps=\"e0\">Submit</button>\n  </div>\n</div>\n<ul id=\"ui-id-1\" tabindex=\"0\" class=\"ui-menu ui-widget ui-widget-content ui-autocomplete ui-front\" style=\"display: none;\"></ul>\n<div role=\"status\" aria-live=\"assertive\" aria-relevant=\"additions\" class=\"ui-helper-hidden-accessible\" data-wob_ref=\"7\" data-wob_eps=\"e0\"></div>\nObservation:\nTask: Enter an item that starts with \"Gua\". The autocomplete element is displaying nothing.\n\nState:\n<div id=\"wrap\" data-wob_ref=\"2\" data-wob_eps=\"e0\">\n  <div id=\"query\">Enter an item that starts with \"<span class=\"bold\">Af</span>\" and ends with \"<span class=\"bold\">stan</span>\".</div>\n  <div id=\"area\" data-wob_ref=\"3\" data-wob_eps=\"e0\">\n    <label for=\"tags\" data-wob_ref=\"4\" data-wob_eps=\"e0\">Tags: </label>\n    <input id=\"tags\" class=\"ui-autocomplete-input\" autocomplete=\"off\" data-wob_ref=\"5\" data-wob_eps=\"e0\">\n    <button id=\"subbtn\" class=\"secondary-action\" data-wob_ref=\"6\" data-wob_eps=\"e0\">Submit</button>\n  </div>\n</div>\n<ul id=\"ui-id-1\" tabindex=\"0\" class=\"ui-menu ui-widget ui-widget-content ui-autocomplete ui-front\" style=\"display: none;\"></ul>\n<div role=\"status\" aria-live=\"assertive\" aria-relevant=\"additions\" class=\"ui-helper-hidden-accessible\" data-wob_ref=\"7\" data-wob_eps=\"e0\"></div>\nObservation:\nTask: Enter an item that starts with \"Af\" and ends with \"stan\". The autocomplete element is displaying nothing.\n\nState:\n<div id=\"wrap\" data-wob_ref=\"2\" data-wob_eps=\"e0\">\n  <div id=\"query\">Enter an item that starts with \"<span class=\"bold\">Mex</span>\" and ends with \"<span class=\"bold\">ico</span>\".</div>\n  <div id=\"area\" data-wob_ref=\"3\" data-wob_eps=\"e0\">\n    <label for=\"tags\" data-wob_ref=\"4\" data-wob_eps=\"e0\">Tags: </label>\n    <input id=\"tags\" class=\"ui-autocomplete-input\" autocomplete=\"off\" data-wob_ref=\"5\" data-wob_eps=\"e0\">\n    <button id=\"subbtn\" class=\"secondary-action\" data-wob_ref=\"6\" data-wob_eps=\"e0\">Submit</button>\n  </div>\n</div>\n<ul id=\"ui-id-1\" tabindex=\"0\" class=\"ui-menu ui-widget ui-widget-content ui-autocomplete ui-front\" style=\"display: none;\"></ul>\n<div role=\"status\" aria-live=\"assertive\" aria-relevant=\"additions\" class=\"ui-helper-hidden-accessible\" data-wob_ref=\"7\" data-wob_eps=\"e0\"></div>\nObservation:\nTask: Enter an item that starts with \"Mex\" and ends with \"ico\". The autocomplete element is displaying nothing.\n\nState:\n<div id=\"wrap\" data-wob_ref=\"2\" data-wob_eps=\"e0\">\n  <div id=\"query\">Enter an item that starts with \"<span class=\"bold\">Ir</span>\" and ends with \"<span class=\"bold\">Iran</span>\".</div>\n  <div id=\"area\" data-wob_ref=\"3\" data-wob_eps=\"e0\">\n    <label for=\"tags\" data-wob_ref=\"4\" data-wob_eps=\"e0\">Tags: </label>\n    <input id=\"tags\" class=\"ui-autocomplete-input\" autocomplete=\"off\" data-wob_ref=\"5\" data-wob_eps=\"e0\">\n    <button id=\"subbtn\" class=\"secondary-action\" data-wob_ref=\"6\" data-wob_eps=\"e0\">Submit</button>\n  </div>\n</div>\n<ul id=\"ui-id-1\" tabindex=\"0\" class=\"ui-menu ui-widget ui-widget-content ui-autocomplete ui-front\" style=\"display: none;\"></ul>\n<div role=\"status\" aria-live=\"assertive\" aria-relevant=\"additions\" class=\"ui-helper-hidden-accessible\" data-wob_ref=\"7\" data-wob_eps=\"e0\"></div>\nObservation:"
+      }
+    ],
+    "output": "Task: Enter an item that starts with \"Ir\" and ends with \"Iran\". The autocomplete element is displaying nothing.",
+    "token_stats": {
+      "prompt_tokens": 1115,
+      "completion_tokens": 24,
+      "total_tokens": 1139
+    }
+  },
+  {
+    "input": [
+      {
+        "role": "system",
+        "content": "You are a large language model trained to navigate the web. To accomplish the task, use methods in the following Agent class to generate actions until you need the new state to proceed.\n```\nclass Agent:\n    def __init__(self, args):\n        ...\n\n    # Action: type a string via the keyboard\n    def type(self, characters: str) -> None:\n        ...\n\n    # Action: click an HTML element with a valid xpath\n    def click_xpath(self, xpath: str):\n        ...\n\n    # Actions: press a key on the keyboard, including:\n    # enter, space, arrowleft, arrowright, backspace, arrowup, arrowdown, command+a, command+c, command+v\n    def press(self, key_type: str) -> None:\n        ...\n\n    # Action: click an option HTML element in a list with a valid xpath\n    def click_option(self, xpath: str):\n        ...\n\n    # Action: move mouse cursor on an HTML element with a valid xpath\n    def movemouse(self, xpath: str):\n        ...\n```"
+      },
+      {
+        "role": "user",
+        "content": "Task: Enter an item that starts with \"Gua\".\nTrajectory:"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nTask: Enter an item that starts with \"Gua\". The autocomplete element is displaying nothing.\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\n# Enter 'Gua'.\nagent.click_xpath(\"//*[@id='tags']\")\nagent.type('Gua')\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nClick 'Guadeloupe' and submit. (It starts with 'Gua')\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nagent.click_xpath(\"//div[text()='Guadeloupe']\")\nagent.click_xpath(\"//*[@id='subbtn']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Task: Enter an item that starts with \"Af\" and ends with \"stan\".\nTrajectory:"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nTask: Enter an item that starts with \"Af\" and ends with \"stan\". The autocomplete element is displaying nothing.\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\n# Enter 'Af'. (Do not enter 'stan' because it is at the end.)\nagent.click_xpath(\"//*[@id='tags']\")\nagent.type('Af')\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nClick 'Afghanistan' and submit. (It starts with 'Af' and ends with 'stan')\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nagent.click_xpath(\"//div[text()='Afghanistan']\")\nagent.click_xpath(\"//*[@id='subbtn']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Task: Enter an item that starts with \"Mex\" and ends with \"ico\".\nTrajectory:"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nTask: Enter an item that starts with \"Mex\" and ends with \"ico\". The autocomplete element is displaying nothing.\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\n# Enter 'Mex'. (Do not enter 'ico' because it is at the end.)\nagent.click_xpath(\"//*[@id='tags']\")\nagent.type('Mex')\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nClick \"Mexico\" and submit. (It starts with \"Mex\" and ends with \"ico\")\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nagent.click_xpath(\"//div[text()='Mexico']\")\nagent.click_xpath(\"//*[@id='subbtn']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Task: Enter an item that starts with \"Ir\" and ends with \"Iran\".\nTrajectory:"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nTask: Enter an item that starts with \"Ir\" and ends with \"Iran\". The autocomplete element is displaying nothing.\nAction:"
+      }
+    ],
+    "output": "```\n# Enter 'Ir'. (Do not enter 'Iran' because it is at the end.)\nagent.click_xpath(\"//*[@id='tags']\")\nagent.type('Ir')\n```",
+    "token_stats": {
+      "prompt_tokens": 734,
+      "completion_tokens": 35,
+      "total_tokens": 769
+    }
+  },
+  {
+    "input": [
+      {
+        "role": "user",
+        "content": "State:\n<div id=\"wrap\" data-wob_ref=\"2\" data-wob_eps=\"e0\">\n  <div id=\"query\">Enter an item that starts with \"<span class=\"bold\">Gua</span>\".</div>\n  <div id=\"area\" data-wob_ref=\"3\" data-wob_eps=\"e0\">\n    <label for=\"tags\" data-wob_ref=\"4\" data-wob_eps=\"e0\">Tags: </label>\n    <input id=\"tags\" class=\"ui-autocomplete-input\" autocomplete=\"off\" data-wob_ref=\"5\" data-wob_eps=\"e0\" data-tampered=\"e0\">\n    <button id=\"subbtn\" class=\"secondary-action\" data-wob_ref=\"6\" data-wob_eps=\"e0\">Submit</button>\n  </div>\n</div>\n<ul id=\"ui-id-1\" tabindex=\"0\" class=\"ui-menu ui-widget ui-widget-content ui-autocomplete ui-front\" style=\"display: block; width: 126px; top: 92px; left: 10px;\" data-wob_ref=\"8\" data-wob_eps=\"e0\"><li class=\"ui-menu-item\" data-wob_ref=\"9\" data-wob_eps=\"e0\"><div id=\"ui-id-2\" tabindex=\"-1\" class=\"ui-menu-item-wrapper\" data-wob_ref=\"10\" data-wob_eps=\"e0\">Guadeloupe</div></li><li class=\"ui-menu-item\" data-wob_ref=\"11\" data-wob_eps=\"e0\"><div id=\"ui-id-3\" tabindex=\"-1\" class=\"ui-menu-item-wrapper\" data-wob_ref=\"12\" data-wob_eps=\"e0\">Guam</div></li><li class=\"ui-menu-item\" data-wob_ref=\"13\" data-wob_eps=\"e0\"><div id=\"ui-id-4\" tabindex=\"-1\" class=\"ui-menu-item-wrapper\" data-wob_ref=\"14\" data-wob_eps=\"e0\">Guatemala</div></li></ul>\n<div role=\"status\" aria-live=\"assertive\" aria-relevant=\"additions\" class=\"ui-helper-hidden-accessible\" data-wob_ref=\"7\" data-wob_eps=\"e0\"><div data-wob_ref=\"15\" data-wob_eps=\"e0\">3 results are available, use up and down arrow keys to navigate.</div></div>\nObservation:\nClick 'Guadeloupe' and submit. (It starts with 'Gua')\n\nState:\n<div id=\"wrap\" data-wob_ref=\"2\" data-wob_eps=\"e0\">\n  <div id=\"query\">Enter an item that starts with \"<span class=\"bold\">Af</span>\" and ends with \"<span class=\"bold\">stan</span>\".</div>\n  <div id=\"area\" data-wob_ref=\"3\" data-wob_eps=\"e0\">\n    <label for=\"tags\" data-wob_ref=\"4\" data-wob_eps=\"e0\">Tags: </label>\n    <input id=\"tags\" class=\"ui-autocomplete-input\" autocomplete=\"off\" data-wob_ref=\"5\" data-wob_eps=\"e0\" data-tampered=\"e0\">\n    <button id=\"subbtn\" class=\"secondary-action\" data-wob_ref=\"6\" data-wob_eps=\"e0\">Submit</button>\n  </div>\n</div>\n<ul id=\"ui-id-1\" tabindex=\"0\" class=\"ui-menu ui-widget ui-widget-content ui-autocomplete ui-front\" style=\"display: block; width: 126px; top: 92px; left: 10px;\" data-wob_ref=\"8\" data-wob_eps=\"e0\"><li class=\"ui-menu-item\" data-wob_ref=\"9\" data-wob_eps=\"e0\"><div id=\"ui-id-2\" tabindex=\"-1\" class=\"ui-menu-item-wrapper\" data-wob_ref=\"10\" data-wob_eps=\"e0\">Afghanistan</div></li></ul>\n<div role=\"status\" aria-live=\"assertive\" aria-relevant=\"additions\" class=\"ui-helper-hidden-accessible\" data-wob_ref=\"7\" data-wob_eps=\"e0\"><div data-wob_ref=\"11\" data-wob_eps=\"e0\">1 result is available, use up and down arrow keys to navigate.</div></div>\nObservation:\nClick 'Afghanistan' and submit. (It starts with 'Af' and ends with 'stan')\n\nState:\n<div id=\"wrap\" data-wob_ref=\"2\" data-wob_eps=\"e0\">\n  <div id=\"query\">Enter an item that starts with \"<span class=\"bold\">Mex</span>\" and ends with \"<span class=\"bold\">ico</span>\".</div>\n  <div id=\"area\" data-wob_ref=\"3\" data-wob_eps=\"e0\">\n    <label for=\"tags\" data-wob_ref=\"4\" data-wob_eps=\"e0\">Tags: </label>\n    <input id=\"tags\" class=\"ui-autocomplete-input\" autocomplete=\"off\" data-wob_ref=\"5\" data-wob_eps=\"e0\" data-tampered=\"e0\">\n    <button id=\"subbtn\" class=\"secondary-action\" data-wob_ref=\"6\" data-wob_eps=\"e0\">Submit</button>\n  </div>\n</div>\n<ul id=\"ui-id-1\" tabindex=\"0\" class=\"ui-menu ui-widget ui-widget-content ui-autocomplete ui-front\" style=\"display: block; width: 126px; top: 92px; left: 10px;\" data-wob_ref=\"8\" data-wob_eps=\"e0\"><li class=\"ui-menu-item\" data-wob_ref=\"9\" data-wob_eps=\"e0\"><div id=\"ui-id-2\" tabindex=\"-1\" class=\"ui-menu-item-wrapper\" data-wob_ref=\"10\" data-wob_eps=\"e0\">Mexico</div></li></ul>\n<div role=\"status\" aria-live=\"assertive\" aria-relevant=\"additions\" class=\"ui-helper-hidden-accessible\" data-wob_ref=\"7\" data-wob_eps=\"e0\"><div data-wob_ref=\"11\" data-wob_eps=\"e0\">1 result is available, use up and down arrow keys to navigate.</div></div>\nObservation:\nClick \"Mexico\" and submit. (It starts with \"Mex\" and ends with \"ico\")\n\nState:\n<div id=\"wrap\" data-wob_ref=\"2\" data-wob_eps=\"e0\">\n  <div id=\"query\">Enter an item that starts with \"<span class=\"bold\">Ir</span>\" and ends with \"<span class=\"bold\">Iran</span>\".</div>\n  <div id=\"area\" data-wob_ref=\"3\" data-wob_eps=\"e0\">\n    <label for=\"tags\" data-wob_ref=\"4\" data-wob_eps=\"e0\">Tags: </label>\n    <input id=\"tags\" class=\"ui-autocomplete-input\" autocomplete=\"off\" data-wob_ref=\"5\" data-wob_eps=\"e0\" data-tampered=\"e0\">\n    <button id=\"subbtn\" class=\"secondary-action\" data-wob_ref=\"6\" data-wob_eps=\"e0\">Submit</button>\n  </div>\n</div>\n<ul id=\"ui-id-1\" tabindex=\"0\" class=\"ui-menu ui-widget ui-widget-content ui-autocomplete ui-front\" style=\"display: block; width: 126px; top: 92px; left: 10px;\" data-wob_ref=\"8\" data-wob_eps=\"e0\"><li class=\"ui-menu-item\" data-wob_ref=\"9\" data-wob_eps=\"e0\"><div id=\"ui-id-2\" tabindex=\"-1\" class=\"ui-menu-item-wrapper\" data-wob_ref=\"10\" data-wob_eps=\"e0\">Iran</div></li><li class=\"ui-menu-item\" data-wob_ref=\"11\" data-wob_eps=\"e0\"><div id=\"ui-id-3\" tabindex=\"-1\" class=\"ui-menu-item-wrapper\" data-wob_ref=\"12\" data-wob_eps=\"e0\">Iraq</div></li><li class=\"ui-menu-item\" data-wob_ref=\"13\" data-wob_eps=\"e0\"><div id=\"ui-id-4\" tabindex=\"-1\" class=\"ui-menu-item-wrapper\" data-wob_ref=\"14\" data-wob_eps=\"e0\">Ireland</div></li></ul>\n<div role=\"status\" aria-live=\"assertive\" aria-relevant=\"additions\" class=\"ui-helper-hidden-accessible\" data-wob_ref=\"7\" data-wob_eps=\"e0\"><div data-wob_ref=\"15\" data-wob_eps=\"e0\">3 results are available, use up and down arrow keys to navigate.</div></div>\nObservation:"
+      }
+    ],
+    "output": "Click \"Iran\" and submit. (It starts with \"Ir\" and ends with \"Iran\")",
+    "token_stats": {
+      "prompt_tokens": 1904,
+      "completion_tokens": 20,
+      "total_tokens": 1924
+    }
+  },
+  {
+    "input": [
+      {
+        "role": "system",
+        "content": "You are a large language model trained to navigate the web. To accomplish the task, use methods in the following Agent class to generate actions until you need the new state to proceed.\n```\nclass Agent:\n    def __init__(self, args):\n        ...\n\n    # Action: type a string via the keyboard\n    def type(self, characters: str) -> None:\n        ...\n\n    # Action: click an HTML element with a valid xpath\n    def click_xpath(self, xpath: str):\n        ...\n\n    # Actions: press a key on the keyboard, including:\n    # enter, space, arrowleft, arrowright, backspace, arrowup, arrowdown, command+a, command+c, command+v\n    def press(self, key_type: str) -> None:\n        ...\n\n    # Action: click an option HTML element in a list with a valid xpath\n    def click_option(self, xpath: str):\n        ...\n\n    # Action: move mouse cursor on an HTML element with a valid xpath\n    def movemouse(self, xpath: str):\n        ...\n```"
+      },
+      {
+        "role": "user",
+        "content": "Task: Enter an item that starts with \"Gua\".\nTrajectory:"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nTask: Enter an item that starts with \"Gua\". The autocomplete element is displaying nothing.\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\n# Enter 'Gua'.\nagent.click_xpath(\"//*[@id='tags']\")\nagent.type('Gua')\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nClick 'Guadeloupe' and submit. (It starts with 'Gua')\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nagent.click_xpath(\"//div[text()='Guadeloupe']\")\nagent.click_xpath(\"//*[@id='subbtn']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Task: Enter an item that starts with \"Af\" and ends with \"stan\".\nTrajectory:"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nTask: Enter an item that starts with \"Af\" and ends with \"stan\". The autocomplete element is displaying nothing.\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\n# Enter 'Af'. (Do not enter 'stan' because it is at the end.)\nagent.click_xpath(\"//*[@id='tags']\")\nagent.type('Af')\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nClick 'Afghanistan' and submit. (It starts with 'Af' and ends with 'stan')\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nagent.click_xpath(\"//div[text()='Afghanistan']\")\nagent.click_xpath(\"//*[@id='subbtn']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Task: Enter an item that starts with \"Mex\" and ends with \"ico\".\nTrajectory:"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nTask: Enter an item that starts with \"Mex\" and ends with \"ico\". The autocomplete element is displaying nothing.\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\n# Enter 'Mex'. (Do not enter 'ico' because it is at the end.)\nagent.click_xpath(\"//*[@id='tags']\")\nagent.type('Mex')\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nClick \"Mexico\" and submit. (It starts with \"Mex\" and ends with \"ico\")\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nagent.click_xpath(\"//div[text()='Mexico']\")\nagent.click_xpath(\"//*[@id='subbtn']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Task: Enter an item that starts with \"Ir\" and ends with \"Iran\".\nTrajectory:"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nTask: Enter an item that starts with \"Ir\" and ends with \"Iran\". The autocomplete element is displaying nothing.\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\n# Enter 'Ir'. (Do not enter 'Iran' because it is at the end.)\nagent.click_xpath(\"//*[@id='tags']\")\nagent.type('Ir')\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nClick \"Iran\" and submit. (It starts with \"Ir\" and ends with \"Iran\")\nAction:"
+      }
+    ],
+    "output": "```\nagent.click_xpath(\"//div[text()='Iran']\")\nagent.click_xpath(\"//*[@id='subbtn']\")\n```",
+    "token_stats": {
+      "prompt_tokens": 804,
+      "completion_tokens": 21,
+      "total_tokens": 825
+    }
+  }
+]

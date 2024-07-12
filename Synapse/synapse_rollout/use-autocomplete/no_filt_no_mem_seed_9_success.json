@@ -1,0 +1,44 @@
+[
+  {
+    "input": [
+      {
+        "role": "system",
+        "content": "You are a large language model trained to navigate the web. To accomplish the task, use methods in the following Agent class to generate actions until you need the new state to proceed.\n```\nclass Agent:\n    def __init__(self, args):\n        ...\n\n    # Action: type a string via the keyboard\n    def type(self, characters: str) -> None:\n        ...\n\n    # Action: click an HTML element with a valid xpath\n    def click_xpath(self, xpath: str):\n        ...\n\n    # Actions: press a key on the keyboard, including:\n    # enter, space, arrowleft, arrowright, backspace, arrowup, arrowdown, command+a, command+c, command+v\n    def press(self, key_type: str) -> None:\n        ...\n\n    # Action: click an option HTML element in a list with a valid xpath\n    def click_option(self, xpath: str):\n        ...\n\n    # Action: move mouse cursor on an HTML element with a valid xpath\n    def movemouse(self, xpath: str):\n        ...\n```"
+      },
+      {
+        "role": "user",
+        "content": "Task: Enter an item that starts with \"Gua\".\nTrajectory:"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n<div id=\"wrap\" data-wob_ref=\"2\" data-wob_eps=\"e0\">\n  <div id=\"query\">Enter an item that starts with \"<span class=\"bold\">Gua</span>\".</div>\n  <div id=\"area\" data-wob_ref=\"3\" data-wob_eps=\"e0\">\n    <label for=\"tags\" data-wob_ref=\"4\" data-wob_eps=\"e0\">Tags: </label>\n    <input id=\"tags\" class=\"ui-autocomplete-input\" autocomplete=\"off\" data-wob_ref=\"5\" data-wob_eps=\"e0\">\n    <button id=\"subbtn\" class=\"secondary-action\" data-wob_ref=\"6\" data-wob_eps=\"e0\">Submit</button>\n  </div>\n</div>\n<ul id=\"ui-id-1\" tabindex=\"0\" class=\"ui-menu ui-widget ui-widget-content ui-autocomplete ui-front\" style=\"display: none;\"></ul>\n<div role=\"status\" aria-live=\"assertive\" aria-relevant=\"additions\" class=\"ui-helper-hidden-accessible\" data-wob_ref=\"7\" data-wob_eps=\"e0\"></div>\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\n# Enter 'Gua'.\nagent.click_xpath(\"//*[@id='tags']\")\nagent.type('Gua')\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n<div id=\"wrap\" data-wob_ref=\"2\" data-wob_eps=\"e0\">\n  <div id=\"query\">Enter an item that starts with \"<span class=\"bold\">Gua</span>\".</div>\n  <div id=\"area\" data-wob_ref=\"3\" data-wob_eps=\"e0\">\n    <label for=\"tags\" data-wob_ref=\"4\" data-wob_eps=\"e0\">Tags: </label>\n    <input id=\"tags\" class=\"ui-autocomplete-input\" autocomplete=\"off\" data-wob_ref=\"5\" data-wob_eps=\"e0\" data-tampered=\"e0\">\n    <button id=\"subbtn\" class=\"secondary-action\" data-wob_ref=\"6\" data-wob_eps=\"e0\">Submit</button>\n  </div>\n</div>\n<ul id=\"ui-id-1\" tabindex=\"0\" class=\"ui-menu ui-widget ui-widget-content ui-autocomplete ui-front\" style=\"display: block; width: 126px; top: 92px; left: 10px;\" data-wob_ref=\"8\" data-wob_eps=\"e0\"><li class=\"ui-menu-item\" data-wob_ref=\"9\" data-wob_eps=\"e0\"><div id=\"ui-id-2\" tabindex=\"-1\" class=\"ui-menu-item-wrapper\" data-wob_ref=\"10\" data-wob_eps=\"e0\">Guadeloupe</div></li><li class=\"ui-menu-item\" data-wob_ref=\"11\" data-wob_eps=\"e0\"><div id=\"ui-id-3\" tabindex=\"-1\" class=\"ui-menu-item-wrapper\" data-wob_ref=\"12\" data-wob_eps=\"e0\">Guam</div></li><li class=\"ui-menu-item\" data-wob_ref=\"13\" data-wob_eps=\"e0\"><div id=\"ui-id-4\" tabindex=\"-1\" class=\"ui-menu-item-wrapper\" data-wob_ref=\"14\" data-wob_eps=\"e0\">Guatemala</div></li></ul>\n<div role=\"status\" aria-live=\"assertive\" aria-relevant=\"additions\" class=\"ui-helper-hidden-accessible\" data-wob_ref=\"7\" data-wob_eps=\"e0\"><div data-wob_ref=\"15\" data-wob_eps=\"e0\">3 results are available, use up and down arrow keys to navigate.</div></div>\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nagent.click_xpath(\"//div[text()='Guadeloupe']\")\nagent.click_xpath(\"//*[@id='subbtn']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Task: Enter an item that starts with \"Ur\" and ends with \"uay\".\nTrajectory:"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n<div id=\"wrap\" data-wob_ref=\"2\" data-wob_eps=\"e0\">\n  <div id=\"query\">Enter an item that starts with \"<span class=\"bold\">Ur</span>\" and ends with \"<span class=\"bold\">uay</span>\".</div>\n  <div id=\"area\" data-wob_ref=\"3\" data-wob_eps=\"e0\">\n    <label for=\"tags\" data-wob_ref=\"4\" data-wob_eps=\"e0\">Tags: </label>\n    <input id=\"tags\" class=\"ui-autocomplete-input\" autocomplete=\"off\" data-wob_ref=\"5\" data-wob_eps=\"e0\">\n    <button id=\"subbtn\" class=\"secondary-action\" data-wob_ref=\"6\" data-wob_eps=\"e0\">Submit</button>\n  </div>\n</div>\n<ul id=\"ui-id-1\" tabindex=\"0\" class=\"ui-menu ui-widget ui-widget-content ui-autocomplete ui-front\" style=\"display: none;\"></ul>\n<div role=\"status\" aria-live=\"assertive\" aria-relevant=\"additions\" class=\"ui-helper-hidden-accessible\" data-wob_ref=\"7\" data-wob_eps=\"e0\"></div>\nAction:"
+      }
+    ],
+    "output": "```\n# Enter 'Ur' in the input field.\nagent.click_xpath(\"//*[@id='tags']\")\nagent.type('Ur')\n\n# Press the down arrow key to select the first option.\nagent.press('arrowdown')\n\n# Press the down arrow key to select the second option.\nagent.press('arrowdown')\n\n# Press the down arrow key to select the third option.\nagent.press('arrowdown')\n\n# Press the up arrow key to select the second option.\nagent.press('arrowup')\n\n# Press the enter key to select the second option.\nagent.press('enter')\n\n# Enter 'uay' in the input field.\nagent.type('uay')\n\n# Click the submit button.\nagent.click_xpath(\"//*[@id='subbtn']\")\n```",
+    "token_stats": {
+      "prompt_tokens": 1375,
+      "completion_tokens": 146,
+      "total_tokens": 1521
+    }
+  }
+]

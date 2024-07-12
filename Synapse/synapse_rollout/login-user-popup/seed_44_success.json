@@ -1,0 +1,470 @@
+[
+  {
+    "input": [
+      {
+        "role": "user",
+        "content": "State:\n<div id=\"wrap\" data-wob_ref=\"2\" data-wob_eps=\"e0\">\n  <div id=\"query\">Enter the <span class=\"bold\">username</span> \"nathalie\" and the <span class=\"bold\">password</span> \"5Br\" into the text fields and press login.</div>\n  <div id=\"area\" data-wob_ref=\"3\" data-wob_eps=\"e0\">\n    <div id=\"form\" data-wob_ref=\"4\" data-wob_eps=\"e0\">\n      <p data-wob_ref=\"5\" data-wob_eps=\"e0\"><label class=\"bold\" data-wob_ref=\"6\" data-wob_eps=\"e0\">Username</label><input type=\"text\" id=\"username\" data-wob_ref=\"7\" data-wob_eps=\"e0\"></p>\n      <p data-wob_ref=\"8\" data-wob_eps=\"e0\"><label class=\"bold\" data-wob_ref=\"9\" data-wob_eps=\"e0\">Password</label><input type=\"password\" id=\"password\" data-wob_ref=\"10\" data-wob_eps=\"e0\"></p>\n      <button id=\"subbtn\" class=\"secondary-action\" data-wob_ref=\"11\" data-wob_eps=\"e0\">OK</button>\n    </div>\n  </div>\n</div>\nObservation:\nUsername<input>\nPassword<input>\n\nState:\n<div id=\"wrap\" data-wob_ref=\"2\" data-wob_eps=\"e0\">\n  <div id=\"query\">Enter the <span class=\"bold\">username</span> \"tula\" and the <span class=\"bold\">password</span> \"zh\" into the text fields and press login.</div>\n  <div id=\"area\" data-wob_ref=\"3\" data-wob_eps=\"e0\">\n    <div id=\"form\" data-wob_ref=\"4\" data-wob_eps=\"e0\">\n      <p data-wob_ref=\"5\" data-wob_eps=\"e0\"><label class=\"bold\" data-wob_ref=\"6\" data-wob_eps=\"e0\">Username</label><input type=\"text\" id=\"username\" data-wob_ref=\"7\" data-wob_eps=\"e0\"></p>\n      <p data-wob_ref=\"8\" data-wob_eps=\"e0\"><label class=\"bold\" data-wob_ref=\"9\" data-wob_eps=\"e0\">Password</label><input type=\"password\" id=\"password\" data-wob_ref=\"10\" data-wob_eps=\"e0\"></p>\n      <button id=\"subbtn\" class=\"secondary-action\" data-wob_ref=\"11\" data-wob_eps=\"e0\">OK</button>\n    </div>\n  </div>\n</div>\nObservation:\nUsername<input>\nPassword<input>\n\nState:\n<div id=\"wrap\" data-wob_ref=\"2\" data-wob_eps=\"e0\">\n  <div id=\"query\">Enter the <span class=\"bold\">username</span> \"sergio\" and the <span class=\"bold\">password</span> \"DYh\" into the text fields and press login.</div>\n  <div id=\"area\" data-wob_ref=\"3\" data-wob_eps=\"e0\">\n    <div id=\"form\" data-wob_ref=\"4\" data-wob_eps=\"e0\">\n      <p data-wob_ref=\"5\" data-wob_eps=\"e0\"><label class=\"bold\" data-wob_ref=\"6\" data-wob_eps=\"e0\">Username</label><input type=\"text\" id=\"username\" data-wob_ref=\"7\" data-wob_eps=\"e0\"></p>\n      <p data-wob_ref=\"8\" data-wob_eps=\"e0\"><label class=\"bold\" data-wob_ref=\"9\" data-wob_eps=\"e0\">Password</label><input type=\"password\" id=\"password\" data-wob_ref=\"10\" data-wob_eps=\"e0\"></p>\n      <button id=\"subbtn\" class=\"secondary-action\" data-wob_ref=\"11\" data-wob_eps=\"e0\">OK</button>\n    </div>\n  </div>\n</div>\nObservation:"
+      }
+    ],
+    "output": "Username<input>\nPassword<input>",
+    "token_stats": {
+      "prompt_tokens": 911,
+      "completion_tokens": 6,
+      "total_tokens": 917
+    }
+  },
+  {
+    "input": [
+      {
+        "role": "system",
+        "content": "You are a large language model trained to navigate the web. To accomplish the task, use methods in the following Agent class to generate actions until you need the new state to proceed.\n```\nclass Agent:\n    def __init__(self, args):\n        ...\n\n    # Action: type a string via the keyboard\n    def type(self, characters: str) -> None:\n        ...\n\n    # Action: click an HTML element with a valid xpath\n    def click_xpath(self, xpath: str):\n        ...\n\n    # Actions: press a key on the keyboard, including:\n    # enter, space, arrowleft, arrowright, backspace, arrowup, arrowdown, command+a, command+c, command+v\n    def press(self, key_type: str) -> None:\n        ...\n\n    # Action: click an option HTML element in a list with a valid xpath\n    def click_option(self, xpath: str):\n        ...\n\n    # Action: move mouse cursor on an HTML element with a valid xpath\n    def movemouse(self, xpath: str):\n        ...\n```"
+      },
+      {
+        "role": "user",
+        "content": "Task: Enter the username \"nathalie\" and the password \"5Br\" into the text fields and press login.\nTrajectory:"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nUsername<input>\nPassword<input>\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nagent.click_xpath(\"//*[@id='username']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nYour session is about to time out.\nExit to home page?\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nagent.click_xpath(\"//*[@id='popup-cancel']\")\nagent.click_xpath(\"//*[@id='username']\")\nagent.type('nathalie')\nagent.click_xpath(\"//*[@id='password']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nUsername<input>\nPassword<input>\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nagent.type('5Br')\nagent.click_xpath(\"//*[@id='subbtn']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Task: Enter the username \"kenda\" and the password \"2u\" into the text fields and press login.\nTrajectory:"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nUsername<input>\nPassword<input>\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nagent.click_xpath(\"//*[@id='username']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nYour session is about to time out.\nExit to home page?\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nagent.click_xpath(\"//*[@id='popup-cancel']\")\nagent.click_xpath(\"//*[@id='username']\")\nagent.type('kenda')\nagent.click_xpath(\"//*[@id='password']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nUsername<input>\nPassword<input>\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nagent.type('2u')\nagent.click_xpath(\"//*[@id='subbtn']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Task: Enter the username \"cristin\" and the password \"QtnB\" into the text fields and press login.\nTrajectory:"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nUsername<input>\nPassword<input>\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nagent.click_xpath(\"//*[@id='username']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nUsername<input>\nPassword<input>\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nagent.type('cristin')\nagent.click_xpath(\"//*[@id='password']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nYour session is about to time out.\nExit to home page?\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nagent.click_xpath(\"//*[@id='popup-cancel']\")\nagent.click_xpath(\"//*[@id='password']\")\nagent.type('QtnB')\nagent.click_xpath(\"//*[@id='subbtn']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Task: Enter the username \"tula\" and the password \"zh\" into the text fields and press login.\nTrajectory:"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nUsername<input>\nPassword<input>\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nagent.click_xpath(\"//*[@id='username']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nUsername<input>\nPassword<input>\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nagent.type('tula')\nagent.click_xpath(\"//*[@id='password']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nYour session is about to time out.\nExit to home page?\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nagent.click_xpath(\"//*[@id='popup-cancel']\")\nagent.click_xpath(\"//*[@id='password']\")\nagent.type('zh')\nagent.click_xpath(\"//*[@id='subbtn']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Task: Enter the username \"sergio\" and the password \"DYh\" into the text fields and press login.\nTrajectory:"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nUsername<input>\nPassword<input>\nAction:"
+      }
+    ],
+    "output": "```\nagent.click_xpath(\"//*[@id='username']\")\n```",
+    "token_stats": {
+      "prompt_tokens": 939,
+      "completion_tokens": 11,
+      "total_tokens": 950
+    }
+  },
+  {
+    "input": [
+      {
+        "role": "user",
+        "content": "State:\n<div id=\"wrap\" data-wob_ref=\"2\" data-wob_eps=\"e0\">\n  <div id=\"query\">Enter the <span class=\"bold\">username</span> \"nathalie\" and the <span class=\"bold\">password</span> \"5Br\" into the text fields and press login.</div>\n  <div id=\"area\" data-wob_ref=\"3\" data-wob_eps=\"e0\" data-tampered=\"e0\">\n    <div id=\"form\" data-wob_ref=\"4\" data-wob_eps=\"e0\">\n      <p data-wob_ref=\"5\" data-wob_eps=\"e0\"><label class=\"bold\" data-wob_ref=\"6\" data-wob_eps=\"e0\">Username</label><input type=\"text\" id=\"username\" data-wob_ref=\"7\" data-wob_eps=\"e0\" disabled=\"disabled\"></p>\n      <p data-wob_ref=\"8\" data-wob_eps=\"e0\"><label class=\"bold\" data-wob_ref=\"9\" data-wob_eps=\"e0\">Password</label><input type=\"password\" id=\"password\" data-wob_ref=\"10\" data-wob_eps=\"e0\" disabled=\"disabled\"></p>\n      <button id=\"subbtn\" class=\"secondary-action\" data-wob_ref=\"11\" data-wob_eps=\"e0\" disabled=\"disabled\">OK</button>\n    </div>\n  <div id=\"popup\" data-wob_ref=\"12\" data-wob_eps=\"e0\">\n        <p data-wob_ref=\"13\" data-wob_eps=\"e0\">Your session is about to time out.</p>\n        <p data-wob_ref=\"14\" data-wob_eps=\"e0\">Exit to home page?</p>\n        <p data-wob_ref=\"15\" data-wob_eps=\"e0\"><button id=\"popup-ok\" data-wob_ref=\"16\" data-wob_eps=\"e0\">OK</button> <button id=\"popup-cancel\" data-wob_ref=\"17\" data-wob_eps=\"e0\">Cancel</button></p></div></div>\n</div>\nObservation:\nYour session is about to time out.\nExit to home page?\n\nState:\n<div id=\"wrap\" data-wob_ref=\"2\" data-wob_eps=\"e0\">\n  <div id=\"query\">Enter the <span class=\"bold\">username</span> \"tula\" and the <span class=\"bold\">password</span> \"zh\" into the text fields and press login.</div>\n  <div id=\"area\" data-wob_ref=\"3\" data-wob_eps=\"e0\">\n    <div id=\"form\" data-wob_ref=\"4\" data-wob_eps=\"e0\">\n      <p data-wob_ref=\"5\" data-wob_eps=\"e0\"><label class=\"bold\" data-wob_ref=\"6\" data-wob_eps=\"e0\">Username</label><input type=\"text\" id=\"username\" data-wob_ref=\"7\" data-wob_eps=\"e0\" data-tampered=\"e0\"></p>\n      <p data-wob_ref=\"8\" data-wob_eps=\"e0\"><label class=\"bold\" data-wob_ref=\"9\" data-wob_eps=\"e0\">Password</label><input type=\"password\" id=\"password\" data-wob_ref=\"10\" data-wob_eps=\"e0\"></p>\n      <button id=\"subbtn\" class=\"secondary-action\" data-wob_ref=\"11\" data-wob_eps=\"e0\">OK</button>\n    </div>\n  </div>\n</div>\nObservation:\nUsername<input>\nPassword<input>\n\nState:\n<div id=\"wrap\" data-wob_ref=\"2\" data-wob_eps=\"e0\">\n  <div id=\"query\">Enter the <span class=\"bold\">username</span> \"sergio\" and the <span class=\"bold\">password</span> \"DYh\" into the text fields and press login.</div>\n  <div id=\"area\" data-wob_ref=\"3\" data-wob_eps=\"e0\">\n    <div id=\"form\" data-wob_ref=\"4\" data-wob_eps=\"e0\">\n      <p data-wob_ref=\"5\" data-wob_eps=\"e0\"><label class=\"bold\" data-wob_ref=\"6\" data-wob_eps=\"e0\">Username</label><input type=\"text\" id=\"username\" data-wob_ref=\"7\" data-wob_eps=\"e0\" data-tampered=\"e0\"></p>\n      <p data-wob_ref=\"8\" data-wob_eps=\"e0\"><label class=\"bold\" data-wob_ref=\"9\" data-wob_eps=\"e0\">Password</label><input type=\"password\" id=\"password\" data-wob_ref=\"10\" data-wob_eps=\"e0\"></p>\n      <button id=\"subbtn\" class=\"secondary-action\" data-wob_ref=\"11\" data-wob_eps=\"e0\">OK</button>\n    </div>\n  </div>\n</div>\nObservation:"
+      }
+    ],
+    "output": "Username<input>\nPassword<input>",
+    "token_stats": {
+      "prompt_tokens": 1100,
+      "completion_tokens": 6,
+      "total_tokens": 1106
+    }
+  },
+  {
+    "input": [
+      {
+        "role": "system",
+        "content": "You are a large language model trained to navigate the web. To accomplish the task, use methods in the following Agent class to generate actions until you need the new state to proceed.\n```\nclass Agent:\n    def __init__(self, args):\n        ...\n\n    # Action: type a string via the keyboard\n    def type(self, characters: str) -> None:\n        ...\n\n    # Action: click an HTML element with a valid xpath\n    def click_xpath(self, xpath: str):\n        ...\n\n    # Actions: press a key on the keyboard, including:\n    # enter, space, arrowleft, arrowright, backspace, arrowup, arrowdown, command+a, command+c, command+v\n    def press(self, key_type: str) -> None:\n        ...\n\n    # Action: click an option HTML element in a list with a valid xpath\n    def click_option(self, xpath: str):\n        ...\n\n    # Action: move mouse cursor on an HTML element with a valid xpath\n    def movemouse(self, xpath: str):\n        ...\n```"
+      },
+      {
+        "role": "user",
+        "content": "Task: Enter the username \"nathalie\" and the password \"5Br\" into the text fields and press login.\nTrajectory:"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nUsername<input>\nPassword<input>\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nagent.click_xpath(\"//*[@id='username']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nYour session is about to time out.\nExit to home page?\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nagent.click_xpath(\"//*[@id='popup-cancel']\")\nagent.click_xpath(\"//*[@id='username']\")\nagent.type('nathalie')\nagent.click_xpath(\"//*[@id='password']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nUsername<input>\nPassword<input>\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nagent.type('5Br')\nagent.click_xpath(\"//*[@id='subbtn']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Task: Enter the username \"kenda\" and the password \"2u\" into the text fields and press login.\nTrajectory:"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nUsername<input>\nPassword<input>\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nagent.click_xpath(\"//*[@id='username']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nYour session is about to time out.\nExit to home page?\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nagent.click_xpath(\"//*[@id='popup-cancel']\")\nagent.click_xpath(\"//*[@id='username']\")\nagent.type('kenda')\nagent.click_xpath(\"//*[@id='password']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nUsername<input>\nPassword<input>\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nagent.type('2u')\nagent.click_xpath(\"//*[@id='subbtn']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Task: Enter the username \"cristin\" and the password \"QtnB\" into the text fields and press login.\nTrajectory:"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nUsername<input>\nPassword<input>\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nagent.click_xpath(\"//*[@id='username']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nUsername<input>\nPassword<input>\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nagent.type('cristin')\nagent.click_xpath(\"//*[@id='password']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nYour session is about to time out.\nExit to home page?\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nagent.click_xpath(\"//*[@id='popup-cancel']\")\nagent.click_xpath(\"//*[@id='password']\")\nagent.type('QtnB')\nagent.click_xpath(\"//*[@id='subbtn']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Task: Enter the username \"tula\" and the password \"zh\" into the text fields and press login.\nTrajectory:"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nUsername<input>\nPassword<input>\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nagent.click_xpath(\"//*[@id='username']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nUsername<input>\nPassword<input>\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nagent.type('tula')\nagent.click_xpath(\"//*[@id='password']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nYour session is about to time out.\nExit to home page?\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nagent.click_xpath(\"//*[@id='popup-cancel']\")\nagent.click_xpath(\"//*[@id='password']\")\nagent.type('zh')\nagent.click_xpath(\"//*[@id='subbtn']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Task: Enter the username \"sergio\" and the password \"DYh\" into the text fields and press login.\nTrajectory:"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nUsername<input>\nPassword<input>\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nagent.click_xpath(\"//*[@id='username']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nUsername<input>\nPassword<input>\nAction:"
+      }
+    ],
+    "output": "```\nagent.type('sergio')\nagent.click_xpath(\"//*[@id='password']\")\n```",
+    "token_stats": {
+      "prompt_tokens": 971,
+      "completion_tokens": 17,
+      "total_tokens": 988
+    }
+  },
+  {
+    "input": [
+      {
+        "role": "user",
+        "content": "State:\n<div id=\"wrap\" data-wob_ref=\"2\" data-wob_eps=\"e0\">\n  <div id=\"query\">Enter the <span class=\"bold\">username</span> \"nathalie\" and the <span class=\"bold\">password</span> \"5Br\" into the text fields and press login.</div>\n  <div id=\"area\" data-wob_ref=\"3\" data-wob_eps=\"e0\" data-tampered=\"e0\">\n    <div id=\"form\" data-wob_ref=\"4\" data-wob_eps=\"e0\">\n      <p data-wob_ref=\"5\" data-wob_eps=\"e0\"><label class=\"bold\" data-wob_ref=\"6\" data-wob_eps=\"e0\">Username</label><input type=\"text\" id=\"username\" data-wob_ref=\"7\" data-wob_eps=\"e0\" data-tampered=\"e0\"></p>\n      <p data-wob_ref=\"8\" data-wob_eps=\"e0\"><label class=\"bold\" data-wob_ref=\"9\" data-wob_eps=\"e0\">Password</label><input type=\"password\" id=\"password\" data-wob_ref=\"10\" data-wob_eps=\"e0\" data-tampered=\"e0\"></p>\n      <button id=\"subbtn\" class=\"secondary-action\" data-wob_ref=\"11\" data-wob_eps=\"e0\">OK</button>\n    </div>\n  </div>\n</div>\nObservation:\nUsername<input>\nPassword<input>\n\nState:\n<div id=\"wrap\" data-wob_ref=\"2\" data-wob_eps=\"e0\">\n  <div id=\"query\">Enter the <span class=\"bold\">username</span> \"tula\" and the <span class=\"bold\">password</span> \"zh\" into the text fields and press login.</div>\n  <div id=\"area\" data-wob_ref=\"3\" data-wob_eps=\"e0\" data-tampered=\"e0\">\n    <div id=\"form\" data-wob_ref=\"4\" data-wob_eps=\"e0\">\n      <p data-wob_ref=\"5\" data-wob_eps=\"e0\"><label class=\"bold\" data-wob_ref=\"6\" data-wob_eps=\"e0\">Username</label><input type=\"text\" id=\"username\" data-wob_ref=\"7\" data-wob_eps=\"e0\" data-tampered=\"e0\" disabled=\"disabled\"></p>\n      <p data-wob_ref=\"8\" data-wob_eps=\"e0\"><label class=\"bold\" data-wob_ref=\"9\" data-wob_eps=\"e0\">Password</label><input type=\"password\" id=\"password\" data-wob_ref=\"10\" data-wob_eps=\"e0\" disabled=\"disabled\"></p>\n      <button id=\"subbtn\" class=\"secondary-action\" data-wob_ref=\"11\" data-wob_eps=\"e0\" disabled=\"disabled\">OK</button>\n    </div>\n  <div id=\"popup\" data-wob_ref=\"12\" data-wob_eps=\"e0\">\n        <p data-wob_ref=\"13\" data-wob_eps=\"e0\">Your session is soon to expire.</p>\n        <p data-wob_ref=\"14\" data-wob_eps=\"e0\">Exit to home page?</p>\n        <p data-wob_ref=\"15\" data-wob_eps=\"e0\"><button id=\"popup-ok\" data-wob_ref=\"16\" data-wob_eps=\"e0\">OK</button> <button id=\"popup-cancel\" data-wob_ref=\"17\" data-wob_eps=\"e0\">Cancel</button></p></div></div>\n</div>\nObservation:\nYour session is about to time out.\nExit to home page?\n\nState:\n<div id=\"wrap\" data-wob_ref=\"2\" data-wob_eps=\"e0\">\n  <div id=\"query\">Enter the <span class=\"bold\">username</span> \"sergio\" and the <span class=\"bold\">password</span> \"DYh\" into the text fields and press login.</div>\n  <div id=\"area\" data-wob_ref=\"3\" data-wob_eps=\"e0\">\n    <div id=\"form\" data-wob_ref=\"4\" data-wob_eps=\"e0\">\n      <p data-wob_ref=\"5\" data-wob_eps=\"e0\"><label class=\"bold\" data-wob_ref=\"6\" data-wob_eps=\"e0\">Username</label><input type=\"text\" id=\"username\" data-wob_ref=\"7\" data-wob_eps=\"e0\" data-tampered=\"e0\"></p>\n      <p data-wob_ref=\"8\" data-wob_eps=\"e0\"><label class=\"bold\" data-wob_ref=\"9\" data-wob_eps=\"e0\">Password</label><input type=\"password\" id=\"password\" data-wob_ref=\"10\" data-wob_eps=\"e0\" data-tampered=\"e0\"></p>\n      <button id=\"subbtn\" class=\"secondary-action\" data-wob_ref=\"11\" data-wob_eps=\"e0\">OK</button>\n    </div>\n  </div>\n</div>\nObservation:"
+      }
+    ],
+    "output": "Username<input>\nPassword<input>",
+    "token_stats": {
+      "prompt_tokens": 1131,
+      "completion_tokens": 6,
+      "total_tokens": 1137
+    }
+  },
+  {
+    "input": [
+      {
+        "role": "system",
+        "content": "You are a large language model trained to navigate the web. To accomplish the task, use methods in the following Agent class to generate actions until you need the new state to proceed.\n```\nclass Agent:\n    def __init__(self, args):\n        ...\n\n    # Action: type a string via the keyboard\n    def type(self, characters: str) -> None:\n        ...\n\n    # Action: click an HTML element with a valid xpath\n    def click_xpath(self, xpath: str):\n        ...\n\n    # Actions: press a key on the keyboard, including:\n    # enter, space, arrowleft, arrowright, backspace, arrowup, arrowdown, command+a, command+c, command+v\n    def press(self, key_type: str) -> None:\n        ...\n\n    # Action: click an option HTML element in a list with a valid xpath\n    def click_option(self, xpath: str):\n        ...\n\n    # Action: move mouse cursor on an HTML element with a valid xpath\n    def movemouse(self, xpath: str):\n        ...\n```"
+      },
+      {
+        "role": "user",
+        "content": "Task: Enter the username \"nathalie\" and the password \"5Br\" into the text fields and press login.\nTrajectory:"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nUsername<input>\nPassword<input>\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nagent.click_xpath(\"//*[@id='username']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nYour session is about to time out.\nExit to home page?\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nagent.click_xpath(\"//*[@id='popup-cancel']\")\nagent.click_xpath(\"//*[@id='username']\")\nagent.type('nathalie')\nagent.click_xpath(\"//*[@id='password']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nUsername<input>\nPassword<input>\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nagent.type('5Br')\nagent.click_xpath(\"//*[@id='subbtn']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Task: Enter the username \"kenda\" and the password \"2u\" into the text fields and press login.\nTrajectory:"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nUsername<input>\nPassword<input>\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nagent.click_xpath(\"//*[@id='username']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nYour session is about to time out.\nExit to home page?\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nagent.click_xpath(\"//*[@id='popup-cancel']\")\nagent.click_xpath(\"//*[@id='username']\")\nagent.type('kenda')\nagent.click_xpath(\"//*[@id='password']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nUsername<input>\nPassword<input>\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nagent.type('2u')\nagent.click_xpath(\"//*[@id='subbtn']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Task: Enter the username \"cristin\" and the password \"QtnB\" into the text fields and press login.\nTrajectory:"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nUsername<input>\nPassword<input>\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nagent.click_xpath(\"//*[@id='username']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nUsername<input>\nPassword<input>\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nagent.type('cristin')\nagent.click_xpath(\"//*[@id='password']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nYour session is about to time out.\nExit to home page?\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nagent.click_xpath(\"//*[@id='popup-cancel']\")\nagent.click_xpath(\"//*[@id='password']\")\nagent.type('QtnB')\nagent.click_xpath(\"//*[@id='subbtn']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Task: Enter the username \"tula\" and the password \"zh\" into the text fields and press login.\nTrajectory:"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nUsername<input>\nPassword<input>\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nagent.click_xpath(\"//*[@id='username']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nUsername<input>\nPassword<input>\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nagent.type('tula')\nagent.click_xpath(\"//*[@id='password']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nYour session is about to time out.\nExit to home page?\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nagent.click_xpath(\"//*[@id='popup-cancel']\")\nagent.click_xpath(\"//*[@id='password']\")\nagent.type('zh')\nagent.click_xpath(\"//*[@id='subbtn']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Task: Enter the username \"sergio\" and the password \"DYh\" into the text fields and press login.\nTrajectory:"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nUsername<input>\nPassword<input>\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nagent.click_xpath(\"//*[@id='username']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nUsername<input>\nPassword<input>\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nagent.type('sergio')\nagent.click_xpath(\"//*[@id='password']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nUsername<input>\nPassword<input>\nAction:"
+      }
+    ],
+    "output": "```\nagent.click_xpath(\"//*[@id='popup-cancel']\")\nagent.click_xpath(\"//*[@id='password']\")\nagent.type('DYh')\nagent.click_xpath(\"//*[@id='subbtn']\")\n```",
+    "token_stats": {
+      "prompt_tokens": 1009,
+      "completion_tokens": 35,
+      "total_tokens": 1044
+    }
+  }
+]

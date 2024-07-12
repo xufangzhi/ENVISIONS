@@ -1,0 +1,322 @@
+[
+  {
+    "input": [
+      {
+        "role": "user",
+        "content": "State:\n<div id=\"wrap\" data-wob_ref=\"2\" data-wob_eps=\"e0\">\n  <div id=\"query\">I want to forward Dale's email to Philippe.</div>\n  <div id=\"area\" data-wob_ref=\"3\" data-wob_eps=\"e0\"><div id=\"main\" data-wob_ref=\"4\" data-wob_eps=\"e0\">\n<div id=\"main-header\" data-wob_ref=\"5\" data-wob_eps=\"e0\">\n  <h2 data-wob_ref=\"6\" data-wob_eps=\"e0\">Primary</h2>\n  <span id=\"open-search\" data-wob_ref=\"7\" data-wob_eps=\"e0\"></span>\n</div>\n<div class=\"email-thread\" data-index=\"0\" data-wob_ref=\"8\" data-wob_eps=\"e0\">\n<div class=\"email-left\" data-wob_ref=\"9\" data-wob_eps=\"e0\">\n  <div class=\"email-sender\" data-wob_ref=\"10\" data-wob_eps=\"e0\">Izabel</div>\n  <div class=\"email-subject\" data-wob_ref=\"11\" data-wob_eps=\"e0\">Neque,. Sagitti..</div>\n  <div class=\"email-body\" data-wob_ref=\"12\" data-wob_eps=\"e0\">Eget etiam. Eu ..</div>\n</div>\n<div class=\"email-right\" data-wob_ref=\"13\" data-wob_eps=\"e0\">\n  <div class=\"email-time\"></div>\n  <div class=\"email-actions\" data-wob_ref=\"14\" data-wob_eps=\"e0\">\n    <span class=\"trash\" data-wob_ref=\"15\" data-wob_eps=\"e0\"></span>\n    <span class=\"star\" data-wob_ref=\"16\" data-wob_eps=\"e0\"></span>\n  </div>\n</div>\n</div><div class=\"email-thread\" data-index=\"1\" data-wob_ref=\"17\" data-wob_eps=\"e0\">\n<div class=\"email-left\" data-wob_ref=\"18\" data-wob_eps=\"e0\">\n  <div class=\"email-sender\" data-wob_ref=\"19\" data-wob_eps=\"e0\">Dale</div>\n  <div class=\"email-subject\" data-wob_ref=\"20\" data-wob_eps=\"e0\">Urna. Massa.</div>\n  <div class=\"email-body\" data-wob_ref=\"21\" data-wob_eps=\"e0\">Nisl. Rutrum di..</div>\n</div>\n<div class=\"email-right\" data-wob_ref=\"22\" data-wob_eps=\"e0\">\n  <div class=\"email-time\"></div>\n  <div class=\"email-actions\" data-wob_ref=\"23\" data-wob_eps=\"e0\">\n    <span class=\"trash\" data-wob_ref=\"24\" data-wob_eps=\"e0\"></span>\n    <span class=\"star\" data-wob_ref=\"25\" data-wob_eps=\"e0\"></span>\n  </div>\n</div>\n</div><div class=\"email-thread\" data-index=\"2\" data-wob_ref=\"26\" data-wob_eps=\"e0\">\n<div class=\"email-left\" data-wob_ref=\"27\" data-wob_eps=\"e0\">\n  <div class=\"email-sender\" data-wob_ref=\"28\" data-wob_eps=\"e0\">Philippe</div>\n  <div class=\"email-subject\" data-wob_ref=\"29\" data-wob_eps=\"e0\">Ut sollicitudin..</div>\n  <div class=\"email-body\" data-wob_ref=\"30\" data-wob_eps=\"e0\">Amet tellus sed..</div>\n</div>\n<div class=\"email-right\" data-wob_ref=\"31\" data-wob_eps=\"e0\">\n  <div class=\"email-time\"></div>\n  <div class=\"email-actions\" data-wob_ref=\"32\" data-wob_eps=\"e0\">\n    <span class=\"trash\" data-wob_ref=\"33\" data-wob_eps=\"e0\"></span>\n    <span class=\"star\" data-wob_ref=\"34\" data-wob_eps=\"e0\"></span>\n  </div>\n</div>\n</div></div><div id=\"search\" class=\"hide\">\n<div id=\"search-bar\">\n  <div id=\"search-header\">\n    <span id=\"search-cancel\"></span>\n    <span><input type=\"text\" id=\"search-input\" placeholder=\"Search\"></span>\n  </div>\n</div>\n<div id=\"results-header\">\n  <h4>Results</h4>\n</div>\n<div id=\"search-results\"></div>\n</div></div>\n</div>\nObservation:\nI want to forward Dale's email to Philippe.\n\nState:\n<div id=\"wrap\" data-wob_ref=\"2\" data-wob_eps=\"e0\">\n  <div id=\"query\">Forward Jourdan the latest email from Linnet.</div>\n  <div id=\"area\" data-wob_ref=\"3\" data-wob_eps=\"e0\"><div id=\"main\" data-wob_ref=\"4\" data-wob_eps=\"e0\">\n<div id=\"main-header\" data-wob_ref=\"5\" data-wob_eps=\"e0\">\n  <h2 data-wob_ref=\"6\" data-wob_eps=\"e0\">Primary</h2>\n  <span id=\"open-search\" data-wob_ref=\"7\" data-wob_eps=\"e0\"></span>\n</div>\n<div class=\"email-thread\" data-index=\"0\" data-wob_ref=\"8\" data-wob_eps=\"e0\">\n<div class=\"email-left\" data-wob_ref=\"9\" data-wob_eps=\"e0\">\n  <div class=\"email-sender\" data-wob_ref=\"10\" data-wob_eps=\"e0\">Angil</div>\n  <div class=\"email-subject\" data-wob_ref=\"11\" data-wob_eps=\"e0\">Sodales. Odio.</div>\n  <div class=\"email-body\" data-wob_ref=\"12\" data-wob_eps=\"e0\">Nisl. Mi donec ..</div>\n</div>\n<div class=\"email-right\" data-wob_ref=\"13\" data-wob_eps=\"e0\">\n  <div class=\"email-time\"></div>\n  <div class=\"email-actions\" data-wob_ref=\"14\" data-wob_eps=\"e0\">\n    <span class=\"trash\" data-wob_ref=\"15\" data-wob_eps=\"e0\"></span>\n    <span class=\"star\" data-wob_ref=\"16\" data-wob_eps=\"e0\"></span>\n  </div>\n</div>\n</div><div class=\"email-thread\" data-index=\"1\" data-wob_ref=\"17\" data-wob_eps=\"e0\">\n<div class=\"email-left\" data-wob_ref=\"18\" data-wob_eps=\"e0\">\n  <div class=\"email-sender\" data-wob_ref=\"19\" data-wob_eps=\"e0\">Linnet</div>\n  <div class=\"email-subject\" data-wob_ref=\"20\" data-wob_eps=\"e0\">Ac volutpat.</div>\n  <div class=\"email-body\" data-wob_ref=\"21\" data-wob_eps=\"e0\">Nullam sed quam..</div>\n</div>\n<div class=\"email-right\" data-wob_ref=\"22\" data-wob_eps=\"e0\">\n  <div class=\"email-time\"></div>\n  <div class=\"email-actions\" data-wob_ref=\"23\" data-wob_eps=\"e0\">\n    <span class=\"trash\" data-wob_ref=\"24\" data-wob_eps=\"e0\"></span>\n    <span class=\"star\" data-wob_ref=\"25\" data-wob_eps=\"e0\"></span>\n  </div>\n</div>\n</div><div class=\"email-thread\" data-index=\"2\" data-wob_ref=\"26\" data-wob_eps=\"e0\">\n<div class=\"email-left\" data-wob_ref=\"27\" data-wob_eps=\"e0\">\n  <div class=\"email-sender\" data-wob_ref=\"28\" data-wob_eps=\"e0\">Jourdan</div>\n  <div class=\"email-subject\" data-wob_ref=\"29\" data-wob_eps=\"e0\">Egestas.</div>\n  <div class=\"email-body\" data-wob_ref=\"30\" data-wob_eps=\"e0\">Vulputate. Nequ..</div>\n</div>\n<div class=\"email-right\" data-wob_ref=\"31\" data-wob_eps=\"e0\">\n  <div class=\"email-time\"></div>\n  <div class=\"email-actions\" data-wob_ref=\"32\" data-wob_eps=\"e0\">\n    <span class=\"trash\" data-wob_ref=\"33\" data-wob_eps=\"e0\"></span>\n    <span class=\"star\" data-wob_ref=\"34\" data-wob_eps=\"e0\"></span>\n  </div>\n</div>\n</div></div><div id=\"search\" class=\"hide\">\n<div id=\"search-bar\">\n  <div id=\"search-header\">\n    <span id=\"search-cancel\"></span>\n    <span><input type=\"text\" id=\"search-input\" placeholder=\"Search\"></span>\n  </div>\n</div>\n<div id=\"results-header\">\n  <h4>Results</h4>\n</div>\n<div id=\"search-results\"></div>\n</div></div>\n</div>\nObservation:\nForward Jourdan the latest email from Linnet.\n\nState:\n<div id=\"wrap\" data-wob_ref=\"2\" data-wob_eps=\"e0\">\n  <div id=\"query\">Locate email from Dionne and send to Imogen.</div>\n  <div id=\"area\" data-wob_ref=\"3\" data-wob_eps=\"e0\"><div id=\"main\" data-wob_ref=\"4\" data-wob_eps=\"e0\">\n<div id=\"main-header\" data-wob_ref=\"5\" data-wob_eps=\"e0\">\n  <h2 data-wob_ref=\"6\" data-wob_eps=\"e0\">Primary</h2>\n  <span id=\"open-search\"></span>\n</div>\n<div class=\"email-thread\" data-index=\"0\" data-wob_ref=\"7\" data-wob_eps=\"e0\">\n<div class=\"email-left\" data-wob_ref=\"8\" data-wob_eps=\"e0\">\n  <div class=\"email-sender\" data-wob_ref=\"9\" data-wob_eps=\"e0\">Imogen</div>\n  <div class=\"email-subject\" data-wob_ref=\"10\" data-wob_eps=\"e0\">Morbi pulvinar...</div>\n  <div class=\"email-body\" data-wob_ref=\"11\" data-wob_eps=\"e0\">Arcu,. Sceleris..</div>\n</div>\n<div class=\"email-right\" data-wob_ref=\"12\" data-wob_eps=\"e0\">\n  <div class=\"email-time\"></div>\n  <div class=\"email-actions\" data-wob_ref=\"13\" data-wob_eps=\"e0\">\n    <span class=\"trash\"></span>\n    <span class=\"star\"></span>\n  </div>\n</div>\n</div><div class=\"email-thread\" data-index=\"1\" data-wob_ref=\"14\" data-wob_eps=\"e0\">\n<div class=\"email-left\" data-wob_ref=\"15\" data-wob_eps=\"e0\">\n  <div class=\"email-sender\" data-wob_ref=\"16\" data-wob_eps=\"e0\">Dionne</div>\n  <div class=\"email-subject\" data-wob_ref=\"17\" data-wob_eps=\"e0\">Et.</div>\n  <div class=\"email-body\" data-wob_ref=\"18\" data-wob_eps=\"e0\">Velit condiment..</div>\n</div>\n<div class=\"email-right\" data-wob_ref=\"19\" data-wob_eps=\"e0\">\n  <div class=\"email-time\"></div>\n  <div class=\"email-actions\" data-wob_ref=\"20\" data-wob_eps=\"e0\">\n    <span class=\"trash\"></span>\n    <span class=\"star\"></span>\n  </div>\n</div>\n</div><div class=\"email-thread\" data-index=\"2\" data-wob_ref=\"21\" data-wob_eps=\"e0\">\n<div class=\"email-left\" data-wob_ref=\"22\" data-wob_eps=\"e0\">\n  <div class=\"email-sender\" data-wob_ref=\"23\" data-wob_eps=\"e0\">Layla</div>\n  <div class=\"email-subject\" data-wob_ref=\"24\" data-wob_eps=\"e0\">Magna.</div>\n  <div class=\"email-body\" data-wob_ref=\"25\" data-wob_eps=\"e0\">Metus cursus no..</div>\n</div>\n<div class=\"email-right\" data-wob_ref=\"26\" data-wob_eps=\"e0\">\n  <div class=\"email-time\"></div>\n  <div class=\"email-actions\" data-wob_ref=\"27\" data-wob_eps=\"e0\">\n    <span class=\"trash\"></span>\n    <span class=\"star\"></span>\n  </div>\n</div>\n</div></div><div id=\"search\" class=\"hide\">\n<div id=\"search-bar\">\n  <div id=\"search-header\">\n    <span id=\"search-cancel\"></span>\n    <span><input type=\"text\" id=\"search-input\" placeholder=\"Search\"></span>\n  </div>\n</div>\n<div id=\"results-header\">\n  <h4>Results</h4>\n</div>\n<div id=\"search-results\"></div>\n</div></div>\n</div>\nObservation:"
+      }
+    ],
+    "output": "Locate email from Dionne and send to Imogen.",
+    "token_stats": {
+      "prompt_tokens": 2991,
+      "completion_tokens": 12,
+      "total_tokens": 3003
+    }
+  },
+  {
+    "input": [
+      {
+        "role": "system",
+        "content": "You are a large language model trained to navigate the web. To accomplish the task, use methods in the following Agent class to generate actions until you need the new state to proceed.\n```\nclass Agent:\n    def __init__(self, args):\n        ...\n\n    # Action: type a string via the keyboard\n    def type(self, characters: str) -> None:\n        ...\n\n    # Action: click an HTML element with a valid xpath\n    def click_xpath(self, xpath: str):\n        ...\n\n    # Actions: press a key on the keyboard, including:\n    # enter, space, arrowleft, arrowright, backspace, arrowup, arrowdown, command+a, command+c, command+v\n    def press(self, key_type: str) -> None:\n        ...\n\n    # Action: click an option HTML element in a list with a valid xpath\n    def click_option(self, xpath: str):\n        ...\n\n    # Action: move mouse cursor on an HTML element with a valid xpath\n    def movemouse(self, xpath: str):\n        ...\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nI want to forward Dale's email to Philippe.\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\n# Forward the email from Dale to Philippe\nagent.click_xpath(\"//*[@class='email-sender' and text()='Dale']\")\nagent.click_xpath(\"//span[@class='email-forward']\")\nagent.click_xpath(\"//input[@class='forward-sender']\")\nagent.type('Philippe')\nagent.click_xpath(\"//span[@id='send-forward']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nForward Jourdan the latest email from Linnet.\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\n# Forward the email from Linnet to Jourdan\nagent.click_xpath(\"//*[@class='email-sender' and text()='Linnet']\")\nagent.click_xpath(\"//span[@class='email-forward']\")\nagent.click_xpath(\"//input[@class='forward-sender']\")\nagent.type('Jourdan')\nagent.click_xpath(\"//span[@id='send-forward']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nplease forward Rainas last email to Janenna\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\n# Forward the email from Raina to Janenna\nagent.click_xpath(\"//*[@class='email-sender' and text()='Raina']\")\nagent.click_xpath(\"//span[@class='email-forward']\")\nagent.click_xpath(\"//input[@class='forward-sender']\")\nagent.type('Janenna')\nagent.click_xpath(\"//span[@id='send-forward']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nI'd like to email Gates the email I got from Arlina.\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\n# Forward the email from Arlina to Gates\nagent.click_xpath(\"//*[@class='email-sender' and text()='Arlina']\")\nagent.click_xpath(\"//span[@class='email-forward']\")\nagent.click_xpath(\"//input[@class='forward-sender']\")\nagent.type('Gates')\nagent.click_xpath(\"//span[@id='send-forward']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nsend Kala the email from Hilda\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\n# Forward the email from Hilda to Kala\nagent.click_xpath(\"//*[@class='email-sender' and text()='Hilda']\")\nagent.click_xpath(\"//span[@class='email-forward']\")\nagent.click_xpath(\"//input[@class='forward-sender']\")\nagent.type('Kala')\nagent.click_xpath(\"//span[@id='send-forward']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nFind the Arabelle email and forward it to Ulrike.\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\n# Forward the email from Arabelle to Ulrike\nagent.click_xpath(\"//*[@class='email-sender' and text()='Arabelle']\")\nagent.click_xpath(\"//span[@class='email-forward']\")\nagent.click_xpath(\"//input[@class='forward-sender']\")\nagent.type('Ulrike')\nagent.click_xpath(\"//span[@id='send-forward']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nTake Joyce's email and reply with \"Non odio.\".\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\n# Reply the email from Joyce with \"Non odio.\"\nagent.click_xpath(\"//div[@class='email-sender' and text()='Joyce']\")\nagent.click_xpath(\"//span[@class='email-reply']\")\nagent.click_xpath(\"//textarea[@id='reply-text']\")\nagent.type('Non odio.')\nagent.click_xpath(\"//*[@id='send-reply']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nIn my inbox, there should be an email from Kelly, respond and tell her \"Dictum urna, hendrerit.\".\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\n# Reply the email from Kelly with \"Dictum urna, hendrerit.\"\nagent.click_xpath(\"//div[@class='email-sender' and text()='Kelly']\")\nagent.click_xpath(\"//span[@class='email-reply']\")\nagent.click_xpath(\"//textarea[@id='reply-text']\")\nagent.type('Dictum urna, hendrerit.')\nagent.click_xpath(\"//*[@id='send-reply']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nCreate a reply email to Almire saying \"Congue.\".\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\n# Reply the email from Almire with \"Congue.\"\nagent.click_xpath(\"//div[@class='email-sender' and text()='Almire']\")\nagent.click_xpath(\"//span[@class='email-reply']\")\nagent.click_xpath(\"//textarea[@id='reply-text']\")\nagent.type('Congue.')\nagent.click_xpath(\"//*[@id='send-reply']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nSiri, Email Terra, \"Scelerisque. Tristique volutpat.\".\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\n# Reply the email from Terra with \"Scelerisque. Tristique volutpat.\"\nagent.click_xpath(\"//div[@class='email-sender' and text()='Terra']\")\nagent.click_xpath(\"//span[@class='email-reply']\")\nagent.click_xpath(\"//textarea[@id='reply-text']\")\nagent.type('Scelerisque. Tristique volutpat.')\nagent.click_xpath(\"//*[@id='send-reply']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nSend, \"Tortor.\", to Blake.\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\n# Reply the email from Blake with \"Tortor.\"\nagent.click_xpath(\"//div[@class='email-sender' and text()='Blake']\")\nagent.click_xpath(\"//span[@class='email-reply']\")\nagent.click_xpath(\"//textarea[@id='reply-text']\")\nagent.type('Tortor.')\nagent.click_xpath(\"//*[@id='send-reply']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nTell Kata it \"Tortor. Viverra massa.\" in response to his email.\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\n# Reply the email from Kata with \"Tortor. Viverra massa.\"\nagent.click_xpath(\"//div[@class='email-sender' and text()='Kata']\")\nagent.click_xpath(\"//span[@class='email-reply']\")\nagent.click_xpath(\"//textarea[@id='reply-text']\")\nagent.type('Tortor. Viverra massa.')\nagent.click_xpath(\"//*[@id='send-reply']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nmark any of Kylen's incoming emails as important\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\n# Star the email from Kylen\nagent.click_xpath(\"//div[@class='email-sender' and text()='Kylen']\")\nagent.click_xpath(\"//span[@class='star']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nchange the email from Ada to important\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\n# Star the email from Ada\nagent.click_xpath(\"//div[@class='email-sender' and text()='Ada']\")\nagent.click_xpath(\"//span[@class='star']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nMark Vickie's email important.\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\n# Star the email from Vickie\nagent.click_xpath(\"//div[@class='email-sender' and text()='Vickie']\")\nagent.click_xpath(\"//span[@class='star']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nFind Lanny's email and mark it as important.\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\n# Star the email from Lanny\nagent.click_xpath(\"//div[@class='email-sender' and text()='Lanny']\")\nagent.click_xpath(\"//span[@class='star']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nFind email that I sent to Theresina this morning and mark as important.\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\n# Star the email from Theresina\nagent.click_xpath(\"//div[@class='email-sender' and text()='Theresina']\")\nagent.click_xpath(\"//span[@class='star']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nMark all emails written by Clareta as important.\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\n# Star the email from Clareta\nagent.click_xpath(\"//div[@class='email-sender' and text()='Clareta']\")\nagent.click_xpath(\"//span[@class='star']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nFind Sadye's email and delete it.\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\n# Delete the email from Sadye\nagent.click_xpath(\"//div[@class='email-sender' and text()='Sadye']\")\nagent.click_xpath(\"//span[@class='trash']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nCan you please list emails from Lulu and then delete them?\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\n# Delete the email from Lulu\nagent.click_xpath(\"//div[@class='email-sender' and text()='Lulu']\")\nagent.click_xpath(\"//span[@class='trash']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nPlease delete Naomi's emails.\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\n# Delete the email from Naomi\nagent.click_xpath(\"//div[@class='email-sender' and text()='Naomi']\")\nagent.click_xpath(\"//span[@class='trash']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nDelete the email from Starr, please.\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\n# Delete the email from Starr\nagent.click_xpath(\"//div[@class='email-sender' and text()='Starr']\")\nagent.click_xpath(\"//span[@class='trash']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nDelete Essa's message.\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\n# Delete the email from Essa\nagent.click_xpath(\"//div[@class='email-sender' and text()='Essa']\")\nagent.click_xpath(\"//span[@class='trash']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nDelete all emails that I have sent to Essa.\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\n# Delete the email from Essa\nagent.click_xpath(\"//div[@class='email-sender' and text()='Essa']\")\nagent.click_xpath(\"//span[@class='trash']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nget rid of this email from Tawnya\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\n# Delete the email from Tawnya\nagent.click_xpath(\"//div[@class='email-sender' and text()='Tawnya']\")\nagent.click_xpath(\"//span[@class='trash']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nLocate and delete the email from Aurea.\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\n# Delete the email from Aurea\nagent.click_xpath(\"//div[@class='email-sender' and text()='Aurea']\")\nagent.click_xpath(\"//span[@class='trash']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nSearch todays email and send the one from Roma, to Calvin.\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\n# Forward the email from Roma to Calvin\nagent.click_xpath(\"//*[@class='email-sender' and text()='Roma']\")\nagent.click_xpath(\"//span[@class='email-forward']\")\nagent.click_xpath(\"//input[@class='forward-sender']\")\nagent.type('Calvin')\nagent.click_xpath(\"//span[@id='send-forward']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nAsk Steph to forward his messages to Coron.\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\n# Forward the email from Steph to Coron\nagent.click_xpath(\"//*[@class='email-sender' and text()='Steph']\")\nagent.click_xpath(\"//span[@class='email-forward']\")\nagent.click_xpath(\"//input[@class='forward-sender']\")\nagent.type('Coron')\nagent.click_xpath(\"//span[@id='send-forward']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nGive Elun Adele's Email\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\n# Forward the email from Adele to Elun\nagent.click_xpath(\"//*[@class='email-sender' and text()='Adele']\")\nagent.click_xpath(\"//span[@class='email-forward']\")\nagent.click_xpath(\"//input[@class='forward-sender']\")\nagent.type('Elun')\nagent.click_xpath(\"//span[@id='send-forward']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nLudwig is waiting for the email by Frank.\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\n# Forward the email from Adele to Elun\nagent.click_xpath(\"//*[@class='email-sender' and text()='Frank']\")\nagent.click_xpath(\"//span[@class='email-forward']\")\nagent.click_xpath(\"//input[@class='forward-sender']\")\nagent.type('Ludwig')\nagent.click_xpath(\"//span[@id='send-forward']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nCan you email Amy and tell her \"Hi.\"\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\n# Reply the email from Amy with \"Hi.\"\nagent.click_xpath(\"//div[@class='email-sender' and text()='Amy']\")\nagent.click_xpath(\"//span[@class='email-reply']\")\nagent.click_xpath(\"//textarea[@id='reply-text']\")\nagent.type('Hi.')\nagent.click_xpath(\"//*[@id='send-reply']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nfind Pia mail and reply with a \"ABCDEFG.\"\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\n# Reply the email from Pia with \"ABCDEFG.\"\nagent.click_xpath(\"//div[@class='email-sender' and text()='Pia']\")\nagent.click_xpath(\"//span[@class='email-reply']\")\nagent.click_xpath(\"//textarea[@id='reply-text']\")\nagent.type('ABCDEFG.')\nagent.click_xpath(\"//*[@id='send-reply']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nsend \"Thanks.\" to contact Alfred\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\n# Reply the email from Alfred with \"Thanks.\"\nReply the email from Alfred with \"Thanks.\"agent.click_xpath(\"//div[@class='email-sender' and text()='Alfred']\")\nagent.click_xpath(\"//span[@class='email-reply']\")\nagent.click_xpath(\"//textarea[@id='reply-text']\")\nagent.type('Thanks.')\nagent.click_xpath(\"//*[@id='send-reply']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nwrite to Alfred \"Thank you.\"\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\n# Reply the email from Alfred with \"Thank you.\"\nagent.click_xpath(\"//div[@class='email-sender' and text()='Alfred']\")\nagent.click_xpath(\"//span[@class='email-reply']\")\nagent.click_xpath(\"//textarea[@id='reply-text']\")\nagent.type('Thank you.')\nagent.click_xpath(\"//*[@id='send-reply']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nmark all emails in primary with Jeff.\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\n# Star the email from Jeff\nagent.click_xpath(\"//div[@class='email-sender' and text()='Jeff']\")\nagent.click_xpath(\"//span[@class='star']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nConstantine's appointment needs to be marked important.\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\n# Star the email from Constantine\nagent.click_xpath(\"//div[@class='email-sender' and text()='Constantine']\")\nagent.click_xpath(\"//span[@class='star']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nLocate email from Dionne and send to Imogen.\nAction:"
+      }
+    ],
+    "output": "```\n# Forward the email from Dionne to Imogen\nagent.click_xpath(\"//*[@class='email-sender' and text()='Dionne']\")\nagent.click_xpath(\"//span[@class='email-forward']\")\nagent.click_xpath(\"//input[@class='forward-sender']\")\nagent.type('Imogen')\nagent.click_xpath(\"//span[@id='send-forward']\")\n```",
+    "token_stats": {
+      "prompt_tokens": 3245,
+      "completion_tokens": 71,
+      "total_tokens": 3316
+    }
+  }
+]

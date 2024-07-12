@@ -1,0 +1,82 @@
+[
+  {
+    "input": [
+      {
+        "role": "user",
+        "content": "State:\n<div id=\"wrap\" data-wob_ref=\"2\" data-wob_eps=\"e0\">\n  <div id=\"query\">Click the \"<span class=\"bold\">Like</span>\" button on <span class=\"bold\">1</span> post by <span class=\"bold\">@pulvinar</span> and then click Submit.</div>\n  <div id=\"area\" data-wob_ref=\"3\" data-wob_eps=\"e0\"><div class=\"media\" data-result=\"0\" data-wob_ref=\"4\" data-wob_eps=\"e0\">\n  <div class=\"details\" data-wob_ref=\"5\" data-wob_eps=\"e0\">\n    <span class=\"name\" data-wob_ref=\"6\" data-wob_eps=\"e0\">Quentin</span>\n    <span class=\"username\" data-wob_ref=\"7\" data-wob_eps=\"e0\">@pulvinar</span>\n  </div>\n  <div class=\"body\" data-wob_ref=\"8\" data-wob_eps=\"e0\">Ut vitae.</div>\n  <div class=\"controls\" data-wob_ref=\"9\" data-wob_eps=\"e0\">\n    <span class=\"reply\" data-wob_ref=\"10\" data-wob_eps=\"e0\"></span>\n    <span class=\"retweet\" data-wob_ref=\"11\" data-wob_eps=\"e0\"></span>\n    <span class=\"like\" data-wob_ref=\"12\" data-wob_eps=\"e0\"></span>\n    <span class=\"share\" data-wob_ref=\"13\" data-wob_eps=\"e0\"></span>\n  </div>\n</div><div class=\"media\" data-result=\"1\" data-wob_ref=\"14\" data-wob_eps=\"e0\">\n  <div class=\"details\" data-wob_ref=\"15\" data-wob_eps=\"e0\">\n    <span class=\"name\" data-wob_ref=\"16\" data-wob_eps=\"e0\">Clements</span>\n    <span class=\"username\" data-wob_ref=\"17\" data-wob_eps=\"e0\">@macie</span>\n  </div>\n  <div class=\"body\" data-wob_ref=\"18\" data-wob_eps=\"e0\">Euismod nulla non gravida.</div>\n  <div class=\"controls\" data-wob_ref=\"19\" data-wob_eps=\"e0\">\n    <span class=\"reply\" data-wob_ref=\"20\" data-wob_eps=\"e0\"></span>\n    <span class=\"retweet\" data-wob_ref=\"21\" data-wob_eps=\"e0\"></span>\n    <span class=\"like\" data-wob_ref=\"22\" data-wob_eps=\"e0\"></span>\n    <span class=\"share\" data-wob_ref=\"23\" data-wob_eps=\"e0\"></span>\n  </div>\n</div><div class=\"media\" data-result=\"2\" data-wob_ref=\"24\" data-wob_eps=\"e0\">\n  <div class=\"details\" data-wob_ref=\"25\" data-wob_eps=\"e0\">\n    <span class=\"name\" data-wob_ref=\"26\" data-wob_eps=\"e0\">Quentin</span>\n    <span class=\"username\" data-wob_ref=\"27\" data-wob_eps=\"e0\">@pulvinar</span>\n  </div>\n  <div class=\"body\" data-wob_ref=\"28\" data-wob_eps=\"e0\">Sit tristique.</div>\n  <div class=\"controls\" data-wob_ref=\"29\" data-wob_eps=\"e0\">\n    <span class=\"reply\" data-wob_ref=\"30\" data-wob_eps=\"e0\"></span>\n    <span class=\"retweet\" data-wob_ref=\"31\" data-wob_eps=\"e0\"></span>\n    <span class=\"like\" data-wob_ref=\"32\" data-wob_eps=\"e0\"></span>\n    <span class=\"share\" data-wob_ref=\"33\" data-wob_eps=\"e0\"></span>\n  </div>\n</div><div class=\"media\" data-result=\"3\" data-wob_ref=\"34\" data-wob_eps=\"e0\">\n  <div class=\"details\" data-wob_ref=\"35\" data-wob_eps=\"e0\">\n    <span class=\"name\" data-wob_ref=\"36\" data-wob_eps=\"e0\">Clements</span>\n    <span class=\"username\" data-wob_ref=\"37\" data-wob_eps=\"e0\">@macie</span>\n  </div>\n  <div class=\"body\" data-wob_ref=\"38\" data-wob_eps=\"e0\">Rutrum diam aliquam nulla.</div>\n  <div class=\"controls\" data-wob_ref=\"39\" data-wob_eps=\"e0\">\n    <span class=\"reply\" data-wob_ref=\"40\" data-wob_eps=\"e0\"></span>\n    <span class=\"retweet\" data-wob_ref=\"41\" data-wob_eps=\"e0\"></span>\n    <span class=\"like\" data-wob_ref=\"42\" data-wob_eps=\"e0\"></span>\n    <span class=\"share\" data-wob_ref=\"43\" data-wob_eps=\"e0\"></span>\n  </div>\n</div><p id=\"submitRow\" data-wob_ref=\"44\" data-wob_eps=\"e0\"><button type=\"button\" data-wob_ref=\"45\" data-wob_eps=\"e0\">Submit</button></p></div>\n</div>\nObservation:\nClick the \"Like\" button on 1 post by @pulvinar and then click Submit.\n\nState:\n<div id=\"wrap\" data-wob_ref=\"2\" data-wob_eps=\"e0\">\n  <div id=\"query\">Click the \"<span class=\"bold\">Retweet</span>\" button on <span class=\"bold\">2</span> posts by <span class=\"bold\">@morbi</span> and then click Submit.</div>\n  <div id=\"area\" data-wob_ref=\"3\" data-wob_eps=\"e0\"><div class=\"media\" data-result=\"0\" data-wob_ref=\"4\" data-wob_eps=\"e0\">\n  <div class=\"details\" data-wob_ref=\"5\" data-wob_eps=\"e0\">\n    <span class=\"name\" data-wob_ref=\"6\" data-wob_eps=\"e0\">Chang</span>\n    <span class=\"username\" data-wob_ref=\"7\" data-wob_eps=\"e0\">@morbi</span>\n  </div>\n  <div class=\"body\" data-wob_ref=\"8\" data-wob_eps=\"e0\">Pretium pharetra pretium.</div>\n  <div class=\"controls\" data-wob_ref=\"9\" data-wob_eps=\"e0\">\n    <span class=\"reply\" data-wob_ref=\"10\" data-wob_eps=\"e0\"></span>\n    <span class=\"retweet\" data-wob_ref=\"11\" data-wob_eps=\"e0\"></span>\n    <span class=\"like\" data-wob_ref=\"12\" data-wob_eps=\"e0\"></span>\n    <span class=\"share\" data-wob_ref=\"13\" data-wob_eps=\"e0\"></span>\n  </div>\n</div><div class=\"media\" data-result=\"1\" data-wob_ref=\"14\" data-wob_eps=\"e0\">\n  <div class=\"details\" data-wob_ref=\"15\" data-wob_eps=\"e0\">\n    <span class=\"name\" data-wob_ref=\"16\" data-wob_eps=\"e0\">Chang</span>\n    <span class=\"username\" data-wob_ref=\"17\" data-wob_eps=\"e0\">@morbi</span>\n  </div>\n  <div class=\"body\" data-wob_ref=\"18\" data-wob_eps=\"e0\">Morbi sed. Imperdiet.</div>\n  <div class=\"controls\" data-wob_ref=\"19\" data-wob_eps=\"e0\">\n    <span class=\"reply\" data-wob_ref=\"20\" data-wob_eps=\"e0\"></span>\n    <span class=\"retweet\" data-wob_ref=\"21\" data-wob_eps=\"e0\"></span>\n    <span class=\"like\" data-wob_ref=\"22\" data-wob_eps=\"e0\"></span>\n    <span class=\"share\" data-wob_ref=\"23\" data-wob_eps=\"e0\"></span>\n  </div>\n</div><div class=\"media\" data-result=\"2\" data-wob_ref=\"24\" data-wob_eps=\"e0\">\n  <div class=\"details\" data-wob_ref=\"25\" data-wob_eps=\"e0\">\n    <span class=\"name\" data-wob_ref=\"26\" data-wob_eps=\"e0\">Chang</span>\n    <span class=\"username\" data-wob_ref=\"27\" data-wob_eps=\"e0\">@morbi</span>\n  </div>\n  <div class=\"body\" data-wob_ref=\"28\" data-wob_eps=\"e0\">Et. Lacus sed. Ornare amet.</div>\n  <div class=\"controls\" data-wob_ref=\"29\" data-wob_eps=\"e0\">\n    <span class=\"reply\" data-wob_ref=\"30\" data-wob_eps=\"e0\"></span>\n    <span class=\"retweet\" data-wob_ref=\"31\" data-wob_eps=\"e0\"></span>\n    <span class=\"like\" data-wob_ref=\"32\" data-wob_eps=\"e0\"></span>\n    <span class=\"share\" data-wob_ref=\"33\" data-wob_eps=\"e0\"></span>\n  </div>\n</div><p id=\"submitRow\" data-wob_ref=\"34\" data-wob_eps=\"e0\"><button type=\"button\" data-wob_ref=\"35\" data-wob_eps=\"e0\">Submit</button></p></div>\n</div>\nObservation:\nClick the \"Retweet\" button on 2 posts by @morbi and then click Submit.\n\nState:\n<div id=\"wrap\" data-wob_ref=\"2\" data-wob_eps=\"e0\">\n  <div id=\"query\">Click the \"<span class=\"bold\">Like</span>\" button on <span class=\"bold\">1</span> post by <span class=\"bold\">@euismod</span> and then click Submit.</div>\n  <div id=\"area\" data-wob_ref=\"3\" data-wob_eps=\"e0\"><div class=\"media\" data-result=\"0\" data-wob_ref=\"4\" data-wob_eps=\"e0\">\n  <div class=\"details\" data-wob_ref=\"5\" data-wob_eps=\"e0\">\n    <span class=\"name\" data-wob_ref=\"6\" data-wob_eps=\"e0\">Cicily</span>\n    <span class=\"username\" data-wob_ref=\"7\" data-wob_eps=\"e0\">@aenean</span>\n  </div>\n  <div class=\"body\" data-wob_ref=\"8\" data-wob_eps=\"e0\">Tincidunt a.</div>\n  <div class=\"controls\" data-wob_ref=\"9\" data-wob_eps=\"e0\">\n    <span class=\"reply\" data-wob_ref=\"10\" data-wob_eps=\"e0\"></span>\n    <span class=\"retweet\" data-wob_ref=\"11\" data-wob_eps=\"e0\"></span>\n    <span class=\"like\" data-wob_ref=\"12\" data-wob_eps=\"e0\"></span>\n    <span class=\"share\" data-wob_ref=\"13\" data-wob_eps=\"e0\"></span>\n  </div>\n</div><div class=\"media\" data-result=\"1\" data-wob_ref=\"14\" data-wob_eps=\"e0\">\n  <div class=\"details\" data-wob_ref=\"15\" data-wob_eps=\"e0\">\n    <span class=\"name\" data-wob_ref=\"16\" data-wob_eps=\"e0\">Hudson</span>\n    <span class=\"username\" data-wob_ref=\"17\" data-wob_eps=\"e0\">@euismod</span>\n  </div>\n  <div class=\"body\" data-wob_ref=\"18\" data-wob_eps=\"e0\">Pellentesque faucibus dui erat. Convallis.</div>\n  <div class=\"controls\" data-wob_ref=\"19\" data-wob_eps=\"e0\">\n    <span class=\"reply\" data-wob_ref=\"20\" data-wob_eps=\"e0\"></span>\n    <span class=\"retweet\" data-wob_ref=\"21\" data-wob_eps=\"e0\"></span>\n    <span class=\"like\" data-wob_ref=\"22\" data-wob_eps=\"e0\"></span>\n    <span class=\"share\" data-wob_ref=\"23\" data-wob_eps=\"e0\"></span>\n  </div>\n</div><div class=\"media\" data-result=\"2\" data-wob_ref=\"24\" data-wob_eps=\"e0\">\n  <div class=\"details\" data-wob_ref=\"25\" data-wob_eps=\"e0\">\n    <span class=\"name\" data-wob_ref=\"26\" data-wob_eps=\"e0\">Cicily</span>\n    <span class=\"username\" data-wob_ref=\"27\" data-wob_eps=\"e0\">@aenean</span>\n  </div>\n  <div class=\"body\" data-wob_ref=\"28\" data-wob_eps=\"e0\">In id.</div>\n  <div class=\"controls\" data-wob_ref=\"29\" data-wob_eps=\"e0\">\n    <span class=\"reply\" data-wob_ref=\"30\" data-wob_eps=\"e0\"></span>\n    <span class=\"retweet\" data-wob_ref=\"31\" data-wob_eps=\"e0\"></span>\n    <span class=\"like\" data-wob_ref=\"32\" data-wob_eps=\"e0\"></span>\n    <span class=\"share\" data-wob_ref=\"33\" data-wob_eps=\"e0\"></span>\n  </div>\n</div><p id=\"submitRow\" data-wob_ref=\"34\" data-wob_eps=\"e0\"><button type=\"button\" data-wob_ref=\"35\" data-wob_eps=\"e0\">Submit</button></p></div>\n</div>\nObservation:"
+      }
+    ],
+    "output": "Click the \"Like\" button on 1 post by @euismod and then click Submit.",
+    "token_stats": {
+      "prompt_tokens": 3133,
+      "completion_tokens": 20,
+      "total_tokens": 3153
+    }
+  },
+  {
+    "input": [
+      {
+        "role": "system",
+        "content": "You are a large language model trained to navigate the web. To accomplish the task, use methods in the following Agent class to generate actions until you need the new state to proceed.\n```\nclass Agent:\n    def __init__(self, args):\n        ...\n\n    # Action: type a string via the keyboard\n    def type(self, characters: str) -> None:\n        ...\n\n    # Action: click an HTML element with a valid xpath\n    def click_xpath(self, xpath: str):\n        ...\n\n    # Actions: press a key on the keyboard, including:\n    # enter, space, arrowleft, arrowright, backspace, arrowup, arrowdown, command+a, command+c, command+v\n    def press(self, key_type: str) -> None:\n        ...\n\n    # Action: click an option HTML element in a list with a valid xpath\n    def click_option(self, xpath: str):\n        ...\n\n    # Action: move mouse cursor on an HTML element with a valid xpath\n    def movemouse(self, xpath: str):\n        ...\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nClick the \"Like\" button on 1 post by @pulvinar and then click Submit.\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nfor _ in range(1):\n    agent.click_xpath(\"(//div[@class='details']/span[@class='username' and text()='@pulvinar']/../../div[@class='controls']/span[@class='like'])[1]\")\nagent.click_xpath(\"//p[@id='submitRow']/button[@type='button']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nClick the \"Retweet\" button on 2 posts by @morbi and then click Submit.\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nfor _ in range(2):\n    agent.click_xpath(\"(//div[@class='details']/span[@class='username' and text()='@morbi']/../../div[@class='controls']/span[@class='retweet'])[1]\")\nagent.click_xpath(\"//p[@id='submitRow']/button[@type='button']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nClick the \"Share\" button on 4 posts by @cristin and then click Submit.\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nfor _ in range(4):\n    agent.click_xpath(\"(//div[@class='details']/span[@class='username' and text()='@cristin']/../../div[@class='controls']/span[@class='share'])[1]\")\nagent.click_xpath(\"//p[@id='submitRow']/button[@type='button']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nClick the \"Reply\" button on 1 post by @augue and then click Submit.\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nfor _ in range(1):\n    agent.click_xpath(\"(//div[@class='details']/span[@class='username' and text()='@augue']/../../div[@class='controls']/span[@class='reply'])[1]\")\nagent.click_xpath(\"//p[@id='submitRow']/button[@type='button']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nClick the \"Share\" button on 4 posts by @cristin and then click Submit.\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nfor _ in range(4):\n    agent.click_xpath(\"(//div[@class='details']/span[@class='username' and text()='@cristin']/../../div[@class='controls']/span[@class='share'])[1]\")\nagent.click_xpath(\"//p[@id='submitRow']/button[@type='button']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nClick the \"Retweet\" button on 2 posts by @morbi and then click Submit.\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nfor _ in range(2):\n    agent.click_xpath(\"(//div[@class='details']/span[@class='username' and text()='@morbi']/../../div[@class='controls']/span[@class='retweet'])[1]\")\nagent.click_xpath(\"//p[@id='submitRow']/button[@type='button']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nClick the \"Like\" button on 1 post by @euismod and then click Submit.\nAction:"
+      }
+    ],
+    "output": "```\nfor _ in range(1):\n    agent.click_xpath(\"(//div[@class='details']/span[@class='username' and text()='@euismod']/../../div[@class='controls']/span[@class='like'])[1]\")\nagent.click_xpath(\"//p[@id='submitRow']/button[@type='button']\")\n```",
+    "token_stats": {
+      "prompt_tokens": 875,
+      "completion_tokens": 68,
+      "total_tokens": 943
+    }
+  }
+]

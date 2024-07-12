@@ -1,0 +1,98 @@
+[
+  {
+    "input": [
+      {
+        "role": "user",
+        "content": "Here are some examples of code that filters a raw state into a clean observation. Parse the HTML(in the variable `state`) using BeautifulSoup. Find the div tag with id \"query\" and extract the text content. Keep the result in a string variable `obs`.\n\nCode:\n```python\nfrom bs4 import BeautifulSoup\n# Parse the HTML state\nsoup = BeautifulSoup(state, 'html.parser')\n# Find the div tag with id \"query\" and extract the text content\ndiv_query = soup.find('div', id='query')\nobs = div_query.get_text()\n```\n\nCode:\n```python\nfrom bs4 import BeautifulSoup\n# Parse the HTML state\nsoup = BeautifulSoup(state, 'html.parser')\n# Find the div tag with id \"query\" and extract the text content\ndiv_query = soup.find('div', id='query')\nobs = div_query.get_text()\n```\n\nCode:\n```python\nfrom bs4 import BeautifulSoup\n# Parse the HTML state\nsoup = BeautifulSoup(state, 'html.parser')\n# Find the div tag with id \"query\" and extract the text content\ndiv_query = soup.find('div', id='query')\nobs = div_query.get_text()\n```\n\nCode:\n```python\nfrom bs4 import BeautifulSoup\n# Parse the HTML state\nsoup = BeautifulSoup(state, 'html.parser')\n# Find the div tag with id \"query\" and extract the text content\ndiv_query = soup.find('div', id='query')\nobs = div_query.get_text()\n```\n\nCode:"
+      }
+    ],
+    "output": "```python\nfrom bs4 import BeautifulSoup\n# Parse the HTML state\nsoup = BeautifulSoup(state, 'html.parser')\n# Find the div tag with id \"query\" and extract the text content\ndiv_query = soup.find('div', id='query')\nobs = div_query.get_text()\n```",
+    "token_stats": {
+      "prompt_tokens": 315,
+      "completion_tokens": 60,
+      "total_tokens": 375
+    }
+  },
+  {
+    "input": [
+      {
+        "role": "system",
+        "content": "You are a large language model trained to navigate the web. To accomplish the task, use methods in the following Agent class to generate actions until you need the new state to proceed.\n```\nclass Agent:\n    def __init__(self, args):\n        ...\n\n    # Action: type a string via the keyboard\n    def type(self, characters: str) -> None:\n        ...\n\n    # Action: click an HTML element with a valid xpath\n    def click_xpath(self, xpath: str):\n        ...\n\n    # Actions: press a key on the keyboard, including:\n    # enter, space, arrowleft, arrowright, backspace, arrowup, arrowdown, command+a, command+c, command+v\n    def press(self, key_type: str) -> None:\n        ...\n\n    # Action: click an option HTML element in a list with a valid xpath\n    def click_option(self, xpath: str):\n        ...\n\n    # Action: move mouse cursor on an HTML element with a valid xpath\n    def movemouse(self, xpath: str):\n        ...\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nExpand the pie menu below and click on the item labeled \"C\".\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nagent.click_xpath(\"//*[text()='+']\")\nagent.click_xpath(\"//*[text()='C']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nExpand the pie menu below and click on the item labeled \"q\".\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nagent.click_xpath(\"//*[text()='+']\")\nagent.click_xpath(\"//*[text()='q']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nExpand the pie menu below and click on the item labeled \"t\".\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nagent.click_xpath(\"//*[text()='+']\")\nagent.click_xpath(\"//*[text()='t']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nExpand the pie menu below and click on the item labeled \"X\".\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nagent.click_xpath(\"//*[text()='+']\")\nagent.click_xpath(\"//*[text()='X']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nExpand the pie menu below and click on the item labeled \"C\".\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nagent.click_xpath(\"//*[text()='+']\")\nagent.click_xpath(\"//*[text()='C']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nExpand the pie menu below and click on the item labeled \"q\".\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nagent.click_xpath(\"//*[text()='+']\")\nagent.click_xpath(\"//*[text()='q']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nExpand the pie menu below and click on the item labeled \"t\".\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nagent.click_xpath(\"//*[text()='+']\")\nagent.click_xpath(\"//*[text()='t']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nExpand the pie menu below and click on the item labeled \"X\".\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nagent.click_xpath(\"//*[text()='+']\")\nagent.click_xpath(\"//*[text()='X']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nExpand the pie menu below and click on the item labeled \"O\".\nAction:"
+      }
+    ],
+    "output": "```\nagent.click_xpath(\"//*[text()='+']\")\nagent.click_xpath(\"//*[text()='O']\")\n```",
+    "token_stats": {
+      "prompt_tokens": 651,
+      "completion_tokens": 21,
+      "total_tokens": 672
+    }
+  }
+]

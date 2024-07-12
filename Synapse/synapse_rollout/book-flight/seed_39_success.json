@@ -1,0 +1,282 @@
+[
+  {
+    "input": [
+      {
+        "role": "user",
+        "content": "State:\n<div id=\"wrap\" data-wob_ref=\"2\" data-wob_eps=\"e0\">\n  <div id=\"query\">Book the <span class=\"bold\">cheapest</span> one-way flight from: <span class=\"bold\">Hartford, CT</span> to: <span class=\"bold\">TVC</span> on <span class=\"bold\">10/05/2016</span>.</div>\n  <div id=\"area\" data-wob_ref=\"3\" data-wob_eps=\"e0\">\n    <div id=\"menu\" data-wob_ref=\"4\" data-wob_eps=\"e0\">\n      <h2 id=\"header-book\" data-wob_ref=\"5\" data-wob_eps=\"e0\">Book Your One-Way Flight</h2>\n      <div class=\"input-container\" data-wob_ref=\"6\" data-wob_eps=\"e0\"><input id=\"flight-from\" class=\"flight-input ui-autocomplete-input\" type=\"text\" placeholder=\"From:\" autocomplete=\"off\" data-wob_ref=\"7\" data-wob_eps=\"e0\"></div>\n      <div class=\"input-container\" data-wob_ref=\"8\" data-wob_eps=\"e0\"><input id=\"flight-to\" class=\"flight-input ui-autocomplete-input\" type=\"text\" placeholder=\"To:\" autocomplete=\"off\" data-wob_ref=\"9\" data-wob_eps=\"e0\"></div>\n      <div class=\"departure-container\" data-wob_ref=\"10\" data-wob_eps=\"e0\">\n        <div class=\"departure-header\" data-wob_ref=\"11\" data-wob_eps=\"e0\">Departure Date</div>\n        <div class=\"input-container\" data-wob_ref=\"12\" data-wob_eps=\"e0\"><input id=\"datepicker\" class=\"flight-input hasDatepicker\" type=\"text\" readonly=\"\" data-wob_ref=\"13\" data-wob_eps=\"e0\"></div>\n      </div>\n      <div class=\"search-container\" data-wob_ref=\"14\" data-wob_eps=\"e0\">\n        <button id=\"search\" data-wob_ref=\"15\" data-wob_eps=\"e0\">Search</button>\n      </div>\n    </div>\n  <div id=\"results\" class=\"hide\"></div>\n  </div>\n</div>\nObservation:\nType the flight from: 'Hartford, CT' to: '(TVC)' (Hartford, CT is not an airport code. (TVC) is an airport code.), and select the date 10/05/2016.\n\nState:\n<div id=\"wrap\" data-wob_ref=\"2\" data-wob_eps=\"e0\">\n  <div id=\"query\">Book the <span class=\"bold\">shortest</span> one-way flight from: <span class=\"bold\">MNT</span> to: <span class=\"bold\">Islip, NY</span> on <span class=\"bold\">11/05/2016</span>.</div>\n  <div id=\"area\" data-wob_ref=\"3\" data-wob_eps=\"e0\">\n    <div id=\"menu\" data-wob_ref=\"4\" data-wob_eps=\"e0\">\n      <h2 id=\"header-book\" data-wob_ref=\"5\" data-wob_eps=\"e0\">Book Your One-Way Flight</h2>\n      <div class=\"input-container\" data-wob_ref=\"6\" data-wob_eps=\"e0\"><input id=\"flight-from\" class=\"flight-input ui-autocomplete-input\" type=\"text\" placeholder=\"From:\" autocomplete=\"off\" data-wob_ref=\"7\" data-wob_eps=\"e0\"></div>\n      <div class=\"input-container\" data-wob_ref=\"8\" data-wob_eps=\"e0\"><input id=\"flight-to\" class=\"flight-input ui-autocomplete-input\" type=\"text\" placeholder=\"To:\" autocomplete=\"off\" data-wob_ref=\"9\" data-wob_eps=\"e0\"></div>\n      <div class=\"departure-container\" data-wob_ref=\"10\" data-wob_eps=\"e0\">\n        <div class=\"departure-header\" data-wob_ref=\"11\" data-wob_eps=\"e0\">Departure Date</div>\n        <div class=\"input-container\" data-wob_ref=\"12\" data-wob_eps=\"e0\"><input id=\"datepicker\" class=\"flight-input hasDatepicker\" type=\"text\" readonly=\"\" data-wob_ref=\"13\" data-wob_eps=\"e0\"></div>\n      </div>\n      <div class=\"search-container\" data-wob_ref=\"14\" data-wob_eps=\"e0\">\n        <button id=\"search\" data-wob_ref=\"15\" data-wob_eps=\"e0\">Search</button>\n      </div>\n    </div>\n  <div id=\"results\" class=\"hide\"></div>\n  </div>\n</div>\nObservation:\nType the flight from: '(MNT)' to: 'Islip, NY' ((MNT) is an airport code. Islip, NY is not an airport code.), and select the date 11/05/2016.\n\nState:\n<div id=\"wrap\" data-wob_ref=\"2\" data-wob_eps=\"e0\">\n  <div id=\"query\">Book the <span class=\"bold\">cheapest</span> one-way flight from: <span class=\"bold\">MOU</span> to: <span class=\"bold\">MBS</span> on <span class=\"bold\">12/04/2016</span>.</div>\n  <div id=\"area\" data-wob_ref=\"3\" data-wob_eps=\"e0\">\n    <div id=\"menu\" data-wob_ref=\"4\" data-wob_eps=\"e0\">\n      <h2 id=\"header-book\" data-wob_ref=\"5\" data-wob_eps=\"e0\">Book Your One-Way Flight</h2>\n      <div class=\"input-container\" data-wob_ref=\"6\" data-wob_eps=\"e0\"><input id=\"flight-from\" class=\"flight-input ui-autocomplete-input\" type=\"text\" placeholder=\"From:\" autocomplete=\"off\" data-wob_ref=\"7\" data-wob_eps=\"e0\"></div>\n      <div class=\"input-container\" data-wob_ref=\"8\" data-wob_eps=\"e0\"><input id=\"flight-to\" class=\"flight-input ui-autocomplete-input\" type=\"text\" placeholder=\"To:\" autocomplete=\"off\" data-wob_ref=\"9\" data-wob_eps=\"e0\"></div>\n      <div class=\"departure-container\" data-wob_ref=\"10\" data-wob_eps=\"e0\">\n        <div class=\"departure-header\" data-wob_ref=\"11\" data-wob_eps=\"e0\">Departure Date</div>\n        <div class=\"input-container\" data-wob_ref=\"12\" data-wob_eps=\"e0\"><input id=\"datepicker\" class=\"flight-input hasDatepicker\" type=\"text\" readonly=\"\" data-wob_ref=\"13\" data-wob_eps=\"e0\"></div>\n      </div>\n      <div class=\"search-container\" data-wob_ref=\"14\" data-wob_eps=\"e0\">\n        <button id=\"search\" data-wob_ref=\"15\" data-wob_eps=\"e0\">Search</button>\n      </div>\n    </div>\n  <div id=\"results\" class=\"hide\"></div>\n  </div>\n</div>\nObservation:"
+      }
+    ],
+    "output": "Type the flight from: '(MOU)' to: '(MBS)' (both are airport codes), and select the date 12/04/2016.",
+    "token_stats": {
+      "prompt_tokens": 1600,
+      "completion_tokens": 33,
+      "total_tokens": 1633
+    }
+  },
+  {
+    "input": [
+      {
+        "role": "system",
+        "content": "You are a large language model trained to navigate the web. To accomplish the task, use methods in the following Agent class to generate actions until you need the new state to proceed.\n```\nclass Agent:\n    def __init__(self, args):\n        ...\n\n    # Action: type a string via the keyboard\n    def type(self, characters: str) -> None:\n        ...\n\n    # Action: click an HTML element with a valid xpath\n    def click_xpath(self, xpath: str):\n        ...\n\n    # Actions: press a key on the keyboard, including:\n    # enter, space, arrowleft, arrowright, backspace, arrowup, arrowdown, command+a, command+c, command+v\n    def press(self, key_type: str) -> None:\n        ...\n\n    # Action: click an option HTML element in a list with a valid xpath\n    def click_option(self, xpath: str):\n        ...\n\n    # Action: move mouse cursor on an HTML element with a valid xpath\n    def movemouse(self, xpath: str):\n        ...\n```"
+      },
+      {
+        "role": "user",
+        "content": "Task: Book the cheapest one-way flight from: Hartford, CT to: TVC on 10/05/2016.\nTrajectory:"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nType the flight from: 'Hartford, CT' to: '(TVC)' (Hartford, CT is not an airport code. (TVC) is an airport code.), and select the date 10/05/2016.\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\n# Type the flight from: 'Hartford, CT' to: '(TVC)'\nagent.click_xpath(\"//*[@id='flight-from']\")\nagent.type(\"Hartford, CT\")\nagent.press(\"arrowdown\")\nagent.press(\"enter\")\nagent.click_xpath(\"//*[@id='flight-to']\")\nagent.type(\"(TVC)\")  # For the airport code, you must use parentheses\nagent.press(\"arrowdown\")\nagent.press(\"enter\")\n# Select the date 10/05/2016\nagent.click_xpath(\"//*[@id='datepicker']\")\n# Current date: 12/31/2016 (December-October=2). Click on 'Prev' twice\nfor _ in range(2):\n    agent.click_xpath(\"//*[@title='Prev']\")\n# Click on the date '5'\nagent.click_xpath(\"//a[text()='5']\")\nagent.click_xpath(\"//*[@id='search']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nThe price of the cheapest one-way flight is $92\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nagent.click_xpath(\"//button[text()='Book flight for $92']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Task: Book the shortest one-way flight from: Abilene, TX to: St Petersburg/Clearwater, FL on 10/15/2016.\nTrajectory:"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nType the flight from: 'Abilene, TX' to: 'St Petersburg/Clearwater, FL' (Abilene, TX is not an airport code. St Petersburg/Clearwater, FL is not an airport code.), and select the date 10/15/2016.\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\n# Type the flight from: 'Abilene, TX' to: 'St Petersburg/Clearwater, FL'\nagent.click_xpath(\"//*[@id='flight-from']\")\nagent.type(\"Abilene, TX\")\nagent.press(\"arrowdown\")\nagent.press(\"enter\")\nagent.click_xpath(\"//*[@id='flight-to']\")\nagent.type(\"St Petersburg/Clearwater, FL\")\nagent.press(\"arrowdown\")\nagent.press(\"enter\")\n# Select the date 10/15/2016\nagent.click_xpath(\"//*[@id='datepicker']\")\n# Current date: 12/31/2016 (December-October=2). Click on 'Prev' twice\nfor _ in range(2):\n    agent.click_xpath(\"//*[@title='Prev']\")\n# Click on the date '15'\nagent.click_xpath(\"//a[text()='15']\")\nagent.click_xpath(\"//*[@id='search']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nThe price of the shortest one-way flight is $680\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nagent.click_xpath(\"//button[text()='Book flight for $680']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Task: Book the shortest one-way flight from: MNT to: Islip, NY on 11/05/2016.\nTrajectory:"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nType the flight from: '(MNT)' to: 'Islip, NY' ((MNT) is an airport code. Islip, NY is not an airport code.), and select the date 11/05/2016.\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\n# Type the flight from: '(MNT)' to: 'Islip, NY'\nagent.click_xpath(\"//*[@id='flight-from']\")\nagent.type(\"(MNT)\")  # For the airport code, you must use parentheses\nagent.press(\"arrowdown\")\nagent.press(\"enter\")\nagent.click_xpath(\"//*[@id='flight-to']\")\nagent.type(\"Islip, NY\")\nagent.press(\"arrowdown\")\nagent.press(\"enter\")\n# Select the date 11/05/2016\nagent.click_xpath(\"//*[@id='datepicker']\")\n# Current date: 12/31/2016 (December-November=1). Click on 'Prev' once\nagent.click_xpath(\"//*[@title='Prev']\")\n# Click on the date '5'\nagent.click_xpath(\"//a[text()='5']\")\nagent.click_xpath(\"//*[@id='search']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nThe price of the shortest one-way flight is $341\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nagent.click_xpath(\"//button[text()='Book flight for $341']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Task: Book the cheapest one-way flight from: LKE to: Manhattan, KS on 12/12/2016.\nTrajectory:"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nType the flight from: '(LKE)' to: 'Manhattan, KS' ((LKE) is an airport code. Manhattan, KS is not an airport code.), and select the date 12/12/2016.\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\n# Type the flight from: '(LKE)' to: 'Manhattan, KS'\nagent.click_xpath(\"//*[@id='flight-from']\")\nagent.type(\"(LKE)\")  # For the airport code, you must use parentheses\nagent.press(\"arrowdown\")\nagent.press(\"enter\")\nagent.click_xpath(\"//*[@id='flight-to']\")\nagent.type(\"Manhattan, KS\")\nagent.press(\"arrowdown\")\nagent.press(\"enter\")\n# Select the date 12/12/2016\nagent.click_xpath(\"//*[@id='datepicker']\")\n# Current date: 12/31/2016 (December-December=0). No need to click on 'Prev'\n# Click on the date '12'\nagent.click_xpath(\"//a[text()='12']\")\nagent.click_xpath(\"//*[@id='search']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nThe price of the cheapest one-way flight is $152\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nagent.click_xpath(\"//button[text()='Book flight for $152']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Task: Book the cheapest one-way flight from: WMH to: BTR on 11/16/2016.\nTrajectory:"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nType the flight from: '(WMH)' to: '(BTR)' ((WMH) and (BTR) are airport codes.), and select the date 11/16/2016.\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\n# Type the flight from: '(WMH)' to: '(BTR)'\nagent.click_xpath(\"//*[@id='flight-from']\")\nagent.type(\"(WMH)\")  # For the airport code, you must use parentheses\nagent.press(\"arrowdown\")\nagent.press(\"enter\")\nagent.click_xpath(\"//*[@id='flight-to']\")\nagent.type(\"(BTR)\")  # For the airport code, you must use parentheses\nagent.press(\"arrowdown\")\nagent.press(\"enter\")\n# Select the date 11/16/2016\nagent.click_xpath(\"//*[@id='datepicker']\")\n# Current date: 12/31/2016 (December-November=1). Click on 'Prev' once\nagent.click_xpath(\"//*[@title='Prev']\")\n# Click on the date '16'\nagent.click_xpath(\"//a[text()='16']\")\nagent.click_xpath(\"//*[@id='search']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nThe price of the cheapest one-way flight is $36\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nagent.click_xpath(\"//button[text()='Book flight for $36']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Task: Book the cheapest one-way flight from: MOU to: MBS on 12/04/2016.\nTrajectory:"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nType the flight from: '(MOU)' to: '(MBS)' (both are airport codes), and select the date 12/04/2016.\nAction:"
+      }
+    ],
+    "output": "```\n# Type the flight from: '(MOU)' to: '(MBS)'\nagent.click_xpath(\"//*[@id='flight-from']\")\nagent.type(\"(MOU)\")  # For the airport code, you must use parentheses\nagent.press(\"arrowdown\")\nagent.press(\"enter\")\nagent.click_xpath(\"//*[@id='flight-to']\")\nagent.type(\"(MBS)\")  # For the airport code, you must use parentheses\nagent.press(\"arrowdown\")\nagent.press(\"enter\")\n# Select the date 12/04/2016\nagent.click_xpath(\"//*[@id='datepicker']\")\n# Current date: 12/31/2016 (December-December=0). No need to click on 'Prev'\n# Click on the date '4'\nagent.click_xpath(\"//a[text()='4']\")\nagent.click_xpath(\"//*[@id='search']\")\n```",
+    "token_stats": {
+      "prompt_tokens": 1860,
+      "completion_tokens": 166,
+      "total_tokens": 2026
+    }
+  },
+  {
+    "input": [
+      {
+        "role": "user",
+        "content": "Filter the following raw HTML state into a clean observation via code based on the task.\nState:\n<div id=\"wrap\" data-wob_ref=\"2\" data-wob_eps=\"e0\">\n  <div id=\"query\">Book the <span class=\"bold\">cheapest</span> one-way flight from: <span class=\"bold\">MOU</span> to: <span class=\"bold\">MBS</span> on <span class=\"bold\">12/04/2016</span>.</div>\n  <div id=\"area\" data-wob_ref=\"3\" data-wob_eps=\"e0\">\n    <div id=\"menu\" data-wob_ref=\"4\" data-wob_eps=\"e0\" class=\"hide\">\n      <h2 id=\"header-book\" data-wob_ref=\"5\" data-wob_eps=\"e0\">Book Your One-Way Flight</h2>\n      <div class=\"input-container\" data-wob_ref=\"6\" data-wob_eps=\"e0\"><input id=\"flight-from\" class=\"flight-input ui-autocomplete-input\" type=\"text\" placeholder=\"From:\" autocomplete=\"off\" data-wob_ref=\"7\" data-wob_eps=\"e0\" data-tampered=\"e0\"></div>\n      <div class=\"input-container\" data-wob_ref=\"8\" data-wob_eps=\"e0\"><input id=\"flight-to\" class=\"flight-input ui-autocomplete-input\" type=\"text\" placeholder=\"To:\" autocomplete=\"off\" data-wob_ref=\"9\" data-wob_eps=\"e0\" data-tampered=\"e0\"></div>\n      <div class=\"departure-container\" data-wob_ref=\"10\" data-wob_eps=\"e0\">\n        <div class=\"departure-header\" data-wob_ref=\"11\" data-wob_eps=\"e0\">Departure Date</div>\n        <div class=\"input-container\" data-wob_ref=\"12\" data-wob_eps=\"e0\"><input id=\"datepicker\" class=\"flight-input hasDatepicker\" type=\"text\" readonly=\"\" data-wob_ref=\"13\" data-wob_eps=\"e0\" data-tampered=\"e0\"></div>\n      </div>\n      <div class=\"search-container\" data-wob_ref=\"14\" data-wob_eps=\"e0\">\n        <button id=\"search\" data-wob_ref=\"15\" data-wob_eps=\"e0\" data-tampered=\"e0\">Search</button>\n      </div>\n    </div>\n  <div id=\"results\" class=\"\" data-wob_ref=\"130\" data-wob_eps=\"e0\"><div class=\"flight-header\" data-wob_ref=\"131\" data-wob_eps=\"e0\">\n<span data-wob_ref=\"132\" data-wob_eps=\"e0\"><button id=\"menu-back\" data-wob_ref=\"133\" data-wob_eps=\"e0\">Back</button></span>\n<div class=\"flight-summary\" data-wob_ref=\"134\" data-wob_eps=\"e0\">\n  <span class=\"flight-codes\" data-wob_ref=\"135\" data-wob_eps=\"e0\">MOU to MBS</span>\n  <span data-wob_ref=\"136\" data-wob_eps=\"e0\"> | </span>\n  <span class=\"flight-date\" data-wob_ref=\"137\" data-wob_eps=\"e0\">12/04/2016</span>\n</div>\n</div><div class=\"flight\" data-result=\"undefined\" data-wob_ref=\"138\" data-wob_eps=\"e0\">\n<div class=\"flight-depart\" data-wob_ref=\"139\" data-wob_eps=\"e0\">\n  <div class=\"label-container\" data-wob_ref=\"140\" data-wob_eps=\"e0\"><label data-wob_ref=\"141\" data-wob_eps=\"e0\">Depart:</label></div>\n  <div class=\"details-container\" data-wob_ref=\"142\" data-wob_eps=\"e0\">\n    <div class=\"depart-time\" data-wob_ref=\"143\" data-wob_eps=\"e0\">5:05 AM</div>\n    <div class=\"depart-day\" data-wob_ref=\"144\" data-wob_eps=\"e0\">Sun Dec 04 2016</div>\n    <div class=\"depart-city\" data-wob_ref=\"145\" data-wob_eps=\"e0\">Mountain Village, AK (MOU)</div>\n  </div>\n</div>\n<div class=\"flight-arrive\" data-wob_ref=\"146\" data-wob_eps=\"e0\">\n  <div class=\"label-container\" data-wob_ref=\"147\" data-wob_eps=\"e0\"><label data-wob_ref=\"148\" data-wob_eps=\"e0\">Arrives:</label></div>\n  <div class=\"details-container\" data-wob_ref=\"149\" data-wob_eps=\"e0\">\n    <div class=\"arrive-time\" data-wob_ref=\"150\" data-wob_eps=\"e0\">11:05 AM</div>\n    <div class=\"arrive-day\" data-wob_ref=\"151\" data-wob_eps=\"e0\">Sun Dec 04 2016</div>\n    <div class=\"arrive-city\" data-wob_ref=\"152\" data-wob_eps=\"e0\">MBS</div>\n  </div>\n</div>\n<div class=\"flight-duration\" data-wob_ref=\"153\" data-wob_eps=\"e0\">\n  <div class=\"label-container\" data-wob_ref=\"154\" data-wob_eps=\"e0\"><label data-wob_ref=\"155\" data-wob_eps=\"e0\">Duration:</label></div>\n  <div class=\"details-container\" data-wob_ref=\"156\" data-wob_eps=\"e0\">\n    <div class=\"time-duration\" data-duration=\"21576410\" data-wob_ref=\"157\" data-wob_eps=\"e0\">5h 59m</div>\n  </div>\n</div>\n<div class=\"book\" data-wob_ref=\"158\" data-wob_eps=\"e0\">\n  <button class=\"flight-price\" data-price=\"492\" data-wob_ref=\"159\" data-wob_eps=\"e0\">Book flight for $492</button>\n</div>\n</div><div class=\"flight\" data-result=\"undefined\" data-wob_ref=\"160\" data-wob_eps=\"e0\">\n<div class=\"flight-depart\" data-wob_ref=\"161\" data-wob_eps=\"e0\">\n  <div class=\"label-container\" data-wob_ref=\"162\" data-wob_eps=\"e0\"><label data-wob_ref=\"163\" data-wob_eps=\"e0\">Depart:</label></div>\n  <div class=\"details-container\" data-wob_ref=\"164\" data-wob_eps=\"e0\">\n    <div class=\"depart-time\" data-wob_ref=\"165\" data-wob_eps=\"e0\">11:30 AM</div>\n    <div class=\"depart-day\" data-wob_ref=\"166\" data-wob_eps=\"e0\">Sun Dec 04 2016</div>\n    <div class=\"depart-city\" data-wob_ref=\"167\" data-wob_eps=\"e0\">Mountain Village, AK (MOU)</div>\n  </div>\n</div>\n<div class=\"flight-arrive\" data-wob_ref=\"168\" data-wob_eps=\"e0\">\n  <div class=\"label-container\" data-wob_ref=\"169\" data-wob_eps=\"e0\"><label data-wob_ref=\"170\" data-wob_eps=\"e0\">Arrives:</label></div>\n  <div class=\"details-container\" data-wob_ref=\"171\" data-wob_eps=\"e0\">\n    <div class=\"arrive-time\" data-wob_ref=\"172\" data-wob_eps=\"e0\">11:04 AM</div>\n    <div class=\"arrive-day\" data-wob_ref=\"173\" data-wob_eps=\"e0\">Mon Dec 05 2016</div>\n    <div class=\"arrive-city\" data-wob_ref=\"174\" data-wob_eps=\"e0\">MBS</div>\n  </div>\n</div>\n<div class=\"flight-duration\" data-wob_ref=\"175\" data-wob_eps=\"e0\">\n  <div class=\"label-container\" data-wob_ref=\"176\" data-wob_eps=\"e0\"><label data-wob_ref=\"177\" data-wob_eps=\"e0\">Duration:</label></div>\n  <div class=\"details-container\" data-wob_ref=\"178\" data-wob_eps=\"e0\">\n    <div class=\"time-duration\" data-duration=\"84797408\" data-wob_ref=\"179\" data-wob_eps=\"e0\">23h 33m</div>\n  </div>\n</div>\n<div class=\"book\" data-wob_ref=\"180\" data-wob_eps=\"e0\">\n  <button class=\"flight-price\" data-price=\"1093\" data-wob_ref=\"181\" data-wob_eps=\"e0\">Book flight for $1093</button>\n</div>\n</div><div class=\"flight\" data-result=\"undefined\" data-wob_ref=\"182\" data-wob_eps=\"e0\">\n<div class=\"flight-depart\" data-wob_ref=\"183\" data-wob_eps=\"e0\">\n  <div class=\"label-container\" data-wob_ref=\"184\" data-wob_eps=\"e0\"><label data-wob_ref=\"185\" data-wob_eps=\"e0\">Depart:</label></div>\n  <div class=\"details-container\" data-wob_ref=\"186\" data-wob_eps=\"e0\">\n    <div class=\"depart-time\" data-wob_ref=\"187\" data-wob_eps=\"e0\">10:57 PM</div>\n    <div class=\"depart-day\" data-wob_ref=\"188\" data-wob_eps=\"e0\">Sun Dec 04 2016</div>\n    <div class=\"depart-city\" data-wob_ref=\"189\" data-wob_eps=\"e0\">Mountain Village, AK (MOU)</div>\n  </div>\n</div>\n<div class=\"flight-arrive\" data-wob_ref=\"190\" data-wob_eps=\"e0\">\n  <div class=\"label-container\" data-wob_ref=\"191\" data-wob_eps=\"e0\"><label data-wob_ref=\"192\" data-wob_eps=\"e0\">Arrives:</label></div>\n  <div class=\"details-container\" data-wob_ref=\"193\" data-wob_eps=\"e0\">\n    <div class=\"arrive-time\" data-wob_ref=\"194\" data-wob_eps=\"e0\">3:42 AM</div>\n    <div class=\"arrive-day\" data-wob_ref=\"195\" data-wob_eps=\"e0\">Mon Dec 05 2016</div>\n    <div class=\"arrive-city\" data-wob_ref=\"196\" data-wob_eps=\"e0\">MBS</div>\n  </div>\n</div>\n<div class=\"flight-duration\" data-wob_ref=\"197\" data-wob_eps=\"e0\">\n  <div class=\"label-container\" data-wob_ref=\"198\" data-wob_eps=\"e0\"><label data-wob_ref=\"199\" data-wob_eps=\"e0\">Duration:</label></div>\n  <div class=\"details-container\" data-wob_ref=\"200\" data-wob_eps=\"e0\">\n    <div class=\"time-duration\" data-duration=\"17054093\" data-wob_ref=\"201\" data-wob_eps=\"e0\">4h 44m</div>\n  </div>\n</div>\n<div class=\"book\" data-wob_ref=\"202\" data-wob_eps=\"e0\">\n  <button class=\"flight-price\" data-price=\"124\" data-wob_ref=\"203\" data-wob_eps=\"e0\">Book flight for $124</button>\n</div>\n</div></div>\n  </div>\n</div>\n\nWrite code (between three backticks) to extract the price of the wanted ticket. First check if we want shortest or cheapest flight. Parse the HTML using BeautifulSoup. Loop through all the available flights. Check time duration (split 'h' and 'm') or flight price based on whether we want the shortest or the cheapest. We have searched with airports and the date, so there is no need to check them. Keep the integer price of the ticket in a string variable `obs` in this format: 'The price of the {preference} one-way flight is ${price}.'. The string of the raw state is already in the variable `state` so do not repeat the state in the code.\n\nHere are some examples:\nWrite code within three backticks '```' to Book the cheapest one-way flight from: Hartford, CT to: TVC on 10/05/2016.\nCode:\n```python\nfrom bs4 import BeautifulSoup\nsoup = BeautifulSoup(state, 'html.parser')\npreference = 'cheapest'\nbest_flight_price = float('inf')\n# Loop through all the available flights\nfor flight in soup.find_all(\"div\", class_=\"flight\"):\n    # the preference is cheapest, compare flight prices\n    price = int(flight.find(\"button\", class_=\"flight-price\")[\"data-price\"])\n    if price < best_flight_price:\n        best_flight_price = price\nprice = best_flight_price\nobs = f'The price of the {preference} one-way flight is ${price}'\n```\n\nWrite code within three backticks '```' to Book the shortest one-way flight from: Abilene, TX to: St Petersburg/Clearwater, FL on 10/15/2016.\nCode:\n```python\nfrom bs4 import BeautifulSoup\nsoup = BeautifulSoup(state, 'html.parser')\npreference = 'shortest'\nbest_flight_duration = float('inf')\nbest_flight = None\n# Loop through all the available flights\nfor flight in soup.find_all(\"div\", class_=\"flight\"):\n    # the preference is shortest, compare flight durations\n    duration = flight.find(\"div\", class_=\"time-duration\").text.split()\n    hours = int(duration[0][:-1]) if 'h' in duration[0] else 0\n    minutes = int(duration[1][:-1]) if 'm' in duration[1] else 0\n    total_minutes = hours * 60 + minutes\n    if total_minutes < best_flight_duration:\n        best_flight_duration = total_minutes\n        best_flight = flight\nprice = int(best_flight.find(\"button\", class_=\"flight-price\")[\"data-price\"])\nobs = f'The price of the {preference} one-way flight is ${price}'\n```\n\nNow, write code within three backticks '```' to Book the cheapest one-way flight from: MOU to: MBS on 12/04/2016.\nCode:"
+      }
+    ],
+    "output": "```python\nfrom bs4 import BeautifulSoup\nsoup = BeautifulSoup(state, 'html.parser')\npreference = 'cheapest'\nbest_flight_price = float('inf')\n# Loop through all the available flights\nfor flight in soup.find_all(\"div\", class_=\"flight\"):\n    # the preference is cheapest, compare flight prices\n    price = int(flight.find(\"button\", class_=\"flight-price\")[\"data-price\"])\n    if price < best_flight_price:\n        best_flight_price = price\nprice = best_flight_price\nobs = f'The price of the {preference} one-way flight is ${price}.'\n```",
+    "token_stats": {
+      "prompt_tokens": 3169,
+      "completion_tokens": 128,
+      "total_tokens": 3297
+    }
+  },
+  {
+    "input": [
+      {
+        "role": "system",
+        "content": "You are a large language model trained to navigate the web. To accomplish the task, use methods in the following Agent class to generate actions until you need the new state to proceed.\n```\nclass Agent:\n    def __init__(self, args):\n        ...\n\n    # Action: type a string via the keyboard\n    def type(self, characters: str) -> None:\n        ...\n\n    # Action: click an HTML element with a valid xpath\n    def click_xpath(self, xpath: str):\n        ...\n\n    # Actions: press a key on the keyboard, including:\n    # enter, space, arrowleft, arrowright, backspace, arrowup, arrowdown, command+a, command+c, command+v\n    def press(self, key_type: str) -> None:\n        ...\n\n    # Action: click an option HTML element in a list with a valid xpath\n    def click_option(self, xpath: str):\n        ...\n\n    # Action: move mouse cursor on an HTML element with a valid xpath\n    def movemouse(self, xpath: str):\n        ...\n```"
+      },
+      {
+        "role": "user",
+        "content": "Task: Book the cheapest one-way flight from: Hartford, CT to: TVC on 10/05/2016.\nTrajectory:"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nType the flight from: 'Hartford, CT' to: '(TVC)' (Hartford, CT is not an airport code. (TVC) is an airport code.), and select the date 10/05/2016.\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\n# Type the flight from: 'Hartford, CT' to: '(TVC)'\nagent.click_xpath(\"//*[@id='flight-from']\")\nagent.type(\"Hartford, CT\")\nagent.press(\"arrowdown\")\nagent.press(\"enter\")\nagent.click_xpath(\"//*[@id='flight-to']\")\nagent.type(\"(TVC)\")  # For the airport code, you must use parentheses\nagent.press(\"arrowdown\")\nagent.press(\"enter\")\n# Select the date 10/05/2016\nagent.click_xpath(\"//*[@id='datepicker']\")\n# Current date: 12/31/2016 (December-October=2). Click on 'Prev' twice\nfor _ in range(2):\n    agent.click_xpath(\"//*[@title='Prev']\")\n# Click on the date '5'\nagent.click_xpath(\"//a[text()='5']\")\nagent.click_xpath(\"//*[@id='search']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nThe price of the cheapest one-way flight is $92\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nagent.click_xpath(\"//button[text()='Book flight for $92']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Task: Book the shortest one-way flight from: Abilene, TX to: St Petersburg/Clearwater, FL on 10/15/2016.\nTrajectory:"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nType the flight from: 'Abilene, TX' to: 'St Petersburg/Clearwater, FL' (Abilene, TX is not an airport code. St Petersburg/Clearwater, FL is not an airport code.), and select the date 10/15/2016.\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\n# Type the flight from: 'Abilene, TX' to: 'St Petersburg/Clearwater, FL'\nagent.click_xpath(\"//*[@id='flight-from']\")\nagent.type(\"Abilene, TX\")\nagent.press(\"arrowdown\")\nagent.press(\"enter\")\nagent.click_xpath(\"//*[@id='flight-to']\")\nagent.type(\"St Petersburg/Clearwater, FL\")\nagent.press(\"arrowdown\")\nagent.press(\"enter\")\n# Select the date 10/15/2016\nagent.click_xpath(\"//*[@id='datepicker']\")\n# Current date: 12/31/2016 (December-October=2). Click on 'Prev' twice\nfor _ in range(2):\n    agent.click_xpath(\"//*[@title='Prev']\")\n# Click on the date '15'\nagent.click_xpath(\"//a[text()='15']\")\nagent.click_xpath(\"//*[@id='search']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nThe price of the shortest one-way flight is $680\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nagent.click_xpath(\"//button[text()='Book flight for $680']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Task: Book the shortest one-way flight from: MNT to: Islip, NY on 11/05/2016.\nTrajectory:"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nType the flight from: '(MNT)' to: 'Islip, NY' ((MNT) is an airport code. Islip, NY is not an airport code.), and select the date 11/05/2016.\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\n# Type the flight from: '(MNT)' to: 'Islip, NY'\nagent.click_xpath(\"//*[@id='flight-from']\")\nagent.type(\"(MNT)\")  # For the airport code, you must use parentheses\nagent.press(\"arrowdown\")\nagent.press(\"enter\")\nagent.click_xpath(\"//*[@id='flight-to']\")\nagent.type(\"Islip, NY\")\nagent.press(\"arrowdown\")\nagent.press(\"enter\")\n# Select the date 11/05/2016\nagent.click_xpath(\"//*[@id='datepicker']\")\n# Current date: 12/31/2016 (December-November=1). Click on 'Prev' once\nagent.click_xpath(\"//*[@title='Prev']\")\n# Click on the date '5'\nagent.click_xpath(\"//a[text()='5']\")\nagent.click_xpath(\"//*[@id='search']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nThe price of the shortest one-way flight is $341\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nagent.click_xpath(\"//button[text()='Book flight for $341']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Task: Book the cheapest one-way flight from: LKE to: Manhattan, KS on 12/12/2016.\nTrajectory:"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nType the flight from: '(LKE)' to: 'Manhattan, KS' ((LKE) is an airport code. Manhattan, KS is not an airport code.), and select the date 12/12/2016.\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\n# Type the flight from: '(LKE)' to: 'Manhattan, KS'\nagent.click_xpath(\"//*[@id='flight-from']\")\nagent.type(\"(LKE)\")  # For the airport code, you must use parentheses\nagent.press(\"arrowdown\")\nagent.press(\"enter\")\nagent.click_xpath(\"//*[@id='flight-to']\")\nagent.type(\"Manhattan, KS\")\nagent.press(\"arrowdown\")\nagent.press(\"enter\")\n# Select the date 12/12/2016\nagent.click_xpath(\"//*[@id='datepicker']\")\n# Current date: 12/31/2016 (December-December=0). No need to click on 'Prev'\n# Click on the date '12'\nagent.click_xpath(\"//a[text()='12']\")\nagent.click_xpath(\"//*[@id='search']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nThe price of the cheapest one-way flight is $152\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nagent.click_xpath(\"//button[text()='Book flight for $152']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Task: Book the cheapest one-way flight from: WMH to: BTR on 11/16/2016.\nTrajectory:"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nType the flight from: '(WMH)' to: '(BTR)' ((WMH) and (BTR) are airport codes.), and select the date 11/16/2016.\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\n# Type the flight from: '(WMH)' to: '(BTR)'\nagent.click_xpath(\"//*[@id='flight-from']\")\nagent.type(\"(WMH)\")  # For the airport code, you must use parentheses\nagent.press(\"arrowdown\")\nagent.press(\"enter\")\nagent.click_xpath(\"//*[@id='flight-to']\")\nagent.type(\"(BTR)\")  # For the airport code, you must use parentheses\nagent.press(\"arrowdown\")\nagent.press(\"enter\")\n# Select the date 11/16/2016\nagent.click_xpath(\"//*[@id='datepicker']\")\n# Current date: 12/31/2016 (December-November=1). Click on 'Prev' once\nagent.click_xpath(\"//*[@title='Prev']\")\n# Click on the date '16'\nagent.click_xpath(\"//a[text()='16']\")\nagent.click_xpath(\"//*[@id='search']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nThe price of the cheapest one-way flight is $36\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nagent.click_xpath(\"//button[text()='Book flight for $36']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Task: Book the cheapest one-way flight from: MOU to: MBS on 12/04/2016.\nTrajectory:"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nType the flight from: '(MOU)' to: '(MBS)' (both are airport codes), and select the date 12/04/2016.\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\n# Type the flight from: '(MOU)' to: '(MBS)'\nagent.click_xpath(\"//*[@id='flight-from']\")\nagent.type(\"(MOU)\")  # For the airport code, you must use parentheses\nagent.press(\"arrowdown\")\nagent.press(\"enter\")\nagent.click_xpath(\"//*[@id='flight-to']\")\nagent.type(\"(MBS)\")  # For the airport code, you must use parentheses\nagent.press(\"arrowdown\")\nagent.press(\"enter\")\n# Select the date 12/04/2016\nagent.click_xpath(\"//*[@id='datepicker']\")\n# Current date: 12/31/2016 (December-December=0). No need to click on 'Prev'\n# Click on the date '4'\nagent.click_xpath(\"//a[text()='4']\")\nagent.click_xpath(\"//*[@id='search']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\nThe price of the cheapest one-way flight is $124.\nAction:"
+      }
+    ],
+    "output": "```\nagent.click_xpath(\"//button[text()='Book flight for $124']\")\n```",
+    "token_stats": {
+      "prompt_tokens": 2053,
+      "completion_tokens": 16,
+      "total_tokens": 2069
+    }
+  }
+]

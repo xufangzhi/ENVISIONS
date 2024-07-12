@@ -1,0 +1,52 @@
+[
+  {
+    "input": [
+      {
+        "role": "system",
+        "content": "You are a large language model trained to navigate the web. To accomplish the task, use methods in the following Agent class to generate actions until you need the new state to proceed.\n```\nclass Agent:\n    def __init__(self, args):\n        ...\n\n    # Action: type a string via the keyboard\n    def type(self, characters: str) -> None:\n        ...\n\n    # Action: click an HTML element with a valid xpath\n    def click_xpath(self, xpath: str):\n        ...\n\n    # Actions: press a key on the keyboard, including:\n    # enter, space, arrowleft, arrowright, backspace, arrowup, arrowdown, command+a, command+c, command+v\n    def press(self, key_type: str) -> None:\n        ...\n\n    # Action: click an option HTML element in a list with a valid xpath\n    def click_option(self, xpath: str):\n        ...\n\n    # Action: move mouse cursor on an HTML element with a valid xpath\n    def movemouse(self, xpath: str):\n        ...\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n<div id=\"wrap\" data-wob_ref=\"2\" data-wob_eps=\"e0\">\n  <div id=\"query\">Select Zsa Zsa from the scroll list and click Submit.</div>\n  <div id=\"area\" data-wob_ref=\"3\" data-wob_eps=\"e0\"><select id=\"options\" style=\"width:150px;\" multiple=\"\" data-wob_ref=\"4\" data-wob_eps=\"e0\"><option data-wob_ref=\"5\" data-wob_eps=\"e0\">Bibbie</option><option data-wob_ref=\"6\" data-wob_eps=\"e0\">Hadria</option><option data-wob_ref=\"7\" data-wob_eps=\"e0\">Orsola</option><option data-wob_ref=\"8\" data-wob_eps=\"e0\">Darya</option><option data-wob_ref=\"9\" data-wob_eps=\"e0\">Brandice</option><option data-wob_ref=\"10\" data-wob_eps=\"e0\">Kirstin</option><option data-wob_ref=\"11\" data-wob_eps=\"e0\">Gracie</option><option data-wob_ref=\"12\" data-wob_eps=\"e0\">Zsa Zsa</option><option data-wob_ref=\"13\" data-wob_eps=\"e0\">Jeane</option></select><button class=\"secondary-action\" data-wob_ref=\"14\" data-wob_eps=\"e0\">Submit</button></div>\n</div>\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nagent.click_option(\"//option[text() = 'Zsa Zsa']\")\nagent.click_xpath(\"//*[@class='secondary-action']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n<div id=\"wrap\" data-wob_ref=\"2\" data-wob_eps=\"e0\">\n  <div id=\"query\">Select Cornelle, Floria from the scroll list and click Submit.</div>\n  <div id=\"area\" data-wob_ref=\"3\" data-wob_eps=\"e0\"><select id=\"options\" style=\"width:150px;\" multiple=\"\" data-wob_ref=\"4\" data-wob_eps=\"e0\"><option data-wob_ref=\"5\" data-wob_eps=\"e0\">Joanie</option><option data-wob_ref=\"6\" data-wob_eps=\"e0\">Sadella</option><option data-wob_ref=\"7\" data-wob_eps=\"e0\">Floria</option><option data-wob_ref=\"8\" data-wob_eps=\"e0\">Lea</option><option data-wob_ref=\"9\" data-wob_eps=\"e0\">Charis</option><option data-wob_ref=\"10\" data-wob_eps=\"e0\">Shalna</option><option data-wob_ref=\"11\" data-wob_eps=\"e0\">Libbey</option><option data-wob_ref=\"12\" data-wob_eps=\"e0\">Cornelle</option><option data-wob_ref=\"13\" data-wob_eps=\"e0\">Gert</option></select><button class=\"secondary-action\" data-wob_ref=\"14\" data-wob_eps=\"e0\">Submit</button></div>\n</div>\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nagent.click_option(\"//option[text() = 'Cornelle']\")\nagent.click_option(\"//option[text() = 'Floria']\")\nagent.click_xpath(\"//*[@class='secondary-action']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n<div id=\"wrap\" data-wob_ref=\"2\" data-wob_eps=\"e0\">\n  <div id=\"query\">Select Christmas Island from the scroll list and click Submit.</div>\n  <div id=\"area\" data-wob_ref=\"3\" data-wob_eps=\"e0\"><select id=\"options\" style=\"width:150px;\" multiple=\"\" data-wob_ref=\"4\" data-wob_eps=\"e0\"><option data-wob_ref=\"5\" data-wob_eps=\"e0\">Brunei Darussalam</option><option data-wob_ref=\"6\" data-wob_eps=\"e0\">Botswana</option><option data-wob_ref=\"7\" data-wob_eps=\"e0\">Christmas Island</option><option data-wob_ref=\"8\" data-wob_eps=\"e0\">Kiribati</option><option data-wob_ref=\"9\" data-wob_eps=\"e0\">Bouvet Island</option><option data-wob_ref=\"10\" data-wob_eps=\"e0\">Papua New Guinea</option><option data-wob_ref=\"11\" data-wob_eps=\"e0\">Timor-Leste</option><option data-wob_ref=\"12\" data-wob_eps=\"e0\">Burkina Faso</option><option data-wob_ref=\"13\" data-wob_eps=\"e0\">New Zealand</option></select><button class=\"secondary-action\" data-wob_ref=\"14\" data-wob_eps=\"e0\">Submit</button></div>\n</div>\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nagent.click_option(\"//option[text() = 'Christmas Island']\")\nagent.click_xpath(\"//*[@class='secondary-action']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n<div id=\"wrap\" data-wob_ref=\"2\" data-wob_eps=\"e0\">\n  <div id=\"query\">Select Uruguay, Christmas Island from the scroll list and click Submit.</div>\n  <div id=\"area\" data-wob_ref=\"3\" data-wob_eps=\"e0\"><select id=\"options\" style=\"width:150px;\" multiple=\"\" data-wob_ref=\"4\" data-wob_eps=\"e0\"><option data-wob_ref=\"5\" data-wob_eps=\"e0\">Isle of Man</option><option data-wob_ref=\"6\" data-wob_eps=\"e0\">Burkina Faso</option><option data-wob_ref=\"7\" data-wob_eps=\"e0\">Croatia</option><option data-wob_ref=\"8\" data-wob_eps=\"e0\">Bahrain</option><option data-wob_ref=\"9\" data-wob_eps=\"e0\">Indonesia</option><option data-wob_ref=\"10\" data-wob_eps=\"e0\">Uruguay</option><option data-wob_ref=\"11\" data-wob_eps=\"e0\">Israel</option><option data-wob_ref=\"12\" data-wob_eps=\"e0\">Christmas Island</option></select><button class=\"secondary-action\" data-wob_ref=\"13\" data-wob_eps=\"e0\">Submit</button></div>\n</div>\nAction:"
+      },
+      {
+        "role": "assistant",
+        "content": "```\nagent.click_option(\"//option[text() = 'Uruguay']\")\nagent.click_option(\"//option[text() = 'Christmas Island']\")\nagent.click_xpath(\"//*[@class='secondary-action']\")\n```"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n<div id=\"wrap\" data-wob_ref=\"2\" data-wob_eps=\"e0\">\n  <div id=\"query\">Select Congo from the list and click Submit.</div>\n  <div id=\"area\" data-wob_ref=\"3\" data-wob_eps=\"e0\"><select id=\"options\" style=\"width:150px;\" class=\"Bahrain,Congo,Seychelles,Grenada\" data-wob_ref=\"4\" data-wob_eps=\"e0\"><option>Bahrain</option><option>Congo</option><option>Seychelles</option><option>Grenada</option></select><button class=\"secondary-action\" data-wob_ref=\"5\" data-wob_eps=\"e0\">Submit</button></div>\n</div>\nAction:"
+      }
+    ],
+    "output": "```\nagent.click_option(\"//option[text() = 'Congo']\")\nagent.click_xpath(\"//*[@class='secondary-action']\")\n```",
+    "token_stats": {
+      "prompt_tokens": 1839,
+      "completion_tokens": 24,
+      "total_tokens": 1863
+    }
+  }
+]
