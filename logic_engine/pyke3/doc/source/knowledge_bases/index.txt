@@ -1,0 +1,114 @@
+.. $Id: index.txt a2119c07028f 2008-10-27 mtnyogi $
+.. 
+.. Copyright © 2007-2008 Bruce Frederiksen
+.. 
+.. Permission is hereby granted, free of charge, to any person obtaining a copy
+.. of this software and associated documentation files (the "Software"), to deal
+.. in the Software without restriction, including without limitation the rights
+.. to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+.. copies of the Software, and to permit persons to whom the Software is
+.. furnished to do so, subject to the following conditions:
+.. 
+.. The above copyright notice and this permission notice shall be included in
+.. all copies or substantial portions of the Software.
+.. 
+.. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+.. IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+.. FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+.. AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+.. LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+.. OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+.. THE SOFTWARE.
+
+restindex
+    crumb: Knowledge Bases
+    page-description:
+        Knowledge is made up of both *facts* and *rules*.  These are gathered
+        into named repositories called *knowledge bases*.
+    /description
+    section-pages: , fact_bases, rule_bases, question_bases, special
+    format: rest
+    encoding: utf8
+    output-encoding: utf8
+    include: yes
+    initialheaderlevel: 2
+/restindex
+
+uservalues
+    filedate: $Id: index.txt a2119c07028f 2008-10-27 mtnyogi $
+/uservalues
+
+====================
+Knowledge Bases
+====================
+
+Knowledge is organized into named repositories called *knowledge bases*.
+A knowledge base is like a directory for files on disk, except that knowledge
+bases may not be nested.  Therefore, the *entities* within a knowledge base
+always have a two-level name: *knowledge_base_name.knowledge_entity_name*.
+
+Here are some examples of facts you might see in a web server application::
+
+    header.cookie('session=123456789;remember=the_alamo')
+    cookie.session(123456789)
+    cookie.remember(the_alamo)
+    header.accept_encoding(gzip)
+    header.accept_encoding(deflate)
+    request.path('/my/site.html')
+    request.path_segment(0, my)
+    request.path_segment(1, 'site.html')
+    request.path_segment(-2, my)
+    request.path_segment(-1, 'site.html')
+
+Note that three different knowledge bases (all `fact bases`_) are shown here
+named ``header``, ``cookie``, and ``request``; each with multiple facts.
+
+The second part of the two-part name is the name of the *knowledge entity*.
+You can think of knowledge entities as statement_ *types* or *topics*.  So:
+
+    :request:
+        is the name of the *knowledge base*.
+    :request.path_segment:
+        is the name of the *knowledge entity*, or statement topic.
+    :request.path_segment(-1, 'site.html'):
+        is a specific statement about the topic of request.path_segments.
+
+What do Knowledge Bases Do?
+===========================
+
+Ultimately Pyke is interested in proving statements, or answering the question
+"Is statement X true"?  There are several different types of knowledge bases.
+Each type of knowledge base represents a different way of doing this:
+
+- Those that contain simple lists of statements of fact (as you see in the
+  example above) are called `fact bases`_.
+
+  - These determine whether a statement is true by simply checking to see if
+    that statement is in their list of known facts. 
+
+- Those that contain *if-then* rules_ are called `rule bases`__.
+
+  - These determine whether a statement is true by running their if-then rules
+    to try to construct a proof for that statement.
+  - Rule bases may include both forward-chaining_ and backward-chaining_ rules.
+
+- It is also possible to create other kinds of knowledge bases that determine
+  the truth of statements in other ways.  Pyke provides two of these:
+
+  - The `question base`_ which just poses the statement to an end user as a
+    question.
+  - The special_ knowledge base which has several special one-off knowledge
+    entities to do different things like run a command_ on the underlying
+    system and examine its output and/or exit status.
+
+    - There is only has one instance of this knowledge base -- called
+      ``special``.
+
+.. __: rule_bases.html
+
+.. note::
+
+    All knowledge bases share the same name space.  So no two of them,
+    regardless of their type, may have the same name.
+
+

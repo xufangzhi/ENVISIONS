@@ -1,0 +1,180 @@
+.. $Id: examples.txt 6de8ee4e7d2d 2010-03-29 mtnyogi $
+.. 
+.. Copyright © 2008 Bruce Frederiksen
+.. 
+.. Permission is hereby granted, free of charge, to any person obtaining a copy
+.. of this software and associated documentation files (the "Software"), to deal
+.. in the Software without restriction, including without limitation the rights
+.. to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+.. copies of the Software, and to permit persons to whom the Software is
+.. furnished to do so, subject to the following conditions:
+.. 
+.. The above copyright notice and this permission notice shall be included in
+.. all copies or substantial portions of the Software.
+.. 
+.. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+.. IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+.. FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+.. AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+.. LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+.. OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+.. THE SOFTWARE.
+
+restindex
+    crumb: Examples
+    page-description:
+        An overview of the examples provided with Pyke.
+    /description
+    format: rest
+    encoding: utf8
+    output-encoding: utf8
+    include: yes
+    initialheaderlevel: 2
+/restindex
+
+uservalues
+    filedate: $Id: examples.txt 6de8ee4e7d2d 2010-03-29 mtnyogi $
+/uservalues
+
+
+========
+Examples
+========
+
+.. this code is hidden and will change to the root directory and add '' to
+   sys.path for the code section following:
+   >>> import sys
+   >>> if '' not in sys.path: sys.path.insert(0, '')
+   >>> import os
+   >>> os.chdir("../..")  # get out of documents directory back to root dir
+   >>> os.chdir("examples/towers_of_hanoi")
+
+Several examples are included to help you become familiar with Pyke.  These
+are all in an ``examples`` directory::
+
+    $ cd examples/towers_of_hanoi
+    $ python
+    >>> import driver
+    >>> driver.test(2)
+    got 1: ((0, 1), (0, 2), (1, 2))
+    got 2: ((0, 2), (0, 1), (2, 0), (1, 2), (0, 2))
+
+Each example is in its own sub-directory and has a README.txt file to get you
+started.  They all have `.krb files`_ and a Python module to run the example
+that also demonstrates `how to call Pyke`_ from your Python program.
+
+
+Family_relations
+================
+
+This is a very good basic example to start with.
+
+The family_relations example takes an initial set of facts_ about people
+(stated in a `.kfb file`_)::
+
+    son_of(david_r2, david_r, sarah_r)
+    daughter_of(shirley, david_r, sarah_r)
+
+And figures out how any two people are related::
+
+    david_r2, shirley are ('brother', 'sister')
+
+This same problem is solved in four different ways so that you can compare
+them:
+
+- Forward-chaining_ only
+- Backward-chaining_ only
+- Backward-chaining only with a few rule optimizations that make the rules
+  run 100 times faster!
+- A mix of forward-chaining and backward-chaining with some use of plans_ added
+  too.
+
+The driver.py program also demonstrates how to use krb_traceback_ and the
+print_stats_ function.
+
+
+Knapsack
+========
+
+At the `PyCon 2008`_ conference, somebody asked about the `knapsack problem`_.
+We found a solution in Prolog here__ (starting on page 19), and rewrote it in
+Pyke.  This is a quick simple little example.
+
+.. __: http://www.ise.gmu.edu/~duminda/classes/fall03/set3.ppt
+
+
+Sqlgen
+======
+
+Pyke was originally developed as the control component for a web framework.
+This example shows how Pyke can automatically generate SQL SELECT statements,
+given a set of tables that the calling program has keys to and a tuple of the
+desired column names.  Column names specified at the top-level in this tuple
+are expected to have a single value each.  Nested tuples are used when
+multiple rows are expected.  The column names in nested tuples make up the
+columns in the result rows.
+
+The top-level goal returns a plan_ that takes the key values for the initial
+set of tables given to the goal and returns an immutable dictionary mapping
+the column names to the values retrieved from the database.  The plan may be
+used repeatedly without re-running the rules each time to figure out the
+SELECT statements.  Thus, this acts like a SELECT statement compiler resulting
+in queries with virtually no extra overhead.  It is *not*, however, an Object
+Relational Mapper (ORM).
+
+The data model used for the requested columns is that tables inherit the
+columns from tables they link to.  So if there is a 1-many relationship
+between tables A and B (1 A row has many B rows), the B table inherits the
+columns from the A table through it's link to table A.  The Pyke rules will
+automatically figure out the table joins for this.
+
+The program automatically introspects the schema information.  For this
+example, it assumes that ``id`` is the primary key for each table, and that
+when one table links to another, it uses the target table name suffixed with
+``_id`` as the column name.
+
+This example was originally done using MySQL_ and includes the .sql files to
+create the database, tables, and example data.  The example has since been
+converted to use the Sqlite3 database to make it easier to run, as Sqlite3
+does not require any setup (the Sqlite3 database file is included in the
+example).
+
+Sqlgen lacks more general capabilities that would be required for real use,
+but may serve as a starting point for another project that's more complete.
+
+This example also has much more elaborate rules than the prior two examples
+and is a very real example of generating plans_.
+
+
+Web_framework
+=============
+
+This example completes the Python web framework demo by adding rules to
+automatically generate code to render HTML templates from the HTMLTemplate_
+package (you can run ``pip install HTMLTemplate`` or ``easy_install
+HTMLTemplate`` to install the HTMLTemplate package).  This example uses the
+sqlgen_ example, above, to generate the SQL statements.
+
+An HTMLTemplate does not include anything resembling program code in it, so
+that your graphics designers can completely own the html files without the
+developers having to modify them in any way.
+
+Note that the code generated here is fully cooked_ code, custom built for
+that specific schema and HTML template.  This runs extremely fast because
+there is nothing left at run-time concerning parsing and figuring out the
+HTML template, or constructing the SQL statements.
+
+A test was done comparing this web framework example to the same example
+done in `TurboGears 2`_ running against the same MySQL database.  The results
+of the siege_ benchmark tests show that Pyke is just over 10 times faster than
+TurboGears 2::
+
+- Pyke: 791 trans/sec 
+- TurboGears 2: 76 trans/sec
+
+The demo is packaged as a WSGI_ application.  It also demonstrates the use of
+multiple `rule bases`_ by using the sqlgen example above, as well as the
+caching and reuse of plans_ to achieve the order of magnitude improvement in
+performance over current practice.
+
+

@@ -1,0 +1,235 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <title>Python Premise Syntax</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../stylesheets/pyke.css" type="text/css" />
+</head>
+<body>
+  <table id="page-table">
+    <thead class="head">
+        <tr id="header1"><th id="header" colspan="3">
+            &nbsp;
+        </th></tr>
+        <tr id="header2">
+          <th id="crumb-left"></th>
+          <th id="crumb-line">
+            <div id="nav">
+              <ul>
+                  <li><a href="../../index.html">Home</a></li>
+<li>&gt;</li>
+<li><a href="../index.html">Pyke Syntax</a></li>
+<li>&gt;</li>
+<li><a href="index.html">KRB Syntax</a></li>
+<li>&gt;</li>
+<li>Python Premise</li>
+
+              </ul>
+            </div>
+          </th>
+          <th id="crumb-right"></th>
+        </tr>
+    </thead>
+
+    <tbody id="body">
+        <tr id="body-tr">
+          <td id="left-nav">
+            <div id="left-nav-div">
+              
+<div class="title-nav"><a href="../../index.html">Home</a></div><div class="nav-branch">
+<div class="normal-nav"><a href="../../about_pyke/index.html">About Pyke</a></div>
+<div class="normal-nav"><a href="../../logic_programming/index.html">Logic Programming</a></div>
+<div class="normal-nav"><a href="../../knowledge_bases/index.html">Knowledge Bases</a></div>
+
+<div class="title-nav"><a href="../index.html">Pyke Syntax</a></div><div class="nav-branch">
+<div class="normal-nav"><a href="../kfb_syntax.html">KFB Syntax</a></div>
+
+<div class="title-nav"><a href="index.html">KRB Syntax</a></div><div class="nav-branch">
+<div class="normal-nav"><a href="fc_rule.html">Fc_rule</a></div>
+<div class="normal-nav"><a href="bc_rule.html">Bc_rule</a></div>
+<div class="normal-nav"><a href="pattern.html">Pattern</a></div>
+<div class="normal-nav"><a href="compound_premise.html">Compound Premise</a></div>
+<div class="normal-nav"><a href="python_premise.html">Python Premise</a></div>
+</div>
+<div class="normal-nav"><a href="../kqb_syntax.html">KQB Syntax</a></div>
+</div>
+<div class="normal-nav"><a href="../../using_pyke/index.html">Using Pyke</a></div>
+<div class="normal-nav"><a href="../../examples.html">Examples</a></div>
+<div class="normal-nav"><a href="../../PyCon2008-paper.html">PyCon 2008 Paper</a></div>
+</div>
+
+            </div>
+            <div id="icons">
+                <div id="project-page">
+                  <a href="http://sourceforge.net/projects/pyke/">Pyke Project Page</a>
+                </div>
+                Please Make a Donation:<br />
+                <a href="http://sourceforge.net/donate/index.php?group_id=207724">
+                  <img src="http://images.sourceforge.net/images/project-support.jpg"
+                       width="88" height="32" border="0"
+                       alt="Support This Project" /> </a> <br /><br />
+                Hosted by: <br />
+                <a href="http://sourceforge.net/projects/pyke">
+                  <img src="http://sflogo.sourceforge.net/sflogo.php?group_id=207724&amp;type=14"
+                       width="150" height="40"
+                       alt="Get Python Knowledge Engine (PyKE) at SourceForge.net. Fast, secure and Free Open Source software downloads" /></a>
+            </div>
+          </td>
+          <td id="main-td">
+            <div id="main">
+                <a name="startcontent" id="startcontent"></a>
+                <div class="document" id="python-premise-syntax">
+<h1 class="title">Python Premise Syntax</h1>
+<div class="section" id="python-premise">
+<h2>Python_premise</h2>
+<pre class="literal-block">
+python_premise ::= pattern '=' python_exp
+                 | pattern 'in' python_exp
+                 | 'check' python_exp
+                 | python_statements
+</pre>
+<p>Each of these clauses results in a Python expression being executed.  Their
+meaning is as follows:</p>
+<dl class="docutils">
+<dt><a class="reference external" href="pattern.html">pattern</a> '=' python_exp</dt>
+<dd><p class="first"><em>python_exp</em> is evaluated and the result <a class="reference external" href="../../logic_programming/pattern_matching/index.html">matched</a> with <a class="reference external" href="pattern.html">pattern</a>.
+If the result does not match, the clause fails.</p>
+<p class="last">The clause always fails on <a class="reference external" href="../../logic_programming/rules/index.html#backtracking">backtracking</a>, meaning that it only produces
+a single result (contrasted with <tt class="docutils literal">in</tt>).</p>
+</dd>
+<dt><a class="reference external" href="pattern.html">pattern</a> 'in' python_exp</dt>
+<dd><p class="first"><em>python_exp</em> is evaluated to produce a Python <em>iterable</em> and the first
+element from the resulting iterable is <a class="reference external" href="../../logic_programming/pattern_matching/index.html">matched</a> with <a class="reference external" href="pattern.html">pattern</a>.  On
+<a class="reference external" href="../../logic_programming/rules/index.html#backtracking">backtracking</a>, successive elements from the iterable are matched with
+<a class="reference external" href="pattern.html">pattern</a>.  When the result is exhausted, the clause fails.</p>
+<p class="last">This has the effect of offering each element of the result, one at a
+time, to the subsequent premise clauses.  Each element is thus acted upon
+individually.</p>
+</dd>
+<dt>'check' python_exp</dt>
+<dd><em>python_exp</em> is evaluated.  If the result is Python &quot;true&quot; the clause
+succeeds, otherwise it fails.  The clause always fails on <a class="reference external" href="../../logic_programming/rules/index.html#backtracking">backtracking</a>.</dd>
+</dl>
+</div>
+<div class="section" id="python-statements">
+<h2>Python_statements</h2>
+<pre class="literal-block">
+python_statements ::= 'python' python_statement
+                    | 'python' NL INDENT
+                          {python_statement NL}
+                      DEINDENT
+</pre>
+<p>This clause allows the inclusion of arbitrary Python statements in your
+<a class="reference external" href="../../logic_programming/rules/index.html">rules</a>.  This premise always succeeds; and then fails on <a class="reference external" href="../../logic_programming/rules/index.html#backtracking">backtracking</a>.</p>
+<p>The current <tt class="docutils literal">knowledge_engine</tt> object is available within python_statements
+as the variable called <tt class="docutils literal">engine</tt>.</p>
+<div class="caution">
+<p class="first admonition-title">Caution!</p>
+<p>Always keep in mind the difference between <a class="reference external" href="pattern.html#pattern-variable">pattern variables</a> and
+<em>Python variables</em>.  Pattern variables are always indicated with a <tt class="docutils literal">$</tt>
+and are only bound to a value during inferencing.</p>
+<ol class="last arabic">
+<li><p class="first">Thus, a <tt class="docutils literal">python_statement</tt> may not set a pattern variable.  Storing a
+value computed by Python into a pattern variable can only be done using
+the python_premise:</p>
+<pre class="literal-block">
+&lt;pattern&gt; = &lt;some python expression&gt;
+</pre>
+</li>
+<li><p class="first">When a pattern variable is used within a Python expression or statement,
+it must be <a class="reference external" href="../../logic_programming/pattern_matching/matching_patterns.html#binding-to-a-tuple-pattern">fully bound</a>.</p>
+</li>
+<li><p class="first">Python variables are not visible to the inference engine.  They are local
+variables that are also not visible to Python code in other <a class="reference external" href="../../logic_programming/rules/index.html">rules</a> or
+other invocations of the same rule.</p>
+</li>
+<li><p class="first">Finally, Python variables in the <a class="reference external" href="bc_rule.html#when-clause">when clause</a> of a <a class="reference external" href="bc_rule.html">backward-chaining
+rule</a> are not visible to the Python code in the <a class="reference external" href="bc_rule.html#with-clause">with clause</a> of the
+same rule.  (These end up in two different Python functions after the
+<a class="reference external" href="index.html">.krb file</a> is compiled).  So this won't work:</p>
+<pre class="literal-block">
+some_bc_rule
+    use some_goal(...)
+    when
+        ...
+        python x_list = &lt;some python expression&gt;
+        ...
+    with
+        for x in x_list: process(x)
+</pre>
+<p>In this case, assign the value of the Python variable to a pattern
+variable in the when clause and then use that pattern variable in the
+with clause:</p>
+<pre class="literal-block">
+some_bc_rule
+    use some_goal(...)
+    when
+        ...
+        python x_list = &lt;some python expression&gt;
+        ...
+        $x_list = tuple(x_list)
+    with
+        for x in $x_list: process(x)
+</pre>
+</li>
+</ol>
+</div>
+<!-- ADD_LINKS MARKER -->
+</div>
+</div>
+
+                <!-- <div id="return-to-top">
+                       <a href="#">Return to Top</a>
+                     </div>
+                -->
+            </div>
+          </td>
+          <td id="right-nav">
+            <div id="right-nav-div">
+                <h3>More:</h3>
+<div class="right-item"><a href="fc_rule.html">Fc_rule Syntax</a><p>The syntax of a forward-chaining rule.</p>
+</div>
+<div class="right-item"><a href="bc_rule.html">Bc_rule Syntax</a><p>The syntax of a backward-chaining rule.</p>
+</div>
+<div class="right-item"><a href="pattern.html">Pattern Syntax</a><p>The syntax of a pattern used to match data values.</p>
+</div>
+<div class="right-item"><a href="compound_premise.html">Compound Premise Syntax</a><p>The syntax of compound premises.</p>
+</div>
+<div class="right-item"><a href="python_premise.html">Python Premise Syntax</a><p>The syntax of a <em>python_premise</em>.</p>
+</div>
+
+            </div>
+          </td>
+        </tr>
+    </tbody>
+
+    <tfoot id="foot">
+        <tr id="foot2">
+          <td id="copyright" colspan="3">
+            Copyright &copy; 2007-2009 Bruce Frederiksen
+          </td>
+        </tr>
+    </tfoot>
+  </table>
+
+  <div id="last-modified">
+    Page last modified
+    Sun, Feb 15 2009.
+
+  </div>
+
+  <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ?
+                    "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost +
+        "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+  </script>
+  <script type="text/javascript">
+    try {
+      var pageTracker = _gat._getTracker("UA-6310805-1");
+      pageTracker._trackPageview();
+    } catch(err) {}
+  </script>
+</body>
+</html>
+

@@ -1,0 +1,217 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <title>Pathological Answer</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../stylesheets/pyke.css" type="text/css" />
+</head>
+<body>
+  <table id="page-table">
+    <thead class="head">
+        <tr id="header1"><th id="header" colspan="3">
+            &nbsp;
+        </th></tr>
+        <tr id="header2">
+          <th id="crumb-left"></th>
+          <th id="crumb-line">
+            <div id="nav">
+              <ul>
+                  <li><a href="../../index.html">Home</a></li>
+<li>&gt;</li>
+<li><a href="../index.html">Logic Programming</a></li>
+<li>&gt;</li>
+<li><a href="index.html">Pattern Matching</a></li>
+<li>&gt;</li>
+<li>Pathological Answer</li>
+
+              </ul>
+            </div>
+          </th>
+          <th id="crumb-right"></th>
+        </tr>
+    </thead>
+
+    <tbody id="body">
+        <tr id="body-tr">
+          <td id="left-nav">
+            <div id="left-nav-div">
+              
+<div class="title-nav"><a href="../../index.html">Home</a></div><div class="nav-branch">
+<div class="normal-nav"><a href="../../about_pyke/index.html">About Pyke</a></div>
+
+<div class="title-nav"><a href="../index.html">Logic Programming</a></div><div class="nav-branch">
+<div class="normal-nav"><a href="../statements.html">Statements</a></div>
+
+<div class="title-nav"><a href="index.html">Pattern Matching</a></div><div class="nav-branch">
+<div class="normal-nav"><a href="literal_patterns.html">Literal Patterns</a></div>
+<div class="normal-nav"><a href="pattern_variables.html">Pattern Variables</a></div>
+<div class="normal-nav"><a href="tuple_patterns.html">Tuple Patterns</a></div>
+<div class="normal-nav"><a href="matching_patterns.html">Matching 2 Patterns</a></div>
+</div>
+<div class="normal-nav"><a href="../rules/index.html">Rules</a></div>
+<div class="normal-nav"><a href="../plans.html">Plans</a></div>
+</div>
+<div class="normal-nav"><a href="../../knowledge_bases/index.html">Knowledge Bases</a></div>
+<div class="normal-nav"><a href="../../pyke_syntax/index.html">Pyke Syntax</a></div>
+<div class="normal-nav"><a href="../../using_pyke/index.html">Using Pyke</a></div>
+<div class="normal-nav"><a href="../../examples.html">Examples</a></div>
+<div class="normal-nav"><a href="../../PyCon2008-paper.html">PyCon 2008 Paper</a></div>
+</div>
+
+            </div>
+            <div id="icons">
+                <div id="project-page">
+                  <a href="http://sourceforge.net/projects/pyke/">Pyke Project Page</a>
+                </div>
+                Please Make a Donation:<br />
+                <a href="http://sourceforge.net/donate/index.php?group_id=207724">
+                  <img src="http://images.sourceforge.net/images/project-support.jpg"
+                       width="88" height="32" border="0"
+                       alt="Support This Project" /> </a> <br /><br />
+                Hosted by: <br />
+                <a href="http://sourceforge.net/projects/pyke">
+                  <img src="http://sflogo.sourceforge.net/sflogo.php?group_id=207724&amp;type=14"
+                       width="150" height="40"
+                       alt="Get Python Knowledge Engine (PyKE) at SourceForge.net. Fast, secure and Free Open Source software downloads" /></a>
+            </div>
+          </td>
+          <td id="main-td">
+            <div id="main">
+                <a name="startcontent" id="startcontent"></a>
+                <div class="document" id="pathological-answer">
+<h1 class="title">Pathological Answer</h1>
+<p>This is the answer to the following question:</p>
+<div class="section" id="pathological-question">
+<h2>Pathological Question</h2>
+<p>What is the bound value of pattern variable <tt class="docutils literal">$y</tt> after matching the
+following two tuple patterns:</p>
+<blockquote>
+<dl class="docutils">
+<dt>Tuple pattern A:</dt>
+<dd><tt class="docutils literal">((ho, $_, ($a, <span class="pre">$a)),</span> ($a, $a, $b), ($a, *$b))</tt></dd>
+<dt>Tuple pattern B:</dt>
+<dd><tt class="docutils literal">($x, $x, $y)</tt></dd>
+</dl>
+</blockquote>
+</div>
+<div class="section" id="answer">
+<h2>Answer</h2>
+<p>Let's take this step by step, matching each element of the two tuple patterns
+in turn.</p>
+<ol class="arabic">
+<li><p class="first">Match <tt class="docutils literal">(ho, $_, ($a, $a))</tt> to <tt class="docutils literal">$x</tt>.</p>
+<p>This succeeds with the following binding:</p>
+<dl class="docutils">
+<dt><tt class="docutils literal">$x</tt>:</dt>
+<dd><p class="first last"><tt class="docutils literal">(ho, $_, ($a, $a))</tt></p>
+</dd>
+</dl>
+</li>
+<li><p class="first">Match <tt class="docutils literal">($a, $a, $b)</tt> to <tt class="docutils literal">$x</tt>.</p>
+<p>Because <tt class="docutils literal">$x</tt> is bound to a value, this becomes the same as matching:</p>
+<ul class="simple">
+<li><tt class="docutils literal">($a, $a, $b)</tt> to</li>
+<li><tt class="docutils literal">(ho, $_, ($a, $a))</tt></li>
+</ul>
+<p>Which succeeds, binding:</p>
+<dl class="docutils">
+<dt><tt class="docutils literal">$a</tt>:</dt>
+<dd><p class="first last"><tt class="docutils literal">ho</tt></p>
+</dd>
+<dt><tt class="docutils literal">$b</tt>:</dt>
+<dd><p class="first last"><tt class="docutils literal">($a, $a)</tt></p>
+</dd>
+</dl>
+<p><tt class="docutils literal">$_</tt> is an anonymous variable, so it is not bound (or bound to).</p>
+</li>
+<li><p class="first">Match <tt class="docutils literal">($a, *$b)</tt> to <tt class="docutils literal">$y</tt>.</p>
+<p>Because both <tt class="docutils literal">$a</tt> and <tt class="docutils literal">$b</tt> have bound values, this becomes the same as
+matching:</p>
+<ul class="simple">
+<li><tt class="docutils literal">(ho, ho, ho)</tt> to</li>
+<li><tt class="docutils literal">$y</tt></li>
+</ul>
+<p>Which succeeds, binding:</p>
+<dl class="docutils">
+<dt><tt class="docutils literal">$y</tt>:</dt>
+<dd><p class="first last"><tt class="docutils literal">(ho, ho, ho)</tt></p>
+</dd>
+</dl>
+</li>
+</ol>
+<p>So the overall match succeeds with the following bindings:</p>
+<blockquote>
+<dl class="docutils">
+<dt><tt class="docutils literal">$x</tt>:</dt>
+<dd><tt class="docutils literal">(ho, $_, ($a, $a))</tt></dd>
+<dt><tt class="docutils literal">$a</tt>:</dt>
+<dd><tt class="docutils literal">ho</tt></dd>
+<dt><tt class="docutils literal">$b</tt>:</dt>
+<dd><tt class="docutils literal">($a, $a)</tt></dd>
+<dt><tt class="docutils literal">$y</tt>:</dt>
+<dd><tt class="docutils literal">(ho, ho, ho)</tt></dd>
+</dl>
+</blockquote>
+<p>And so <tt class="docutils literal">$y</tt> is <tt class="docutils literal">(ho, ho, ho)</tt>!</p>
+<div class="note">
+<p class="first admonition-title">Note</p>
+<p class="last">If you got this right, you should really be using Pyke!</p>
+</div>
+<!-- ADD_LINKS MARKER -->
+</div>
+</div>
+
+                <!-- <div id="return-to-top">
+                       <a href="#">Return to Top</a>
+                     </div>
+                -->
+            </div>
+          </td>
+          <td id="right-nav">
+            <div id="right-nav-div">
+                <h3>More:</h3>
+<div class="right-item"><a href="literal_patterns.html">Literal Patterns</a><p>Explanation of <em>literal patterns</em>.</p>
+</div>
+<div class="right-item"><a href="pattern_variables.html">Pattern Variables</a><p>Explanation of <em>pattern variables</em>.</p>
+</div>
+<div class="right-item"><a href="tuple_patterns.html">Tuple Patterns</a><p>Explanation of <em>tuple patterns</em>.</p>
+</div>
+<div class="right-item"><a href="matching_patterns.html">Matching Two Patterns</a><p>Explanation of matching two patterns together, vs matching a pattern
+to data.</p>
+</div>
+
+            </div>
+          </td>
+        </tr>
+    </tbody>
+
+    <tfoot id="foot">
+        <tr id="foot2">
+          <td id="copyright" colspan="3">
+            Copyright &copy; 2007-2009 Bruce Frederiksen
+          </td>
+        </tr>
+    </tfoot>
+  </table>
+
+  <div id="last-modified">
+    Page last modified
+    Mon, Oct 27 2008.
+
+  </div>
+
+  <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ?
+                    "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost +
+        "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+  </script>
+  <script type="text/javascript">
+    try {
+      var pageTracker = _gat._getTracker("UA-6310805-1");
+      pageTracker._trackPageview();
+    } catch(err) {}
+  </script>
+</body>
+</html>
+

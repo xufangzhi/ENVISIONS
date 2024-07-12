@@ -1,0 +1,346 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <title>Special</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../stylesheets/pyke.css" type="text/css" />
+</head>
+<body>
+  <table id="page-table">
+    <thead class="head">
+        <tr id="header1"><th id="header" colspan="3">
+            &nbsp;
+        </th></tr>
+        <tr id="header2">
+          <th id="crumb-left"></th>
+          <th id="crumb-line">
+            <div id="nav">
+              <ul>
+                  <li><a href="../index.html">Home</a></li>
+<li>&gt;</li>
+<li><a href="index.html">Knowledge Bases</a></li>
+<li>&gt;</li>
+<li>Special</li>
+
+              </ul>
+            </div>
+          </th>
+          <th id="crumb-right"></th>
+        </tr>
+    </thead>
+
+    <tbody id="body">
+        <tr id="body-tr">
+          <td id="left-nav">
+            <div id="left-nav-div">
+              
+<div class="title-nav"><a href="../index.html">Home</a></div><div class="nav-branch">
+<div class="normal-nav"><a href="../about_pyke/index.html">About Pyke</a></div>
+<div class="normal-nav"><a href="../logic_programming/index.html">Logic Programming</a></div>
+
+<div class="title-nav"><a href="index.html">Knowledge Bases</a></div><div class="nav-branch">
+<div class="normal-nav"><a href="fact_bases.html">Fact Bases</a></div>
+<div class="normal-nav"><a href="rule_bases.html">Rule Bases</a></div>
+<div class="normal-nav"><a href="question_bases.html">Question Bases</a></div>
+<div class="normal-nav"><a href="special.html">Special</a></div>
+</div>
+<div class="normal-nav"><a href="../pyke_syntax/index.html">Pyke Syntax</a></div>
+<div class="normal-nav"><a href="../using_pyke/index.html">Using Pyke</a></div>
+<div class="normal-nav"><a href="../examples.html">Examples</a></div>
+<div class="normal-nav"><a href="../PyCon2008-paper.html">PyCon 2008 Paper</a></div>
+</div>
+
+            </div>
+            <div id="icons">
+                <div id="project-page">
+                  <a href="http://sourceforge.net/projects/pyke/">Pyke Project Page</a>
+                </div>
+                Please Make a Donation:<br />
+                <a href="http://sourceforge.net/donate/index.php?group_id=207724">
+                  <img src="http://images.sourceforge.net/images/project-support.jpg"
+                       width="88" height="32" border="0"
+                       alt="Support This Project" /> </a> <br /><br />
+                Hosted by: <br />
+                <a href="http://sourceforge.net/projects/pyke">
+                  <img src="http://sflogo.sourceforge.net/sflogo.php?group_id=207724&amp;type=14"
+                       width="150" height="40"
+                       alt="Get Python Knowledge Engine (PyKE) at SourceForge.net. Fast, secure and Free Open Source software downloads" /></a>
+            </div>
+          </td>
+          <td id="main-td">
+            <div id="main">
+                <a name="startcontent" id="startcontent"></a>
+                <div class="document" id="special">
+<h1 class="title">Special</h1>
+<p>There is only one instance of this 'special' knowledge base, called
+<tt class="docutils literal">special</tt>.</p>
+<p>The <tt class="docutils literal">special</tt> knowledge base is a collection of miscellaneous helper
+<em>knowledge entities</em> that determine whether a statement is true or not in
+various interesting ways.</p>
+<p>Thus, each entity in this <a class="reference external" href="index.html">knowledge base</a> is a Python function that does
+something &quot;special&quot; when run.</p>
+<p>The <tt class="docutils literal">special</tt> functions are:</p>
+<blockquote>
+<ul class="simple">
+<li><a class="reference internal" href="#claim-goal">claim_goal</a></li>
+<li><a class="reference internal" href="#check-command">check_command</a></li>
+<li><a class="reference external" href="special.html#running-commands">command</a></li>
+<li><a class="reference internal" href="#general-command">general_command</a></li>
+</ul>
+</blockquote>
+<div class="section" id="claim-goal">
+<h2>Claim_goal</h2>
+<p>The <tt class="docutils literal">claim_goal</tt> function has no arguments:</p>
+<pre class="literal-block">
+special.claim_goal()
+</pre>
+<p>This acts like the <a class="reference external" href="http://en.wikipedia.org/wiki/Prolog">Prolog</a> <a class="reference external" href="http://en.wikipedia.org/wiki/Cut_%28logic_programming%29">cut operator</a>.</p>
+<p>In general there are multiple <a class="reference external" href="../logic_programming/rules/index.html">rules</a> that might be used to try to <a class="reference external" href="../using_pyke/proving_goals.html">prove</a> any
+<a class="reference external" href="../pyke_syntax/krb_syntax/bc_rule.html#use-clause">goal</a>.  They are each tried in the order that they appear in the <a class="reference external" href="../pyke_syntax/krb_syntax/index.html">.krb file</a>.
+If one rule fails, the next rule is tried.  The goal itself doesn't fail
+until all of the rules for it have failed.</p>
+<div class="section" id="example">
+<h3>Example</h3>
+<p>Suppose I want to translate a number, N, into the phrase &quot;N dogs&quot;.  I could
+use the following rules:</p>
+<pre class="literal-block">
+one_dog
+    use n_dogs(1, '1 dog')
+
+n_dogs
+    use n_dogs($n, $phrase)
+    when
+        $phrase = &quot;%d dogs&quot; % $n
+</pre>
+<p>The problem here is that both rules might be used when <tt class="docutils literal">n</tt> is 1, but the
+second rule isn't appropriate in this case.  <tt class="docutils literal">Special.claim_goal()</tt> may
+be used to fix this, as follows:</p>
+<pre class="literal-block">
+one_dog
+    use n_dogs(1, '1 dog')
+    when
+        special.claim_goal()
+
+n_dogs
+    use n_dogs($n, $phrase)
+    when
+        $phrase = &quot;%d dogs&quot; % $n
+</pre>
+<p>The <tt class="docutils literal">special.claim_goal()</tt> prevents the second rule from being used when
+<tt class="docutils literal">n</tt> is 1.</p>
+</div>
+<div class="section" id="explanation">
+<h3>Explanation</h3>
+<p>When a <a class="reference external" href="../logic_programming/rules/index.html">rule</a> executes <tt class="docutils literal">special.claim_goal()</tt> in its <tt class="docutils literal">when</tt>
+clause, none of the rest of the rules will be tried for that <a class="reference external" href="../pyke_syntax/krb_syntax/bc_rule.html#use-clause">goal</a>.
+Thus, when <tt class="docutils literal">special.claim_goal()</tt> is <a class="reference external" href="../logic_programming/rules/index.html#backtracking">backtracked</a> over, the goal fails
+immediately without trying any more rules for it.</p>
+<p>This ends up acting like an &quot;else&quot;.  You place it in the <tt class="docutils literal">when</tt> clause
+after the <a class="reference external" href="../logic_programming/rules/index.html#premises-and-conclusions">premises</a> that show that this rule <strong>must</strong> be the correct one
+to use.  Then the subsequent rules will only be tried if these premises
+fail, such that <tt class="docutils literal">special.claim_goal()</tt> is never executed.</p>
+<p>This means that you don't need to add extra premises in each subsequent rule
+to make sure that these premises have <strong>not</strong> occurred.</p>
+<p>Without the <tt class="docutils literal">special.claim_goal()</tt> in the prior example, you would have to
+write:</p>
+<pre class="literal-block">
+one_dog
+    use n_dogs(1, '1 dog')
+
+n_dogs
+    use n_dogs($n, $phrase)
+    when
+        check $n != 1
+        $phrase = &quot;%d dogs&quot; % $n
+</pre>
+<p>This is a simple example where it is easy to add the check in the second
+rule.  But in general, it can be difficult to check for prior conditions,
+especially when many rules are involved that each has its own condition.</p>
+</div>
+</div>
+<div class="section" id="running-commands">
+<h2>Running Commands</h2>
+<p>The remaining three functions deal with running programs (commands) on the
+host computer that is running your Pyke program.  Their difference is in what
+kind of output they provide from the command.</p>
+<p>These functions all use the <a class="reference external" href="http://docs.python.org/library/subprocess.html#subprocess.Popen">subprocess.Popen</a> function from the standard
+Python library.</p>
+<p>Thus, each of these functions accept these three parameters that are passed
+on to subprocess.Popen:</p>
+<blockquote>
+<ul class="simple">
+<li>The <tt class="docutils literal">$command</tt> parameter (required).<ul>
+<li>This is a tuple indicating the program to run along with its command
+line arguments, such as <tt class="docutils literal">(ls, <span class="pre">'-l')</span></tt>.</li>
+</ul>
+</li>
+<li>The <tt class="docutils literal">$cwd</tt> parameter (optional).<ul>
+<li>This specifies the <em>current working directory</em> to run the command in.</li>
+<li>If omitted or <tt class="docutils literal">None</tt> the current working directory is not changed.</li>
+</ul>
+</li>
+<li>The <tt class="docutils literal">$stdin</tt> parameter (optional).<ul>
+<li>This is a string that is fed to the command as its stdin.<ul>
+<li>If the command expects multiple lines of input, this string must
+include embedded newlines (e.g., <tt class="docutils literal">'line 1\nline 2\n'</tt>).</li>
+</ul>
+</li>
+<li>If omitted or <tt class="docutils literal">None</tt>, no stdin is provided to the command.</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<p>All of these functions fail on <a class="reference external" href="../logic_programming/rules/index.html#backtracking">backtracking</a>.</p>
+<div class="section" id="check-command">
+<h3>Check_command</h3>
+<pre class="literal-block">
+special.check_command($command [, $cwd [, $stdin]])
+</pre>
+<p>Succeeds if the command returns a zero exit status.  Fails otherwise.  Any
+output from the command to stdout or stderr is unavailable.</p>
+<blockquote>
+<pre class="doctest-block">
+&gt;&gt;&gt; from pyke import knowledge_engine
+&gt;&gt;&gt; engine = knowledge_engine.engine()
+&gt;&gt;&gt; engine.prove_1_goal('special.check_command((true))')
+({}, None)
+&gt;&gt;&gt; engine.prove_1_goal('special.check_command((false))')
+Traceback (most recent call last):
+    ...
+pyke.knowledge_engine.CanNotProve: Can not prove special.check_command((false))
+</pre>
+</blockquote>
+</div>
+<div class="section" id="command">
+<h3>Command</h3>
+<pre class="literal-block">
+special.command($stdout, $command [, $cwd [, $stdin]])
+</pre>
+<p>This just looks at the stdout of the command.  Any output from the command
+to stderr is unavailable.</p>
+<p>The <tt class="docutils literal">$stdout</tt> is a tuple of lines with the trailing newlines removed.</p>
+<p>This raises <a class="reference external" href="http://docs.python.org/library/subprocess.html#exceptions">subprocess.CalledProcessError</a> if the command returns a non-zero
+exit status.</p>
+<blockquote>
+<pre class="doctest-block">
+&gt;&gt;&gt; from __future__ import with_statement
+&gt;&gt;&gt; from pyke import pattern, contexts
+&gt;&gt;&gt; def run_command(entity, command, cwd=None, stdin=None):
+...     with engine.prove_goal(
+...            'special.%s($output, $command, $cwd, $stdin)' % entity,
+...            command=command,
+...            cwd=cwd,
+...            stdin=stdin) \
+...       as gen:
+...         for vars, no_plan in gen:
+...             print(vars['output'])
+&gt;&gt;&gt; run_command('command', ('echo', 'hi', 'mom'))
+('hi mom',)
+&gt;&gt;&gt; run_command('command', ('ls',))   # doctest: +NORMALIZE_WHITESPACE
+('fact_bases.txt', 'index.txt', 'links', 'question_bases.txt',
+ 'rule_bases.txt', 'special.txt')
+&gt;&gt;&gt; run_command('command', ('ls', '-l', 'links')) # doctest: +ELLIPSIS
+('-rw-r--r-- 1 ... links',)
+&gt;&gt;&gt; run_command('command', ('tail', '-n', '5', 'template.txt', '-'),
+...             '..',   # cwd (doc/source)
+...             'stdin: line 1\nstdin: line 2\nstdin: line 3\n')
+...     # doctest: +NORMALIZE_WHITESPACE
+('==&gt; template.txt &lt;==',
+ '   } catch(err) {}',
+ '  &lt;/script&gt;',
+ '&lt;/body&gt;',
+ '&lt;/html&gt;',
+ '',
+ '',
+ '==&gt; standard input &lt;==',
+ 'stdin: line 1',
+ 'stdin: line 2',
+ 'stdin: line 3')
+&gt;&gt;&gt; run_command('command', ('false',))
+Traceback (most recent call last):
+    ...
+subprocess.CalledProcessError: Command 'false' returned non-zero exit status 1
+</pre>
+</blockquote>
+</div>
+<div class="section" id="general-command">
+<h3>General_command</h3>
+<pre class="literal-block">
+special.general_command($output, $command [, $cwd [, $stdin]])
+</pre>
+<p>This is the fully general form that gives you all output from the command.</p>
+<p>The <tt class="docutils literal">$output</tt> is a three tuple: (exit_status, stdout, stderr).  Both stdout
+and stderr are single strings (with embedded newlines).</p>
+<blockquote>
+<pre class="doctest-block">
+&gt;&gt;&gt; run_command('general_command', ('echo', 'hi', 'mom'))
+(0, 'hi mom\n', '')
+&gt;&gt;&gt; run_command('general_command', ('cat', 'foobar'))
+(1, '', 'cat: foobar: No such file or directory\n')
+&gt;&gt;&gt; run_command('general_command', ('tail', '-n', '5', '../../r2w.ini', 'foobar'))
+...     # doctest: +NORMALIZE_WHITESPACE
+(1,
+ &quot;==&gt; ../../r2w.ini &lt;==\ntarget_directory = 'html'\nmacros =
+     ''\n\n[uservalues]\nversion = '0.2'\n&quot;,
+ &quot;tail: cannot open `foobar' for reading: No such file or directory\n&quot;)
+</pre>
+</blockquote>
+<!-- ADD_LINKS MARKER -->
+</div>
+</div>
+</div>
+
+                <!-- <div id="return-to-top">
+                       <a href="#">Return to Top</a>
+                     </div>
+                -->
+            </div>
+          </td>
+          <td id="right-nav">
+            <div id="right-nav-div">
+                <h3>More:</h3>
+<div class="right-item"><a href="fact_bases.html">Fact Bases</a><p>Explanation of facts and fact bases.</p>
+</div>
+<div class="right-item"><a href="rule_bases.html">Rule Bases</a><p>Explanation of rule bases, overview of .krb files and how these files
+are compiled and loaded into your Python program.</p>
+</div>
+<div class="right-item"><a href="question_bases.html">Question Bases</a><p>Explanation of question bases and .kqb files.</p>
+</div>
+<div class="right-item"><a href="special.html">Special</a><p>Explanation of the <tt class="docutils literal">special</tt> knowledge base.</p>
+</div>
+
+            </div>
+          </td>
+        </tr>
+    </tbody>
+
+    <tfoot id="foot">
+        <tr id="foot2">
+          <td id="copyright" colspan="3">
+            Copyright &copy; 2007-2009 Bruce Frederiksen
+          </td>
+        </tr>
+    </tfoot>
+  </table>
+
+  <div id="last-modified">
+    Page last modified
+    Wed, Mar 10 2010.
+
+  </div>
+
+  <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ?
+                    "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost +
+        "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+  </script>
+  <script type="text/javascript">
+    try {
+      var pageTracker = _gat._getTracker("UA-6310805-1");
+      pageTracker._trackPageview();
+    } catch(err) {}
+  </script>
+</body>
+</html>
+

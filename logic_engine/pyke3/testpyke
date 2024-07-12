@@ -1,0 +1,112 @@
+#!/bin/bash
+
+# testpyke [-x.y] [-3]
+#
+# Deletes all compiled_krb directories, then runs testall.py twice.
+# 
+# exit status > 0 if errors found.
+
+TMP1=/tmp/testpyke1.$$
+TMP2=/tmp/testpyke2.$$
+TMP3=/tmp/testpyke3.$$
+
+usage() {
+    echo "usage: testpyke [-x.y] [-3] [suffix...]" >&2
+    echo "       x.y is the Python version to use" >&2
+    exit 2
+}
+
+options=(`getopt -uqan testpyke -o 3 -l 2.5,2.6,2.7,2.8,3.0,3.1,3.2,3.3 -- "$@"`)
+[ $? -eq 0 ] || usage
+
+#echo options "${options[@]}"
+#echo num options ${#options[*]}
+
+opt=
+args1=
+args2=
+first=1
+suffix=
+
+i=0
+while [ $i -lt ${#options[*]} ]
+do
+    case ${options[$i]} in
+    -3)  opt="-3";;
+    --)  ;;
+    --*) suffix=_${options[$i]//[-.]};;
+    py)  args1="$args1 py";;
+    *)   args1="$args1 ${options[$i]}"
+         args2="$args2 ${options[$i]}"
+         ;;
+    esac
+    i=$(($i + 1))
+done
+
+if [ ! "$args1" ]
+then
+    args2="tst txt"
+fi
+
+CMD="testall${suffix}.py $opt"
+
+#echo args "$args"
+#echo suffix "$suffix"
+#echo $CMD
+#exit
+
+echo Removing all compiled_krb directories.
+echo
+
+find . -name krb_compiler -prune -o -name compiled_krb -exec rm -rf "{}" +
+
+echo Running all tests with no compiled_krb files:
+echo
+
+$CMD -s $TMP1 $args1
+status1=$?
+
+if [ "$args2" ]
+then
+    echo
+    echo Running all tests with compiled_krb files:
+    echo
+
+    $CMD -s $TMP2 $args2
+    status2=$?
+else
+    status2=0
+fi
+
+echo
+results1=(`sed -n '1s/^Files: \([0-9]*\), Tests: \([0-9]*\), Errors: \(.*\)$/\1 \2 \3/p' $TMP1`)
+echo "Compiling compiled_krb:" Files: ${results1[0]}, \
+     Tests: ${results1[1]}, \
+     Errors: ${results1[2]}
+
+if [ "$args2" ]
+then
+    results2=(`sed -n '1s/^Files: \([0-9]*\), Tests: \([0-9]*\), Errors: \(.*\)$/\1 \2 \3/p' $TMP2`)
+    echo "Reusing   compiled_krb:" Files: ${results2[0]}, \
+         Tests: ${results2[1]}, \
+         Errors: ${results2[2]}
+    tail -q -n +3 $TMP1 $TMP2 | sort -u > $TMP3
+    if [ -s $TMP3 ]
+    then
+        num_error_files=`wc -l $TMP3 | cut -f1 '-d '`
+        echo
+        echo "********** ERRORS ************* $num_error_files files had errors:"
+        cat $TMP3
+    fi
+elif [ -s $TMP1 ]
+then
+    echo
+    tail -q -n +2 $TMP1
+fi
+
+rm -f $TMP1 $TMP2 $TMP3
+
+if [ $status1 -ne 0 -o $status2 -ne 0 ]
+then
+    exit 1
+fi

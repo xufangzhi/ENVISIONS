@@ -1,0 +1,760 @@
+# $Id: compiler.krb 2922d107410e 2010-04-26 mtnyogi $
+# 
+# Copyright © 2007-2008 Bruce Frederiksen
+# 
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+# 
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+# 
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
+
+file
+    use compile($generated_root_pkg, $rb_name,
+                (file, $parent,
+                       ($fc_rules, $fc_extra_lines),
+                       ($bc_rules, $bc_extra_lines, $plan_extra_lines)),
+                $fc_lines, $bc_lines, $plan_lines)
+    when
+        $fc_head = helpers.fc_head($rb_name)
+        $bc_head = helpers.bc_head($rb_name)
+        $plan_head = helpers.plan_head($rb_name)
+        !rule_decl($rb_name, $parent, $decl_line)
+        !fc_rules($fc_rules, $fc_fun_lines, $fc_init_lines)
+        !bc_rules($rb_name, $bc_rules,
+                  $bc_plan_lines, $bc_bc_fun_lines, $bc_bc_init_lines)
+        $fc_lines = ($fc_head,
+                     $fc_fun_lines,
+                     "",
+                     "def populate(engine):",
+                     ('INDENT', 2),
+                     $decl_line,
+                     $fc_init_lines,
+                     'POPINDENT',
+                     "",
+                     $fc_extra_lines,
+                     ) \
+                        if $fc_fun_lines \
+                        else ()
+        $plan_lines = ($plan_head,
+                       $bc_plan_lines,
+                       "",
+                       $plan_extra_lines) \
+                        if $bc_plan_lines \
+                        else ()
+        $bc_lines = ($bc_head,
+                     ("from %s import %s_plans" %
+                        ($generated_root_pkg, $rb_name)
+                          if $bc_plan_lines
+                          else ()),
+                     $bc_bc_fun_lines,
+                     "",
+                     "def populate(engine):",
+                     ('INDENT', 2),
+                     $decl_line,
+                     $bc_bc_init_lines,
+                     'POPINDENT',
+                     "",
+                     $bc_extra_lines) \
+                        if $bc_bc_fun_lines \
+                        else ()
+
+rule_decl
+    use rule_decl($rb_name, None, $decl_line)
+    when
+        $decl_line = "This_rule_base = engine.get_create(%r)" % $rb_name
+
+rule_decl_with_parent
+    use rule_decl($rb_name, (parent, $parent, $excluded_symbols), $decl_line)
+    when
+        $decl_line = "This_rule_base = engine.get_create(%r, %r, %s)" % \
+                         ($rb_name, $parent,
+                          tuple(repr(sym) for sym in $excluded_symbols))
+
+fc_rules
+    use fc_rules($fc_rules, $fc_funs, $fc_init)
+    when
+        python
+            fc_funs = []
+            fc_init = []
+        forall
+            $fc_rule in $fc_rules
+        require
+            !fc_rule($fc_rule, $fc_fun_1, $fc_init_1)
+            python
+                fc_funs.append($fc_fun_1)
+                fc_init.append($fc_init_1)
+        $fc_funs = tuple(fc_funs)
+        $fc_init = tuple(fc_init)
+
+fc_rule_
+    use fc_rule((fc_rule, $rule_name, $fc_premises, $assertions),
+                $fc_fun, $fc_init)
+    when
+        !fc_premises($rule_name, 0, $_, $fc_premises, None, False,
+                     $prem_fn_head, $prem_fn_tail, 0, $_, $prem_decl_lines,
+                     (), $patterns_out1)
+        !assertions($assertions, $asserts_fn_lines,
+                    $patterns_out1, $patterns_out)
+        $fc_fun = ("",
+                   "def %s(rule, context = None, index = None):" % $rule_name,
+                   ("INDENT", 2),
+                   "engine = rule.rule_base.engine",
+                   "if context is None: context = contexts.simple_context()",
+                   "try:",
+                   ("INDENT", 2),
+                   $prem_fn_head,
+                   $asserts_fn_lines,
+                   "rule.rule_base.num_fc_rules_triggered += 1",
+                   $prem_fn_tail,
+                   "POPINDENT",
+                   "finally:",
+                   ("INDENT", 2),
+                   "context.done()",
+                   "POPINDENT",
+                   "POPINDENT",
+                  )
+        $fc_init = ("",
+                    "fc_rule.fc_rule('%(name)s', This_rule_base, %(name)s," %
+                      {'name': $rule_name},
+                    ("INDENT", 2),
+                    helpers.add_brackets($prem_decl_lines, '(', '),'),
+                    helpers.list_format($patterns_out, '(', '))'),
+                    "POPINDENT",
+                   )
+
+fc_premises0
+    use fc_premises($_, $clause_num, $clause_num, (), $_, $_, (), (),
+                    $decl_num_in, $decl_num_in, (), $patterns_in, $patterns_in)
+
+fc_premises1
+    use fc_premises($rule_name, $clause_num, $next_clause_num,
+                    ($first_prem, *$rest_prems), $break_cond, $multi_match,
+                    ($fn_head1, *$fn_head2), ($fn_tail2, *$fn_tail1),
+                    $decl_num_in, $decl_num_out, $decl_lines,
+                    $patterns_in, $patterns_out)
+    when
+        !fc_premise($rule_name, $clause_num, $next_clause_num1,
+                    $first_prem, $break_cond, $multi_match,
+                    $fn_head1, $fn_tail1,
+                    $decl_num_in, $decl_num_out1, $decl_lines1,
+                    $patterns_in, $patterns_out1)
+        !fc_premises($rule_name, $next_clause_num1, $next_clause_num,
+                     $rest_prems, $break_cond, $multi_match,
+                     $fn_head2, $fn_tail2,
+                     $decl_num_out1, $decl_num_out, $decl_lines2,
+                     $patterns_out1, $patterns_out)
+        $decl_lines = $decl_lines1 + $decl_lines2
+
+fc_premise
+    use fc_premise($rule_name, $clause_num, $next_clause_num,
+                   (fc_premise, $kb_name, $entity_name, $arg_patterns,
+                       $start_lineno, $end_lineno),
+                   $break_cond, $multi_match,
+                   $fn_head, $fn_tail,
+                   $decl_num_in, $decl_num_out, $decl_lines,
+                   $patterns_in, $patterns_in)
+    when
+        gen_fc_for($kb_name, $entity_name, $start_lineno, $end_lineno,
+                   $multi_match, $decl_num_in, $fn_head)
+        $fn_tail = (() if $break_cond is None
+                       else "if %s: break" % $break_cond,
+                    'POPINDENT',
+                    'POPINDENT',),
+        $next_clause_num = $clause_num + 1
+        $decl_num_out = $decl_num_in + 1
+        $decl_lines = ("(%r, %r," % ($kb_name, $entity_name),
+                       ('INDENT', 1),
+                         helpers.list_format($arg_patterns, '(', '),'),
+                         "%s)," % $multi_match,
+                         "POPINDENT",
+                      )
+
+gen_fc_for_false
+    use gen_fc_for($kb_name, $entity_name, $start_lineno, $end_lineno, False,
+                   $decl_num, $fn_head)
+    when
+        $fn_head = (('STARTING_LINENO', $start_lineno),
+                    "with knowledge_base.Gen_once if index == %d \\" % \
+                        $decl_num,
+                    ('INDENT', 9),
+                      "else engine.lookup(%r, %r, context," % \
+                          ($kb_name, $entity_name),
+                      ('INDENT', 19),
+                        "rule.foreach_patterns(%d)) \\" % $decl_num,
+                        'POPINDENT',
+                      'POPINDENT',
+                    ('INDENT', 2),
+                      "as gen_%d:" % $decl_num,
+                      "for dummy in gen_%d:" % $decl_num,
+                      ('ENDING_LINENO', $end_lineno),
+                      ('INDENT', 2),
+                   )
+
+
+gen_fc_for_true
+    use gen_fc_for($kb_name, $entity_name, $start_lineno, $end_lineno, True,
+                   $decl_num, $fn_head)
+    when
+        $fn_head = (('STARTING_LINENO', $start_lineno),
+                    "with engine.lookup(%r, %r, context, \\" % \
+                        ($kb_name, $entity_name),
+                    ('INDENT', 19),
+                      "rule.foreach_patterns(%d)) \\" % $decl_num,
+                      'POPINDENT',
+                    ('INDENT', 2),
+                      "as gen_%d:" % $decl_num,
+                      "for dummy in gen_%d:" % $decl_num,
+                      ('ENDING_LINENO', $end_lineno),
+                      ('INDENT', 2))
+
+fc_first
+    use fc_premise($rule_name, $clause_num, $next_clause_num,
+                   (fc_first, $premises1, $_), $_, $_,
+                   ($init_worked, $fn_head, $set_worked), $fn_tail,
+                   $decl_num_in, $decl_num_out, $decl_lines,
+                   $patterns_in, $patterns_out)
+    when
+        $break_cond = "first%d_worked" % $clause_num
+        !fc_premises($rule_name, $clause_num, $next_clause_num,
+                     $premises1, $break_cond, True,
+                     $fn_head, $fn_tail,
+                     $decl_num_in, $decl_num_out, $decl_lines,
+                     $patterns_in, $patterns_out)
+        $init_worked = "%s = False" % $break_cond
+        $set_worked = "%s = True" % $break_cond
+
+fc_forall_None
+    use fc_premise($rule_name, $clause_num, $next_clause_num,
+                   (fc_forall, $premises1, None, $_, $_), $_, $_,
+                   $fn_head, (), $decl_num_in, $decl_num_out, $decl_lines,
+                   $patterns_in, $patterns_out)
+    when
+        !fc_premises($rule_name, $clause_num, $next_clause_num,
+                     $premises1, None, True,
+                     $fn_head1, $fn_tail1,
+                     $decl_num_in, $decl_num_out, $decl_lines,
+                     $patterns_in, $patterns_out)
+        $fn_head = $fn_head1 + $fn_tail1
+
+fc_forall_require
+    use fc_premise($rule_name, $clause_num, $next_clause_num,
+                   (fc_forall, $premises1, $require, $start_lineno, $_), $_, $_,
+                   $fn_head, ("POPINDENT",),
+                   $decl_num_in, $decl_num_out, $decl_lines,
+                   $patterns_in, $patterns_out)
+    when
+        $break_true = "forall%d_worked" % $start_lineno
+        $break_false = "not forall%d_worked" % $start_lineno
+        !fc_premises($rule_name, $clause_num, $next_clause_num1,
+                     $premises1, $break_false, True,
+                     $fn_head1, $fn_tail1,
+                     $decl_num_in, $decl_num_out1, $decl_lines1,
+                     $patterns_in, $patterns_out1)
+        !fc_premises($rule_name, $next_clause_num1, $next_clause_num,
+                     $require, $break_true, True,
+                     $fn_head2, $fn_tail2,
+                     $decl_num_out1, $decl_num_out, $decl_lines2,
+                     $patterns_out1, $patterns_out)
+        $fn_head = ("forall%d_worked = True" % $start_lineno,
+                    $fn_head1,
+                    "forall%d_worked = False" % $start_lineno,
+                    $fn_head2,
+                    "forall%d_worked = True" % $start_lineno,
+                    $fn_tail2,
+                    $fn_tail1,
+                    "if forall%d_worked:" % $start_lineno,
+                    ("INDENT", 2))
+        $decl_lines = $decl_lines1 + $decl_lines2
+
+fc_notany
+    use fc_premise($rule_name, $clause_num, $next_clause_num,
+                   (fc_notany, $premises, $start_lineno), $_, $_,
+                   $fn_head, ("POPINDENT",),
+                   $decl_num_in, $decl_num_out, $decl_lines,
+                   $patterns_in, $patterns_out)
+    when
+        $break_true = "notany%d_worked" % $start_lineno
+        $break_false = "not notany%d_worked" % $start_lineno
+        !fc_premises($rule_name, $clause_num, $next_clause_num,  
+                     $premises, $break_false, True, 
+                     $fn_head1, $fn_tail1,
+                     $decl_num_in, $decl_num_out, $decl_lines,
+                     $patterns_in, $patterns_out)
+        $fn_head = ("notany%d_worked = True" % $start_lineno,
+                    $fn_head1,
+                    "notany%d_worked = False" % $start_lineno,
+                    $fn_tail1,
+                    "if notany%d_worked:" % $start_lineno,
+                    ("INDENT", 2))
+
+fc_python_premise
+    use fc_premise($rule_name, $clause_num, $next_clause_num,
+                   $python_premise, $break_cond, $_,
+                   $fn_head, $fn_tail, $decl_num_in, $decl_num_in, (),
+                   $patterns_in, $patterns_out)
+    when
+        $next_clause_num = $clause_num + 1
+        python_premise($clause_num, $python_premise, $break_cond,
+                       $patterns_in, $patterns_out,
+                       $fn_head, $fn_tail)
+
+assertions_0
+    use assertions((), (), $patterns_in, $patterns_in)
+
+assertions_n
+    use assertions(($first_assertion, *$rest_assertions),
+                   ($fn_lines1, *$fn_lines2), $patterns_in, $patterns_out)
+    when
+        !assertion($first_assertion, $fn_lines1, $patterns_in, $patterns_out1)
+        !assertions($rest_assertions, $fn_lines2, $patterns_out1, $patterns_out)
+
+assertion
+    use assertion(('assert', $kb_name, $entity_name, $patterns,
+                       $start_lineno, $end_lineno),
+                  $fn_lines, $patterns_in, $patterns_out)
+    when
+        ($pat_nums, $patterns_out) = \
+            helpers.merge_patterns($patterns, $patterns_in)
+        $fn_lines = (('STARTING_LINENO', $start_lineno),
+                     "engine.assert_(%r, %r," % ($kb_name, $entity_name),
+                     ('INDENT', 15),
+                     helpers.list_format(
+                       ("rule.pattern(%d).as_data(context)" % pat_num
+                        for pat_num in $pat_nums),
+                       '(', ')),'),
+                     ('ENDING_LINENO', $end_lineno),
+                     "POPINDENT",
+                    )
+
+python_assertion
+    use assertion((python_assertion, ($python_code, $_, $_, $_),
+                      $start_lineno, $end_lineno),
+                  (('STARTING_LINENO', $start_lineno),
+                   $python_code,
+                   ('ENDING_LINENO', $end_lineno)),
+                  $patterns_in, $patterns_in)
+
+bc_rules
+    use bc_rules($rb_name, $bc_rules, $bc_plan_lines, $bc_bc_funs, $bc_bc_init)
+    when
+        python
+            bc_plan_lines = []
+            bc_bc_funs = []
+            bc_bc_init = []
+        forall
+            $bc_rule in $bc_rules
+        require
+            !bc_rule($rb_name, $bc_rule, $bc_plan1, $bc_bc_fun1, $bc_bc_init1)
+            python
+                bc_plan_lines.extend($bc_plan1)
+                bc_bc_funs.append($bc_bc_fun1)
+                bc_bc_init.append($bc_bc_init1)
+        $bc_plan_lines = tuple(bc_plan_lines)
+        $bc_bc_funs = tuple(bc_bc_funs)
+        $bc_bc_init = tuple(bc_bc_init)
+
+bc_rule_
+    use bc_rule($rb_name, (bc_rule, $name, $goal, $bc_premises,
+                                    $python_lines, $plan_vars_needed),
+                $plan_lines, $bc_fun_lines, $bc_init_lines)
+    when
+        !bc_premises($rb_name, $name, $bc_premises, $plan_vars_needed,
+                     $prem_plan_lines, $prem_fn_head, $prem_fn_tail,
+                     $prem_decl_lines)
+        ($plan_lines, $goal_fn_head, $goal_fn_tail, $goal_decl_lines) = \
+            helpers.goal($rb_name, $name, $goal,
+                         $prem_plan_lines, $python_lines)
+        $bc_fun_lines = ($goal_fn_head,
+                         $prem_fn_head,
+                         'rule.rule_base.num_bc_rule_successes += 1',
+                         'yield context' if $plan_lines else 'yield',
+                         $prem_fn_tail,
+                         'rule.rule_base.num_bc_rule_failures += 1',
+                         $goal_fn_tail,
+                        )
+        $bc_init_lines = ($goal_decl_lines,
+                          $prem_decl_lines,
+                          "POPINDENT",
+                         )
+
+bc_premises
+    use bc_premises($rb_name, $rule_name, $bc_premises,
+                    $plan_vars_needed, $plan_lines,
+                    $fn_head, $fn_tail, $decl_lines)
+    when
+        !bc_premises1($rb_name, $rule_name, 1, $_, $bc_premises, None, True,
+                      (), $patterns,
+                      $plan_vars_needed, $plan_var_names,
+                      $plan_lines1, $fn_head, $fn_tail)
+        $pat_lines = helpers.list_format($patterns, '(', '))')
+        $decl_lines = ('(' + ' '.join(tuple(repr(plan_var_name) + ','
+                                            for plan_var_name
+                                             in $plan_var_names)) +
+                       '),',) + $pat_lines
+        $plan_lines = tuple(itertools.chain.from_iterable(itertools.chain(
+            (lines for step, lines in $plan_lines1 if step is None),
+            (lines for step, lines
+                    in sorted(((step, lines) for step, lines in $plan_lines1
+                                              if step is not None),
+                              key=lambda t: t[0])))))
+
+bc_premises1_0
+    use bc_premises1($_, $_, $clause_num, $clause_num, (), $_, $_,
+                     $patterns, $patterns, $plan_var_names, $plan_var_names,
+                     (), (), ())
+
+bc_premises1_n
+    use bc_premises1($rb_name, $rule_name, $clause_num, $next_clause_num,
+                     ($first_prem, *$rest_prems), $break_cond, $allow_plan,
+                     $patterns_in, $patterns_out,
+                     $plan_var_names_in, $plan_var_names_out,
+                     $plan_lines, $fn_head, $fn_tail)
+    when
+        !bc_premise($rb_name, $rule_name, $clause_num, $next_clause_num1,
+                    $first_prem, $break_cond, $allow_plan,
+                    $patterns_in, $patterns_out1,
+                    $plan_var_names_in, $plan_var_names_out1,
+                    $plan_lines1, $fn_head1, $fn_tail1)
+        !bc_premises1($rb_name, $rule_name, $next_clause_num1, $next_clause_num,
+                      $rest_prems, $break_cond, $allow_plan,
+                      $patterns_out1, $patterns_out,
+                      $plan_var_names_out1, $plan_var_names_out,
+                      $plan_lines2, $fn_head2, $fn_tail2)
+        $plan_lines = $plan_lines1 + $plan_lines2
+        $fn_head = $fn_head1 + $fn_head2
+        $fn_tail = $fn_tail2 + $fn_tail1
+
+bc_premise
+    use bc_premise($rb_name, $rule_name, $clause_num, $next_clause_num,
+                   (bc_premise, $required, $kb_name, $entity_name,
+                                $arg_patterns, $plan_spec,
+                                $start_lineno, $end_lineno),
+                   $break_cond, $allow_plan, $patterns_in, $patterns_out,
+                   $plan_var_names_in, $plan_var_names_out,
+                   $plan_lines, $fn_head, $fn_tail)
+    when
+        $next_clause_num = $clause_num + 1
+        $kb_name2 = $kb_name or "rule.rule_base.root_name"
+        ($pat_nums, $patterns_out1) = \
+            helpers.merge_patterns($arg_patterns, $patterns_in)
+        $fn_head1 = (('STARTING_LINENO', $start_lineno),
+                     "with engine.prove(%s, %s, context," %
+                         ($kb_name2, $entity_name),
+                     ('INDENT', 2),
+                       ('INDENT', 16),
+                         helpers.list_format(('rule.pattern(%d)' % pat_num
+                                              for pat_num in $pat_nums),
+                                             '(', ')) \\'),
+                         'POPINDENT',
+                       "as gen_%d:" % $clause_num,
+                       "for x_%d in gen_%d:" % ($clause_num, $clause_num),
+                       ('INDENT', 2),
+                    )
+        !add_required($required, $rb_name, $rule_name, $clause_num,
+                      $fn_head1, (POPINDENT, POPINDENT), $fn_head2, $fn_tail2)
+        !gen_plan_lines($rb_name, $rule_name, $clause_num,
+                        $plan_spec, $allow_plan,
+                        $patterns_out1, $patterns_out,
+                        $fn_head3, $fn_tail3, $plan_lines, $plan_vars_needed)
+        ($_, $plan_var_names_out) = helpers.merge_patterns($plan_vars_needed,
+                                                           $plan_var_names_in)
+        $fn_head = $fn_head2 + $fn_head3 + (('ENDING_LINENO', $end_lineno),)
+        $fn_tail = ($fn_tail3,
+                    () if $break_cond is None
+                       else "if %s: break" % $break_cond,
+                    $fn_tail2)
+
+bc_first
+    use bc_premise($rb_name, $rule_name, $clause_num, $next_clause_num,
+                   (bc_first, $required, $bc_premises, $_),
+                   $_, $allow_plan, $patterns_in, $patterns_out,
+                   $plan_var_names_in, $plan_var_names_out,
+                   $plan_lines, ($init_worked, $fn_head, $set_worked), $fn_tail)
+    when
+        $break_cond = "first%d_worked" % $clause_num
+        !bc_premises1($rb_name, $rule_name, $clause_num, $next_clause_num,
+                      $bc_premises, $break_cond, $allow_plan,
+                      $patterns_in, $patterns_out,
+                      $plan_var_names_in, $plan_var_names_out,
+                      $plan_lines, $fn_head1, $fn_tail1)
+        !add_required($required, $rb_name, $rule_name, $clause_num,
+                      $fn_head1, $fn_tail1, $fn_head, $fn_tail)
+        $init_worked = "%s = False" % $break_cond
+        $set_worked = "%s = True" % $break_cond
+
+bc_forall_None
+    use bc_premise($rb_name, $rule_name, $clause_num, $next_clause_num,
+                   (bc_forall, $bc_premises, None, $_, $_),
+                   $_, $_, $patterns_in, $patterns_out,
+                   $plan_var_names_in, $plan_var_names_out,
+                   $plan_lines, $fn_head, ())
+    when
+        !bc_premises1($rb_name, $rule_name, $clause_num, $next_clause_num,
+                      $bc_premises, None, False,
+                      $patterns_in, $patterns_out,
+                      $plan_var_names_in, $plan_var_names_out,
+                      $plan_lines, $fn_head1, $fn_tail)
+        $fn_head = $fn_head1 + $fn_tail
+
+bc_forall_require
+    use bc_premise($rb_name, $rule_name, $clause_num, $next_clause_num,
+                   (bc_forall, $premises1, $require, $start_lineno, $_),
+                   $_, $_, $patterns_in, $patterns_out,
+                   $plan_var_names_in, $plan_var_names_out,
+                   (), $fn_head, ("POPINDENT",))
+    when
+        $break_true = "forall%d_worked" % $start_lineno
+        $break_false = "not forall%d_worked" % $start_lineno
+        !bc_premises1($rb_name, $rule_name, $clause_num, $next_clause_num1,
+                      $premises1, $break_false, False,
+                      $patterns_in, $patterns_out1,
+                      $plan_var_names_in, $plan_var_names_out1,
+                      (), $fn_head1, $fn_tail1)
+        !bc_premises1($rb_name, $rule_name, $next_clause_num1, $next_clause_num,
+                      $require, $break_true, False,
+                      $patterns_out1, $patterns_out,
+                      $plan_var_names_out1, $plan_var_names_out,
+                      (), $fn_head2, $fn_tail2)
+        $fn_head = ("forall%d_worked = True" % $start_lineno,
+                    $fn_head1,
+                    "forall%d_worked = False" % $start_lineno,
+                    $fn_head2,
+                    "forall%d_worked = True" % $start_lineno,
+                    $fn_tail2,
+                    $fn_tail1,
+                    "if forall%d_worked:" % $start_lineno,
+                    ("INDENT", 2))
+
+bc_notany
+    use bc_premise($rb_name, $rule_name, $clause_num, $next_clause_num,
+                   (bc_notany, $bc_premises, $start_lineno),
+                   $_, $_, $patterns_in, $patterns_out,
+                   $plan_var_in, $plan_var_out,
+                   (), $fn_head, ("POPINDENT",))
+
+    when
+        $break_true = "notany%d_worked" % $start_lineno
+        $break_false = "not notany%d_worked" % $start_lineno
+        !bc_premises1($rb_name, $rule_name, $clause_num, $next_clause_num,  
+                      $bc_premises, $break_false, False, 
+                      $patterns_in, $patterns_out,
+                      $plan_var_in, $plan_var_out, 
+                      (), $fn_head1, $fn_tail1)
+        $fn_head = ("notany%d_worked = True" % $start_lineno,
+                    $fn_head1,
+                    "notany%d_worked = False" % $start_lineno,
+                    $fn_tail1,
+                    "if notany%d_worked:" % $start_lineno,
+                    ("INDENT", 2))        
+        
+no_plan
+    use gen_plan_lines($rb_name, $rule_name, $clause_num,
+                       None, $_,
+                       $patterns_in, $patterns_in, $fn_head, (), (), ())
+    when
+        $fn_head = ('assert x_%d is None, \\' % $clause_num,
+                    ('INDENT', 2),
+                    '"%(rb_name)s.%(rule_name)s: got unexpected plan from '
+                     'when clause %(clause_num)d"' %
+                     {'clause_num': $clause_num,
+                      'rb_name': $rb_name,
+                      'rule_name': $rule_name},
+                    'POPINDENT',)
+
+as_plan
+    use gen_plan_lines($rb_name, $rule_name, $clause_num,
+                       ('as', $pat_var_name), $_,
+                       $patterns_in, $patterns_out,
+                       $fn_head, $fn_tail,
+                       (), ())
+    when
+        ($pat_num, $patterns_out) = \
+            helpers.merge_pattern("contexts.variable(%r)" % $pat_var_name,
+                                  $patterns_in)
+        !plan_bindings($rb_name, $rule_name, $clause_num, $pat_var_name,
+                       $pat_num, $fn_head, $fn_tail)
+
+plan_spec
+    use gen_plan_lines($rb_name, $rule_name, $clause_num,
+                       (plan_spec, $step_num, $plan_var_name,
+                                   $python_code, $plan_vars_needed, $_, $_),
+                       True, $patterns_in, $patterns_out,
+                       $fn_head, $fn_tail,
+                       (($step_num, $python_code),), $plan_vars_needed)
+    when
+        ($pat_num, $patterns_out) = \
+            helpers.merge_pattern("contexts.variable(%r)" % $plan_var_name,
+                                  $patterns_in)
+        !plan_bindings($rb_name, $rule_name, $clause_num, $plan_var_name,
+                       $pat_num, $fn_head, $fn_tail)
+
+illegal_plan_spec
+    use gen_plan_lines($_, $_, $_,
+                       (plan_spec, $_, $_, $_, $_, $lineno, $lexpos),
+                       False, $_, $_, $_, $_, $_, $_)
+    when
+        $_ = helpers.syntax_error("illegal plan_spec in forall",
+                                  $lineno, $lexpos)
+
+plan_bindings
+    use plan_bindings($rb_name, $rule_name, $clause_num, $plan_var_name,
+                      $pat_num, $fn_head, $fn_tail)
+    when
+        $fn_head = ('assert x_%d is not None, \\' % $clause_num,
+                    ('INDENT', 2),
+                      '"%(rb_name)s.%(rule_name)s: expected plan from '
+                       'when clause %(clause_num)d"' %
+                           {'clause_num': $clause_num,
+                            'rb_name': $rb_name,
+                            'rule_name': $rule_name},
+                      'POPINDENT',
+                    "mark%d = context.mark(True)" % $clause_num,
+                    "if not rule.pattern(%d).match_data(context, context, "
+                        "x_%d):" % ($pat_num, $clause_num),
+                    ('INDENT', 2),
+                      'raise AssertionError("%(rb_name)s.%(rule_name)s: '
+                          'plan match to $%(plan_var_name)s failed in '
+                          'when clause %(clause_num)d")' %
+                              {'clause_num': $clause_num,
+                               'plan_var_name': $plan_var_name,
+                               'rb_name': $rb_name,
+                               'rule_name': $rule_name},
+                      'POPINDENT',
+                    "context.end_save_all_undo()")
+        $fn_tail = ("context.undo_to_mark(mark%d)" % $clause_num,)
+
+not_required
+    use add_required(False, $_, $_, $_,
+                     $fn_head, $fn_tail, $fn_head, $fn_tail)
+
+required
+    use add_required(True, $rb_name, $rule_name, $clause_num,
+                     $fn_head1, $fn_tail1, $fn_head, $fn_tail)
+    when
+        $fn_head = ("flag_%d = False" % $clause_num,
+                    $fn_head1,
+                    "flag_%d = True" % $clause_num,
+                   )
+        $fn_tail = ($fn_tail1,
+                    "if not flag_%d:" % $clause_num,
+                    ("INDENT", 2),
+                    "raise AssertionError(\"%s.%s: 'when' clause %d failed\")"
+                       % ($rb_name, $rule_name, $clause_num),
+                    "POPINDENT",
+                   )
+
+bc_python_premise
+    use bc_premise($rb_name, $rule_name, $clause_num, $next_clause_num,
+                   $python_premise, $break_cond, $_,
+                   $patterns_in, $patterns_out,
+                   $plan_var_names, $plan_var_names,
+                   (), $fn_head, $fn_tail)
+    when
+        $next_clause_num = $clause_num + 1
+        python_premise($clause_num, $python_premise, $break_cond,
+                       $patterns_in, $patterns_out,
+                       $fn_head, $fn_tail)
+
+python_eq
+    use python_premise($clause_num,
+                       (python_eq, $pattern, ($python_code, $_, $_, $_),
+                        $start_lineno, $end_lineno),
+                       $_,
+                       $patterns_in, $patterns_out, $fn_head, $fn_tail)
+    when
+        ($pat_num, $patterns_out) = \
+            helpers.merge_pattern($pattern, $patterns_in)
+        $python_code2 = $python_code[:-1] + ($python_code[-1] + '):',)
+        $fn_head = ("mark%d = context.mark(True)" % $clause_num,
+                    "if rule.pattern(%d).match_data(context, context," %
+                       $pat_num,
+                    ('INDENT', 2),
+                    ('INDENT', 5),
+                    ('STARTING_LINENO', $start_lineno),
+                    $python_code2,
+                    ('ENDING_LINENO', $end_lineno),
+                    "POPINDENT",
+                    "context.end_save_all_undo()",
+                   )
+        $fn_tail = ('POPINDENT',
+                    "else: context.end_save_all_undo()",
+                    "context.undo_to_mark(mark%d)" % $clause_num,)
+
+python_in
+    use python_premise($clause_num,
+                       (python_in, $pattern, ($python_code, $_, $_, $_),
+                        $start_lineno, $end_lineno),
+                       $break_cond,
+                       $patterns_in, $patterns_out, $fn_head, $fn_tail)
+    when
+        ($pat_num, $patterns_out) = \
+            helpers.merge_pattern($pattern, $patterns_in)
+        $python_code2 = $python_code[:-1] + ($python_code[-1] + ':',)
+        $fn_head = ("for python_ans in \\",
+                    ('INDENT', 2),
+                      ('INDENT', 2),
+                        ('STARTING_LINENO', $start_lineno),
+                        $python_code2,
+                        ('ENDING_LINENO', $end_lineno),
+                        'POPINDENT',
+                      "mark%d = context.mark(True)" % $clause_num,
+                      "if rule.pattern(%d).match_data(context, context, "
+                          "python_ans):" % $pat_num,
+                      ('INDENT', 2),
+                        "context.end_save_all_undo()",
+                   )
+        $fn_tail = (    () if $break_cond is None
+                           else ("if %s:" % $break_cond,
+                                 ('INDENT', 2),
+                                   "context.undo_to_mark(mark%d)" % $clause_num,
+                                   "break",
+                                   'POPINDENT',),
+                        'POPINDENT',
+                      "else: context.end_save_all_undo()",
+                      "context.undo_to_mark(mark%d)" % $clause_num,
+                      'POPINDENT',)
+
+python_check
+    use python_premise($clause_num,
+                       (python_check, ($python_code, $_, $_, $_),
+                        $start_lineno, $end_lineno),
+                       $_,
+                       $patterns_in, $patterns_in,
+                       $fn_head, ('POPINDENT',))
+    when
+        $python_code2 = $python_code[:-1] + ($python_code[-1] + ':',)
+        $fn_head = (('STARTING_LINENO', $start_lineno),
+                    "if " + $python_code2[0].strip(),
+                    ('INDENT', 3),
+                    $python_code2[1:],
+                    'POPINDENT',
+                    ('ENDING_LINENO', $end_lineno),
+                    ('INDENT', 2),
+                   )
+
+python_block
+    use python_premise($clause_num,
+                       (python_block, ($python_code, $_, $_, $_),
+                        $start_lineno, $end_lineno),
+                       $_,
+                       $patterns_in, $patterns_in,
+                       (('STARTING_LINENO', $start_lineno),
+                        $python_code,
+                        ('ENDING_LINENO', $end_lineno)),
+                       ())
+    
+bc_extras
+    import itertools
+    from pyke.krb_compiler import helpers

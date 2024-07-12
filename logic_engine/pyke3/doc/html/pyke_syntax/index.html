@@ -1,0 +1,226 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <title>Pyke Syntax</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../stylesheets/pyke.css" type="text/css" />
+</head>
+<body>
+  <table id="page-table">
+    <thead class="head">
+        <tr id="header1"><th id="header" colspan="3">
+            &nbsp;
+        </th></tr>
+        <tr id="header2">
+          <th id="crumb-left"></th>
+          <th id="crumb-line">
+            <div id="nav">
+              <ul>
+                  <li><a href="../index.html">Home</a></li>
+<li>&gt;</li>
+<li>Pyke Syntax</li>
+
+              </ul>
+            </div>
+          </th>
+          <th id="crumb-right"></th>
+        </tr>
+    </thead>
+
+    <tbody id="body">
+        <tr id="body-tr">
+          <td id="left-nav">
+            <div id="left-nav-div">
+              
+<div class="title-nav"><a href="../index.html">Home</a></div><div class="nav-branch">
+<div class="normal-nav"><a href="../about_pyke/index.html">About Pyke</a></div>
+<div class="normal-nav"><a href="../logic_programming/index.html">Logic Programming</a></div>
+<div class="normal-nav"><a href="../knowledge_bases/index.html">Knowledge Bases</a></div>
+
+<div class="title-nav"><a href="index.html">Pyke Syntax</a></div><div class="nav-branch">
+<div class="normal-nav"><a href="kfb_syntax.html">KFB Syntax</a></div>
+<div class="normal-nav"><a href="krb_syntax/index.html">KRB Syntax</a></div>
+<div class="normal-nav"><a href="kqb_syntax.html">KQB Syntax</a></div>
+</div>
+<div class="normal-nav"><a href="../using_pyke/index.html">Using Pyke</a></div>
+<div class="normal-nav"><a href="../examples.html">Examples</a></div>
+<div class="normal-nav"><a href="../PyCon2008-paper.html">PyCon 2008 Paper</a></div>
+</div>
+
+            </div>
+            <div id="icons">
+                <div id="project-page">
+                  <a href="http://sourceforge.net/projects/pyke/">Pyke Project Page</a>
+                </div>
+                Please Make a Donation:<br />
+                <a href="http://sourceforge.net/donate/index.php?group_id=207724">
+                  <img src="http://images.sourceforge.net/images/project-support.jpg"
+                       width="88" height="32" border="0"
+                       alt="Support This Project" /> </a> <br /><br />
+                Hosted by: <br />
+                <a href="http://sourceforge.net/projects/pyke">
+                  <img src="http://sflogo.sourceforge.net/sflogo.php?group_id=207724&amp;type=14"
+                       width="150" height="40"
+                       alt="Get Python Knowledge Engine (PyKE) at SourceForge.net. Fast, secure and Free Open Source software downloads" /></a>
+            </div>
+          </td>
+          <td id="main-td">
+            <div id="main">
+                <a name="startcontent" id="startcontent"></a>
+                <div class="document" id="pyke-syntax">
+<h1 class="title">Pyke Syntax</h1>
+<div class="section" id="source-files">
+<h2>Source Files</h2>
+<p>Pyke has three different kinds of source files for the three main types of
+<a class="reference external" href="../knowledge_bases/index.html">knowledge bases</a>:</p>
+<ol class="arabic simple">
+<li><em>Knowledge Fact Base</em> (KFB) files for <a class="reference external" href="../knowledge_bases/fact_bases.html">fact bases</a>.</li>
+<li><em>Knowledge Rule Base</em> (KRB) files for <a class="reference external" href="../knowledge_bases/rule_bases.html">rule bases</a>.</li>
+<li><em>Knowledge Question Base</em> (KQB) files for <a class="reference external" href="../knowledge_bases/question_bases.html">question bases</a>.</li>
+</ol>
+<p>Each type of source file ends in a different file suffix: <tt class="docutils literal">.kfb</tt>,
+<tt class="docutils literal">.krb</tt> or <tt class="docutils literal">.kqb</tt>.</p>
+<p>Place all of these source files into a directory structure.  Then include this
+directory as an argument to the <a class="reference external" href="../using_pyke/creating_engine.html">knowledge_engine.engine</a> constructor.
+This will recursively search your directory for these three types of source
+files, compile them, and load them into the engine.  How you organize these
+files into subdirectories is up to you -- the directory structure does not
+matter to Pyke.</p>
+<p>The <tt class="docutils literal">.kfb</tt> and <tt class="docutils literal">.kqb</tt> files are compiled into Python <a class="reference external" href="http://docs.python.org/library/pickle.html">pickles</a> with
+<tt class="docutils literal">.fbc</tt> and <tt class="docutils literal">.qbc</tt> suffixes.</p>
+<p>The <tt class="docutils literal">.krb</tt> files are compiled into up to three <tt class="docutils literal">.py</tt> source files.
+The names of these <tt class="docutils literal">.py</tt> files are the same as the <tt class="docutils literal">.krb</tt> file, but with
+different endings:</p>
+<ul class="simple">
+<li><tt class="docutils literal">_fc</tt> (if there are any <a class="reference external" href="../logic_programming/rules/forward_chaining.html">forward-chaining</a> rules)</li>
+<li><tt class="docutils literal">_bc</tt> (if there are any <a class="reference external" href="../logic_programming/rules/backward_chaining.html">backward-chaining</a> rules) and</li>
+<li><tt class="docutils literal">_plans</tt> (if any of the backward-chaining rules have a <a class="reference external" href="../logic_programming/plans.html">plan</a>)</li>
+</ul>
+<p>These <tt class="docutils literal">.py</tt> files are then automatically imported to define the rule base.
+This causes Python to compile them into <tt class="docutils literal">.pyc</tt> or <tt class="docutils literal">.pyo</tt> files.</p>
+<p>Subsequent runs of the <a class="reference external" href="../using_pyke/creating_engine.html">knowledge_engine.engine</a> constructor only recompile
+the Pyke source files that have changed since the last time they were compiled.</p>
+<p>The name of each knowledge base is the filename of the Pyke source file with
+the suffix removed.  This must be a legal Python identifier.</p>
+</div>
+<div class="section" id="syntax-legend">
+<h2>Syntax Legend</h2>
+<p>To describe this syntax, the following punctuation is used:</p>
+<dl class="docutils">
+<dt>'<em>any_chars</em>'</dt>
+<dd>Required punctuation or keyword: <em>any_chars</em>.</dd>
+<dt><em>a</em> | <em>b</em></dt>
+<dd>Alternation: <em>a</em> or <em>b</em>.</dd>
+<dt>[<em>a</em>]</dt>
+<dd>Optional <em>a</em>.</dd>
+<dt>{<em>a</em>}</dt>
+<dd>One or more <em>a</em>'s.  <strong>But</strong> it is understood that if <em>a</em> ends in a comma,
+the last comma is optional.</dd>
+<dt>IDENTIFIER</dt>
+<dd>Any legal Python identifier.  Example: <em>foobar</em></dd>
+<dt>NUMBER</dt>
+<dd>Any legal Python integer or floating point literal.
+Examples: <em>123</em>, <em>3.14</em>.</dd>
+<dt>STRING</dt>
+<dd>Any legal Python string literal.
+Examples: <em>'Hi Mom!'</em>, <em>u&quot;Hi Dad!\n&quot;</em>, <em>r'''don't gobble my \'s!'''</em>,
+<em>ur&quot;&quot;&quot;leave \'s alone!&quot;&quot;&quot;</em>.</dd>
+<dt>TEXT</dt>
+<dd>Only used in KQB files.  This signifies any text (any characters) other
+than the delimiter characters containing the <tt class="docutils literal">TEXT</tt>.</dd>
+<dt>PARAMETRIZED_TEXT</dt>
+<dd>Only used in KQB files.  This signifies any text (any characters) through
+the end of the line and all text on subsequent lines that are indented at
+least as much as the first <tt class="docutils literal">PARAMETRIZED_TEXT</tt> character on the first
+line.  All <tt class="docutils literal">PARAMETRIZED_TEXT</tt> is treated as a <a class="reference external" href="http://docs.python.org/library/string.html#template-strings">string.Template</a> and
+may include <tt class="docutils literal">$IDENTIFIER</tt> or <tt class="docutils literal">${IDENTIFIER}</tt> parameters.  All other
+<tt class="docutils literal">$</tt> characters must be doubled (<tt class="docutils literal">$$</tt>).</dd>
+<dt>REGEXP_TEXT</dt>
+<dd>Only used in KQB files.  This signifies any text (any characters) excluding
+an unescaped backslash (<tt class="docutils literal">\</tt>) at the end.  These are given to the Python's
+<tt class="docutils literal">re</tt> module as regular expressions and must follow Python's
+<a class="reference external" href="http://docs.python.org/library/re.html#regular-expression-syntax">regular expression syntax</a>.</dd>
+<dt>NL</dt>
+<dd>One or more newlines.</dd>
+<dt>INDENT</dt>
+<dd>The following text must be indented to a higher level (more) than the
+previous text.</dd>
+<dt>DEINDENT</dt>
+<dd>The following text must be indented one less level than the previous text.</dd>
+</dl>
+</div>
+<div class="section" id="lexical-structure">
+<h2>Lexical Structure</h2>
+<p>The lexical structure is much like Python.  Like Python, indenting is
+significant.  It uses the same commenting, line continuation and literal
+formats for strings and numbers (but doesn't use complex numbers).  It also
+uses the same rules for forming identifiers.</p>
+<p>The two notable exceptions to Python conventions are:</p>
+<ol class="arabic simple">
+<li>Identifiers may be used as strings, without requiring quotes.<ul>
+<li>So <tt class="docutils literal">foobar</tt> is the same as <tt class="docutils literal">'foobar'</tt>.</li>
+</ul>
+</li>
+<li>Singleton tuples do not require a trailing comma.<ul>
+<li>So <tt class="docutils literal">(1)</tt> is the same as <tt class="docutils literal">(1,)</tt>.</li>
+</ul>
+</li>
+</ol>
+<!-- ADD_LINKS MARKER -->
+</div>
+</div>
+
+                <!-- <div id="return-to-top">
+                       <a href="#">Return to Top</a>
+                     </div>
+                -->
+            </div>
+          </td>
+          <td id="right-nav">
+            <div id="right-nav-div">
+                <h3>More:</h3>
+<div class="right-item"><a href="kfb_syntax.html">KFB Syntax</a><p>The syntax of <em>Knowledge Fact Base</em> (KFB) files, which is where you
+write your universal facts.</p>
+</div>
+<div class="right-item"><a href="krb_syntax/index.html">KRB Syntax</a><p>Syntax of the <em>Knowledge Rule Base</em> (KRB) files, which is where you
+write your rules.</p>
+</div>
+<div class="right-item"><a href="kqb_syntax.html">KQB Syntax</a><p>The syntax of <em>Knowledge Question Base</em> (KQB) files, which is where you
+spell out your end user questions.</p>
+</div>
+
+            </div>
+          </td>
+        </tr>
+    </tbody>
+
+    <tfoot id="foot">
+        <tr id="foot2">
+          <td id="copyright" colspan="3">
+            Copyright &copy; 2007-2009 Bruce Frederiksen
+          </td>
+        </tr>
+    </tfoot>
+  </table>
+
+  <div id="last-modified">
+    Page last modified
+    Mon, Oct 27 2008.
+
+  </div>
+
+  <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ?
+                    "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost +
+        "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+  </script>
+  <script type="text/javascript">
+    try {
+      var pageTracker = _gat._getTracker("UA-6310805-1");
+      pageTracker._trackPageview();
+    } catch(err) {}
+  </script>
+</body>
+</html>
+

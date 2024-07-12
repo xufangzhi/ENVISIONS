@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <title><% title %></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=<% final_encoding %>" />
+    <link rel="stylesheet" href="<% path_to_root %>stylesheets/pyke.css" type="text/css" />
+</head>
+<body>
+  <table id="page-table">
+    <thead class="head">
+        <tr id="header1"><th id="header" colspan="3">
+            &nbsp;
+        </th></tr>
+        <tr id="header2">
+          <th id="crumb-left"></th>
+          <th id="crumb-line">
+            <div id="nav">
+              <ul>
+                  <# print_crumbs(breadcrumbs) #>
+              </ul>
+            </div>
+          </th>
+          <th id="crumb-right"></th>
+        </tr>
+    </thead>
+
+    <tbody id="body">
+        <tr id="body-tr">
+          <td id="left-nav">
+            <div id="left-nav-div">
+              <#
+                for page in sidebar(indextree, div=''):
+                    val = page['crumb']
+                    link = page['target']
+                    if page['title']:
+                        print('<div class="title-nav"><a href="%s">%s</a></div><div class="nav-branch">' %
+                              (link, val))
+                    else:
+                        print('<div class="normal-nav"><a href="%s">%s</a></div>' % (link, val))
+              #>
+            </div>
+            <div id="icons">
+                <div id="project-page">
+                  <a href="http://sourceforge.net/projects/pyke/">Pyke Project Page</a>
+                </div>
+                Please Make a Donation:<br />
+                <a href="http://sourceforge.net/donate/index.php?group_id=207724">
+                  <img src="http://images.sourceforge.net/images/project-support.jpg"
+                       width="88" height="32" border="0"
+                       alt="Support This Project" /> </a> <br /><br />
+                Hosted by: <br />
+                <a href="http://sourceforge.net/projects/pyke">
+                  <img src="http://sflogo.sourceforge.net/sflogo.php?group_id=207724&amp;type=14"
+                       width="150" height="40"
+                       alt="Get Python Knowledge Engine (PyKE) at SourceForge.net. Fast, secure and Free Open Source software downloads" /></a>
+            </div>
+          </td>
+          <td id="main-td">
+            <div id="main">
+                <a name="startcontent" id="startcontent"></a>
+                <% body %>
+                <!-- <div id="return-to-top">
+                       <a href="#">Return to Top</a>
+                     </div>
+                -->
+            </div>
+          </td>
+          <td id="right-nav">
+            <div id="right-nav-div">
+                <#
+                    print_details(default_section,
+                                  page_title='<h3>More:</h3>',
+                                  subsection_title='<h3>Sub Sections:</h3>',
+                                  item_wrapper='%s',
+                                  item='<div class="right-item">%s</div>',
+                                  split=False
+                                  )
+                #>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+
+    <tfoot id="foot">
+        <tr id="foot2">
+          <td id="copyright" colspan="3">
+            Copyright &copy; 2007-2009 Bruce Frederiksen
+          </td>
+        </tr>
+    </tfoot>
+  </table>
+
+  <div id="last-modified">
+    Page last modified
+    <# 
+       import datetime
+       import re
+       print(datetime.date(*(int(x)
+                             for x in re.search(r'([0-9]{4})-([0-9]{1,2})-([0-9]{1,2})',
+                                                filedate)
+                                        .groups())
+                          ).strftime("%a, %b %d %Y") + '.')
+    #>
+  </div>
+
+  <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ?
+                    "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost +
+        "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+  </script>
+  <script type="text/javascript">
+    try {
+      var pageTracker = _gat._getTracker("UA-6310805-1");
+      pageTracker._trackPageview();
+    } catch(err) {}
+  </script>
+</body>
+</html>
+

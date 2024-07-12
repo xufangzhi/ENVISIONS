@@ -1,0 +1,275 @@
+.. $Id: plans.txt 4dca5ad0f397 2010-03-10 mtnyogi $
+.. 
+.. Copyright © 2007-2008 Bruce Frederiksen
+.. 
+.. Permission is hereby granted, free of charge, to any person obtaining a copy
+.. of this software and associated documentation files (the "Software"), to deal
+.. in the Software without restriction, including without limitation the rights
+.. to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+.. copies of the Software, and to permit persons to whom the Software is
+.. furnished to do so, subject to the following conditions:
+.. 
+.. The above copyright notice and this permission notice shall be included in
+.. all copies or substantial portions of the Software.
+.. 
+.. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+.. IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+.. FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+.. AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+.. LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+.. OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+.. THE SOFTWARE.
+
+restindex
+    crumb: Plans
+    page-description:
+        Explanation of *plans* and automatic program generation.
+    /description
+    format: rest
+    encoding: utf8
+    output-encoding: utf8
+    include: yes
+    initialheaderlevel: 2
+/restindex
+
+uservalues
+    filedate: $Id: plans.txt 4dca5ad0f397 2010-03-10 mtnyogi $
+/uservalues
+
+=============================================
+Plans and Automatic Program Generation
+=============================================
+
+Once you understand how backward-chaining_ works, it is relatively easy to
+do automatic program generation.
+
+Adding Plans to Backward-Chaining Rules
+============================================
+
+The way this is done is by attaching Python functions to 
+backward-chaining_ rules_.  These functions are written in the *with*
+clause at the end of each rule_ in the `.krb file`_.  They don't affect how
+the rules_ run to prove a goal, but are
+gathered up to form a call graph that is returned along with the `pattern
+variable`_ bindings that prove_ the top-level goal.
+
+Example
+===============
+
+Consider a small `rule base`_ to construct programs to transfer money between
+bank accounts.  Each *from_acct* and *to_acct* takes one of two forms:
+
+#. (name, account_type)
+
+   - This is a local account with this bank.
+   - Example: ('bruce', 'checking').
+
+#. (bank, name, account_type)
+
+   - This is a foreign account with another bank.
+   - Example: ('my_other_bank', 'bruce', 'checking').
+
+At least one of the bank accounts must be a local account.
+
+Here's the example rule base::
+
+     1  transfer1
+     2      use transfer($from_acct, $to_acct) taking (amount)
+     3      when
+     4          withdraw($from_acct)
+     5              $$(amount)
+     6          deposit($to_acct)
+     7              $$(amount)
+        
+     8  transfer2
+     9      use transfer($from_acct, $to_acct) taking (amount)
+    10      when
+    11          transfer_ach($from_acct, $to_acct)
+    12              $$(amount)
+        
+    13  withdraw
+    14      use withdraw(($who, $acct_type)) taking (amount)
+    15      with
+    16          print("withdraw", amount, "from", $who, $acct_type)
+        
+    17  deposit
+    18      use deposit(($who, $acct_type)) taking (amount)
+    19      with
+    20          print("deposit", amount, "to", $who, $acct_type)
+        
+    21  transfer_ach1
+    22      use transfer_ach($from_acct, ($bank, $who, $acct_type)) taking (amount)
+    23      when
+    24          withdraw($from_acct)
+    25              $$(amount)
+    26          deposit((central_accts, ach_send_acct))
+    27              $$(amount)
+    28      with
+    29          print("send", amount, "to bank", $bank, "acct", $who, $acct_type)
+        
+    30  transfer_ach2
+    31      use transfer_ach($from_acct, $to_acct) taking (amount)
+    32      when
+    33          get_ach($from_acct)
+    34              $$(amount)
+    35          withdraw((central_accts, ach_recv_acct))
+    36              $$(amount)
+    37          deposit($to_acct)
+    38              $$(amount)
+        
+    39  get_ach
+    40      use get_ach(($bank, $who, $acct_type)) taking (amount)
+    41      with
+    42          print("get", amount, "from bank", $bank, "acct", $who, $acct_type)
+
+How the Plan Functions are Generated for This Example
+-------------------------------------------------------
+
+Each of these rules_ will have a plan function generated for it.  These plan
+functions are generated with the same name as the rule_ name.  Thus, the
+name of the generated Python plan function for the first rule would be
+"transfer1".
+
+The plan function generated for the first rule consists of two lines taken
+from lines 5 and 7 of this example.  The $$ in each of these lines will
+be expanded to the subordinate plan function returned from the proof of
+"withdraw($from_acct)" and "deposit($to_acct)" respectfully.  The generated
+plan function will be defined to take an "amount" parameter because of the
+*taking* clause on line 2.  This parameter is passed on to each of the
+subordinate plan functions in lines 5 and 7.
+
+The plan function generated for the "withdraw" rule on line 13 will have
+the single line taken from line 16 in the *with* clause.  The "$who" and
+"$acct_type" `pattern variables`_ will be expanded to constant values taken
+from the values bound to these `pattern variables`_ after the top-level
+(transfer) goal has been proven.
+
+Finally, the plan function generated for the "transfer_ach1" rule on line
+21 will have three lines: two from the *when* clause (lines 25 and 27)
+followed by one from the *with* clause (line 29).  These lines will be
+generated at the same indent level in the plan function even though they
+are at different indent levels in the `.krb file`_.
+
+For more detailed information about the options available for plans in the
+`.krb file`_, see `Bc_rule Syntax`_.
+
+Running the Example
+========================
+
+.. This code is hidden.  It will add '' to sys.path, change to the doc.examples
+   directory and store the directory path in __file__ for the code section
+   following:
+   >>> import sys
+   >>> if '' not in sys.path: sys.path.insert(0, '')
+   >>> import os
+   >>> os.chdir("../../examples")
+   >>> __file__ = os.getcwd()
+
+The plan is created as a byproduct of proving_ the goal:
+
+    >>> from pyke import knowledge_engine
+
+    >>> engine = knowledge_engine.engine(__file__)
+    >>> engine.activate('plan_example')
+    >>> no_vars, plan1 = \
+    ...   engine.prove_1_goal(
+    ...     'plan_example.transfer((bruce, checking), (bruce, savings))')
+
+``plan1`` is now a program to transfer X amount
+from 'bruce', 'checking' to 'bruce', 'savings'.  Using the above rule names
+as function names, plan1 looks like this:
+
+.. figure:: ../images/plan1.png
+   :width: 187
+   :height: 118
+   :scale: 100
+   :align: center
+
+   Plan1
+
+And can be called like a standard function, passing the parameters
+specified in the *taking* clause of the rules for the top-level goal
+(transfer):
+
+    >>> plan1(100)
+    withdraw 100 from bruce checking
+    deposit 100 to bruce savings
+
+The program may be used multiple times:
+
+    >>> plan1(50)
+    withdraw 50 from bruce checking
+    deposit 50 to bruce savings
+
+Notice the strings: ``bruce``, ``checking`` and ``savings`` in the output.
+These were specified as `pattern variables`_ in the code and are cooked_
+into the plan along with the function call graph.
+
+Let's create a second program:
+
+    >>> no_vars, plan2 = \
+    ...   engine.prove_1_goal(
+    ...     'plan_example.transfer((bruce, checking), '
+    ...                           '(my_other_bank, bruce, savings))')
+
+``plan2`` is now a program to transfer X amount
+from 'my_other_bank', 'bruce', 'checking' to 'bruce', 'savings'.
+Plan2 looks like this:
+
+.. figure:: ../images/plan2.png
+   :width: 187
+   :height: 195
+   :scale: 100
+   :align: center
+
+   Plan2
+
+And is run just like plan1, but produces different results:
+
+    >>> plan2(200)
+    withdraw 200 from bruce checking
+    deposit 200 to central_accts ach_send_acct
+    send 200 to bank my_other_bank acct bruce savings
+
+And the final use case:
+
+    >>> no_vars, plan3 = \
+    ...   engine.prove_1_goal(
+    ...     'plan_example.transfer((my_other_bank, bruce, checking), '
+    ...                           '(bruce, savings))')
+    >>> plan3(150)
+    get 150 from bank my_other_bank acct bruce checking
+    withdraw 150 from central_accts ach_recv_acct
+    deposit 150 to bruce savings
+
+Plan3 looks like this:
+
+.. figure:: ../images/plan3.png
+   :width: 264
+   :height: 198
+   :scale: 100
+   :align: center
+
+   Plan3
+
+Note that the same *transfer2* function is calling two different functions
+(*transfer_ach1* and *transfer_ach2*) in plan2 and plan3.  This shows how
+different functions may be chosen based on the rule_ inferencing.  Also
+note that after the generation of plan3, plan2 is still valid; both may
+still be called successfully, resulting in different calls from the initial
+*transfer2* function.
+
+Conclusion
+==============
+
+So you can see that it quite easy to use Pyke to automatically combine
+Python functions into programs!
+
+It also allows data within each Python function to be specified using a
+`pattern variable`_ so that Pyke can customize these values to match the
+specific situation.
+
+If you would like to know more about how Pyke *cooks* (or customizes) your
+Python functions, see `Cooking Functions`_.
+
+

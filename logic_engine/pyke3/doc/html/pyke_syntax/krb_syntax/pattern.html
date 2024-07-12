@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <title>Pattern Syntax</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../stylesheets/pyke.css" type="text/css" />
+</head>
+<body>
+  <table id="page-table">
+    <thead class="head">
+        <tr id="header1"><th id="header" colspan="3">
+            &nbsp;
+        </th></tr>
+        <tr id="header2">
+          <th id="crumb-left"></th>
+          <th id="crumb-line">
+            <div id="nav">
+              <ul>
+                  <li><a href="../../index.html">Home</a></li>
+<li>&gt;</li>
+<li><a href="../index.html">Pyke Syntax</a></li>
+<li>&gt;</li>
+<li><a href="index.html">KRB Syntax</a></li>
+<li>&gt;</li>
+<li>Pattern</li>
+
+              </ul>
+            </div>
+          </th>
+          <th id="crumb-right"></th>
+        </tr>
+    </thead>
+
+    <tbody id="body">
+        <tr id="body-tr">
+          <td id="left-nav">
+            <div id="left-nav-div">
+              
+<div class="title-nav"><a href="../../index.html">Home</a></div><div class="nav-branch">
+<div class="normal-nav"><a href="../../about_pyke/index.html">About Pyke</a></div>
+<div class="normal-nav"><a href="../../logic_programming/index.html">Logic Programming</a></div>
+<div class="normal-nav"><a href="../../knowledge_bases/index.html">Knowledge Bases</a></div>
+
+<div class="title-nav"><a href="../index.html">Pyke Syntax</a></div><div class="nav-branch">
+<div class="normal-nav"><a href="../kfb_syntax.html">KFB Syntax</a></div>
+
+<div class="title-nav"><a href="index.html">KRB Syntax</a></div><div class="nav-branch">
+<div class="normal-nav"><a href="fc_rule.html">Fc_rule</a></div>
+<div class="normal-nav"><a href="bc_rule.html">Bc_rule</a></div>
+<div class="normal-nav"><a href="pattern.html">Pattern</a></div>
+<div class="normal-nav"><a href="compound_premise.html">Compound Premise</a></div>
+<div class="normal-nav"><a href="python_premise.html">Python Premise</a></div>
+</div>
+<div class="normal-nav"><a href="../kqb_syntax.html">KQB Syntax</a></div>
+</div>
+<div class="normal-nav"><a href="../../using_pyke/index.html">Using Pyke</a></div>
+<div class="normal-nav"><a href="../../examples.html">Examples</a></div>
+<div class="normal-nav"><a href="../../PyCon2008-paper.html">PyCon 2008 Paper</a></div>
+</div>
+
+            </div>
+            <div id="icons">
+                <div id="project-page">
+                  <a href="http://sourceforge.net/projects/pyke/">Pyke Project Page</a>
+                </div>
+                Please Make a Donation:<br />
+                <a href="http://sourceforge.net/donate/index.php?group_id=207724">
+                  <img src="http://images.sourceforge.net/images/project-support.jpg"
+                       width="88" height="32" border="0"
+                       alt="Support This Project" /> </a> <br /><br />
+                Hosted by: <br />
+                <a href="http://sourceforge.net/projects/pyke">
+                  <img src="http://sflogo.sourceforge.net/sflogo.php?group_id=207724&amp;type=14"
+                       width="150" height="40"
+                       alt="Get Python Knowledge Engine (PyKE) at SourceForge.net. Fast, secure and Free Open Source software downloads" /></a>
+            </div>
+          </td>
+          <td id="main-td">
+            <div id="main">
+                <a name="startcontent" id="startcontent"></a>
+                <div class="document" id="pattern-syntax">
+<h1 class="title">Pattern Syntax</h1>
+<div class="section" id="pattern">
+<h2>Pattern</h2>
+<pre class="literal-block">
+pattern ::= 'None' | 'True' | 'False'
+          | NUMBER | IDENTIFIER | STRING | variable
+          | '(' [{pattern,}] ['*' variable] ')'
+</pre>
+<p>IDENTIFIER acts like a STRING here, meaning that it is taken as a literal
+value.  All variables in patterns must be preceded by a <tt class="docutils literal">$</tt>.</p>
+<p>Pyke does not currently support complex NUMBERS (for no good reason -- email
+me if you need them).</p>
+</div>
+<div class="section" id="pattern-variable">
+<h2>Pattern Variable</h2>
+<p><a class="reference external" href="../../logic_programming/pattern_matching/pattern_variables.html">Pattern variables</a> are simply called <em>variable</em> in the syntax:</p>
+<pre class="literal-block">
+variable ::= '$'IDENTIFIER
+</pre>
+<p>The variable must not have a space between the <tt class="docutils literal">$</tt> and the <tt class="docutils literal">IDENTIFIER</tt>.</p>
+</div>
+<div class="section" id="anonymous-variable">
+<h2>Anonymous Variable</h2>
+<p>If the pattern variable IDENTIFIER begins with an underscore (_), the variable
+is an <a class="reference external" href="../../logic_programming/pattern_matching/pattern_variables.html#anonymous-pattern-variables">anonymous variable</a>.  It acts like a &quot;don't care&quot;.  Technically, this
+means that multiple uses of the same IDENTIFIER may stand for different
+values.  The name of the IDENTIFIER after the underscore is ignored and may be
+used to document the use of the anonymous variable.</p>
+</div>
+<div class="section" id="rest-variable">
+<h2>Rest Variable</h2>
+<p>The <tt class="docutils literal">*variable</tt> at the end of a tuple pattern will match the rest of the
+tuple.  Thus, <tt class="docutils literal">variable</tt> is <em>always</em> bound to a (possibly empty) tuple.</p>
+<p>The syntax is taken from rest parameter syntax in Python function definitions.
+The difference here is that the variable needs a <tt class="docutils literal">$</tt> on it.</p>
+<p>You may use either a named variable or an anonymous variable here.</p>
+<!-- ADD_LINKS MARKER -->
+</div>
+</div>
+
+                <!-- <div id="return-to-top">
+                       <a href="#">Return to Top</a>
+                     </div>
+                -->
+            </div>
+          </td>
+          <td id="right-nav">
+            <div id="right-nav-div">
+                <h3>More:</h3>
+<div class="right-item"><a href="fc_rule.html">Fc_rule Syntax</a><p>The syntax of a forward-chaining rule.</p>
+</div>
+<div class="right-item"><a href="bc_rule.html">Bc_rule Syntax</a><p>The syntax of a backward-chaining rule.</p>
+</div>
+<div class="right-item"><a href="pattern.html">Pattern Syntax</a><p>The syntax of a pattern used to match data values.</p>
+</div>
+<div class="right-item"><a href="compound_premise.html">Compound Premise Syntax</a><p>The syntax of compound premises.</p>
+</div>
+<div class="right-item"><a href="python_premise.html">Python Premise Syntax</a><p>The syntax of a <em>python_premise</em>.</p>
+</div>
+
+            </div>
+          </td>
+        </tr>
+    </tbody>
+
+    <tfoot id="foot">
+        <tr id="foot2">
+          <td id="copyright" colspan="3">
+            Copyright &copy; 2007-2009 Bruce Frederiksen
+          </td>
+        </tr>
+    </tfoot>
+  </table>
+
+  <div id="last-modified">
+    Page last modified
+    Thu, May 14 2009.
+
+  </div>
+
+  <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ?
+                    "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost +
+        "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+  </script>
+  <script type="text/javascript">
+    try {
+      var pageTracker = _gat._getTracker("UA-6310805-1");
+      pageTracker._trackPageview();
+    } catch(err) {}
+  </script>
+</body>
+</html>
+

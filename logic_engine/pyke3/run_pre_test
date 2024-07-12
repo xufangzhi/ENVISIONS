@@ -1,0 +1,28 @@
+#!/bin/bash
+
+set -e
+
+root=`hg root`
+cd "$root"
+
+name=`basename "$root"`
+
+rm -rf ../"$name"_test
+
+hg clone -U . ../"$name"_test
+
+cd ../"$name"_test
+
+hg update tip
+
+./run_2to3 > /dev/null
+
+./testpyke -3.1
+
+python3.1 setup.py -q sdist --formats zip
+
+cd dist
+sfile=`echo pyke*.zip`
+mv $sfile pyke3${sfile#pyke}
+
+echo Success!

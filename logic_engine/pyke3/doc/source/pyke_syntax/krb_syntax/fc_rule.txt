@@ -1,0 +1,104 @@
+.. $Id: fc_rule.txt a2119c07028f 2008-10-27 mtnyogi $
+.. 
+.. Copyright © 2007-2008 Bruce Frederiksen
+.. 
+.. Permission is hereby granted, free of charge, to any person obtaining a copy
+.. of this software and associated documentation files (the "Software"), to deal
+.. in the Software without restriction, including without limitation the rights
+.. to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+.. copies of the Software, and to permit persons to whom the Software is
+.. furnished to do so, subject to the following conditions:
+.. 
+.. The above copyright notice and this permission notice shall be included in
+.. all copies or substantial portions of the Software.
+.. 
+.. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+.. IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+.. FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+.. AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+.. LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+.. OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+.. THE SOFTWARE.
+
+restindex
+    crumb: Fc_rule
+    page-description:
+        The syntax of a forward-chaining rule.
+    /description
+    format: rest
+    encoding: utf8
+    output-encoding: utf8
+    include: yes
+    initialheaderlevel: 2
+/restindex
+
+uservalues
+    filedate: $Id: fc_rule.txt a2119c07028f 2008-10-27 mtnyogi $
+/uservalues
+
+=============================================
+Fc_rule Syntax
+=============================================
+
+Fc_rule
+=============
+
+Forward-chaining_ rules have three parts:
+
+#. A unique name.
+#. An optional `foreach clause`_.
+#. An `assert clause`_.
+
+::
+
+    fc_rule ::= IDENTIFIER NL INDENT
+                   [fc_foreach]
+                   fc_assert
+                DEINDENT
+
+The ``IDENTIFIER`` uniquely names this rule_ and is used as the corresponding
+Python function name in the generated <rb_name>_fc.py file.
+
+Foreach clause
+=================
+
+::
+
+    fc_foreach ::= 'foreach' NL INDENT
+                       {fc_premise NL}
+                   DEINDENT
+
+    fc_premise ::= fact_pattern
+                 | compound_premise
+                 | python_premise
+
+    fact_pattern ::= IDENTIFIER '.' IDENTIFIER '(' [{pattern,}] ')'
+
+Here are links to the definitions for pattern_, compound_premise_ and
+python_premise_.
+
+If the ``foreach`` clause is omitted, the rule_ is always fired once.
+
+If the ``foreach`` clause is present, the rule is fired for each combination
+of true premises.
+
+Assert clause
+=================
+
+::
+
+    fc_assert ::= 'assert' NL INDENT
+                      {assertion NL}
+                  DEINDENT
+
+    assertion ::= fact_pattern
+                | python_statements
+
+Here is the link to the definitions of python_statements_.
+
+The ``assert`` clause lists new facts_ to assert, and/or Python
+statements to execute each time the rule_ is fired.  Each of these may
+include `pattern variables`_ which should also appear in the ``foreach``
+clause where they are bound to a value.  These values will then be substituted
+into the facts and Python statements.
+

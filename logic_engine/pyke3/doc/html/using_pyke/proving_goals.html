@@ -1,0 +1,235 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <title>Proving Goals</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../stylesheets/pyke.css" type="text/css" />
+</head>
+<body>
+  <table id="page-table">
+    <thead class="head">
+        <tr id="header1"><th id="header" colspan="3">
+            &nbsp;
+        </th></tr>
+        <tr id="header2">
+          <th id="crumb-left"></th>
+          <th id="crumb-line">
+            <div id="nav">
+              <ul>
+                  <li><a href="../index.html">Home</a></li>
+<li>&gt;</li>
+<li><a href="index.html">Using Pyke</a></li>
+<li>&gt;</li>
+<li>Proving Goals</li>
+
+              </ul>
+            </div>
+          </th>
+          <th id="crumb-right"></th>
+        </tr>
+    </thead>
+
+    <tbody id="body">
+        <tr id="body-tr">
+          <td id="left-nav">
+            <div id="left-nav-div">
+              
+<div class="title-nav"><a href="../index.html">Home</a></div><div class="nav-branch">
+<div class="normal-nav"><a href="../about_pyke/index.html">About Pyke</a></div>
+<div class="normal-nav"><a href="../logic_programming/index.html">Logic Programming</a></div>
+<div class="normal-nav"><a href="../knowledge_bases/index.html">Knowledge Bases</a></div>
+<div class="normal-nav"><a href="../pyke_syntax/index.html">Pyke Syntax</a></div>
+
+<div class="title-nav"><a href="index.html">Using Pyke</a></div><div class="nav-branch">
+<div class="normal-nav"><a href="creating_engine.html">Creating an Engine</a></div>
+<div class="normal-nav"><a href="adding_facts.html">Asserting Facts</a></div>
+<div class="normal-nav"><a href="proving_goals.html">Proving Goals</a></div>
+<div class="normal-nav"><a href="other_functions.html">Other functions</a></div>
+</div>
+<div class="normal-nav"><a href="../examples.html">Examples</a></div>
+<div class="normal-nav"><a href="../PyCon2008-paper.html">PyCon 2008 Paper</a></div>
+</div>
+
+            </div>
+            <div id="icons">
+                <div id="project-page">
+                  <a href="http://sourceforge.net/projects/pyke/">Pyke Project Page</a>
+                </div>
+                Please Make a Donation:<br />
+                <a href="http://sourceforge.net/donate/index.php?group_id=207724">
+                  <img src="http://images.sourceforge.net/images/project-support.jpg"
+                       width="88" height="32" border="0"
+                       alt="Support This Project" /> </a> <br /><br />
+                Hosted by: <br />
+                <a href="http://sourceforge.net/projects/pyke">
+                  <img src="http://sflogo.sourceforge.net/sflogo.php?group_id=207724&amp;type=14"
+                       width="150" height="40"
+                       alt="Get Python Knowledge Engine (PyKE) at SourceForge.net. Fast, secure and Free Open Source software downloads" /></a>
+            </div>
+          </td>
+          <td id="main-td">
+            <div id="main">
+                <a name="startcontent" id="startcontent"></a>
+                <div class="document" id="proving-goals">
+<h1 class="title">Proving Goals</h1>
+<!-- this code is hidden and will set __file__ to the doc/examples directory.
+>>> import os
+>>> __file__ = \
+...   os.path.join(os.path.dirname(os.path.dirname(os.getcwd())),
+...                'examples')
+>>> from pyke import knowledge_engine
+>>> my_engine = knowledge_engine.engine(__file__)
+>>> my_engine.add_universal_fact('family', 'son_of', ('bruce', 'thomas'))
+>>> my_engine.add_universal_fact('family', 'son_of', ('david', 'bruce'))
+>>> my_engine.activate('bc_related0') -->
+<p>Though Pyke has the capability to return multiple answers to a single goal,
+often you just want the first answer:</p>
+<dl class="docutils">
+<dt><em>some_engine</em>.prove_1_goal(goal, **args)</dt>
+<dd><p class="first"><tt class="docutils literal">goal</tt> is a Pyke goal (as a string).  This may include <a class="reference external" href="../logic_programming/pattern_matching/pattern_variables.html">pattern
+variables</a> (which start with a '$').</p>
+<pre class="doctest-block">
+&gt;&gt;&gt; my_engine.prove_1_goal('bc_related0.father_son(thomas, david, $depth)')
+({'depth': ('grand',)}, None)
+</pre>
+<p class="last">Returns the first proof found as a 2-tuple: a dict of bindings for the
+pattern variables, and a <a class="reference external" href="../logic_programming/plans.html">plan</a>.  The plan is <tt class="docutils literal">None</tt> if no plan was
+generated; otherwise, it is a Python function as described <a class="reference external" href="other_functions.html#running-and-pickling-plans">here</a>.</p>
+</dd>
+</dl>
+<blockquote>
+<p>Args must be specified as keyword arguments and are set as the value of
+the corresponding pattern variable.</p>
+<pre class="doctest-block">
+&gt;&gt;&gt; vars, plan = \
+...   my_engine.prove_1_goal('bc_related0.father_son($father, $son, $depth)',
+...                          father='thomas',
+...                          son='david')
+&gt;&gt;&gt; sorted(vars.items(), key=lambda item: item[0])
+[('depth', ('grand',)), ('father', 'thomas'), ('son', 'david')]
+</pre>
+<p>Prove_1_goal raises <tt class="docutils literal">pyke.knowledge_engine.CanNotProve</tt> if no proof is
+found:</p>
+<pre class="doctest-block">
+&gt;&gt;&gt; my_engine.prove_1_goal('bc_related0.father_son(thomas, bogus, $depth)')
+Traceback (most recent call last):
+    ...
+pyke.knowledge_engine.CanNotProve: Can not prove bc_related0.father_son(thomas, bogus, $depth)
+</pre>
+</blockquote>
+<dl class="docutils">
+<dt><em>some_engine</em>.prove_goal(goal, **args)</dt>
+<dd><p class="first">This returns a context manager for a generator yielding 2-tuples, as
+above.  Unlike <tt class="docutils literal">prove_1_goal</tt> it does not raise an exception if no
+proof is found:</p>
+<pre class="doctest-block">
+&gt;&gt;&gt; from __future__ import with_statement
+</pre>
+<pre class="doctest-block">
+&gt;&gt;&gt; with my_engine.prove_goal(
+...        'bc_related0.father_son(thomas, $son, $depth)') as gen:
+...     for vars, plan in gen:
+...         print(vars['son'], vars['depth'])
+bruce ()
+david ('grand',)
+</pre>
+<p>Like <tt class="docutils literal">prove_1_goal</tt>, above, <a class="reference external" href="../logic_programming/pattern_matching/pattern_variables.html">pattern variables</a> in the <a class="reference external" href="../logic_programming/rules/backward_chaining.html">goal</a> may be
+specified with keyword arguments:</p>
+<pre class="last doctest-block">
+&gt;&gt;&gt; with my_engine.prove_goal(
+...        'bc_related0.father_son($father, $son, $depth)',
+...        father='thomas') as gen:
+...     for vars, plan in gen:
+...         print(vars['son'], vars['depth'])
+bruce ()
+david ('grand',)
+</pre>
+</dd>
+</dl>
+<div class="section" id="compiling-goals-at-program-startup">
+<h2>Compiling Goals at Program Startup</h2>
+<p>Similar to Python's regular expression library, <tt class="docutils literal">re</tt>, you may compile your
+goal statements once at program startup:</p>
+<blockquote>
+<pre class="doctest-block">
+&gt;&gt;&gt; from pyke import goal
+</pre>
+<pre class="doctest-block">
+&gt;&gt;&gt; my_goal = goal.compile('bc_related0.father_son($father, $son, $depth)')
+</pre>
+</blockquote>
+<p>Then use <tt class="docutils literal">my_goal.prove_1</tt> and <tt class="docutils literal">my_goal.prove</tt> as many times as you'd
+like:</p>
+<blockquote>
+<pre class="doctest-block">
+&gt;&gt;&gt; vars, plan = my_goal.prove_1(my_engine, father='thomas', son='david')
+&gt;&gt;&gt; sorted(vars.items(), key=lambda item: item[0])
+[('depth', ('grand',)), ('father', 'thomas'), ('son', 'david')]
+</pre>
+<pre class="doctest-block">
+&gt;&gt;&gt; with my_goal.prove(my_engine, father='thomas') as gen:
+...     for vars, plan in gen:
+...         print(vars['son'], vars['depth'])
+bruce ()
+david ('grand',)
+</pre>
+</blockquote>
+<!-- ADD_LINKS MARKER -->
+</div>
+</div>
+
+                <!-- <div id="return-to-top">
+                       <a href="#">Return to Top</a>
+                     </div>
+                -->
+            </div>
+          </td>
+          <td id="right-nav">
+            <div id="right-nav-div">
+                <h3>More:</h3>
+<div class="right-item"><a href="creating_engine.html">Creating an Inference Engine Object</a><p>How to create a Pyke <em>inference engine</em> object.</p>
+</div>
+<div class="right-item"><a href="adding_facts.html">Asserting New Facts</a><p>How to dynamically assert new <em>facts</em> from your Python program.</p>
+</div>
+<div class="right-item"><a href="proving_goals.html">Proving Goals</a><p>Using Pyke's API to prove goals from your Python program.</p>
+</div>
+<div class="right-item"><a href="other_functions.html">Other Functions</a><p>Other miscellaneous functions available that you might be interested
+in, such as tracing rules and smart error tracebacks that show lines
+from your .krb files.</p>
+</div>
+
+            </div>
+          </td>
+        </tr>
+    </tbody>
+
+    <tfoot id="foot">
+        <tr id="foot2">
+          <td id="copyright" colspan="3">
+            Copyright &copy; 2007-2009 Bruce Frederiksen
+          </td>
+        </tr>
+    </tfoot>
+  </table>
+
+  <div id="last-modified">
+    Page last modified
+    Wed, Mar 10 2010.
+
+  </div>
+
+  <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ?
+                    "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost +
+        "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+  </script>
+  <script type="text/javascript">
+    try {
+      var pageTracker = _gat._getTracker("UA-6310805-1");
+      pageTracker._trackPageview();
+    } catch(err) {}
+  </script>
+</body>
+</html>
+

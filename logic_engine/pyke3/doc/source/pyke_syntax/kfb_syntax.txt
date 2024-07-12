@@ -1,0 +1,92 @@
+.. $Id: kfb_syntax.txt a2119c07028f 2008-10-27 mtnyogi $
+.. 
+.. Copyright © 2008 Bruce Frederiksen
+.. 
+.. Permission is hereby granted, free of charge, to any person obtaining a copy
+.. of this software and associated documentation files (the "Software"), to deal
+.. in the Software without restriction, including without limitation the rights
+.. to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+.. copies of the Software, and to permit persons to whom the Software is
+.. furnished to do so, subject to the following conditions:
+.. 
+.. The above copyright notice and this permission notice shall be included in
+.. all copies or substantial portions of the Software.
+.. 
+.. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+.. IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+.. FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+.. AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+.. LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+.. OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+.. THE SOFTWARE.
+
+restindex
+    crumb: KFB Syntax
+    page-description:
+        The syntax of *Knowledge Fact Base* (KFB) files, which is where you
+        write your universal facts.
+    /description
+    format: rest
+    encoding: utf8
+    output-encoding: utf8
+    include: yes
+    initialheaderlevel: 2
+/restindex
+
+uservalues
+    filedate: $Id: kfb_syntax.txt a2119c07028f 2008-10-27 mtnyogi $
+/uservalues
+
+===================================
+KFB Syntax
+===================================
+
+This uses the same lexical structure as `KRB files`_, except that the only
+keywords are:
+
+- None
+- True
+- False
+
+The name of the `fact base`_ is simply the filename with the ``.kfb`` suffix
+stripped.  This must be a valid Python identifier.
+
+Syntax for KFB File
+===================
+
+::
+
+    file ::= [NL] {fact NL}
+
+    fact ::= IDENTIFIER '(' [{data,}] ')'
+
+    data ::= 'None' | 'True' | 'False'
+           | NUMBER | IDENTIFIER | STRING
+           | '(' [{data,}] ')'
+
+
+Example
+=======
+
+This is taken from the family_relations_ example::
+
+    # family.kfb
+
+    son_of(bruce, thomas, norma)
+    son_of(fred_a, thomas, norma)
+    son_of(tim, thomas, norma)
+    daughter_of(vicki, thomas, norma)
+    daughter_of(jill, thomas, norma)
+
+    daughter_of(nanette, arthur2, kathleen)
+    son_of(arthur3, arthur2, kathleen)
+    daughter_of(sue, arthur2, kathleen)
+    son_of(ed, arthur2, kathleen)
+    daughter_of(marilyn, arthur2, kathleen)
+    son_of(david_b, arthur2, kathleen)
+    daughter_of(m_helen, arthur2, kathleen)
+
+    son_of(m_thomas, bruce, marilyn)
+    son_of(david_a, bruce, marilyn)
+
+

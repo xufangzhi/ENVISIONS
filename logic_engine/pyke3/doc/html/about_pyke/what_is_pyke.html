@@ -1,0 +1,211 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <title>What is Pyke?</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../stylesheets/pyke.css" type="text/css" />
+</head>
+<body>
+  <table id="page-table">
+    <thead class="head">
+        <tr id="header1"><th id="header" colspan="3">
+            &nbsp;
+        </th></tr>
+        <tr id="header2">
+          <th id="crumb-left"></th>
+          <th id="crumb-line">
+            <div id="nav">
+              <ul>
+                  <li><a href="../index.html">Home</a></li>
+<li>&gt;</li>
+<li><a href="index.html">About Pyke</a></li>
+<li>&gt;</li>
+<li>What is Pyke?</li>
+
+              </ul>
+            </div>
+          </th>
+          <th id="crumb-right"></th>
+        </tr>
+    </thead>
+
+    <tbody id="body">
+        <tr id="body-tr">
+          <td id="left-nav">
+            <div id="left-nav-div">
+              
+<div class="title-nav"><a href="../index.html">Home</a></div><div class="nav-branch">
+
+<div class="title-nav"><a href="index.html">About Pyke</a></div><div class="nav-branch">
+<div class="normal-nav"><a href="cooking_functions.html">Cooking Functions</a></div>
+<div class="normal-nav"><a href="what_is_pyke.html">What is Pyke?</a></div>
+<div class="normal-nav"><a href="steps_to_using_pyke.html">Steps to Using Pyke</a></div>
+<div class="normal-nav"><a href="installing_pyke.html">Installing Pyke</a></div>
+<div class="normal-nav"><a href="modifying_pyke.html">Modifying Pyke</a></div>
+</div>
+<div class="normal-nav"><a href="../logic_programming/index.html">Logic Programming</a></div>
+<div class="normal-nav"><a href="../knowledge_bases/index.html">Knowledge Bases</a></div>
+<div class="normal-nav"><a href="../pyke_syntax/index.html">Pyke Syntax</a></div>
+<div class="normal-nav"><a href="../using_pyke/index.html">Using Pyke</a></div>
+<div class="normal-nav"><a href="../examples.html">Examples</a></div>
+<div class="normal-nav"><a href="../PyCon2008-paper.html">PyCon 2008 Paper</a></div>
+</div>
+
+            </div>
+            <div id="icons">
+                <div id="project-page">
+                  <a href="http://sourceforge.net/projects/pyke/">Pyke Project Page</a>
+                </div>
+                Please Make a Donation:<br />
+                <a href="http://sourceforge.net/donate/index.php?group_id=207724">
+                  <img src="http://images.sourceforge.net/images/project-support.jpg"
+                       width="88" height="32" border="0"
+                       alt="Support This Project" /> </a> <br /><br />
+                Hosted by: <br />
+                <a href="http://sourceforge.net/projects/pyke">
+                  <img src="http://sflogo.sourceforge.net/sflogo.php?group_id=207724&amp;type=14"
+                       width="150" height="40"
+                       alt="Get Python Knowledge Engine (PyKE) at SourceForge.net. Fast, secure and Free Open Source software downloads" /></a>
+            </div>
+          </td>
+          <td id="main-td">
+            <div id="main">
+                <a name="startcontent" id="startcontent"></a>
+                <div class="document" id="what-is-pyke">
+<h1 class="title">What is Pyke?</h1>
+<p>Pyke integrates a form of <a class="reference external" href="http://en.wikipedia.org/wiki/Logic_programming">Logic Programming</a> into Python by providing a
+knowledge engine that can:</p>
+<ul class="simple">
+<li>Do both forward-chaining (data driven) and
+backward-chaining (goal directed) inferencing.<ul>
+<li>Pyke may be embedded into any Python program.</li>
+</ul>
+</li>
+<li>Automatically generate Python programs by assembling individual Python
+functions into complete call graphs.<ul>
+<li>This is done through a unique design where the individual Python
+functions are attached to backward-chaining rules.</li>
+<li>Unlike other approaches to code reuse (e.g. Object-oriented programming,
+Zope adapters, generic functions), this allows the inference engine to
+ensure that all of the function's requirements are completely satisfied,
+by examining the entire call graph down to the leaves, before <strong>any</strong> of
+the functions are executed.</li>
+<li>This is an optional feature.  You don't need to use it if you just
+want the inferencing capability by itself.</li>
+</ul>
+</li>
+</ul>
+<div class="section" id="the-knowledge-engine-supports">
+<h2>The Knowledge Engine Supports:</h2>
+<ul class="simple">
+<li>Multiple <em>fact bases</em>, each with its own list of facts.</li>
+<li>Both <em>forward-chaining</em> rules and <em>backward-chaining</em> rules.</li>
+<li>Multiple <em>rule bases</em>, each with its own list of forward-chaining
+and/or backward-chaining rules.</li>
+<li>Rule base inheritance -- <em>activating</em> the derived rule base
+includes the rules from the parent rule base.</li>
+<li>The inference rules are compiled into Python functions, allowing
+Python code snippets to be used within the rules.
+This greatly enhances the expressiveness of the rules.</li>
+</ul>
+</div>
+<div class="section" id="automatic-program-generation">
+<h2>Automatic Program Generation:</h2>
+<ul class="simple">
+<li>Calls the generated Python programs <em>plans</em>.</li>
+<li>Plans may be run multiple times without needing to rerun the inference
+rules.</li>
+<li>Plans may be pickled and cached to disk to be used by other programs or
+in later runs of the same program.</li>
+<li>Only one small Pyke module is required to run the plans.</li>
+</ul>
+</div>
+<div class="section" id="potential-pyke-applications">
+<h2>Potential Pyke Applications:</h2>
+<ul class="simple">
+<li>Complicated decision making applications.</li>
+<li>The back-end (code generation and optimization) of compilers.
+Pyke is used as the back-end of its own
+compiler that translates rules into Python code.</li>
+<li>Automatic SQL statement generation.</li>
+<li>Automatic HTML generation and automatic HTML template processing.</li>
+<li>Automatic program builder to reuse a common set of functions for many
+different specific situations.  This could also easily
+incorporate a new custom function into a much larger program, where the use
+of the custom function might influence the choice of other standard
+functions in other parts of the program.</li>
+<li>The control module for a web framework tool.</li>
+<li>A high-level planner to automatically distribute the
+modules of a large system over several computers in a distributed system
+to meet specific performance and capacity goals.  This could be used to
+automatically scale the same system code from a small one program,
+one computer system
+to much larger distributed systems to meet a wide range of performance
+goals.</li>
+<li>Diagnosis systems, including automated customer service systems.</li>
+<li>Program or library customization for specific uses.</li>
+<li>In addition to being able to build programs, Pyke can instantiate,
+configure and interconnect a network of objects to meet a specific need
+or situation.</li>
+</ul>
+<!-- ADD_LINKS MARKER -->
+</div>
+</div>
+
+                <!-- <div id="return-to-top">
+                       <a href="#">Return to Top</a>
+                     </div>
+                -->
+            </div>
+          </td>
+          <td id="right-nav">
+            <div id="right-nav-div">
+                <h3>More:</h3>
+<div class="right-item"><a href="cooking_functions.html">Cooking Python Functions</a><p>Explanation of how Pyke &quot;cooks&quot; Python functions.</p>
+</div>
+<div class="right-item"><a href="what_is_pyke.html">What is Pyke?</a><p>An overview of Pyke's features.</p>
+</div>
+<div class="right-item"><a href="steps_to_using_pyke.html">Steps to Using Pyke</a><p>A brief list of the steps involved in programming in Pyke (with lots
+of links).</p>
+</div>
+<div class="right-item"><a href="installing_pyke.html">Installing Pyke</a><p>System Requirements and installing Pyke.</p>
+</div>
+<div class="right-item"><a href="modifying_pyke.html">Modifying Pyke</a><p>Which source code repository to use.  And the other tools that you'll
+need run the units tests, and rebuild the html documentation.</p>
+</div>
+
+            </div>
+          </td>
+        </tr>
+    </tbody>
+
+    <tfoot id="foot">
+        <tr id="foot2">
+          <td id="copyright" colspan="3">
+            Copyright &copy; 2007-2009 Bruce Frederiksen
+          </td>
+        </tr>
+    </tfoot>
+  </table>
+
+  <div id="last-modified">
+    Page last modified
+    Mon, Oct 27 2008.
+
+  </div>
+
+  <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ?
+                    "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost +
+        "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+  </script>
+  <script type="text/javascript">
+    try {
+      var pageTracker = _gat._getTracker("UA-6310805-1");
+      pageTracker._trackPageview();
+    } catch(err) {}
+  </script>
+</body>
+</html>
+

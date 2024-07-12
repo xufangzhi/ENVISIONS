@@ -1,0 +1,420 @@
+.. $Id: forward_chaining.txt 9f7068449a4b 2010-03-08 mtnyogi $
+.. 
+.. Copyright © 2007-2008 Bruce Frederiksen
+.. 
+.. Permission is hereby granted, free of charge, to any person obtaining a copy
+.. of this software and associated documentation files (the "Software"), to deal
+.. in the Software without restriction, including without limitation the rights
+.. to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+.. copies of the Software, and to permit persons to whom the Software is
+.. furnished to do so, subject to the following conditions:
+.. 
+.. The above copyright notice and this permission notice shall be included in
+.. all copies or substantial portions of the Software.
+.. 
+.. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+.. IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+.. FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+.. AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+.. LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+.. OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+.. THE SOFTWARE.
+
+restindex
+    crumb: Forward Chaining
+    page-description:
+        Explanation of *forward-chaining rules* and how *forward-chaining*
+        works.
+    /description
+    format: rest
+    encoding: utf8
+    output-encoding: utf8
+    include: yes
+    initialheaderlevel: 2
+/restindex
+
+uservalues
+    filedate: $Id: forward_chaining.txt 9f7068449a4b 2010-03-08 mtnyogi $
+/uservalues
+
+==================
+Forward Chaining
+==================
+
+Forward chaining rules_ are processed automatically as each `rule base`_ is
+activated_.
+
+When a rule base is activated_, all of its forward-chaining rules_ are run
+in the order that they appear in the `.krb file`_ for that rule base.
+
+Overview of Forward-Chaining
+=============================
+
+To do forward-chaining, Pyke finds rules whose *if* clause matches Pyke's list
+of already known facts (the *if* clause may match, or *succeed*, multiple time;
+see backtracking_).  Each time a rule succeeds, it *fires* this rule, which
+adds the facts in the *then* clause of that rule to the list of already known
+facts.
+
+These new facts may fire other forward-chaining rules by matching their
+*if* clause.  This can go on to any depth.  So Pyke ends up linking (or
+*chaining*) the *then* clause of the first rule to the *if* clause of the next
+rule.
+
+.. note::
+
+   Forward-chaining continues until no more rules_ can be fired.
+
+Reviewing
+----------
+
+#. Pyke starts with the *if* clause of the first rule and checks to see if it
+   matches the known facts.
+#. If so, it proceeds to the *then* clause of that rule (*firing* the rule).
+#. Which may link (or *chain*) to the *if* clause of another rule.
+
+Since Pyke processes these rules from *if* to *then* to *if* to *then* in the
+manner that we normally think of using rules, it's called *forward* chaining.
+
+"Foreach", "Assert" Rather than "If", "Then"
+============================================
+
+Finally, since the statements within the *if* clause of the rule contain
+patterns_; they may each match several facts.  In this case, the rule will
+succeed and be fired multiple times.
+
+The statements in the *then* clause of the rule also contain patterns.
+Each time the rule is fired, the pattern variables within the *then*
+statements are bound to different values so that different facts are asserted.
+
+To avoid confusion, Pyke uses the words **foreach** and **assert** rather
+than **if** and **then** for forward-chaining rules.  This is to suggest that
+"for each" combination of facts matching the first list of statements,
+the rule is fired to "assert" the facts in the second list of statements.
+
+.. note::
+
+   The use of **foreach** and **assert** identifies the rule as a
+   forward-chaining rule.
+
+Example
+=======
+
+This example will figure out the paternal ancestry of individuals given a list
+of starting statements about who the sons of each father are.  (Daughters and
+mothers are omitted to keep the example brief).  These facts are stored in a
+`fact base`_ called ``family1`` as ``son_of(son, father)``::
+
+    1  son_of(david, bruce)
+    2  son_of(bruce, thomas)
+    3  son_of(thomas, frederik)
+    4  son_of(frederik, hiram)
+
+We want to derive ``father_son`` relationships of the following form::
+
+    father_son($father, $son, $prefix)
+
+where
+
+    :$son:
+        is the name of the son (e.g., david)
+    :$father:
+        is the name of the father (e.g., bruce)
+    :$prefix:
+        is a tuple of prefixes before the 'father' and 'son' titles to
+        indicate the number of generations (e.g., ``()`` for direct
+        father_son relationships, ``(grand)``, ``(great, grand)``, etc).
+
+This is done using three forward-chaining rules.  Each rule is presented as a
+separate step:
+
+- `Step 1: Direct_father_son`_
+
+  - Step 1 demonstrates the use of `pattern matching`_ to transfer values
+    from one statement within the rule to another statement.
+
+- `Step 2: Grand_father_son`_
+
+  - Step 2 demonstrates backtracking_ within the premises_ of a
+    forward-chaining rule.  Understanding this will help you to understand
+    `backward-chaining rules`_.
+
+- `Step 3: Great_grand_father_son`_
+
+  - Step 3 demonstrates a recursive forward-chaining rule.
+
+Finally, you will be shown how to `Run the Example`_ yourself.
+
+Step 1: Direct_father_son
+=========================
+
+First we need to establish the direct father_son relationships (those whose
+``$prefix`` is ``()``)::
+
+     1  direct_father_son
+     2      foreach
+     3          family1.son_of($son, $father)
+     4      assert
+     5          family1.father_son($father, $son, ())
+
+The Use of Pattern Variables
+----------------------------
+
+This demonstrates how `pattern variables`_ are used to transfer values from
+one statement within a rule into another statement within the rule.
+
+This rule has a single statement in its ``foreach`` clause (on line 3).  This
+statement matches all four ``son_of`` facts, so the rule succeeds four times;
+but with different bindings for the ``$son`` and ``$father`` pattern variables.
+This causes different facts to be asserted when the same ``assert`` clause (on
+line 5) is run four times; because each time line 5 is run, the values for
+``$son`` and ``$father`` are transferred from the statement on line 3 to the
+statement on line 5.
+
+When the rule fires matching line 3 to::
+
+    1  son_of(david, bruce)
+
+It runs line 5 to assert::
+
+    5  father_son(bruce, david, ())
+
+And when the rule fires a second time matching line 3 to::
+
+    2  son_of(bruce, thomas)
+
+It runs line 5 a second time to assert::
+
+    6  father_son(thomas, bruce, ())
+
+The rule fires twice more for the remaining ``son_of`` facts, asserting
+two more ``father_son`` relationships.  So this rule adds a total of four
+new facts::
+
+    5  father_son(bruce, david, ())
+    6  father_son(thomas, bruce, ())
+    7  father_son(frederik, thomas, ())
+    8  father_son(hiram, frederik, ())
+
+Step 2: Grand_father_son
+========================
+
+Now we want to add grand son-father relationships.  We have a new rule for
+this::
+
+     6  grand_father_son
+     7      foreach
+     8          family1.father_son($father, $grand_son, ())
+     9          family1.father_son($grand_father, $father, ())
+    10      assert
+    11          family1.father_son($grand_father, $grand_son, (grand))
+
+The Use of Backtracking
+-----------------------
+
+The ``grand_father_son`` rule_ is run for all combinations of ``father_son``
+facts_ that satisfy the two ``foreach`` statements_ (on lines 8 and 9) and
+asserts_ a ``(grand)`` ``father_son`` statement (on line 11) for each
+combination.
+
+This rule is a good example for backtracking_ and will help later in your
+understanding of backtracking with backward-chaining_.  So let's follow the
+backtracking in the execution of this rule.
+
+The ``foreach`` clause has two statements (on lines 8 and 9) in it that are
+both looking for ``father_son`` facts with a prefix of ``()``::
+
+    8  family1.father_son($father, $grand_son, ())
+    9  family1.father_son($grand_father, $father, ())
+
+These will be matched to the following ``family1`` facts (facts 5 through 8)::
+
+    5  father_son(bruce, david, ())
+    6  father_son(thomas, bruce, ())
+    7  father_son(frederik, thomas, ())
+    8  father_son(hiram, frederik, ())
+
+Pyke starts at the top of the list of premises and looks for a match for the
+first premise (on line 8).  This matches fact 5, so the first premise
+succeeds, binding ``$father`` to ``bruce``::
+
+    8  family1.father_son($father, $grand_son, ())    => fact 5, SUCCESS
+    9  family1.father_son($grand_father, $father, ())
+
+*Success* means go *down*, so Pyke goes to the next premise on line 9.  This
+succeeds with fact 6 (because ``$father`` is bound to ``bruce``)::
+
+    8  family1.father_son($father, $grand_son, ())    => fact 5
+    9  family1.father_son($grand_father, $father, ()) => fact 6, SUCCESS
+
+*Success* means go *down*, but Pyke is at the end of the list of premises,
+so the *rule* succeeds and Pyke fires the rule to assert::
+
+    9  father_son(thomas, david, (grand))
+
+Since this is a forward-chaining rule, Pyke wants to get *all* of the answers
+from it that it can, so it continues as if it had a failure (i.e., as if it's
+not happy with this answer).
+
+.. note::
+
+   You'll see later that Pyke doesn't do this automatically with
+   backward-chaining_ rules.
+
+So Pyke *fails* back *up* to the second premise and looks for another
+``father_son`` after fact 6 with ``bruce`` as the first argument.  This
+fails::
+
+    8  family1.father_son($father, $grand_son, ())    => fact 5
+    9  family1.father_son($grand_father, $father, ()) => FAILS
+
+*Fail* means go *up*, so Pyke goes up to the first premise and looks for
+another ``father_son`` after fact 5, which succeeds for fact 6, binding
+``$father`` to ``thomas``::
+
+    8  family1.father_son($father, $grand_son, ())    => fact 6, SUCCESS
+    9  family1.father_son($grand_father, $father, ())
+
+*Success* means go *down*, so Pyke goes down to the second premise which
+succeeds for fact 7::
+
+    8  family1.father_son($father, $grand_son, ())    => fact 6
+    9  family1.father_son($grand_father, $father, ()) => fact 7, SUCCESS
+
+*Success* means go *down*, but Pyke is at the end of the list of premises,
+so the *rule* succeeds and Pyke fires the rule to assert::
+
+    10 father_son(frederik, bruce, (grand))
+
+Then Pyke *fails* back *up* to the second premise, and continues looking for
+another match after fact 7.  This fails::
+
+    8  family1.father_son($father, $grand_son, ())    => fact 6
+    9  family1.father_son($grand_father, $father, ()) => FAILS
+
+*Fail* means go *up*, so Pyke goes back to the first premise and continues
+looking for another match after fact 6.  (Since fact 7 is just like the last
+case, we'll skip matching fact 7 and go straight to the last fact, fact 8).
+The match to fact 8 succeeds, binding ``$father`` to ``hiram``::
+
+    8  family1.father_son($father, $grand_son, ())    => fact 8, SUCCESS
+    9  family1.father_son($grand_father, $father, ())
+
+*Success* means go *down*, so Pyke goes to the second premise and looks for a
+``father_son`` for ``hiram``.  This fails::
+
+    8  family1.father_son($father, $grand_son, ())    => fact 8
+    9  family1.father_son($grand_father, $father, ()) => FAILS
+
+*Fail* means go *up*, so Pyke goes back up to the first premise and looks for
+another match after fact 8.  There are no more facts, so this fails::
+
+    8  family1.father_son($father, $grand_son, ())    => FAILS
+    9  family1.father_son($grand_father, $father, ())
+
+*Fail* means go *up*, but Pyke is at the top of the list of premises,
+so the *rule* fails and Pyke is done processing it.
+
+.. important::
+
+   Note that the *last* statement in the ``foreach`` clause may *succeed*
+   multiple times (which fires the ``assert`` clause multiple times).
+
+   But the *first* statement in the ``foreach`` clause may only *fail* once.
+   When that happens, the whole rule fails and the show's over for this rule!
+
+So running the ``grand_father_son`` rule results in addition of these three
+facts::
+
+    9  father_son(thomas, david, (grand))
+    10 father_son(frederik, bruce, (grand))
+    11 father_son(hiram, thomas, (grand))    (this is the one we skipped)
+
+Step 3: Great_grand_father_son
+==============================
+
+Finally, we want to add great(...) grand son-father relationships.  We have
+a final rule for this::
+
+    12  great_grand_father_son
+    13      foreach
+    14          family1.father_son($father, $gg_son, ())
+    15          family1.father_son($gg_father, $father, ($prefix1, *$rest_prefixes))
+    16      assert
+    17          family1.father_son($gg_father, $gg_son,
+                                    (great, $prefix1, *$rest_prefixes))
+
+.. note::
+
+   Note how the $prefixes for the statement on line 15 are specified as
+   ``($prefix1, *$rest_prefixes)``, rather than just ``$prefix``.
+   This is done so that it does *not* match ``()``.  (But it will still match
+   ``(grand)`` by binding ``$rest_prefixes`` to ``()``).
+
+This is the only rule that can be recursive.  As this rule asserts_ new facts_,
+those facts may be used by the same rule (by matching the statement on line
+15) to produce even more great, great, ... ``father_son`` relationships.
+
+Recursive Rules
+---------------
+
+Running this rule normally will assert the following two facts::
+
+    12 father_son(frederik, david, (great, grand))
+    13 father_son(hiram, bruce, (great, grand))
+
+But, since these facts may also be used by the same rule (on line 15), Pyke
+checks each one by trying to run the rule again just for that new fact.
+
+Trying this for the first new fact: ``father_son(frederik, david,
+(great, grand))`` fails to find anything because ``david`` is not a father.
+
+Trying this for the second new fact: ``father_son(hiram, bruce, (great,
+grand))`` results in one more new fact::
+
+    14 father_son(hiram, david, (great, great, grand))
+
+Now this last new fact is tried again with this rule, which fails again
+because ``david`` is not a father.
+
+So at this point Pyke is finished with this rule.  The rule ended up firing
+three times, asserting::
+
+    12 father_son(frederik, david, (great, grand))
+    13 father_son(hiram, bruce, (great, grand))
+    14 father_son(hiram, david, (great, great, grand))
+
+
+Running the Example
+===========================
+
+.. This code is hidden.  It will add '' to sys.path, change to the doc.examples
+   directory and store the directory path in __file__ for the code section
+   following:
+   >>> import sys
+   >>> if '' not in sys.path: sys.path.insert(0, '')
+   >>> import os
+   >>> os.chdir("../../../examples")
+   >>> __file__ = os.getcwd()
+
+These rules could be run as follows:
+
+    >>> from pyke import knowledge_engine
+    >>> engine = knowledge_engine.engine(__file__)
+    >>> engine.activate('fc_related')     # This is where the rules are run!
+    >>> engine.get_kb('family1').dump_specific_facts()
+    father_son('bruce', 'david', ())
+    father_son('thomas', 'bruce', ())
+    father_son('frederik', 'thomas', ())
+    father_son('hiram', 'frederik', ())
+    father_son('thomas', 'david', ('grand',))
+    father_son('frederik', 'bruce', ('grand',))
+    father_son('hiram', 'thomas', ('grand',))
+    father_son('frederik', 'david', ('great', 'grand'))
+    father_son('hiram', 'bruce', ('great', 'grand'))
+    father_son('hiram', 'david', ('great', 'great', 'grand'))
+
+
+.. _Run the Example: `Running the Example`_
+
+

@@ -1,0 +1,27 @@
+Metadata-Version: 1.0
+Name: pyke
+Version: 1.1.1
+Summary: Python Knowledge Engine and Automatic Python Program Generator
+Home-page: http://sourceforge.net/projects/pyke
+Author: Bruce Frederiksen
+Author-email: dangyogi@gmail.com
+License: MIT License
+Download-URL: http://downloads.sourceforge.net/pyke/pyke-1.1.1.zip
+Description: 
+                Both forward-chaining and backward-chaining rules (which may include
+                python code) are compiled into python. Can also automatically assemble
+                python programs out of python functions which are attached to
+                backward-chaining rules.
+            
+Keywords: expert system forward backward chaining backtracking plans
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Topic :: Software Development :: Code Generators
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
+Classifier: Topic :: Internet :: Log Analysis

@@ -1,0 +1,135 @@
+.. $Id: proving_goals.txt 1c77af709502 2010-03-10 mtnyogi $
+.. 
+.. Copyright © 2010 Bruce Frederiksen
+.. 
+.. Permission is hereby granted, free of charge, to any person obtaining a copy
+.. of this software and associated documentation files (the "Software"), to deal
+.. in the Software without restriction, including without limitation the rights
+.. to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+.. copies of the Software, and to permit persons to whom the Software is
+.. furnished to do so, subject to the following conditions:
+.. 
+.. The above copyright notice and this permission notice shall be included in
+.. all copies or substantial portions of the Software.
+.. 
+.. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+.. IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+.. FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+.. AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+.. LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+.. OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+.. THE SOFTWARE.
+
+restindex
+    crumb: Proving Goals
+    page-description:
+        Using Pyke's API to prove goals from your Python program.
+    /description
+    format: rest
+    encoding: utf8
+    output-encoding: utf8
+    include: yes
+    initialheaderlevel: 2
+/restindex
+
+uservalues
+    filedate: $Id: proving_goals.txt 1c77af709502 2010-03-10 mtnyogi $
+/uservalues
+
+===================================
+Proving Goals
+===================================
+
+.. this code is hidden and will set __file__ to the doc/examples directory.
+   >>> import os
+   >>> __file__ = \
+   ...   os.path.join(os.path.dirname(os.path.dirname(os.getcwd())),
+   ...                'examples')
+   >>> from pyke import knowledge_engine
+   >>> my_engine = knowledge_engine.engine(__file__)
+   >>> my_engine.add_universal_fact('family', 'son_of', ('bruce', 'thomas'))
+   >>> my_engine.add_universal_fact('family', 'son_of', ('david', 'bruce'))
+   >>> my_engine.activate('bc_related0')
+
+Though Pyke has the capability to return multiple answers to a single goal,
+often you just want the first answer:
+
+*some_engine*.prove_1_goal(goal, \*\*args)
+    ``goal`` is a Pyke goal (as a string).  This may include `pattern
+    variables`_ (which start with a '$').
+
+    >>> my_engine.prove_1_goal('bc_related0.father_son(thomas, david, $depth)')
+    ({'depth': ('grand',)}, None)
+
+    Returns the first proof found as a 2-tuple: a dict of bindings for the
+    pattern variables, and a plan_.  The plan is ``None`` if no plan was
+    generated; otherwise, it is a Python function as described here__.
+
+.. __: other_functions.html#running-and-pickling-plans
+
+    Args must be specified as keyword arguments and are set as the value of
+    the corresponding pattern variable.
+
+    >>> vars, plan = \
+    ...   my_engine.prove_1_goal('bc_related0.father_son($father, $son, $depth)',
+    ...                          father='thomas',
+    ...                          son='david')
+    >>> sorted(vars.items(), key=lambda item: item[0])
+    [('depth', ('grand',)), ('father', 'thomas'), ('son', 'david')]
+
+    Prove_1_goal raises ``pyke.knowledge_engine.CanNotProve`` if no proof is
+    found:
+
+    >>> my_engine.prove_1_goal('bc_related0.father_son(thomas, bogus, $depth)')
+    Traceback (most recent call last):
+        ...
+    pyke.knowledge_engine.CanNotProve: Can not prove bc_related0.father_son(thomas, bogus, $depth)
+
+*some_engine*.prove_goal(goal, \*\*args)
+    This returns a context manager for a generator yielding 2-tuples, as
+    above.  Unlike ``prove_1_goal`` it does not raise an exception if no
+    proof is found:
+
+    >>> from __future__ import with_statement
+
+    >>> with my_engine.prove_goal(
+    ...        'bc_related0.father_son(thomas, $son, $depth)') as gen:
+    ...     for vars, plan in gen:
+    ...         print(vars['son'], vars['depth'])
+    bruce ()
+    david ('grand',)
+
+    Like ``prove_1_goal``, above, `pattern variables`_ in the goal_ may be
+    specified with keyword arguments:
+
+    >>> with my_engine.prove_goal(
+    ...        'bc_related0.father_son($father, $son, $depth)',
+    ...        father='thomas') as gen:
+    ...     for vars, plan in gen:
+    ...         print(vars['son'], vars['depth'])
+    bruce ()
+    david ('grand',)
+
+Compiling Goals at Program Startup
+==================================
+
+Similar to Python's regular expression library, ``re``, you may compile your
+goal statements once at program startup:
+
+    >>> from pyke import goal
+
+    >>> my_goal = goal.compile('bc_related0.father_son($father, $son, $depth)')
+
+Then use ``my_goal.prove_1`` and ``my_goal.prove`` as many times as you'd
+like:
+
+    >>> vars, plan = my_goal.prove_1(my_engine, father='thomas', son='david')
+    >>> sorted(vars.items(), key=lambda item: item[0])
+    [('depth', ('grand',)), ('father', 'thomas'), ('son', 'david')]
+
+    >>> with my_goal.prove(my_engine, father='thomas') as gen:
+    ...     for vars, plan in gen:
+    ...         print(vars['son'], vars['depth'])
+    bruce ()
+    david ('grand',)
+

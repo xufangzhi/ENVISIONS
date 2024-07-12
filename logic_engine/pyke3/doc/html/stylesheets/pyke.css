@@ -1,0 +1,489 @@
+/* css file for pyke content pages. http://pyke.sourceforge.net.
+*/
+
+/***********************************
+ 
+ Ids used:
+
+ #body                  -- <tbody>
+ #body-tr               -- <tr>
+ #copyright             -- <td>
+ #crumb-left            -- <th>
+ #crumb-line            -- <th>
+ #crumb-right           -- <th>
+ #foot2                 -- <tr>
+ #foot                  -- <tfoot>
+ #header1               -- <tr>
+ #header2               -- <tr>
+ #header                -- <th>
+ #icons                 -- <div>
+ #last-modified         -- <div>
+ #left-nav-div          -- <div>
+ #left-nav              -- <td>
+ #main                  -- <div>
+ #main-td               -- <td>
+ #nav                   -- <div>
+ #page-table            -- <table>
+ #return-to-top         -- <div>
+ #right-nav-div         -- <div>
+ #right-nav             -- <td>
+ #startcontent          -- <a name=> tag, has no contents
+
+ ***********************************/
+
+/***********************************
+ 
+ Classes used:
+
+ -- these may be combined:
+ .docutils               -- <dl> <table> <tt>
+ .literal                -- <tt>
+
+ -- these may be combined:
+ .arabic                 -- <ol>
+ .simple                 -- <ol> <ul>
+
+ .doctest-block          -- <pre>
+ .document               -- <div>
+ .head                   -- <thead>
+ .literal-block          -- <pre>
+ .nav-branch             -- <div>
+ .normal-nav             -- <div>
+ .pre                    -- <span>    only inside <tt class="docutils literal">
+ .right-item             -- <div>
+ .section                -- <div>
+ .subtitle               -- <h2>
+ .title                  -- <h1>
+ .title-nav              -- <div>
+
+ ***********************************/
+
+@import url("rest.css");
+@import url("pysrc.css");
+
+table {
+    border-collapse: collapse;
+}
+
+table.table-offset {
+    margin-left: 10px;
+    margin-right: auto;
+    margin-bottom: 20px;
+}
+
+p, td, li, ul, ol, h1, h2, h3, h4, h5, h6  {
+    font-family: arial, helvetica, geneva, sans-serif; 
+}
+
+#main h1, #main h2, #main h3, #main h4, #main dl, #main p {
+    padding:0 10px;
+}
+
+#main h1 {
+    padding:0 10px;
+}
+
+#main a[href] { 
+    font-weight:bold;
+    border-bottom: 1px dotted black;
+    text-decoration: none;
+}
+
+/****
+#main h2 a {border-bottom: none;}
+#main h3 a {border-bottom: none;}
+#main h4 a {border-bottom: none;}
+ ****/
+
+#main a.toc-backref {border-bottom: none;}
+
+#main h1, #main h2, #main h3, #main h4, #main h5 {
+    color: #545D4D;
+}
+
+#main h1.title, #main h2.subtitle {
+    color: #00478E;
+    text-decoration: none;
+}
+
+#main h1 {
+    font-size: 25px;
+    text-decoration: underline;
+    /* border-bottom: 1px solid #00478E; */
+}
+
+#main h2 {
+    font-size: 21px;
+}
+
+#main h3 {
+    font-size: 17px;
+}
+
+#main h4 {
+    font-size: 13px;
+}
+
+.title {
+    text-align: center;
+    padding: 15px;
+    max-width: 80%;
+    margin: 20px auto;
+}
+
+#main h1.title {
+    padding-top: 2px;
+    padding-bottom: 0px;
+    margin-bottom: 16px;
+    font-size: 20pt;
+}
+
+#main h1.title + h2.subtitle {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    margin-top: -8px;
+    margin-bottom: 16px;
+}
+
+.title img {
+    display: block;
+    margin: 20px auto;
+}
+
+hr {text-align: center;}
+
+body {
+    background-color: #E0E3D8;
+    color: #000000;
+    margin: 0;
+ /* min-width:850px; */
+}
+
+a[href] {
+    color: #545D4D;
+}
+
+#main a[href]:visited {
+    color: #9080A0;
+    border-bottom: 1px dotted #98A;
+}
+
+#main a[href]:hover {
+    /* background-color: #d8d8d8; */
+    background-color: #e8e0ff;
+}
+
+#copyright {
+    background-color: #67735D;
+    text-align: center;
+    color: #fff;
+    font-size: 10px;
+    padding: 5px 0 5px 0;
+}
+
+#page-table {
+    font-family: arial, helvetica, geneva, sans-serif; 
+    width: 90%;
+    min-width: 1080px;
+    height: 100%;
+    margin: 0 auto;
+    border-collapse: collapse;
+    border: 1px solid #67735D;
+}
+
+#foot1 {
+    background-color: #86947A;
+}
+
+#header1, #header, #page-table, #header2, .head,
+#crumb-left, #crumb-line, #crumb-right, #nav {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    border-top-width: 0px;
+    border-bottom-width: 0px;
+    top: 0px;
+    bottom: 0px;
+}
+
+#crumb-line {
+    color: #fff;
+}
+
+#crumb-line a {
+    color: #fff;
+    text-decoration: none;
+}
+
+#crumb-line a:hover {
+    color: #000;
+    background-color: #EEE;
+}
+
+
+#header {
+    height: 77px;
+    background-color: #B4C0AA;
+    background-image: url("../images/header.gif");
+    background-position: 8px 0px;      /* was 8px 0px */
+    background-repeat: no-repeat;
+    text-align: center;
+    color: silver;
+    font-size:31pt;
+}
+
+#header img {
+    display: block;
+    margin: 15px auto 10px;
+}
+
+/* #header a[href]:hover{background:none;} */
+
+#crumb-left, #crumb-line, #crumb-right {
+    background-color:#67735D;
+    padding:3px;
+}
+
+
+#nav {
+    text-align:left;
+    font-size:10pt;
+    font-weight: bold;
+    padding-left: 8px;
+}
+#nav ul {
+    margin:0;
+    padding:0
+}
+#nav li {
+    display:inline;
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+
+#left-nav, #right-nav, #crumb-left, #crumb-right, #final-left, #final-right {
+    vertical-align: top;
+}
+
+#left-nav {
+    padding: 40px 10px 0 10px;
+    border-right: 1px solid #67735D;
+    border-left: 1px solid #67735D;
+    width: 170px;
+    min-width: 170px;
+    background-color: #CFD8C8;
+}
+
+#left-nav a {
+    font-size: 14px;
+    line-height: 27px;
+    padding: 4px;
+}
+
+#left-nav a, #right-nav a {
+    color: #606B57;
+}
+
+/* #left-nav a:visited, #right-nav a:visited { */
+#right-nav a:visited {
+    color: #809B87;
+}
+
+#left-nav a:hover {
+    background-color: #E2E2E2;
+    padding: 4px;
+}
+
+#right-nav a:hover {
+    background-color: #f2f2f2;
+}
+
+#right-nav {
+    padding: 10px 10px 0 10px;
+    border-right: 1px solid #67735D;
+    border-left: 1px solid #67735D;
+    width: 170px;
+    min-width: 170px;
+    background-color: #DEE5D9;
+    font-size: 13px;
+    line-height: 17px;
+}
+
+/* #left-nav, #right-nav, #left-nav-div, #right-nav-div { */
+#left-nav-div {
+    height: 330px;
+    top: 0px;
+    bottom: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    text-align: left;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+#left-nav-div {
+ /* padding-right: 4px; */
+}
+
+#icons {
+    padding: 80px 8px 20px 0;
+    font-size: 12px;
+    margin-top: 55px;
+}
+
+#icons a {
+    padding: 0;
+}
+
+#project-page {
+    margin-bottom: 15px;
+}
+
+#main-td { 
+    background-color: white;
+    padding: 10px;
+}
+
+#main, #main-td, .document {
+    vertical-align: top;
+    line-height: 20px;
+    font-size: 13px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+#document {
+    width: 100%;
+}
+
+pre.literal-block, pre.doctest-block {
+ /* margin: 1%; */
+    background-color: #eeeeee;
+    font-size: 11px;            /* was 11px */
+    line-height: 1.6;
+    border: thin black solid;
+    padding: 5px;               /* was 5px */
+}
+
+/* div around each directory in left nav */
+.nav-branch {
+    margin-left: 7px;
+}
+
+/* directories in left nav */
+.title-nav {
+    font-weight: bold;
+}
+
+/* files in left nav */
+.normal-nav {
+}
+
+#return-to-top {
+    padding: 20px 0 15px 15px;
+    font-size: 12px;
+}
+
+#last-modified {
+    text-align: center;
+    color: #000;
+    font-size: 10px;
+    padding: 7px 0 6px 0;
+}
+
+p {
+    margin: 0px 0 15px 0;
+}
+
+ol.simple, ul.simple {
+    margin-bottom: 18px;
+}
+
+#right-nav h3 {
+    font-family: Times New Roman;
+    font-size:18px;
+    color: #00478E;
+    font-weight:bold;
+    margin-top: 30px;
+    margin-bottom: 0;
+}
+
+#right-nav-div {
+    padding-right: 8px;
+    /* border-left: 2px solid black; */
+}
+
+.right-item {
+    padding-top: 10px;
+    padding-bottom: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.right-item p {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+/* FIX: not needed anymore
+#right-nav ul {
+    padding-left: 6px;
+}
+#right-nav li {
+    margin-top: 10px;
+}
+*/
+
+/* from default.css: */
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: 1px solid black ;
+  padding: 1em }
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+/* from rest.css: */
+div.attention, div.admonition, div.caution, div.danger, div.error, div.hint,
+div.important, div.note, div.tip, div.warning {
+  background-color: #C7D0C0;
+  padding: 3px;
+  width: 90%;
+}
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title  {
+  text-align: left;
+  font-size: 120%;
+  background-color:#97AB8D;
+  display: block;
+  margin: 0;
+}
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title {
+  color: #cc0000;
+  /* font-family was misspelled here... */
+  font-family: arial, helvetica, geneva, sans-serif;
+  font-size: 120%;
+  text-align: center;
+  background-color: #999999;
+  display: block;
+  margin: 0;
+}
+

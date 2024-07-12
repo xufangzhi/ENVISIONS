@@ -1,0 +1,299 @@
+1.1.1 RELEASE NOTES Apr 26, 2010
+================================
+
+This release has several bug fixes, and implements one small feature request.
+
+
+INCOMPATIBILITIES WITH 1.1 RELEASE:
+
+    - The run.py modules in the examples were renamed to driver.py so as not
+      to conflict with the "run" module in IDLE.
+
+FEATURE ENHANCEMENTS:
+
+    - Feature Request #2991566:
+      Automatically create fact bases mentioned in fc rules
+
+BUGS FIXED:
+
+The following bugs have been fixed:
+
+    - Bug #2991564: IndentationError: unindent does not match any outer indentat
+        - this fixed an obscure bug in forward-chaining rules with a forall
+          clause that has a require clause ending with a python premise.
+    - Bug #2991558: AttributeError: 'module' object has no attribute 'flags'
+        - this fixed a problem running Pyke on Python 2.5
+    - Bug #2990998: "run" module also appears in IDLE tool.
+        - it's not clear whether this fixed any problems or not w.r.t. IDLE,
+          but just in case...
+        - Also note that a bug has been reported against IDLE which prevents
+          using the __file__ idiom with the Run -> Run Module (F5) command
+          from the IDLE editor window.  See http://bugs.python.org/issue8515
+          for the status of this bug and for a patch that was submitted.
+    - Bug #2990993: Pyke goes into infinite loop on Windows
+        - this fixed a problem running Pyke on Windows
+
+
+1.1 RELEASE NOTES Mar 11, 2010
+==============================
+
+This release has a whole new interface from your Python program into Pyke.
+This was a result of attending the mython sprint at PyCon 2010, and thanks go
+to Jon Riehl of the mython project (see mython.org) for giving me the idea for
+this.
+
+The two big changes are:
+
+1.  Redid the engine constructor to make it easier to specify where your
+    Pyke source files are.  Now you can generally just do
+    knowledge_engine.engine(__file__) without worrying about your PYTHONPATH.
+
+2.  Redid the engine.prove methods to take a goal statement as a string in
+    Pyke syntax.  This lets you use fully general patterns without having to
+    create the Pyke pattern objects or create Pyke contexts.
+
+The Using Pyke section of the documentation has been completely re-written.
+
+Nothing in the .kfb, .krb or .kqb files has changed.
+
+
+INCOMPATIBILITIES WITH 1.0.4 RELEASE:
+
+    - knowledge_engine.engine constructor path argument has changed.  See
+      Using Pyke => Creating an Engine web page.
+    - engine.prove_1, engine.prove_n and engine.prove have been deprecated in
+      favor of new engine.prove_goal and engine.prove_1_goal methods.  See the
+      Using Pyke => Proving Goals page.
+    - You now need doctest-tools version 1.0a3 to run the unit tests.
+    - Renamed all example test.py files to run.py (to not interfere with
+      Python's test package).
+
+FEATURE ENHANCEMENTS:
+
+    - Added new engine.prove_goal and engine.prove_1_goal to replace the
+      engine.prove_1, engine.prove_n and engine.prove methods, which are now
+      deprecated.
+    - Also can compile goal statements at module load time with new
+      goal.compile (much like re.compile).
+    - Redid how paths to Pyke source files are specified in engine
+      constructor.  Now you can generally just call
+      knowledge_engine.engine(__file__) and not have to worry about what's on
+      your PYTHONPATH.
+    - Moved example .tst files into Test/examples so that they are not
+      cluttering up the examples directories.
+    - Added blank lines between methods, deleted doctest calls (now using
+      doctest-tools instead).
+    - Rewrote the Using Pyke section of the documentation.
+
+BUGS FIXED:
+
+The following bugs have been fixed:
+
+    - Fixed bug #2913426: KFB Breaks Without Trailing Newline
+      This was also a problem with KRB files.
+    - Fixed bug #2968963: installation creates extraneous pyke dir.
+
+
+1.0.4 RELEASE NOTES Nov 4, 2009
+===============================
+
+This release has one bug fix in it.  The big new things are:
+
+1. The release packaging and installation have been redone.  There is now only
+   one source package.  This includes the HTML documentation and examples.
+   Use the standard "python setup.py install" to install it.
+
+2. There is now a separate Pyke source zip file for Python 3.
+
+Please report bugs to http://sourceforge.net/projects/pyke to:
+
+    Support => Bugs (under Project Tracker)
+
+
+INCOMPATIBILITIES WITH 1.0.3 RELEASE:
+
+    - none.  But Pyke will want to recompile your knowledge base (.krb, .kfb,
+      .kqb) files when you install this release (as usual).  This release
+      introduces a new compiler_version to eliminate doing this when nothing
+      in the compile process has changed in the release.
+
+
+FEATURE ENHANCEMENTS:
+
+    - Changed the release files from tarball to zip format to make it easier
+      for Windows users.
+    - Eliminated the separate tarballs for the HTML documentation and
+      examples.  These are now included in the source zip file.
+    - Eliminated the dependency on easy_install (setuptools) for installation.
+      You can still use easy_install, but I no longer release separate egg
+      files.  Use the source zip file instead.
+    - Added a separate source zip file for the version of Pyke that runs on
+      Python 3.
+    - Changed the unit test harness to use doctest-tools (see
+      http://code.google.com/p/doctest-tools/).  Now the top-level test script
+      is called "testpyke" (was "testall").
+    - Combined RELEASE_NOTES for separate releases into one file.  (Was
+      separate files for each release).
+    - Added a .txt suffix to all README files.
+    - Renamed "copyright_license" to "LICENSE".
+    - Added "About Pyke" -> "Modifying Pyke" page to HTML documentation.
+    - Added a separate compiler_version to avoid unnecessarily recompiling the
+      knowledge bases (.krb, .kfb, .kqb files) when a new Pyke release is
+      installed with no compiler changes in that release.
+
+
+BUGS FIXED:
+
+The following bugs have been fixed:
+
+    - Fixed bug #2881969: "copyright_license" missing from 1.0.3 tarball
+
+
+1.0.3 RELEASE NOTES Oct 19, 2009
+================================
+
+This release has two bug fixes in it.  The big thing is that the source code
+repository has been moved from Subversion to Mercurial.  This is the first
+release under Mercurial.
+
+Please report bugs to http://sourceforge.net/projects/pyke at either:
+
+    forum => help
+ or tracker => bugs
+
+
+INCOMPATIBILITIES WITH 1.0.2 RELEASE:
+
+    - The source code repository has been moved from subversion to mercurial
+      to make it easier for people to contribute to the project.  If you have
+      the source code checked out under subversion, and want to stay abreast
+      of developments or contribute your changes back to the project, you will
+      need to switch to Mercurial.
+
+
+FEATURE ENHANCEMENTS:
+
+    - Moved the source code repository from Subversion to Mercurial!
+    - Did some enhancements to examples/web_framework/web_framework.tst to
+      better report server errors.
+    - Added examples/web_framework/director.html as another example html
+      template.
+    - Upgraded to 3.3 version of PLY.
+
+
+BUGS FIXED:
+
+The following bugs have been fixed:
+
+    - Fixed bug #2881934: py2exe doesn't work with Pyke
+    - Applied patch #2787699: hash function returns void
+
+
+1.0.2 RELEASE NOTES Apr 21, 2009
+================================
+
+This fixes a few more bugs in Pyke and has several very minor enhancements.
+
+Please report bugs to http://sourceforge.net/projects/pyke at either:
+
+    forum => help
+ or tracker => bugs
+
+
+INCOMPATIBILITIES WITH 1.0.1 RELEASE:
+
+    <none>
+
+
+FEATURE ENHANCEMENTS:
+
+    - Added zip_safe to setup.py so that the Pyke egg isn't unzipped when it
+      is installed.
+    - Added mention in the using_pyke.txt document that Pyke supports source
+      package directories in zipped egg files.
+    - Upgraded to 3.2 version of PLY.
+    - Upgraded to 0.6c9 version ez_setup.py.
+
+
+BUGS FIXED:
+
+The following bugs have been fixed:
+
+    - Fixed bug 2729315: IndexError: list index out of range.
+    - Fixed an error in the logic_programming/rules/backward_chaining.txt
+      documentation file (reported by Carlo, aka Mr.SpOOn).
+
+
+1.0.1 RELEASE NOTES Apr 2, 2009
+================================
+
+This fixes a few bugs in Pyke and cleans up the error reporting in the
+web_framework test script.
+
+Please report bugs to http://sourceforge.net/projects/pyke at either:
+
+    forum => help
+ or tracker => bugs
+
+
+INCOMPATIBILITIES WITH 1.0 RELEASE:
+
+    <none>
+
+
+FEATURE ENHANCEMENTS:
+
+    - Changed the test script for the web_framework example to better report
+      errors from the server process.
+    - Misc minor code changes for Python3.0 support.
+
+
+BUGS FIXED:
+
+The following bugs have been fixed:
+
+    - Fixed bug 2709888: Strange behavior with two iterable.
+    - Fixed an error in the examples/web_framework/README file.
+    - Fixed testdocs bug which required wxPython to be installed to run the
+      test (even though the test doesn't use wxPython).
+
+
+1.0 RELEASE NOTES Mar 18, 2009
+================================
+
+This fixes two bugs in Pyke and is Pyke's first full release version!
+
+Please report bugs to http://sourceforge.net/projects/pyke at either:
+
+    forum => help
+ or tracker => bugs
+
+
+INCOMPATIBILITIES WITH 0.7 RELEASE:
+
+    <none>
+
+
+FEATURE ENHANCEMENTS:
+
+Added the following features:
+
+    - Changed the .krb parser to iterate, rather than recurse, on the list of
+      rules in the file so that it doesn't hit the recursion limit on large
+      .krb files.
+    - Now including a copy of PLY with the Pyke sources so that I can release
+      the compiled pyke/krb_compiler/*_tables.py files with Pyke and not have
+      PLY try to recompile them (which generally gets a permission violation
+      because normal users can't write the Python's site-packages directory).
+    - Added the option to pass any module within the package to identify the
+      source package to knowledge_engine.engine().
+
+
+BUGS FIXED:
+
+The following bugs have been fixed:
+
+    - Fixed bug 2569021: string literals don't work in .kfb files.
+    - Added mention of 'engine' variable within the rules documentation to fix
+      bug 2588191.
+

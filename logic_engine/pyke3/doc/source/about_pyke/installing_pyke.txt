@@ -1,0 +1,202 @@
+.. $Id: installing_pyke.txt 70f7f9ee163a 2010-03-11 mtnyogi $
+.. 
+.. Copyright © 2007-2009 Bruce Frederiksen
+.. 
+.. Permission is hereby granted, free of charge, to any person obtaining a copy
+.. of this software and associated documentation files (the "Software"), to deal
+.. in the Software without restriction, including without limitation the rights
+.. to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+.. copies of the Software, and to permit persons to whom the Software is
+.. furnished to do so, subject to the following conditions:
+.. 
+.. The above copyright notice and this permission notice shall be included in
+.. all copies or substantial portions of the Software.
+.. 
+.. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+.. IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+.. FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+.. AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+.. LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+.. OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+.. THE SOFTWARE.
+
+restindex
+    crumb: Installing Pyke
+    page-description:
+        System Requirements and installing Pyke.
+    /description
+    format: rest
+    encoding: utf8
+    output-encoding: utf8
+    include: yes
+    initialheaderlevel: 2
+/restindex
+
+uservalues
+    filedate: $Id: installing_pyke.txt 70f7f9ee163a 2010-03-11 mtnyogi $
+/uservalues
+
+===================================
+Installing Pyke
+===================================
+
+Index to This Page
+=======================
+
+* Licensing_
+* `System Requirements`_
+
+  * `Other Required Packages`_
+
+* Installation_
+* `Run the Examples`_
+* `Viewing the HTML Documentation`_
+* `Repository Directory Structure`_
+
+
+Licensing
+================
+
+This software is licensed under the MIT license::
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in
+    all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+    THE SOFTWARE.
+
+
+System Requirements
+====================
+
+Pyke is 100% Python, so it should run on any platform supported by Python.
+So all you'll need is `Python`_ 2.5, 2.6 or 3.1.
+
+Other Required Packages
+-----------------------
+
+No other packages are required to develop, run and distribute an application
+using Pyke.  But there are package requirements to do the following additional
+things:
+
+.. table::
+   :class: table-offset
+
+   +--------------------------------+------------------+------------------+
+   | If you want to                 | you also need    | minimum version  |
+   +================================+==================+==================+
+   | run the web_framework example  | HTMLTemplate_    | 1.5              |
+   +--------------------------------+------------------+------------------+
+   | run the unit tests             | `doctest-tools`_ | 1.0a3            |
+   +--------------------------------+------------------+------------------+
+   | rebuild the html documentation | rest2web_        | 0.5              |
+   +                                +------------------+------------------+
+   |                                | docutils_        | 0.4.1            |
+   +--------------------------------+------------------+------------------+
+
+If the docutils package is not part of your standard Python installation,
+there is probably a package for it in the package index for your Linux
+distribution.
+
+All of the other packages can be installed as the administrator using
+pip_ or easy_install_.  For example::
+
+    # pip install HTMLTemplate
+
+
+Installation
+============
+
+The source code for the latest release can be found on the `Pyke project
+download page`_ as ``pyke-<release>.zip`` (for Python2) and
+``pyke3-<release>.zip`` (for Python3).  After unzipping these, go into the
+directory and run::
+
+    $ python setup.py build
+
+And then as administrator, run::
+
+    # python setup.py install
+
+The sources include a complete copy of the project directory, including the
+documentation, unit tests, and examples.
+
+If you want to clone the source code repository to contribute to the project
+development, or to use the latest developer version, read `Modifying Pyke`_.
+
+Run the Examples
+================
+
+There are several examples that are contained in the source directory.  Each
+example is in it's own subdirectory under the ``examples`` subdirectory, and
+each has it's own README.txt file that explains how to run it.
+
+The web_framework example requires the HTMLTemplate_ package, version 1.5 or
+later.  This can be installed as administrator with pip or easy_install::
+
+    # pip install HTMLTemplate
+
+See also Examples_.
+
+Viewing the HTML Documentation
+==============================
+
+This HTML documentation may be viewed directly from your hard drive.  The HTML
+files are in the ``doc/html`` directory.  Start with ``doc/html/index.html``.
+
+
+Repository Directory Structure
+==============================
+
+You'll see the following directories.
+
+* ``doc``
+
+  - the ``html`` directory has all of the HTML documentation ready to browse
+    off of your hard drive.  Start with doc/html/index.html.
+  - the ``source`` directory has all of the sources that were used to
+    generated the HTML documentation.  See `Rebuilding the HTML Documentation`_.
+  - the ``examples`` directory just has a copy of the examples used by the
+    .txt files in the ``source`` directory so that the doctests will work on
+    the ``source`` directory.  You should be able to skip this unless you
+    change an example in one of the ``source`` files.
+  - ``cheatsheets`` are a collection of text files with notes on various tools
+    used by Pyke, and processes used to maintain Pyke.
+
+* ``examples``
+
+  - There are several examples.  Start with *family_relations*.  Look at the
+    ``README.txt`` file for each example to see how to run it.  See also,
+    Examples_.
+
+* ``experimental``
+
+  - This is a catch-all directory for various ideas that have been tried, but
+    that have not been incorporated into Pyke.  You can safely skip over this
+    directory...
+
+* ``pyke``
+
+  - This is the top-level Python package directory for the Python sources.
+    This needs to be installed into a directory on your ``PYTHONPATH``.
+    The sources for the compilers are in the ``krb_compiler`` subdirectory,
+    which is expected to be a subpackage of ``pyke``.
+
+* ``Test``
+
+  - This is where the unit test scripts are stored.  These use Python's
+    doctest_ package.  Each test file has a .tst suffix.
+  - See `Running Unit Tests`_.
+

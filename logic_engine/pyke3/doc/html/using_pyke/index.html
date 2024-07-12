@@ -1,0 +1,260 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <title>Using Pyke</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../stylesheets/pyke.css" type="text/css" />
+</head>
+<body>
+  <table id="page-table">
+    <thead class="head">
+        <tr id="header1"><th id="header" colspan="3">
+            &nbsp;
+        </th></tr>
+        <tr id="header2">
+          <th id="crumb-left"></th>
+          <th id="crumb-line">
+            <div id="nav">
+              <ul>
+                  <li><a href="../index.html">Home</a></li>
+<li>&gt;</li>
+<li>Using Pyke</li>
+
+              </ul>
+            </div>
+          </th>
+          <th id="crumb-right"></th>
+        </tr>
+    </thead>
+
+    <tbody id="body">
+        <tr id="body-tr">
+          <td id="left-nav">
+            <div id="left-nav-div">
+              
+<div class="title-nav"><a href="../index.html">Home</a></div><div class="nav-branch">
+<div class="normal-nav"><a href="../about_pyke/index.html">About Pyke</a></div>
+<div class="normal-nav"><a href="../logic_programming/index.html">Logic Programming</a></div>
+<div class="normal-nav"><a href="../knowledge_bases/index.html">Knowledge Bases</a></div>
+<div class="normal-nav"><a href="../pyke_syntax/index.html">Pyke Syntax</a></div>
+
+<div class="title-nav"><a href="index.html">Using Pyke</a></div><div class="nav-branch">
+<div class="normal-nav"><a href="creating_engine.html">Creating an Engine</a></div>
+<div class="normal-nav"><a href="adding_facts.html">Asserting Facts</a></div>
+<div class="normal-nav"><a href="proving_goals.html">Proving Goals</a></div>
+<div class="normal-nav"><a href="other_functions.html">Other functions</a></div>
+</div>
+<div class="normal-nav"><a href="../examples.html">Examples</a></div>
+<div class="normal-nav"><a href="../PyCon2008-paper.html">PyCon 2008 Paper</a></div>
+</div>
+
+            </div>
+            <div id="icons">
+                <div id="project-page">
+                  <a href="http://sourceforge.net/projects/pyke/">Pyke Project Page</a>
+                </div>
+                Please Make a Donation:<br />
+                <a href="http://sourceforge.net/donate/index.php?group_id=207724">
+                  <img src="http://images.sourceforge.net/images/project-support.jpg"
+                       width="88" height="32" border="0"
+                       alt="Support This Project" /> </a> <br /><br />
+                Hosted by: <br />
+                <a href="http://sourceforge.net/projects/pyke">
+                  <img src="http://sflogo.sourceforge.net/sflogo.php?group_id=207724&amp;type=14"
+                       width="150" height="40"
+                       alt="Get Python Knowledge Engine (PyKE) at SourceForge.net. Fast, secure and Free Open Source software downloads" /></a>
+            </div>
+          </td>
+          <td id="main-td">
+            <div id="main">
+                <a name="startcontent" id="startcontent"></a>
+                <div class="document" id="using-pyke">
+<h1 class="title">Using Pyke</h1>
+<p>This describes how to call Pyke from your Python program.</p>
+<div class="section" id="getting-started">
+<h2>Getting Started</h2>
+<!-- this code is hidden and will set __file__ to the doc/examples directory.
+>>> import os
+>>> __file__ = \
+...   os.path.join(os.path.dirname(os.path.dirname(os.getcwd())),
+...                'examples') -->
+<p>The simplest use of Pyke involves three steps:</p>
+<p><a class="reference external" href="creating_engine.html">Create an engine</a> object.</p>
+<blockquote>
+<pre class="doctest-block">
+&gt;&gt;&gt; from pyke import knowledge_engine
+</pre>
+<pre class="doctest-block">
+&gt;&gt;&gt; my_engine = knowledge_engine.engine(__file__)
+</pre>
+<p>This step compiles the Pyke source files, if out of date, and loads the
+<a class="reference external" href="../knowledge_bases/index.html">knowledge bases</a>.</p>
+<p>There are three kinds of Pyke source files:</p>
+<ol class="arabic simple">
+<li><a class="reference external" href="../pyke_syntax/kfb_syntax.html">.kfb files</a> define <a class="reference external" href="../knowledge_bases/fact_bases.html">fact bases</a>, which are compiled into .fbc pickle
+files.</li>
+<li><a class="reference external" href="../pyke_syntax/krb_syntax/index.html">.krb files</a> define <a class="reference external" href="../knowledge_bases/rule_bases.html">rule bases</a>, which are compiled into 1 to 3 .py
+Python source files.</li>
+<li><a class="reference external" href="../pyke_syntax/kqb_syntax.html">.kqb files</a> define <a class="reference external" href="../knowledge_bases/question_bases.html">question bases</a>, which are compiled into .qbc
+pickle files.</li>
+</ol>
+<p>See <a class="reference external" href="creating_engine.html">Creating an Inference Engine</a> to control where the compiled files
+are written, load knowledge bases from multiple directories, distribute
+your application without your knowledge base files, or distribute using
+egg files.</p>
+</blockquote>
+<p>Activate <a class="reference external" href="../knowledge_bases/rule_bases.html">rule bases</a>.</p>
+<blockquote>
+<pre class="doctest-block">
+&gt;&gt;&gt; my_engine.activate('bc_related')
+</pre>
+<p>You may activate one rule base for each <a class="reference external" href="../knowledge_bases/rule_bases.html#rule-base-categories">rule base category</a>.  Simply
+pass multiple arguments to <tt class="docutils literal">activate</tt>.</p>
+<div class="note">
+<p class="first admonition-title">Note</p>
+<p class="last">Even if you only have one rule base, you must still activate it.</p>
+</div>
+<p>This is when the <a class="reference external" href="../logic_programming/rules/forward_chaining.html">forward-chaining rules</a> are run.</p>
+</blockquote>
+<p><a class="reference external" href="proving_goals.html">Prove</a> <a class="reference external" href="../logic_programming/rules/backward_chaining.html">goal</a>.</p>
+<blockquote>
+<pre class="doctest-block">
+&gt;&gt;&gt; my_engine.prove_1_goal('bc_related.father_son(bruce, $son, ())')
+({'son': 'david'}, None)
+</pre>
+<p>The goal might be met by simply matching an already known <a class="reference external" href="../knowledge_bases/fact_bases.html#facts">fact</a>, or
+through the use of <a class="reference external" href="../logic_programming/rules/backward_chaining.html">backward-chaining rules</a>.</p>
+<p>Then if you want to prove another goal, you can just repeat the last step.
+In this case, the <a class="reference external" href="../logic_programming/rules/forward_chaining.html">forward-chaining rules</a> are only run once and all goals
+operate against the same set of known facts.</p>
+<pre class="doctest-block">
+&gt;&gt;&gt; my_engine.prove_1_goal('bc_related.father_son(thomas, $grandson, (grand))')
+({'grandson': 'david'}, None)
+</pre>
+<p>See <a class="reference external" href="proving_goals.html">Proving Goals</a> to pass different arguments into goals, compile the
+goal statements once in advance, and to retrieve multiple answers for a
+goal.</p>
+</blockquote>
+</div>
+<div class="section" id="dynamically-asserting-facts">
+<h2>Dynamically Asserting Facts</h2>
+<p>To dynamically <a class="reference external" href="adding_facts.html">assert</a> <a class="reference external" href="../knowledge_bases/fact_bases.html#facts">facts</a> within your Python program, a new step is
+added:</p>
+<blockquote>
+<p>Create the engine object:</p>
+<pre class="doctest-block">
+&gt;&gt;&gt; my_engine = knowledge_engine.engine(__file__)
+</pre>
+</blockquote>
+<p><a class="reference external" href="adding_facts.html">Assert</a> <a class="reference external" href="../knowledge_bases/fact_bases.html#facts">facts</a>.</p>
+<pre class="doctest-block">
+&gt;&gt;&gt; my_engine.assert_('family2', 'son_of', ('spike_the_dog', 'david'))
+</pre>
+<p>These facts must be asserted prior to activating the rule bases so that they
+are available to the <a class="reference external" href="../logic_programming/rules/forward_chaining.html">forward-chaining rules</a>.  This example shows asserting
+case specific facts that are deleted before running the next case (as shown
+in the next section, below).  But you can also assert universal facts that
+apply to all cases.  See <a class="reference external" href="adding_facts.html">Asserting New Facts</a> for more information.</p>
+<blockquote>
+<p>After asserting your facts, activate your rule bases and prove your goal
+as before:</p>
+<pre class="doctest-block">
+&gt;&gt;&gt; my_engine.activate('bc_related')
+&gt;&gt;&gt; my_engine.prove_1_goal('bc_related.father_son(bruce, $grandson, (grand))')
+({'grandson': 'spike_the_dog'}, None)
+</pre>
+</blockquote>
+</div>
+<div class="section" id="using-different-facts-for-different-cases">
+<h2>Using Different Facts for Different Cases</h2>
+<p>But if you want to prove goals against different sets of facts or using
+different rule bases, you need to <a class="reference external" href="index.html#using-different-facts-for-different-cases">reset</a> the Pyke engine:</p>
+<blockquote>
+<p>Only need this once:</p>
+<pre class="doctest-block">
+&gt;&gt;&gt; my_engine = knowledge_engine.engine(__file__)
+</pre>
+<p>First case, as before:</p>
+<pre class="doctest-block">
+&gt;&gt;&gt; my_engine.assert_('family2', 'son_of', ('spike_the_dog', 'david'))
+&gt;&gt;&gt; my_engine.activate('bc_related')
+&gt;&gt;&gt; my_engine.prove_1_goal('bc_related.father_son(bruce, $grandson, (grand))')
+({'grandson': 'spike_the_dog'}, None)
+</pre>
+</blockquote>
+<p>Reset the Pyke engine.</p>
+<pre class="doctest-block">
+&gt;&gt;&gt; my_engine.reset()
+</pre>
+<p>This erases all of the case specific facts that you asserted in step 2, as
+well as all of the facts asserted by the <a class="reference external" href="../logic_programming/rules/forward_chaining.html">forward-chaining rules</a>.</p>
+<p>It also deactivates all of the <a class="reference external" href="../knowledge_bases/rule_bases.html">rule bases</a>, so you'll need to call
+activate again after asserting your facts.</p>
+<blockquote>
+<p>Second case:</p>
+<pre class="doctest-block">
+&gt;&gt;&gt; my_engine.assert_('family2', 'son_of', ('felix_the_cat', 'david'))
+&gt;&gt;&gt; my_engine.activate('bc_related')
+&gt;&gt;&gt; my_engine.prove_1_goal('bc_related.father_son(bruce, $grandson, (grand))')
+({'grandson': 'felix_the_cat'}, None)
+</pre>
+</blockquote>
+<!-- ADD_LINKS MARKER -->
+</div>
+</div>
+
+                <!-- <div id="return-to-top">
+                       <a href="#">Return to Top</a>
+                     </div>
+                -->
+            </div>
+          </td>
+          <td id="right-nav">
+            <div id="right-nav-div">
+                <h3>More:</h3>
+<div class="right-item"><a href="creating_engine.html">Creating an Inference Engine Object</a><p>How to create a Pyke <em>inference engine</em> object.</p>
+</div>
+<div class="right-item"><a href="adding_facts.html">Asserting New Facts</a><p>How to dynamically assert new <em>facts</em> from your Python program.</p>
+</div>
+<div class="right-item"><a href="proving_goals.html">Proving Goals</a><p>Using Pyke's API to prove goals from your Python program.</p>
+</div>
+<div class="right-item"><a href="other_functions.html">Other Functions</a><p>Other miscellaneous functions available that you might be interested
+in, such as tracing rules and smart error tracebacks that show lines
+from your .krb files.</p>
+</div>
+
+            </div>
+          </td>
+        </tr>
+    </tbody>
+
+    <tfoot id="foot">
+        <tr id="foot2">
+          <td id="copyright" colspan="3">
+            Copyright &copy; 2007-2009 Bruce Frederiksen
+          </td>
+        </tr>
+    </tfoot>
+  </table>
+
+  <div id="last-modified">
+    Page last modified
+    Wed, Mar 10 2010.
+
+  </div>
+
+  <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ?
+                    "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost +
+        "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+  </script>
+  <script type="text/javascript">
+    try {
+      var pageTracker = _gat._getTracker("UA-6310805-1");
+      pageTracker._trackPageview();
+    } catch(err) {}
+  </script>
+</body>
+</html>
+

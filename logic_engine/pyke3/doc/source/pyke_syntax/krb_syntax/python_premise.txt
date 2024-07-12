@@ -1,0 +1,138 @@
+.. $Id: python_premise.txt 9c1b571b39ac 2009-02-15 mtnyogi $
+.. 
+.. Copyright © 2007-2008 Bruce Frederiksen
+.. 
+.. Permission is hereby granted, free of charge, to any person obtaining a copy
+.. of this software and associated documentation files (the "Software"), to deal
+.. in the Software without restriction, including without limitation the rights
+.. to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+.. copies of the Software, and to permit persons to whom the Software is
+.. furnished to do so, subject to the following conditions:
+.. 
+.. The above copyright notice and this permission notice shall be included in
+.. all copies or substantial portions of the Software.
+.. 
+.. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+.. IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+.. FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+.. AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+.. LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+.. OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+.. THE SOFTWARE.
+
+restindex
+    crumb: Python Premise
+    page-description:
+        The syntax of a *python_premise*.
+    /description
+    format: rest
+    encoding: utf8
+    output-encoding: utf8
+    include: yes
+    initialheaderlevel: 2
+/restindex
+
+uservalues
+    filedate: $Id: python_premise.txt 9c1b571b39ac 2009-02-15 mtnyogi $
+/uservalues
+
+=====================
+Python Premise Syntax
+=====================
+
+Python_premise
+==============
+
+::
+
+    python_premise ::= pattern '=' python_exp
+                     | pattern 'in' python_exp
+                     | 'check' python_exp
+                     | python_statements
+
+Each of these clauses results in a Python expression being executed.  Their
+meaning is as follows:
+
+pattern_ '=' python_exp
+    *python_exp* is evaluated and the result matched_ with pattern_.
+    If the result does not match, the clause fails.
+
+    The clause always fails on backtracking_, meaning that it only produces
+    a single result (contrasted with ``in``).
+pattern_ 'in' python_exp
+    *python_exp* is evaluated to produce a Python *iterable* and the first
+    element from the resulting iterable is matched_ with pattern_.  On
+    backtracking_, successive elements from the iterable are matched with
+    pattern_.  When the result is exhausted, the clause fails.
+
+    This has the effect of offering each element of the result, one at a
+    time, to the subsequent premise clauses.  Each element is thus acted upon
+    individually.
+'check' python_exp
+    *python_exp* is evaluated.  If the result is Python "true" the clause
+    succeeds, otherwise it fails.  The clause always fails on backtracking_.
+
+
+Python_statements
+===================
+
+::
+
+    python_statements ::= 'python' python_statement
+                        | 'python' NL INDENT
+                              {python_statement NL}
+                          DEINDENT
+
+This clause allows the inclusion of arbitrary Python statements in your
+rules_.  This premise always succeeds; and then fails on backtracking_.
+
+The current ``knowledge_engine`` object is available within python_statements
+as the variable called ``engine``.
+
+.. caution::
+
+   Always keep in mind the difference between `pattern variables`_ and
+   *Python variables*.  Pattern variables are always indicated with a ``$``
+   and are only bound to a value during inferencing.
+
+   #. Thus, a ``python_statement`` may not set a pattern variable.  Storing a
+      value computed by Python into a pattern variable can only be done using
+      the python_premise::
+
+          <pattern> = <some python expression>
+   
+   #. When a pattern variable is used within a Python expression or statement,
+      it must be `fully bound`_.
+
+   #. Python variables are not visible to the inference engine.  They are local
+      variables that are also not visible to Python code in other rules_ or
+      other invocations of the same rule.
+
+   #. Finally, Python variables in the `when clause`_ of a `backward-chaining
+      rule`_ are not visible to the Python code in the `with clause`_ of the
+      same rule.  (These end up in two different Python functions after the
+      `.krb file`_ is compiled).  So this won't work::
+
+          some_bc_rule
+              use some_goal(...)
+              when
+                  ...
+                  python x_list = <some python expression>
+                  ...
+              with
+                  for x in x_list: process(x)
+
+      In this case, assign the value of the Python variable to a pattern
+      variable in the when clause and then use that pattern variable in the
+      with clause::
+
+          some_bc_rule
+              use some_goal(...)
+              when
+                  ...
+                  python x_list = <some python expression>
+                  ...
+                  $x_list = tuple(x_list)
+              with
+                  for x in $x_list: process(x)
+

@@ -1,0 +1,319 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <title>Rule Bases</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../stylesheets/pyke.css" type="text/css" />
+</head>
+<body>
+  <table id="page-table">
+    <thead class="head">
+        <tr id="header1"><th id="header" colspan="3">
+            &nbsp;
+        </th></tr>
+        <tr id="header2">
+          <th id="crumb-left"></th>
+          <th id="crumb-line">
+            <div id="nav">
+              <ul>
+                  <li><a href="../index.html">Home</a></li>
+<li>&gt;</li>
+<li><a href="index.html">Knowledge Bases</a></li>
+<li>&gt;</li>
+<li>Rule Bases</li>
+
+              </ul>
+            </div>
+          </th>
+          <th id="crumb-right"></th>
+        </tr>
+    </thead>
+
+    <tbody id="body">
+        <tr id="body-tr">
+          <td id="left-nav">
+            <div id="left-nav-div">
+              
+<div class="title-nav"><a href="../index.html">Home</a></div><div class="nav-branch">
+<div class="normal-nav"><a href="../about_pyke/index.html">About Pyke</a></div>
+<div class="normal-nav"><a href="../logic_programming/index.html">Logic Programming</a></div>
+
+<div class="title-nav"><a href="index.html">Knowledge Bases</a></div><div class="nav-branch">
+<div class="normal-nav"><a href="fact_bases.html">Fact Bases</a></div>
+<div class="normal-nav"><a href="rule_bases.html">Rule Bases</a></div>
+<div class="normal-nav"><a href="question_bases.html">Question Bases</a></div>
+<div class="normal-nav"><a href="special.html">Special</a></div>
+</div>
+<div class="normal-nav"><a href="../pyke_syntax/index.html">Pyke Syntax</a></div>
+<div class="normal-nav"><a href="../using_pyke/index.html">Using Pyke</a></div>
+<div class="normal-nav"><a href="../examples.html">Examples</a></div>
+<div class="normal-nav"><a href="../PyCon2008-paper.html">PyCon 2008 Paper</a></div>
+</div>
+
+            </div>
+            <div id="icons">
+                <div id="project-page">
+                  <a href="http://sourceforge.net/projects/pyke/">Pyke Project Page</a>
+                </div>
+                Please Make a Donation:<br />
+                <a href="http://sourceforge.net/donate/index.php?group_id=207724">
+                  <img src="http://images.sourceforge.net/images/project-support.jpg"
+                       width="88" height="32" border="0"
+                       alt="Support This Project" /> </a> <br /><br />
+                Hosted by: <br />
+                <a href="http://sourceforge.net/projects/pyke">
+                  <img src="http://sflogo.sourceforge.net/sflogo.php?group_id=207724&amp;type=14"
+                       width="150" height="40"
+                       alt="Get Python Knowledge Engine (PyKE) at SourceForge.net. Fast, secure and Free Open Source software downloads" /></a>
+            </div>
+          </td>
+          <td id="main-td">
+            <div id="main">
+                <a name="startcontent" id="startcontent"></a>
+                <div class="document" id="rule-bases">
+<h1 class="title">Rule Bases</h1>
+<p>Rule bases are collections of <a class="reference external" href="../logic_programming/rules/index.html">rules</a>.  Rule bases are created by writing a
+<em>knowledge rule base</em> (<a class="reference external" href="../pyke_syntax/krb_syntax/index.html">.krb</a>) file with your favorite text editor.</p>
+<p>A single rule base may contain both <a class="reference external" href="../logic_programming/rules/forward_chaining.html">forward-chaining</a> and <a class="reference external" href="../logic_programming/rules/backward_chaining.html">backward-chaining</a>
+rules.</p>
+<p>The forward-chaining rules are run automatically when the rule base is
+<a class="reference external" href="../using_pyke/index.html#getting-started">activated</a> to assert new <a class="reference external" href="../logic_programming/statements.html">statements</a> of <a class="reference external" href="fact_bases.html#facts">fact</a>.  Thus, forward-chaining rules
+are not directly used to determine whether any particular <a class="reference external" href="../logic_programming/statements.html">statement</a> is true.</p>
+<p>But backward-chaining rules <em>are</em> directly used to determine whether a
+particular statement is true.  Thus, when a rule base name (or, more properly,
+a <a class="reference external" href="rule_bases.html#rule-base-categories">rule base category</a> name, explained below) is used as the
+<em>knowledge base name</em> in a statement, it refers to the backward-chaining
+rules within that rule base.</p>
+<div class="note">
+<p class="first admonition-title">Note</p>
+<p>Pyke runs all forward-chaining rules before running any backward-chaining
+rules.</p>
+<p class="last">Thus, using rule base names as the <em>knowledge base name</em> in statements
+within a forward-chaining rule is prohibited, as this would cause
+backward-chaining rules to run in order to process the forward-chaining
+rule.</p>
+</div>
+<div class="section" id="why-multiple-rule-bases">
+<h2>Why Multiple Rule Bases?</h2>
+<p>There are two reasons to have more than one rule base (i.e., more than one
+<a class="reference external" href="../pyke_syntax/krb_syntax/index.html">.krb file</a>):</p>
+<ol class="arabic">
+<li><p class="first">To divide a large set of rules into human manageable units.</p>
+<p>In this case, you want Pyke to use all of the rule bases combined.</p>
+<p>For example, you may have rules governing the automatic generation of SQL
+statements, and other rules governing the generation of HTML documents.
+You want to keep these rules in different rule bases to make them more
+manageable.</p>
+</li>
+<li><p class="first">To enable your Python program to choose between different rule bases
+that are tailored to different specific situations.</p>
+<p>For example, some of the rules governing the automatic generation of SQL
+statements may vary depending upon the target database (e.g., <tt class="docutils literal">mysql</tt>,
+<tt class="docutils literal">postgresql</tt>, <tt class="docutils literal">oracle</tt>).</p>
+<p>In this case, you want to be able to tell Pyke which of several rule bases
+to use on each invocation, depending upon which target database you will
+be accessing.  You would never use more than one of these rule bases at
+the same time, so these rule bases are mutually exclusive.</p>
+</li>
+</ol>
+<p>These two goals are met by three capabilities:</p>
+<ul class="simple">
+<li><a class="reference internal" href="#rule-base-categories">Rule Base Categories</a></li>
+<li><a class="reference internal" href="#rule-base-inheritance">Rule Base Inheritance</a></li>
+<li><a class="reference internal" href="#rule-base-activation">Rule Base Activation</a></li>
+</ul>
+</div>
+<div class="section" id="rule-base-categories">
+<h2>Rule Base Categories</h2>
+<p>All rule bases are grouped into categories.  Each rule base category only gets
+to have <strong>one</strong> <a class="reference external" href="rule_bases.html#rule-base-activation">active</a> rule base.</p>
+<p>Thus, you place rule bases that you want to have active simultaneously into
+<em>different</em> rule base categories; and place rule bases that are mutually
+exclusive with each other (e.g., the <tt class="docutils literal">mysql</tt>, <tt class="docutils literal">postgresql</tt> and <tt class="docutils literal">oracle</tt>
+rule bases) into the <em>same</em> rule base category.</p>
+<p>Each rule base category has a unique name.  In the example above you would
+want two rule base categories: <tt class="docutils literal">database</tt> and <tt class="docutils literal">html_generation</tt>.</p>
+<p>The rule base category name is used as the <em>knowledge base name</em> for
+statements within rules of one rule base category that want to refer to
+rules within another rule base category.  For example, rule bases in the
+<tt class="docutils literal">html_generation</tt> category would need to use <tt class="docutils literal"><span class="pre">database.insert(...)</span></tt> to
+refer to the <tt class="docutils literal">insert</tt> rules in the <tt class="docutils literal">database</tt> category.</p>
+</div>
+<div class="section" id="rule-base-inheritance">
+<h2>Rule Base Inheritance</h2>
+<p>The rule bases within the same <a class="reference external" href="rule_bases.html#rule-base-categories">category</a> share rules amongst themselves
+through rule base inheritance.</p>
+<p>Rule bases use single inheritance to inherit the <a class="reference external" href="../logic_programming/rules/index.html">rules</a> from one other rule
+base.  This can go on to any depth.  Both <a class="reference external" href="../logic_programming/rules/forward_chaining.html">forward-chaining</a> and
+<a class="reference external" href="../logic_programming/rules/backward_chaining.html">backward-chaining</a> <a class="reference external" href="../logic_programming/rules/index.html">rules</a> are inherited.</p>
+<p>This allows mutually exclusive rule bases to share common rules in a parent
+rule base without having to duplicate these rules amongst themselves.</p>
+<p>Here is the definition, then, of a <a class="reference external" href="rule_bases.html#rule-base-categories">rule base category</a>:</p>
+<blockquote>
+<p>Each <em>root</em> rule base (through rule base inheritance) defines a unique
+rule base category.  All rule bases derived (directly or indirectly)
+from that root rule base are in the same rule base category.</p>
+<p>The name of the rule base category is simply the name of its root
+rule base.</p>
+</blockquote>
+<p>So, our <tt class="docutils literal">database</tt> and <tt class="docutils literal">html_generation</tt> example would look like this:</p>
+<div class="figure align-center">
+<img alt="../images/rule_base_categories.png" src="../images/rule_base_categories.png" style="width: 450.0px; height: 424.0px;" />
+<p class="caption">Rule Base Categories</p>
+</div>
+<p>We have one root rule base called <tt class="docutils literal">database</tt> and it has derived rule bases
+called <tt class="docutils literal">mysql</tt>, <tt class="docutils literal">postgresql</tt> and <tt class="docutils literal">oracle</tt>.  And a second root rule base
+called <tt class="docutils literal">html_generation</tt> with <tt class="docutils literal">firefox</tt> and <tt class="docutils literal">internet_explorer</tt>.</p>
+<p>The two root rule bases define two rule base categories:</p>
+<ul class="simple">
+<li>database, which includes:<ul>
+<li>database</li>
+<li>mysql</li>
+<li>postgresql</li>
+<li>oracle</li>
+</ul>
+</li>
+<li>html_generation, which includes:<ul>
+<li>html_generation</li>
+<li>firefox</li>
+<li>internet_explorer</li>
+</ul>
+</li>
+</ul>
+<div class="note">
+<p class="first admonition-title">Note</p>
+<p class="last">The <a class="reference external" href="../pyke_syntax/krb_syntax/index.html">.krb files</a> for these rule bases may be placed anywhere you want
+them within your Pyke source directory structure -- in other words, your
+directory structure is not required to match your rule base inheritance
+structure.</p>
+</div>
+<p>Only one rule base from each rule base category may be <a class="reference external" href="rule_bases.html#rule-base-activation">active</a> at any point in
+time.</p>
+<p>Within each of these rule bases, if the knowledge base name is omitted from a
+statement within a <a class="reference external" href="../logic_programming/rules/backward_chaining.html">backward-chaining rule</a>, it defaults to the
+<a class="reference external" href="rule_bases.html#rule-base-categories">rule base category</a> of that rule base, <em>not</em> the rule base itself.
+Thus, <tt class="docutils literal"><span class="pre">insert(...)</span></tt> within <tt class="docutils literal">postgresql</tt> would mean
+<tt class="docutils literal"><span class="pre">database.insert(...)</span></tt>, and <tt class="docutils literal"><span class="pre">make_tag(...)</span></tt> within <tt class="docutils literal">firefox</tt> would mean
+<tt class="docutils literal"><span class="pre">html_generation.make_tag(...)</span></tt>.</p>
+<div class="important">
+<p class="first admonition-title">Important</p>
+<p class="last">Note that referring to a rule base category (either explicitly or
+implicitly) <em>always</em> refers to the <a class="reference external" href="rule_bases.html#rule-base-activation">active</a> rule base within that category.
+This may not be the rule base with that name (the root rule base), or even
+the rule base making implicit use of the rule base category.  For example,
+<tt class="docutils literal"><span class="pre">insert(...)</span></tt> within <tt class="docutils literal">postgresql</tt> will end up referring to <tt class="docutils literal">insert</tt>
+rules within the <tt class="docutils literal">oracle</tt> rule base when <tt class="docutils literal">oracle</tt> is the active rule
+base.</p>
+</div>
+<p>All rules referring to foreign <a class="reference internal" href="#rule-base-categories">rule base categories</a> must explicitly use the
+rule base category name.  For example, to refer to the <tt class="docutils literal">insert</tt> rule for
+databases, within the <tt class="docutils literal">html_generation</tt> category, you would have to say
+<tt class="docutils literal"><span class="pre">database.insert(...)</span></tt>.</p>
+<p>In this way, all of the rules will work no matter which rule base is active
+within each rule base category.</p>
+<div class="section" id="rule-inheritance">
+<h3>Rule Inheritance</h3>
+<p>There is an important difference between how <a class="reference external" href="../logic_programming/rules/backward_chaining.html">backward-chaining</a> rule
+inheritance works within Pyke rule bases and how method inheritance works
+within Python classes:</p>
+<ul>
+<li><p class="first">When a derived class in Python defines a method by the same name as a
+method in its parent class, the derived method <em>overrides</em> the parent
+method.  I.e., only the derived method is used when a call is made
+to it.</p>
+</li>
+<li><p class="first">In contrast, when a derived rule base in Pyke defines
+<a class="reference external" href="../logic_programming/rules/backward_chaining.html">backward-chaining rules</a> for a goal that also has backward-chaining rules
+defined for it in the parent rule base, the derived rule <em>extends</em> the
+set of rules that may be used to try to prove this <a class="reference external" href="../pyke_syntax/krb_syntax/bc_rule.html#use-clause">goal</a>.  All of the
+derived rules will be tried first.  If all of these fail, then the parent
+rules are tried.</p>
+<p>If you don't want the parent rules to be used for a particular <a class="reference external" href="../pyke_syntax/krb_syntax/bc_rule.html#use-clause">goal</a>,
+you must list that goal name in the <tt class="docutils literal">without</tt> clause of the <a class="reference external" href="../pyke_syntax/krb_syntax/index.html#extending-clause">extending</a>
+statement at the beginning of the derived rule base.</p>
+</li>
+</ul>
+<div class="note">
+<p class="first admonition-title">Note</p>
+<p class="last">All <a class="reference external" href="../logic_programming/rules/forward_chaining.html">forward-chaining rules</a> in the parent rule base are always included
+in the derived rule base.  The <tt class="docutils literal">without</tt> clause only applies to
+backward-chaining rules.</p>
+</div>
+</div>
+</div>
+<div class="section" id="rule-base-activation">
+<h2>Rule Base Activation</h2>
+<p><a class="reference external" href="../using_pyke/creating_engine.html">Loading</a> rule bases only makes them available for use.  It does not
+automatically <a class="reference external" href="../using_pyke/index.html#getting-started">activate</a> any of them.  This must be done explicitly by your
+Python program.  Your program may decide to activate different rule bases
+in different situations.</p>
+<p>Additionally, <a class="reference external" href="../logic_programming/rules/forward_chaining.html">forward-chaining rules</a> may be used to activate more specific
+rule bases, based upon their inferencing.  But once a rule base has been
+activated for a <a class="reference external" href="rule_bases.html#rule-base-categories">rule base category</a>, only children of the currently active
+rule base may be activated from that point on.  Because these children
+<a class="reference external" href="rule_bases.html#rule-base-inheritance">inherit</a> the rules of the currently active rule base; activating child
+rule bases only adds new rules, and doesn't take any away.  Thus, any
+forward-chaining rule run during the activation of the first rule base
+are not invalidated by activating the second rule base.</p>
+<p>In our database example, your program could activate the root <tt class="docutils literal">database</tt>
+rule base and let the forward-chaining rules within the <tt class="docutils literal">database</tt> rule
+base figure out which derived rule base to activate depending on the
+particular database in use at the time the program is run.</p>
+<!-- ADD_LINKS MARKER -->
+</div>
+</div>
+
+                <!-- <div id="return-to-top">
+                       <a href="#">Return to Top</a>
+                     </div>
+                -->
+            </div>
+          </td>
+          <td id="right-nav">
+            <div id="right-nav-div">
+                <h3>More:</h3>
+<div class="right-item"><a href="fact_bases.html">Fact Bases</a><p>Explanation of facts and fact bases.</p>
+</div>
+<div class="right-item"><a href="rule_bases.html">Rule Bases</a><p>Explanation of rule bases, overview of .krb files and how these files
+are compiled and loaded into your Python program.</p>
+</div>
+<div class="right-item"><a href="question_bases.html">Question Bases</a><p>Explanation of question bases and .kqb files.</p>
+</div>
+<div class="right-item"><a href="special.html">Special</a><p>Explanation of the <tt class="docutils literal">special</tt> knowledge base.</p>
+</div>
+
+            </div>
+          </td>
+        </tr>
+    </tbody>
+
+    <tfoot id="foot">
+        <tr id="foot2">
+          <td id="copyright" colspan="3">
+            Copyright &copy; 2007-2009 Bruce Frederiksen
+          </td>
+        </tr>
+    </tfoot>
+  </table>
+
+  <div id="last-modified">
+    Page last modified
+    Mon, Oct 27 2008.
+
+  </div>
+
+  <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ?
+                    "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost +
+        "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+  </script>
+  <script type="text/javascript">
+    try {
+      var pageTracker = _gat._getTracker("UA-6310805-1");
+      pageTracker._trackPageview();
+    } catch(err) {}
+  </script>
+</body>
+</html>
+

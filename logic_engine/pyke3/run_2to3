@@ -1,0 +1,22 @@
+# run_2to3
+
+set -e
+
+2to3 -d -w -n .
+
+2to3 -w -n .
+
+cd pyke/krb_compiler
+
+hg revert --no-backup *_tables.py
+
+hg revert --no-backup ply/lex.py ply/yacc.py
+
+if [ ! -d compiled_krb ]
+then
+    mkdir compiled_krb
+fi
+
+PYTHONPATH=../.. python3.1 -c "from pyke import krb_compiler; krb_compiler.compile_krb('compiler', 'compiled_krb', 'compiled_krb', 'compiler.krb')"
+
+mv compiled_krb/compiler_bc.py .

@@ -1,0 +1,116 @@
+.. $Id: what_is_pyke.txt a2119c07028f 2008-10-27 mtnyogi $
+.. 
+.. Copyright © 2007-2008 Bruce Frederiksen
+.. 
+.. Permission is hereby granted, free of charge, to any person obtaining a copy
+.. of this software and associated documentation files (the "Software"), to deal
+.. in the Software without restriction, including without limitation the rights
+.. to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+.. copies of the Software, and to permit persons to whom the Software is
+.. furnished to do so, subject to the following conditions:
+.. 
+.. The above copyright notice and this permission notice shall be included in
+.. all copies or substantial portions of the Software.
+.. 
+.. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+.. IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+.. FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+.. AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+.. LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+.. OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+.. THE SOFTWARE.
+
+restindex
+    crumb: What is Pyke?
+    page-description:
+        An overview of Pyke's features.
+    /description
+    format: rest
+    encoding: utf8
+    output-encoding: utf8
+    section-pages: , why_pyke, steps_to_using_pyke, installing_pyke, logic_programming/index, knowledge_bases/index, pyke_syntax/index, using_pyke, examples, PyCon2008-paper
+    include: Yes
+    initialheaderlevel: 2
+/restindex
+
+uservalues
+    filedate: $Id: what_is_pyke.txt a2119c07028f 2008-10-27 mtnyogi $
+/uservalues
+
+=============================
+What is Pyke?
+=============================
+
+Pyke integrates a form of `Logic Programming`_ into Python by providing a
+knowledge engine that can:
+
+- Do both forward-chaining (data driven) and
+  backward-chaining (goal directed) inferencing.
+
+  - Pyke may be embedded into any Python program.
+
+- Automatically generate Python programs by assembling individual Python
+  functions into complete call graphs.
+
+  - This is done through a unique design where the individual Python
+    functions are attached to backward-chaining rules.
+  - Unlike other approaches to code reuse (e.g. Object-oriented programming,
+    Zope adapters, generic functions), this allows the inference engine to
+    ensure that all of the function's requirements are completely satisfied,
+    by examining the entire call graph down to the leaves, before **any** of
+    the functions are executed.
+  - This is an optional feature.  You don't need to use it if you just
+    want the inferencing capability by itself.
+
+The Knowledge Engine Supports:
+========================================
+
+- Multiple *fact bases*, each with its own list of facts.
+- Both *forward-chaining* rules and *backward-chaining* rules.
+- Multiple *rule bases*, each with its own list of forward-chaining
+  and/or backward-chaining rules.
+- Rule base inheritance -- *activating* the derived rule base 
+  includes the rules from the parent rule base.
+- The inference rules are compiled into Python functions, allowing 
+  Python code snippets to be used within the rules.
+  This greatly enhances the expressiveness of the rules.
+
+Automatic Program Generation:
+========================================
+
+- Calls the generated Python programs *plans*.
+- Plans may be run multiple times without needing to rerun the inference
+  rules.
+- Plans may be pickled and cached to disk to be used by other programs or
+  in later runs of the same program.
+- Only one small Pyke module is required to run the plans.
+
+Potential Pyke Applications:
+========================================
+
+- Complicated decision making applications.
+- The back-end (code generation and optimization) of compilers.
+  Pyke is used as the back-end of its own
+  compiler that translates rules into Python code.
+- Automatic SQL statement generation.
+- Automatic HTML generation and automatic HTML template processing.
+- Automatic program builder to reuse a common set of functions for many
+  different specific situations.  This could also easily
+  incorporate a new custom function into a much larger program, where the use
+  of the custom function might influence the choice of other standard
+  functions in other parts of the program.
+- The control module for a web framework tool.
+- A high-level planner to automatically distribute the
+  modules of a large system over several computers in a distributed system
+  to meet specific performance and capacity goals.  This could be used to
+  automatically scale the same system code from a small one program,
+  one computer system
+  to much larger distributed systems to meet a wide range of performance
+  goals.
+- Diagnosis systems, including automated customer service systems.
+- Program or library customization for specific uses.
+- In addition to being able to build programs, Pyke can instantiate,
+  configure and interconnect a network of objects to meet a specific need
+  or situation.
+
+

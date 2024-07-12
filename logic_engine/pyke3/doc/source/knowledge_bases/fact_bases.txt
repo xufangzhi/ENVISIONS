@@ -1,0 +1,94 @@
+.. $Id: fact_bases.txt a2119c07028f 2008-10-27 mtnyogi $
+.. 
+.. Copyright © 2007-2008 Bruce Frederiksen
+.. 
+.. Permission is hereby granted, free of charge, to any person obtaining a copy
+.. of this software and associated documentation files (the "Software"), to deal
+.. in the Software without restriction, including without limitation the rights
+.. to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+.. copies of the Software, and to permit persons to whom the Software is
+.. furnished to do so, subject to the following conditions:
+.. 
+.. The above copyright notice and this permission notice shall be included in
+.. all copies or substantial portions of the Software.
+.. 
+.. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+.. IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+.. FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+.. AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+.. LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+.. OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+.. THE SOFTWARE.
+
+restindex
+    crumb: Fact Bases
+    page-description:
+        Explanation of facts and fact bases.
+    /description
+    format: rest
+    encoding: utf8
+    output-encoding: utf8
+    include: yes
+    initialheaderlevel: 2
+/restindex
+
+uservalues
+    filedate: $Id: fact_bases.txt a2119c07028f 2008-10-27 mtnyogi $
+/uservalues
+
+==========
+Fact Bases
+==========
+
+When statements of fact are stored in Pyke, they are stored in *fact bases*.
+Pyke allows you to have as many fact bases as you like to help you organize
+your facts.  The fact bases are created automatically, as needed, as new facts
+are asserted.
+
+Facts
+=====
+
+Think of a fact as a simple statement_.  It has a name and a set of
+arguments.  The arguments may be:
+
+- strings
+
+  - proper identifiers don't need quotes: ``Fred`` is the same as ``'Fred'``
+
+- numbers
+- None, True or False
+- tuples of any of these (including nested tuples)
+
+  - singleton tuples don't require a comma: ``(1)`` is the same as ``(1,)``
+
+Duplicate facts are not allowed.  An attempt to assert a fact that already
+exists is silently ignored.  But note that to be a duplicate, *all* of the
+arguments must be the same!
+
+Currently facts are thought to be immutable, meaning that they may not be
+changed or retracted.  That's why dictionaries, lists and user-defined
+objects are not recommended as arguments.
+
+Case Specific Facts 
+---------------------
+
+Most facts are *case specific* facts.  This means that they will be deleted
+when an engine_ reset_ is done to prepare for another run of the inference
+engine.  Case specific facts are asserted through either::
+
+    some_engine.assert_(kb_name, fact_name, arguments)
+    some_engine.add_case_specific_fact(kb_name, fact_name, arguments)
+
+They may also be asserted by forward-chaining_ rules.
+
+Universal Facts
+---------------------
+
+Universal facts are never deleted (specifically, when a reset_ is done).  You
+can specify universal facts in a `.kfb file`_, or add universal facts by
+calling::
+
+    some_engine.add_universal_fact(kb_name, fact_name, arguments)
+
+Typically, all universal facts are added once at `program startup`_.
+

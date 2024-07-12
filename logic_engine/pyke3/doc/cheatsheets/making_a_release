@@ -1,0 +1,87 @@
+All code/doc changes should be committed in the release_1 branch.
+
+To get the hg revision of the previous release:
+
+    $ hg tags
+
+Do "hg log" to see what's changed:
+
+    $ hg log -v -r .:48
+
+Prepend notes to: RELEASE_NOTES-1.txt
+
+FILES TO CHANGE:
+    - README.txt
+        Read through to see if anything has changed.  The following lines
+        will always change:
+        - line  3: Version: 1.0.2
+        - line 41:   ...  pyke-1.0.3.zip
+        - line 44:   ...  pyke3-1.0.3.zip
+        - line 59: Add any new examples
+    - setup.py
+        - line 7:  version = "1.0.2",
+        - line 37: "http://downloads.sourceforge.net/pyke/pyke-1.0.2.zip",
+    - pyke/__init__.py
+        - line 3: version = '1.0.2'
+        - line 5: compiler_version = 1  (does this need to be incremented?)
+        - line 7: target_pkg_version = 1  (does this need to be incremented?)
+    - doc/source/index.txt
+        - line 43: Release 1.0
+
+RUN MAKE_RELEASE
+
+    This can be re-run if errors are encountered.
+
+    $ ./make_release 1.0.3 > /tmp/make_release.out 2>&1 &
+    $ tail -f /tmp/make_release.out
+
+CHECK OUT WEB SITE
+
+    with the browser, go to http://pyke.sourceforge.net
+
+UPDATE RELEASE FILES ON SOURCEFORGE:
+
+    In the browser go to: Project Admin -> File Manager
+
+    Go into the release directory
+
+    left click on RELEASE_NOTES-1.txt
+    check the "Release Note" checkbox
+    click Save
+    left click on pyke-1.0.2.tar.gz
+    set the "Release Notes for this file" (leave the "Label" blank)
+    click "Select All" under Platform
+    click Save
+    left click on pyke3-1.0.2.tar.gz
+    set the "Release Notes for this file" (leave the "Label" blank)
+    click Save
+
+ADD NEW RELEASE TO SOURCEFORGE TRACKERS:
+
+    Project Admin -> Feature Settings -> Manage (on Tracker line)
+
+    Do: Bugs, Support Requests, and Patches
+
+    Add release through "Add/Update Groups"
+
+UPDATE PYPI LINK:
+
+    $ python setup.py register
+
+CREATE NEWS ANNOUNCEMENTS
+
+    On Sourceforge: Project Admin -> Feature Settings
+                                  -> Submit (on Project News line)
+
+    On Google Groups: http://groups.google.com/group/pyke
+
+TO TEST:
+
+    $ cd ~/python
+    $ rm -rf pyketest
+    $ virtualenv --no-site-packages pyketest
+    $ cd pyketest
+    $ bash
+    $ unset PYTHONPATH
+    $ source bin/activate
+

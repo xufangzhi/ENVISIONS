@@ -1,0 +1,182 @@
+.. $Id: statements.txt a2119c07028f 2008-10-27 mtnyogi $
+.. 
+.. Copyright © 2008 Bruce Frederiksen
+.. 
+.. Permission is hereby granted, free of charge, to any person obtaining a copy
+.. of this software and associated documentation files (the "Software"), to deal
+.. in the Software without restriction, including without limitation the rights
+.. to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+.. copies of the Software, and to permit persons to whom the Software is
+.. furnished to do so, subject to the following conditions:
+.. 
+.. The above copyright notice and this permission notice shall be included in
+.. all copies or substantial portions of the Software.
+.. 
+.. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+.. IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+.. FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+.. AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+.. LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+.. OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+.. THE SOFTWARE.
+
+restindex
+    crumb: Statements
+    page-description:
+        What is a *statement* in Pyke?
+    /description
+    format: rest
+    encoding: utf8
+    output-encoding: utf8
+    include: yes
+    initialheaderlevel: 2
+/restindex
+
+uservalues
+    filedate: $Id: statements.txt a2119c07028f 2008-10-27 mtnyogi $
+/uservalues
+
+===========
+Statements
+===========
+
+A *statement* is a statement of fact, also just called a *fact*.  They are
+the bread and butter of Pyke.  Statements are the data values that Pyke acts
+upon.
+
+You might also think of a statement as a spoken sentence.  For example, the
+Pyke family_relations_ example deals with sentences like::
+
+    "Bruce is the son of Thomas (his father) and Norma (his mother)."
+
+But we condense the sentence down to it's essence.  In this case, the sentence
+revolves around three things: Bruce, Thomas and Norma.  All of the rest of the
+words can be condensed into a single identifier that identifies the
+relationship between these three things::
+
+    son_of(Bruce, Thomas, Norma)
+
+We can give these condensed sentence structures any names that we want.  In
+this case, I chose ``son_of``.  I might have also chosen "parents_of", which
+might conjure the following English sentence::
+
+    "The parents of Bruce are Thomas (his father) and Norma (his mother)."
+
+Or::
+
+    "Bruce's parents are Thomas (his father) and Norma (his mother)."
+
+But the ``son_of`` form carries the additional information that Bruce is a son
+rather than a daughter.  So this is the form used in the family_relations
+example.
+
+.. caution:: Statements are not functions!
+   When we wear our Python hats, ``son_of(Bruce, Thomas, Norma)`` looks like a
+   function call!  We might expect that it can be executed to *do* something
+   and possibly return a value.  But when we wear our Pyke hats, this is just
+   a statement, or a piece of data.  It doesn't *do* anything and it **never**
+   returns a value!
+
+Note that it makes perfect sense to have several statements defining the same
+relationship between their arguments::
+
+    son_of(Bruce, Thomas, Norma)
+    son_of(Michael, Bruce, Marilyn)
+    son_of(David, Bruce, Marilyn)
+
+But this only makes sense if they have different arguments.  There is never a
+need to state the same fact twice.  Thus we can never establish two facts (two
+statements) that are identical.  If we try to do this, the second one is
+silently ignored.
+
+So::
+
+    son_of(Bruce, Thomas, Norma)
+    son_of(Bruce, Thomas, Norma)
+    son_of(Bruce, Thomas, Norma)
+
+is exactly the same as::
+
+    son_of(Bruce, Thomas, Norma)
+
+Finally, we see that the position of each argument is important.  In our
+``son_of`` example, the meaning of each argument is::
+
+    son_of(son, father, mother)
+
+Thus, changing the order of the arguments changes the meaning of the
+statement.  So::
+
+    son_of(Bruce, Thomas, Norma)
+
+and::
+
+    son_of(Bruce, Norma, Thomas)
+
+mean different things!  The first statement says that Thomas is the father of
+Bruce, but the second statement says that Norma is the father!
+
+Syntactic Structure of Statements
+=================================
+
+So we see that statements in Pyke are very structured.
+
+Pyke categorizes statements into `knowledge bases`_.  You create knowledge
+bases to help you organize your statements.  A *knowledge base* in Pyke
+roughly corresponds to a *module* in Python.
+
+.. note::
+   Pyke does not allow knowledge bases to contain other knowledge bases, only
+   information about statements.  Thus, there is only one level of knowledge
+   bases; and beneath each knowledge base, one level of statements. 
+
+So statements have three components:
+
+#. The name of a knowledge base.  For example, ``family``.
+#. The name of a *knowledge entity*.  For example, ``son_of``.
+#. The statement arguments.  These are just Python data.  Currently in Pyke,
+   there is a push for these arguments to be immutable.
+
+The syntax for a statement looks like this::
+
+    statement ::= IDENTIFIER '.' IDENTIFIER '(' {argument,} ')'
+
+Knowledge Base
+--------------
+
+The first IDENTIFIER is the name of the knowledge base.  In our
+family_relations example, this is ``family``.
+
+.. note::
+   You'll see that within `backward-chaining rules`_, the name of the
+   knowledge base may be omitted.  It defaults to the currently selected
+   `rule base`_ for this `rule base category`_.  You'll learn more about this
+   later.
+
+Knowledge Entity
+----------------
+
+The second IDENTIFIER is the name of the *knowledge entity*.  This is the
+relationship between the arguments.  You could also think of this as the
+statement *type* or *topic*.  For example, ``son_of`` is a *type* of statement
+with three arguments: (son, father, mother).  Or the (son, father, mother)
+arguments are about the *topic* ``son_of``.
+
+Arguments
+---------
+
+The arguments can be any simple Python data value (numbers, strings, None,
+True or False) or tuples of these values (including nested tuples).
+Currently, statements are supposed to be immutable, so all of the arguments
+are immutable.  The arguments relate to the topic, above, to make a complete
+statement.
+
+.. note::
+   Prolog_ allows arguments to be other statements (functors).  But Pyke needs
+   to integrate into Python and Python has no concept of a "statement".  So we
+   just use tuples in Pyke because Python is very happy with tuples!
+
+So the complete statement for our family_relations example is::
+
+    family.son_of(Bruce, Thomas, Norma)
+

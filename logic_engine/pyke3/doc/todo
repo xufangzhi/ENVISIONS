@@ -1,0 +1,4 @@
+- remove ':' option after rule names in .krb files.
+- add ability to use pattern variables for kb_name and fact_name in assertions
+- add error recovery to krbparser
+

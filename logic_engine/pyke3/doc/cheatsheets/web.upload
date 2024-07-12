@@ -1,0 +1,13 @@
+./make_doc_tarball /tmp/pyke.html.tar
+scp /tmp/pyke.html.tar mtnyogi@web.sourceforge.net:
+ssh -t mtnyogi,pyke@shell.sourceforge.net create
+cd /home/groups/p/py/pyke
+tar xzf ~/pyke.html.tar
+chmod g+w html
+mv htdocs htdocs.old; mv html htdocs
+<test new site>
+rm -rf htdocs.old
+cd
+rm pyke.html.tar
+shutdown now
+rm /tmp/pyke.html.tar
