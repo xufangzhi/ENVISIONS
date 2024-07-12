@@ -1,0 +1,25 @@
+# we use cuda version 11.8
+torch==2.0.1+cu118
+torchvision==0.15.2+cu118
+scipy
+packaging
+sentencepiece
+datasets
+deepspeed==0.14.1
+accelerate==0.21.0
+peft==0.10.0
+bitsandbytes==0.43.0
+evaluate>=0.4.0
+tokenizers==0.19.1
+protobuf
+transformers==4.40.0
+openai>=1.0.0
+tiktoken
+tensorboard
+termcolor
+jsonlines
+unidic-lite
+einops
+flash-attn==2.3.6
+vllm==0.2.1
+openpyxl

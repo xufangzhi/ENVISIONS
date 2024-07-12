@@ -30,6 +30,8 @@ Repo for "<a href="http://arxiv.org/abs/2406.11736" target="_blank">Interactive 
 ## 📒 Note
 This work is still in progress. You can also check our previous work [Symbol-LLM](https://arxiv.org/abs/2311.09278) on neural-symbolism. It will appear at ACL 2024 main conference.
 
+## 🔧 Environments
+Please refer to ``requirements.txt`` to build the environment.
 
 ## 🚀 How to Start Training
 
@@ -49,6 +51,8 @@ For **logical reasoning** tasks, please use:
 ```bash
 python ENVISIONS/self_training_logic.py --base_model "llama2chat" --model_size "7B" --task_prefix "logic_llama2chat" --vllm_batchsize 1
 ```
+
+*Note: paths to the base LLM are required to be replaced with your local path of the corresponding checkpoints.
 
 ## 🌐 Acknowledgements
 + The LLM training is based on [open-instruct](https://github.com/allenai/open-instruct) and the generation steps are accelerated by [vLLM](https://github.com/vllm-project/vllm).
