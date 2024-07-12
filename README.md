@@ -21,7 +21,7 @@ Repo for "<a href="http://arxiv.org/abs/2406.11736" target="_blank">Interactive 
 
 
 ## 🔥 News
-- [2024/07/12] The codebase is fixed and completed ! Try it in Branch v0.2 !
+- [2024/07/12] 🚀 The codebase is fixed and completed ! Try it in Branch v0.2 !
 - [2024/07/09] A series of [checkpoints](https://huggingface.co/Symbol-LLM/) after self-training with ENVISIONS are released at huggingface ! Cover agent, math and logic domains ! Include 7B and 13B versions ! Check it out !
 - [2024/05/20] 🚀🚀🚀 ENVISIONS is under review!
 - [2024/05/01] 🔥🔥🔥 We create a new repo for the code of ENVISIONS!
