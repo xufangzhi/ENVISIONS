@@ -17,24 +17,8 @@ import time
 import os
 
 
-# openai.api_key = os.getenv('OPENAI_API_KEY')
-# openai.api_key = "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"
-# openai.api_key = "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"
-# openai.api_key = "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"
-# 120 dollar
-# openai.api_key = "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"   # for aqua 5w
-# openai.api_key = "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"   # for aqua
-# openai.api_key = "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"   # for aqua 6w
-# openai.organization = "org-tvf0r4JnjRo3xvSeOVmwaDOP"
-# openai.api_key = "sk-WwTFy3etFQZH6uPG9f2a15E0030d49Cb85E7510a65059117"     # aqua 5w
-# openai.api_key = "sk-tj75LnrZqLNwtNLs10732a47D4404eAcBaDd545065Ef44Cb"     # aqua 3w
-# openai.api_key = "sk-Q6WQ79VqJin0gzSg4f6a3e2092D44aB391F94f65C33b2807"    # aqua
-# openai.api_key = "sk-B0v8pGUDa2zwY1xF259582D148914325B667D5E3C6761b53"   # aqua 4w
+openai.api_key = "your_api_key"
 
-openai.api_key = "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"
-# openai.organization = "org-QeHTBCcuRBiUC5VWJ9mpedsI"
-# openai.api_key = "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"
-# openai.organization = "org-tvf0r4JnjRo3xvSeOVmwaDOP"
 # GPT-3 API
 def call_gpt(prompt, model='code-davinci-002', stop=None, temperature=0., top_p=1.0,
         max_tokens=128, majority_at=None):
