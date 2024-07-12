@@ -23,35 +23,6 @@ logger = logging.getLogger('self_training_logger')
 logger.setLevel(logging.DEBUG)
 
 
-def calculate_code_bleu(reference, candidate):
-    """
-    :param reference:
-    :param candidate:
-    :return: calculated metric
-    """
-    # 清理代码中的空格和换行符
-    reference = re.sub(r'\s', '', reference)
-    candidate = re.sub(r'\s', '', candidate)
-    # 创建n-gram字典
-    reference_ngrams = create_ngram_dict(reference, 4)
-    candidate_ngrams = create_ngram_dict(candidate, 4)
-    # 计算n-gram匹配数
-    matching_ngrams = 0
-    for ngram in candidate_ngrams:
-        if ngram in reference_ngrams:
-            matching_ngrams += min(candidate_ngrams[ngram], reference_ngrams[ngram])
-    # 计算候选翻译的长度
-    candidate_length = len(candidate)
-    # 计算参考翻译的长度
-    reference_length = len(reference)
-    # 计算精确度
-    precision = matching_ngrams / candidate_length
-    # 计算召回率
-    recall = matching_ngrams / reference_length
-    # 计算CodeBLEU
-    code_bleu = math.exp(0.5 * math.log(precision * recall))
-    return code_bleu
-
 
 def create_ngram_dict(code, n):
     ngrams = {}
@@ -90,6 +61,7 @@ def extract_code_blocks(text):
     else:
         return "```python\n" + text + "\n```".strip()
 
+
 def extract_action_blocks(text):
     pattern = r"```(.*?)```"
     code_blocks = re.findall(pattern, text, re.DOTALL)
@@ -116,7 +88,7 @@ def parse_args():
     parser.add_argument(
         "--task_prefix",
         type=str,
-        default="miniwob_v17_llama2chat",
+        default="miniwob_llama2chat",
         help="The prefix for the dataset name, directory name and save path",
     )
     parser.add_argument(
@@ -146,7 +118,7 @@ def main():
     ground_truth = []
     for i in range(1, part_num+1):
         part_name = f"part{i}"
-        with open(f"symbol-llm-v2/open-instruct/data/miniwob_{part_name}.json", 'r') as file:
+        with open(f"ENVISIONS/open-instruct/data/miniwob_{part_name}.json", 'r') as file:
             data = json.load(file)
         ground_truth += data
 
@@ -169,8 +141,8 @@ def main():
         for i in range(1, part_num + 1):
             if iter_idx == 0:
                 part_name = f"part{i}"
-                score = np.load(f"symbol-llm-v2/score_memory/{args.task_prefix}/scores_{args.task_prefix}_{part_name}_iter{iter_idx}.npy").tolist()
-                with open(f"symbol-llm-v2/score_memory/{args.task_prefix}/{args.task_prefix}_{part_name}_iter{iter_idx}.json",'r') as file:
+                score = np.load(f"ENVISIONS/score_memory/{args.task_prefix}/scores_{args.task_prefix}_{part_name}_iter{iter_idx}.npy").tolist()
+                with open(f"ENVISIONS/score_memory/{args.task_prefix}/{args.task_prefix}_{part_name}_iter{iter_idx}.json",'r') as file:
                     data = json.load(file)
                 scores += score
                 candidates += data
@@ -179,14 +151,14 @@ def main():
 
             else:
                 part_name = f"part{i}"
-                score = np.load(f"symbol-llm-v2/score_memory/{args.task_prefix}/scores_{args.task_prefix}_{part_name}_iter{iter_idx}.npy").tolist()
+                score = np.load(f"ENVISIONS/score_memory/{args.task_prefix}/scores_{args.task_prefix}_{part_name}_iter{iter_idx}.npy").tolist()
                 with open(f"new_generated_data/{args.task_prefix}_{part_name}_iter{iter_idx}.json", 'r') as file:
                     data = json.load(file)
                 scores += score
                 candidates += data
 
                 # load self-repaired samples
-                score_repaired = np.load(f"symbol-llm-v2/score_memory/{args.task_prefix}/scores_{args.task_prefix}_{part_name}_iter{iter_idx}_repaired.npy").tolist()
+                score_repaired = np.load(f"ENVISIONS/score_memory/{args.task_prefix}/scores_{args.task_prefix}_{part_name}_iter{iter_idx}_repaired.npy").tolist()
                 with open(f"new_generated_data/{args.task_prefix}_{part_name}_iter{iter_idx}_repaired.json", 'r') as file:
                     data_repaired = json.load(file)
                 scores_repaired += score_repaired
@@ -271,7 +243,7 @@ def main():
         #     print(f"Current iteration contains: {len(include_id_gsm)} gsm samples, and {len(include_id_math)} math samples, {len(include_id_gsm)/len(include_id_math)}")
         print("-" * 30)
 
-    with open(f"symbol-llm-v2/logs/{args.task_prefix}_log.txt","a") as file:
+    with open(f"ENVISIONS/logs/{args.task_prefix}_log.txt","a") as file:
         file.write(f"orginal effective samples before self-repair: {effective_samples}\n")
         file.write(f"orginal effective samples after self-repair: {count_effective_samples(scores)}\n")
         file.write(f"The iteration {iter_idx} has: SFT data {len(preference_data_sft)}\n")
@@ -281,11 +253,8 @@ def main():
         file.write("\n")
 
 
-    with jsonlines.open(f"symbol-llm-v2/open-instruct/data/{args.task_prefix}_sft_iter{args.cur_iter}.jsonl",'w') as file:
-        if len(preference_data_sft)<3000:
-            preference_data_sft = [item for item in preference_data_sft for _ in range(2)]
-        else:
-            preference_data_sft = [item for item in preference_data_sft for _ in range(2)]
+    with jsonlines.open(f"ENVISIONS/open-instruct/data/{args.task_prefix}_sft_iter{args.cur_iter}.jsonl",'w') as file:
+        preference_data_sft = [item for item in preference_data_sft for _ in range(2)]
         random.shuffle(preference_data_sft)
         for i in range(len(preference_data_sft)):
             file.write(preference_data_sft[i])

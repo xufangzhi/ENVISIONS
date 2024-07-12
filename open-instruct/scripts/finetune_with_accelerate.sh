@@ -1,17 +1,12 @@
-source /cpfs01/user/xufangzhi/anaconda3/bin/activate /cpfs01/user/xufangzhi/anaconda3/envs/flashattv2
-cd symbol-llm-v2/open-instruct
+source /cpfs01/user/xufangzhi/anaconda3/bin/activate /cpfs01/user/xufangzhi/anaconda3/envs/flashattv2 # activate your env
+cd ENVISIONS/open-instruct
 echo "[INFO] We have successfully activate the environment."
 echo "[INFO] Start to run the shell."
 
 export CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
 
-#MODEL_DIR=/cpfs01/shared/public/public_hdd/llmeval/model_weights/hf_hub/models--codellama--CodeLlama-34b-Instruct-hf/snapshots/d650b03778bb6cce1d21805bb757e4d42d222574
-MODEL_DIR=/cpfs01/shared/public/public_hdd/llmeval/model_weights/llama2/model_weights_hf/llama-2-7b-chat-hf
-#MODEL_DIR=/cpfs01/shared/NLP-A100/NLP-A100_hdd/model/Meta-Llama-3-8B
-#MODEL_DIR=/cpfs01/shared/public/public_hdd/llmeval/model_weights/hf_hub/models--EleutherAI--llemma_7b/snapshots/e223eee41c53449e6ea6548c9b71c50865e4a85c
-#MODEL_DIR=/cpfs01/shared/NLP-A100/NLP-A100_hdd/symbol-llm/symbol-llm_7b_instruct
-#MODEL_DIR=/cpfs01/user/xufangzhi/symbol-llm-v2/open-instruct/output/gsm_math_full_v8_dpo_iter4_dpo_tune_sft_iter3_7B
-#MODEL_DIR=/cpfs01/shared/public/public_hdd/llmeval/model_weights/hf_hub/models--deepseek-ai--deepseek-llm-7b-chat/snapshots/afbda8b347ec881666061fa67447046fc5164ec8
+MODEL_DIR=/cpfs01/shared/public/public_hdd/llmeval/model_weights/llama2/model_weights_hf/llama-2-7b-chat-hf  # replace it with the path to the base LLM
+
 MODEL_SIZE=7B
 NUM_GPUS=8
 BATCH_SIZE_PER_GPU=1

@@ -31,7 +31,7 @@ def parse_args():
     parser.add_argument(
         "--task_prefix",
         type=str,
-        default="logic_v17_llama3chat",
+        default="logic_llama2chat",
         help="The prefix for the dataset name, directory name and save path",
     )
     parser.add_argument(
@@ -50,7 +50,7 @@ def parse_args():
         "--base_model",
         type=str,
         default="llama2chat",
-        help="if continual train",
+        help="base model",
     )
     args = parser.parse_args()
     return args
@@ -68,7 +68,7 @@ def main():
         env = os.environ.copy()
         env['CUDA_VISIBLE_DEVICES'] = str(part_id - 1)
         process = subprocess.Popen(
-            ['python', 'symbol-llm-v2/generate_symbol_output/generate_candidates_logic_vLLM_self_training.py', \
+            ['python', 'ENVISIONS/generate_symbol_output/generate_candidates_logic_vLLM_self_training.py', \
              "--cur_iter", "0", "--few_shot", "--part_id", str(part_id), "--task_prefix", args.task_prefix, "--base_model",
              base_model, "--model_size", args.model_size, "--vllm_batchsize", str(args.vllm_batchsize)], env=env)
         processes.append(process)
@@ -78,13 +78,13 @@ def main():
     # ensure candidates are generated successfully
     for i in range(8):
         assert os.path.exists(
-            f"symbol-llm-v2/score_memory/{args.task_prefix}/{args.task_prefix}_part{i + 1}_iter0.json") == True, "generated candidates file does not exist..."
+            f"ENVISIONS/score_memory/{args.task_prefix}/{args.task_prefix}_part{i + 1}_iter0.json") == True, "generated candidates file does not exist..."
 
     # label preferences for the data before
-    subprocess.call(["python", "/cpfs01/user/xufangzhi/symbol-llm-v2/logic_engine/scripts/label_preference.py", \
+    subprocess.call(["python", "ENVISIONS/logic_engine/scripts/label_preference.py", \
                      "--task_prefix", args.task_prefix, "--cur_iter", "0", "--few_shot"])
     for i in range(8):
-        assert os.path.exists(f"symbol-llm-v2/score_memory/{args.task_prefix}/scores_{args.task_prefix}_part{i+1}_iter0.npy") == True
+        assert os.path.exists(f"ENVISIONS/score_memory/{args.task_prefix}/scores_{args.task_prefix}_part{i+1}_iter0.npy") == True
 
 
     # ======================================================================== #
@@ -97,20 +97,20 @@ def main():
         #                     Step 1: Generate Samples
         # ======================================================================== #
         logger.info(f"Start to generate samples for iteration-{cur_iter}")
-        subprocess.call(["python", f"/cpfs01/user/xufangzhi/symbol-llm-v2/self-training/organize_preference_data_logic_v17_{base_model}.py", \
+        subprocess.call(["python", f"ENVISIONS/self-training/organize_preference_data_logic_v17_{base_model}.py", \
                          "--task_prefix", args.task_prefix, "--cur_iter", str(cur_iter), "--model_size", args.model_size])
 
-        assert os.path.exists(f"symbol-llm-v2/open-instruct/data/{args.task_prefix}_sft_iter{cur_iter}.jsonl") == True, "training set does not exist..."
+        assert os.path.exists(f"ENVISIONS/open-instruct/data/{args.task_prefix}_sft_iter{cur_iter}.jsonl") == True, "training set does not exist..."
 
         # ======================================================================== #
         #                     Step 2: Training LLM (call open-instruct)
         # ======================================================================== #
         logger.info(f"Start to train LLM for iteration-{cur_iter}")
-        training_bash_script = "symbol-llm-v2/open-instruct/scripts/finetune_with_accelerate_self_training.sh"
+        training_bash_script = "ENVISIONS/open-instruct/scripts/finetune_with_accelerate_self_training.sh"
         # call the training scripts
         subprocess.call(["bash", training_bash_script, args.task_prefix, str(cur_iter), base_model, args.model_size])
 
-        assert len(os.listdir((f"symbol-llm-v2/open-instruct/output/{args.task_prefix}_sft_iter{cur_iter}_sft_tune_{base_model}_{args.model_size}"))) != 0, "The checkpoint does not exist"
+        assert len(os.listdir((f"ENVISIONS/open-instruct/output/{args.task_prefix}_sft_iter{cur_iter}_sft_tune_{base_model}_{args.model_size}"))) != 0, "The checkpoint does not exist"
 
         # ======================================================================== #
         #                     Step 3: Generate Candidates with vLLM
@@ -120,7 +120,7 @@ def main():
         for part_id in range(1,9):
             env = os.environ.copy()
             env['CUDA_VISIBLE_DEVICES'] = str(part_id - 1)
-            process = subprocess.Popen(['python', 'symbol-llm-v2/generate_symbol_output/generate_candidates_logic_vLLM_self_training.py', \
+            process = subprocess.Popen(['python', 'ENVISIONS/generate_symbol_output/generate_candidates_logic_vLLM_self_training.py', \
                                         "--cur_iter", str(cur_iter), "--part_id", str(part_id), "--task_prefix", args.task_prefix, "--base_model", base_model, \
                                        "--model_size", args.model_size, "--vllm_batchsize", str(args.vllm_batchsize)], env=env)
             processes.append(process)
@@ -140,7 +140,7 @@ def main():
         for part_id in range(1,9):
             env = os.environ.copy()
             env['CUDA_VISIBLE_DEVICES'] = str(part_id - 1)
-            process = subprocess.Popen(['python', 'symbol-llm-v2/generate_symbol_output/generate_repaired_logic_vLLM_self_training.py', \
+            process = subprocess.Popen(['python', 'ENVISIONS/generate_symbol_output/generate_repaired_logic_vLLM_self_training.py', \
                                         "--cur_iter", str(cur_iter), "--part_id", str(part_id), "--task_prefix", args.task_prefix, "--base_model", base_model, \
                                         "--model_size", args.model_size],env=env)
             processes.append(process)
@@ -156,16 +156,16 @@ def main():
         #                     Step 5: Check the correctness of candidates
         # ======================================================================== #
         # label preferences for the data before
-        subprocess.call(["python", "/cpfs01/user/xufangzhi/symbol-llm-v2/logic_engine_origin/scripts/label_preference.py", \
+        subprocess.call(["python", "ENVISIONS/logic_engine_origin/scripts/label_preference.py", \
                          "--task_prefix", args.task_prefix, "--cur_iter", str(cur_iter)])
         for i in range(8):
-            assert os.path.exists(f"symbol-llm-v2/score_memory/{args.task_prefix}/scores_{args.task_prefix}_part{i+1}_iter{cur_iter+1}.npy") == True
+            assert os.path.exists(f"ENVISIONS/score_memory/{args.task_prefix}/scores_{args.task_prefix}_part{i+1}_iter{cur_iter+1}.npy") == True
 
         # label perference for the repaired data
-        subprocess.call(["python", "/cpfs01/user/xufangzhi/symbol-llm-v2/logic_engine_origin/scripts/label_preference.py", \
+        subprocess.call(["python", "ENVISIONS/logic_engine_origin/scripts/label_preference.py", \
                          "--task_prefix", args.task_prefix, "--cur_iter", str(cur_iter), "--repaired"])
         for i in range(8):
-            assert os.path.exists(f"symbol-llm-v2/score_memory/{args.task_prefix}/scores_{args.task_prefix}_part{i+1}_iter{cur_iter+1}_repaired.npy") == True
+            assert os.path.exists(f"ENVISIONS/score_memory/{args.task_prefix}/scores_{args.task_prefix}_part{i+1}_iter{cur_iter+1}_repaired.npy") == True
 
     logger.info("Self-Training process has finished successfully ! ! !")
 

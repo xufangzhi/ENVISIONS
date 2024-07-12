@@ -1,5 +1,5 @@
-source /cpfs01/user/xufangzhi/anaconda3/bin/activate /cpfs01/user/xufangzhi/anaconda3/envs/flashattv2
-cd symbol-llm-v2/open-instruct
+source /cpfs01/user/xufangzhi/anaconda3/bin/activate /cpfs01/user/xufangzhi/anaconda3/envs/flashattv2  # activate your training env
+cd ENVISIONS/open-instruct
 echo "[INFO] We have successfully activate the environment."
 echo "[INFO] Start to run the shell."
 
@@ -23,30 +23,13 @@ echo "$ITER_NUM"
 
 if [ "$BASE_MODEL" = "llama2chat" ] || [ "$ITER_NUM" = "0" ]; then
   if [ "$MODEL_SIZE" = "7B" ]; then
-    MODEL_DIR=/cpfs01/shared/public/public_hdd/llmeval/model_weights/llama2/model_weights_hf/llama-2-7b-chat-hf
+    MODEL_DIR=/cpfs01/shared/public/public_hdd/llmeval/model_weights/llama2/model_weights_hf/llama-2-7b-chat-hf   # path to the base LLM
   elif [ "$MODEL_SIZE" = "13B" ]; then
-    MODEL_DIR=/cpfs01/shared/public/public_hdd/llmeval/model_weights/llama2/model_weights_hf/llama-2-13b-chat-hf
+    MODEL_DIR=/cpfs01/shared/public/public_hdd/llmeval/model_weights/llama2/model_weights_hf/llama-2-13b-chat-hf   # path to the base LLM
     DS_FILE=ds_configs/stage3_offloading_accelerate.conf
   fi
-elif [ "$BASE_MODEL" = "cont" ]; then
-  PREV_ITER_NUM=$((ITER_NUM - 1))
-  MODEL_DIR=/cpfs01/user/xufangzhi/symbol-llm-v2/open-instruct/output/${TASK_PREFIX}_sft_iter${PREV_ITER_NUM}_sft_tune_${BASE_MODEL}_${MODEL_SIZE}
 fi
 
-
-if [ "$BASE_MODEL" = "llemma" ]; then
-  MODEL_DIR=/cpfs01/shared/public/public_hdd/llmeval/model_weights/hf_hub/models--EleutherAI--llemma_7b/snapshots/e223eee41c53449e6ea6548c9b71c50865e4a85c
-  MODEL_SIZE=7B
-fi
-
-
-
-if [ "$BASE_MODEL" = "deepseekchat" ]; then
-  if [ "$MODEL_SIZE" = "7B" ]; then
-    MODEL_DIR=/cpfs01/shared/public/public_hdd/llmeval/model_weights/hf_hub/models--deepseek-ai--deepseek-llm-7b-chat/snapshots/afbda8b347ec881666061fa67447046fc5164ec8
-    MODEL_SIZE=7B
-  fi
-fi
 
 
 

@@ -104,7 +104,7 @@ def main():
     ground_truth = []
     for i in range(1, part_num+1):
         part_name = f"part{i}"
-        with open(f"symbol-llm-v2/open-instruct/data/gsm_math_full_{part_name}.json", 'r') as file:
+        with open(f"ENVISIONS/open-instruct/data/gsm_math_full_{part_name}.json", 'r') as file:
             data = json.load(file)
         ground_truth += data
 
@@ -119,21 +119,21 @@ def main():
         for i in range(1, part_num + 1):
             if iter_idx == 0:
                 part_name = f"part{i}"
-                score = np.load(f"symbol-llm-v2/score_memory/{args.task_prefix}/scores_gsm_math_full_{part_name}_iter{iter_idx}.npy").tolist()
-                with open(f"symbol-llm-v2/score_memory/{args.task_prefix}/gsm_math_full_{part_name}_iter{iter_idx}.json",'r') as file:
+                score = np.load(f"ENVISIONS/score_memory/{args.task_prefix}/scores_gsm_math_full_{part_name}_iter{iter_idx}.npy").tolist()
+                with open(f"ENVISIONS/score_memory/{args.task_prefix}/gsm_math_full_{part_name}_iter{iter_idx}.json",'r') as file:
                     data = json.load(file)
                 scores += score
                 candidates += data
             else:
                 part_name = f"part{i}"
-                score = np.load(f"symbol-llm-v2/score_memory/{args.task_prefix}/scores_{args.task_prefix}_{part_name}_iter{iter_idx}.npy").tolist()
+                score = np.load(f"ENVISIONS/score_memory/{args.task_prefix}/scores_{args.task_prefix}_{part_name}_iter{iter_idx}.npy").tolist()
                 with open(f"new_generated_data/{args.task_prefix}_{part_name}_iter{iter_idx}.json", 'r') as file:
                     data = json.load(file)
                 scores += score
                 candidates += data
 
                 # load self-repaired samples
-                score_repaired = np.load(f"symbol-llm-v2/score_memory/{args.task_prefix}/scores_{args.task_prefix}_{part_name}_iter{iter_idx}_repaired.npy").tolist()
+                score_repaired = np.load(f"ENVISIONS/score_memory/{args.task_prefix}/scores_{args.task_prefix}_{part_name}_iter{iter_idx}_repaired.npy").tolist()
                 with open(f"new_generated_data/{args.task_prefix}_{part_name}_iter{iter_idx}_repaired.json", 'r') as file:
                     data_repaired = json.load(file)
                 scores_repaired += score_repaired
@@ -230,7 +230,7 @@ def main():
         print("-" * 30)
 
 
-    with open(f"symbol-llm-v2/logs/{args.task_prefix}_log.txt","a") as file:
+    with open(f"ENVISIONS/logs/{args.task_prefix}_log.txt","a") as file:
         file.write(f"orginal effective samples before self-repair: {effective_samples}\n")
         file.write(f"orginal effective samples after self-repair: {count_effective_samples(scores)}\n")
         file.write(f"The iteration {iter_idx} has: SFT data {len(preference_data_sft)}\n")
@@ -240,7 +240,7 @@ def main():
         file.write("\n")
 
 
-    with jsonlines.open(f"symbol-llm-v2/open-instruct/data/{args.task_prefix}_sft_iter{args.cur_iter}.jsonl",'w') as file:
+    with jsonlines.open(f"ENVISIONS/open-instruct/data/{args.task_prefix}_sft_iter{args.cur_iter}.jsonl",'w') as file:
         random.shuffle(preference_data_sft)
         for i in range(len(preference_data_sft)):
             file.write(preference_data_sft[i])
