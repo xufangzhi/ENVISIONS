@@ -36,7 +36,7 @@ This work is still in progress. You can also check our previous work [Symbol-LLM
 
 
 ## 🔧 Environments
-Please refer to ``requirements.txt`` to build the environment. The current version of code only supports the experiments on 8*GPUs.
+Please refer to ``requirements.txt`` to build the environment. The current version of code supports the experiments on 8*GPUs.
 
 ## 🚀 How to Start Training
 
