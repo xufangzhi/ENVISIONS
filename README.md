@@ -68,11 +68,10 @@ python ENVISIONS/self_training_logic.py --base_model "llama2chat" --model_size "
 ## Citation
 If you find it helpful, please kindly cite our paper.
 ```
-@misc{xu2024interactive,
-      title={Interactive Evolution: A Neural-Symbolic Self-Training Framework For Large Language Models}, 
-      author={Fangzhi Xu and Qiushi Sun and Kanzhi Cheng and Jun Liu and Yu Qiao and Zhiyong Wu},
-      year={2024},
-      eprint={2406.11736},
-      archivePrefix={arXiv},
+@article{xu2024interactive,
+  title={Interactive Evolution: A Neural-Symbolic Self-Training Framework For Large Language Models},
+  author={Xu, Fangzhi and Sun, Qiushi and Cheng, Kanzhi and Liu, Jun and Qiao, Yu and Wu, Zhiyong},
+  journal={arXiv preprint arXiv:2406.11736},
+  year={2024}
 }
 ```
