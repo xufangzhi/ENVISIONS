@@ -1,5 +1,5 @@
 import os
-os.chdir("symbol-llm-v2/logic_engine/")
+os.chdir("ENVISIONS/logic_engine/")
 
 import sys
 sys.path.append(os.getcwd())

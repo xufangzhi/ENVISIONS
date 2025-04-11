@@ -8,7 +8,7 @@ from tqdm import tqdm
 import re
 
 # import Synapse.synapse.utils.llm
-os.chdir("symbol-llm-v2/Synapse")
+os.chdir("ENVISIONS/Synapse")
 from .synapse.agents.miniwob_seeclick import Agent
 
 

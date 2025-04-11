@@ -1,5 +1,5 @@
 import os
-os.chdir("symbol-llm-v2/logic_engine/")
+os.chdir("ENVISIONS/logic_engine/")
 
 import sys
 sys.path.append(os.getcwd())
@@ -162,9 +162,9 @@ def main():
 
 
         if args.few_shot:
-            np.save(f"../../symbol-llm-v2/score_memory/{args.task_prefix}/scores_{args.task_prefix}_{part}_iter0.npy", np.array(preference_scores_list))
+            np.save(f"../../ENVISIONS/score_memory/{args.task_prefix}/scores_{args.task_prefix}_{part}_iter0.npy", np.array(preference_scores_list))
         else:
-            np.save(f"../../symbol-llm-v2/score_memory/{args.task_prefix}/scores_{args.task_prefix}_{part}_iter{args.cur_iter+1}{suffix}.npy",np.array(preference_scores_list))
+            np.save(f"../../ENVISIONS/score_memory/{args.task_prefix}/scores_{args.task_prefix}_{part}_iter{args.cur_iter+1}{suffix}.npy",np.array(preference_scores_list))
 
     os.chdir("../..")
     print(num)

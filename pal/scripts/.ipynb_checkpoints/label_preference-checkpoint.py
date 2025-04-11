@@ -1,6 +1,6 @@
 import os
 
-os.chdir(f"symbol-llm-v2/pal/")
+os.chdir(f"ENVISIONS/pal/")
 
 import json
 import re

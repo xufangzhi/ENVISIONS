@@ -7,7 +7,7 @@ PART_ID=$1
 REPAIRED=$2
 
 if [ "$REPAIRED" = "TRUE" ]; then
-  python symbol-llm-v2/Synapse/label_preference.py --part_id ${PART_ID} --repaired
+  python ENVISIONS/Synapse/label_preference.py --part_id ${PART_ID} --repaired
 else
-  python symbol-llm-v2/Synapse/label_preference.py --part_id ${PART_ID}
+  python ENVISIONS/Synapse/label_preference.py --part_id ${PART_ID}
 fi

@@ -1,5 +1,5 @@
 source /cpfs01/user/xufangzhi/anaconda3/bin/activate /cpfs01/user/xufangzhi/anaconda3/envs/flashattv2
-cd symbol-llm-v2/open-instruct
+cd ENVISIONS/open-instruct
 echo "[INFO] We have successfully activate the environment."
 echo "[INFO] Start to run the shell."
 
@@ -9,8 +9,8 @@ export CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
 
 #MODEL_DIR=/cpfs01/shared/public/public_hdd/llmeval/model_weights/llama2/model_weights_hf/llama-2-7b-chat-hf
 #MODEL_DIR=/cpfs01/shared/NLP-A100/NLP-A100_hdd/symbol-llm/symbol-llm_7b_instruct
-#MODEL_DIR=/cpfs01/user/xufangzhi/symbol-llm-v2/open-instruct/output/metamathqa_filter_0.9_6k_iter1_dpo_tune_symbolllm_instruct_7B
-MODEL_DIR=/cpfs01/user/xufangzhi/symbol-llm-v2/open-instruct/output/gsm_math_full_v8_sft_iter3_sft_tune_dpo_iter3_7B
+#MODEL_DIR=/cpfs01/user/xufangzhi/ENVISIONS/open-instruct/output/metamathqa_filter_0.9_6k_iter1_dpo_tune_symbolllm_instruct_7B
+MODEL_DIR=/cpfs01/user/xufangzhi/ENVISIONS/open-instruct/output/gsm_math_full_v8_sft_iter3_sft_tune_dpo_iter3_7B
 MODEL_SIZE=7B
 NUM_GPUS=8
 BATCH_SIZE_PER_GPU=1

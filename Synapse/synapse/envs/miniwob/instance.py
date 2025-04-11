@@ -179,7 +179,7 @@ class MiniWoBInstance(Thread):
             #         9000, 30 + self.index * (self.window_height + 30)
             #     )
             # )
-        service = Service(executable_path=f'/cpfs01/user/xufangzhi/symbol-llm-v2/chromedriver-linux64_{self.args.part_id}/chromedriver')
+        service = Service(executable_path=f'/cpfs01/user/xufangzhi/ENVISIONS/chromedriver-linux64_{self.args.part_id}/chromedriver')
         self.driver = webdriver.Chrome(options=options, service=service)
         self.driver.implicitly_wait(5)
         """
